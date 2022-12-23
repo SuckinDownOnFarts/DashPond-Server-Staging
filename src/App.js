@@ -1,14 +1,15 @@
-import Layout from './components/Layouts/Layout';
-import Home from './components/Screens/Home';
-import CreateDash from './components/Screens/CreateDash';
-import DashPage from './components/Screens/DashPage';
-import Missing from './components/Screens/Missing';
-import Profile from './components/Screens/Profile';
-import Register from './components/Screens/Register';
-import Login from './components/Screens/Login';
-import RequireAuth from './components/Screens/RequireAuth';
+import Layout from './components/Layout';
+import Home from './Screens/Home';
+import CreateDash from './Screens/CreateDash';
+import DashPage from './Screens/DashPage';
+import Missing from './Screens/Missing';
+import Profile from './Screens/Profile';
+import Register from './Screens/Register';
+import Login from './Screens/Login';
+import RequireAuth from './Screens/RequireAuth';
+import DashPopulation from './Screens/DashPopulation';
 import { Route, Routes } from 'react-router-dom';
-
+import './App.css';
 
 function App() {
 
@@ -35,7 +36,8 @@ function App() {
           <Route path='profile' element={<Profile />} />
         </Route> 
 
-        <Route path='dashpage/:id' element={<DashPage />} />
+        {/* Dashboard */}
+
 
         {/* Auth and Register Routes */}
         <Route path='login' element={<Login />}/>
@@ -44,6 +46,13 @@ function App() {
         {/* Catch Route */}
         <Route path='*' element={<Missing />} />
       </Route>
+
+      <Route path='/dashpage/:id' element={<DashPage />}>
+          <Route path='population' element={<DashPopulation />}/>
+          
+          
+      </Route>
+
     </Routes>
   );
 }

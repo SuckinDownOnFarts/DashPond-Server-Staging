@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Feed from '../Homepage/Feed';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import axios from 'axios';
-import Container from 'react-bootstrap/Container';
+import Feed from '../components/Feed';
+import api from '../api/axios';
+
 
 
 
 
 const Home = () => {
-
-  const api = axios.create({
-    baseURL: 'https://localhost:5000'
-  });
 
   const [ propData, setPropData ] = useState([]);
 
@@ -21,6 +15,7 @@ const Home = () => {
       try {
         const response = await api.get('/properties');
         setPropData(response.data);
+        
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -35,12 +30,11 @@ const Home = () => {
     fetchProperties();
   }, [])
 
-  console.log(propData.length);
+  
 
 
   return (
-    <>
-
+    <main>
     {propData.length ? (
         <Feed posts={propData} />
     ) : (
@@ -48,8 +42,7 @@ const Home = () => {
             Whoops.. Server Error!
         </p>
     )}
-   
-    </>
+    </main>
   )
 }
 

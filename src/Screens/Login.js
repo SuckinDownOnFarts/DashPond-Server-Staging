@@ -1,14 +1,10 @@
 import React from 'react';
 import { useRef, useState, useEffect} from 'react';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 
 const Login = () => {
-
-  const api = axios.create({
-    baseURL: 'https://localhost:5000'
-  });
 
   const { setAuth } = useAuth();
 

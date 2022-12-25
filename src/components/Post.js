@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 const Post = ({ post }) => {
   return (
-      <Link to={`dashpage/${post.id}`}>
+      <Link to={`dashpage/${post.id}/overview`}>
         <Card className='mx-auto ' style={{ width: '18rem' }}>
           <Card.Img variant="top" src={`/images/${post.image_ref}`} height="280px" width="280px"/>
           <Card.Body>

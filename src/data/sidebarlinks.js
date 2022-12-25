@@ -1,106 +1,112 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
-import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
-import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import {  FiEdit } from 'react-icons/fi';
+import { BsKanban, BsHouseDoor, BsPeople } from 'react-icons/bs';
 import { BiColorFill } from 'react-icons/bi';
-import { IoMdContacts } from 'react-icons/io';
-import { RiContactsLine, RiStockLine } from 'react-icons/ri';
-import { MdOutlineSupervisorAccount } from 'react-icons/md';
-import { HiOutlineRefresh } from 'react-icons/hi';
-import { TiTick } from 'react-icons/ti';
-import { GiLouvrePyramid } from 'react-icons/gi';
-import { GrLocation } from 'react-icons/gr';
+import { IoSchoolOutline } from 'react-icons/io5';
+
+import { FaRegMoneyBillAlt } from 'react-icons/fa';
+
+import { GrOverview, GrUserWorker } from 'react-icons/gr';
 
 
 
 
 const links = [
     {
-      title: 'Dashboard',
+      title: 'Key Insights',
       links: [
         {
-          name: 'ecommerce',
-          icon: <FiShoppingBag />,
+          name: 'overview',
+          icon: <GrOverview />,
         },
       ],
     },
   
     {
-      title: 'Pages',
+      title: 'Demographic Insights',
       links: [
         {
-          name: 'orders',
-          icon: <AiOutlineShoppingCart />,
+          name: 'population',
+          icon: <BsPeople />,
         },
         {
-          name: 'employees',
-          icon: <IoMdContacts />,
+          name: 'housing',
+          icon: <BsHouseDoor />,
         },
         {
-          name: 'customers',
-          icon: <RiContactsLine />,
+          name: 'income',
+          icon: <FaRegMoneyBillAlt />,
+        },
+        {
+          name: 'education',
+          icon: <IoSchoolOutline />,
+        },
+        {
+          name: 'employement',
+          icon: <GrUserWorker />,
         },
       ],
     },
     {
-      title: 'Apps',
+      title: 'Property Details',
       links: [
         {
-          name: 'calendar',
+          name: 'information',
           icon: <AiOutlineCalendar />,
         },
-        {
-          name: 'kanban',
-          icon: <BsKanban />,
-        },
-        {
-          name: 'editor',
-          icon: <FiEdit />,
-        },
-        {
-          name: 'color-picker',
-          icon: <BiColorFill />,
-        },
+        // {
+        //   name: 'kanban',
+        //   icon: <BsKanban />,
+        // },
+        // {
+        //   name: 'editor',
+        //   icon: <FiEdit />,
+        // },
+        // {
+        //   name: 'color-picker',
+        //   icon: <BiColorFill />,
+        // },
       ],
     },
-    {
-      title: 'Charts',
-      links: [
-        {
-          name: 'line',
-          icon: <AiOutlineStock />,
-        },
-        {
-          name: 'area',
-          icon: <AiOutlineAreaChart />,
-        },
+    // {
+    //   title: 'Charts',
+    //   links: [
+    //     {
+    //       name: 'line',
+    //       icon: <AiOutlineStock />,
+    //     },
+    //     {
+    //       name: 'area',
+    //       icon: <AiOutlineAreaChart />,
+    //     },
   
-        {
-          name: 'bar',
-          icon: <AiOutlineBarChart />,
-        },
-        {
-          name: 'pie',
-          icon: <FiPieChart />,
-        },
-        {
-          name: 'financial',
-          icon: <RiStockLine />,
-        },
-        {
-          name: 'color-mapping',
-          icon: <BsBarChart />,
-        },
-        {
-          name: 'pyramid',
-          icon: <GiLouvrePyramid />,
-        },
-        {
-          name: 'stacked',
-          icon: <AiOutlineBarChart />,
-        },
-      ],
-    },
+    //     {
+    //       name: 'bar',
+    //       icon: <AiOutlineBarChart />,
+    //     },
+    //     {
+    //       name: 'pie',
+    //       icon: <FiPieChart />,
+    //     },
+    //     {
+    //       name: 'financial',
+    //       icon: <RiStockLine />,
+    //     },
+    //     {
+    //       name: 'color-mapping',
+    //       icon: <BsBarChart />,
+    //     },
+    //     {
+    //       name: 'pyramid',
+    //       icon: <GiLouvrePyramid />,
+    //     },
+    //     {
+    //       name: 'stacked',
+    //       icon: <AiOutlineBarChart />,
+    //     },
+    //   ],
+    // },
   ];
 
   export default links 

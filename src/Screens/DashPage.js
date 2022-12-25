@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, generatePath } from 'react-router-dom';
+import { useParams, generatePath, Outlet } from 'react-router-dom';
 import api from '../api/axios';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { FiSettings } from 'react-icons/fi';
-import { Outlet } from 'react-router-dom';
+
 import Sidebar from '../components/Sidebar';
-import Navbar from '../components/Navbar';
+import PropertyNavbar from '../components/PropertyNavbar';
 import { useStateContext } from '../Context/ContextProvider';
 
 
@@ -39,7 +39,7 @@ const DashPage = () => {
   }, [])
 
   //To view DB data in browser console
-  // console.log(dashData);
+  console.log(dashData);
 
   return (
     <div>
@@ -63,10 +63,12 @@ const DashPage = () => {
         <div className={
           activeMenu ? 'dark:bg-main-bg bg-main-bg min-h-screen md:ml-72 w-full' : 'dark:bg-main-bg bg-main-bg min-h-screen w-full flex-2'
         }>
-            <Navbar />
+            <PropertyNavbar />
+            <Outlet />
         </div>
-        <Outlet />
+        
       </div>
+      
     </div>
 
 

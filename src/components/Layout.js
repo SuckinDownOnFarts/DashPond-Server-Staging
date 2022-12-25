@@ -5,7 +5,10 @@ import { Outlet } from 'react-router-dom';
 const Layout = () => {
   return (
     <div>
-      <MainNav />
+      <div className=' dark:bg-main-dark-bg '>
+        <MainNav />
+      </div>
+      
       <Outlet />
       <Footer />
     </div>

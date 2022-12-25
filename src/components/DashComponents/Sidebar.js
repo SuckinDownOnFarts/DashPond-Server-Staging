@@ -2,9 +2,9 @@ import { Link, NavLink, generatePath, useParams } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import Logo from './Logo';
-import links from '../data/sidebarlinks';
-import { useStateContext } from '../Context/ContextProvider';
+import Logo from '../Logo';
+import links from '../../data/sidebarlinks';
+import { useStateContext } from '../../Context/ContextProvider';
 
 
 const Sidebar = () => {

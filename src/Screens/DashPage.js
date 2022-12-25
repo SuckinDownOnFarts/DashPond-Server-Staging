@@ -4,8 +4,8 @@ import api from '../api/axios';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { FiSettings } from 'react-icons/fi';
 
-import Sidebar from '../components/Sidebar';
-import PropertyNavbar from '../components/PropertyNavbar';
+import Sidebar from '../components/DashComponents/Sidebar';
+import PropertyNavbar from '../components/DashComponents/PropertyNavbar';
 import { useStateContext } from '../Context/ContextProvider';
 
 
@@ -13,7 +13,7 @@ const DashPage = () => {
   const { id } = useParams();
   const [ dashData, setDashData ] = useState([]);
   
-  const { activeMenu } = useStateContext();
+  const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
 
   const path = generatePath('/data/:id', {
     id: id
@@ -39,14 +39,32 @@ const DashPage = () => {
   }, [])
 
   //To view DB data in browser console
-  console.log(dashData);
+  // console.log(dashData);
+
+
+  useEffect(() => {
+    const currentThemeColor = localStorage.getItem('colorMode');
+    const currentThemeMode = localStorage.getItem('themeMode');
+    if (currentThemeMode && currentColor) {
+      setCurrentColor(currentThemeColor);
+      setCurrentMode(currentThemeMode)
+    }
+  }, [])
 
   return (
-    <div>
+    <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <div className='flex relative dark:bg-main-dark-bg'>
         <div className='fixed right-4 bottom-4' style={{ zIndex: '1000'}}>
-          <TooltipComponent content="Settings" position="Top">
-            <button type='button' className='text-3xl p-3 hover:drop-shadow hover-bg-light-grey text-white' style={{ backgroundColor: 'blue', borderRadius: '50%'}}>
+          <TooltipComponent 
+            content="Settings" 
+            position="Top"
+          >
+            <button 
+              type='button' 
+              className='text-3xl p-3 hover:drop-shadow hover-bg-light-grey text-white' 
+              style={{ backgroundColor: 'blue', borderRadius: '50%'}}
+              onClick={() => setThemeSettings(true)}
+            >
               <FiSettings />
             </button>
           </TooltipComponent>

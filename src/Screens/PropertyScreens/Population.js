@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoPrimitiveDot } from 'react-icons/go';
-import Button from '../../components/Button';
+import Button from '../../components/Globals/Button';
 
 import Stacked from '../../components/Charts/Stacked';
 import SparkLine from '../../components/Charts/SparkLine';
@@ -11,9 +11,10 @@ import SparklineAreaData from '../../data/sparklineArea';
 import { useStateContext } from '../../Context/ContextProvider';
 
 const Population = () => {
+  const { currentColor } = useStateContext();
 
   return (
-    <div className='mt-12'>
+    <div className='mt-12 '>
       <div className='flex flex-wrap lg:flex-nowrap justify-center'>
         <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repat bg-cover bg-center'>
           <div className='flex justify-between items-center'>
@@ -21,15 +22,6 @@ const Population = () => {
               <p className='font-bold text-gray-400'>Total Population</p>
               <p className='text-2xl'>7,903</p>
             </div>
-          </div>
-          <div className='mt-6'>
-            <Button
-              color='white'
-              bgColor='blue'
-              text='Download'
-              borderRadius='10px'
-              size='md'
-            />
           </div>
         </div>
         <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
@@ -58,7 +50,7 @@ const Population = () => {
         </div>
       </div>
       <div className='flex gap-10 flex-wrap justify-center'>
-        <div className='bg-white dark:text-gray-200 dark:bg-secondary-bg m-3 p-4 rounded-2xl md:w-780'>
+        <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780'>
             <div className='flex justify-between'>
               <p className='font-semibold text-xl'>
                 Revenue Updates
@@ -95,21 +87,13 @@ const Population = () => {
                 </div>
                 <div className='mt-5'>
                   <SparkLine 
-                    currentColor='blue'
+                    currentColor={currentColor}
                     id='line-sparkLine'
                     type='Line'
                     height='80px'
                     width='250px'
                     data={SparklineAreaData}
-                    color='blue'
-                  />
-                </div>
-                <div className='mt-10'>
-                  <Button 
-                    color='white'
-                    bgColor='blue'
-                    text='Lick a Toad'
-                    borderRadius='10px'
+                    color={currentColor}
                   />
                 </div>
               </div>

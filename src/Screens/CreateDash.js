@@ -2,7 +2,7 @@ import React from 'react';
 import api from '../api/axios';
 import { useState } from 'react';
 import { useNavigate, generatePath } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+
 
 
 const CreateDash = () => {
@@ -119,7 +119,7 @@ const CreateDash = () => {
               onChange={(e) => setInputCapRate(e.target.value)}
             /><br/>
 
-            <Button type='submit' variant='primary'>Submit</Button>
+            <button type='submit' variant='primary'>Submit</button>
             
         </form>
   )

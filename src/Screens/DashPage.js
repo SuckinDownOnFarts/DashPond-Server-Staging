@@ -4,6 +4,7 @@ import api from '../api/axios';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { FiSettings } from 'react-icons/fi';
 
+import ThemeSettings from '../components/DashComponents/ThemeSettings'
 import Sidebar from '../components/DashComponents/Sidebar';
 import PropertyNavbar from '../components/DashComponents/PropertyNavbar';
 import { useStateContext } from '../Context/ContextProvider';
@@ -13,17 +14,20 @@ const DashPage = () => {
   const { id } = useParams();
   const [ dashData, setDashData ] = useState([]);
   
+  
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
 
-  const path = generatePath('/data/:id', {
+  const pathCensusData = generatePath('/data/:id', {
     id: id
   })
 
+
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCensusData = async () => {
       try {
-        const response = await api.get(path);
-        setDashData(response.data);
+        const censusResponse = await api.get(pathCensusData);
+        setDashData(censusResponse.data);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -35,11 +39,11 @@ const DashPage = () => {
       }
     }
 
-    fetchData();
+    fetchCensusData();
   }, [])
 
   //To view DB data in browser console
-  // console.log(dashData);
+  console.log();
 
 
   useEffect(() => {
@@ -52,6 +56,8 @@ const DashPage = () => {
   }, [])
 
   return (
+
+
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <div className='flex relative dark:bg-main-dark-bg'>
         <div className='fixed right-4 bottom-4' style={{ zIndex: '1000'}}>
@@ -62,7 +68,7 @@ const DashPage = () => {
             <button 
               type='button' 
               className='text-3xl p-3 hover:drop-shadow hover-bg-light-grey text-white' 
-              style={{ backgroundColor: 'blue', borderRadius: '50%'}}
+              style={{ backgroundColor: currentColor, borderRadius: '50%'}}
               onClick={() => setThemeSettings(true)}
             >
               <FiSettings />
@@ -79,9 +85,11 @@ const DashPage = () => {
           </div>
         )}
         <div className={
-          activeMenu ? 'dark:bg-main-bg bg-main-bg min-h-screen md:ml-72 w-full' : 'dark:bg-main-bg bg-main-bg min-h-screen w-full flex-2'
+          activeMenu ? 'dark:bg-main-dark-bg bg-main-bg min-h-screen md:ml-72 w-full' : 'dark:bg-main-dark-bg bg-main-bg min-h-screen w-full flex-2'
         }>
             <PropertyNavbar />
+
+            {themeSettings && <ThemeSettings />}
             <Outlet />
         </div>
         

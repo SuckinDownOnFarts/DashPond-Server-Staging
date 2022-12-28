@@ -1,4 +1,4 @@
-import Layout from './components/Layout';
+import Layout from './components/LayoutGlobals/Layout';
 import Home from './Screens/Home';
 import CreateDash from './Screens/CreateDash';
 import DashPage from './Screens/DashPage';

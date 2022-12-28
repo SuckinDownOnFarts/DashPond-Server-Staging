@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Feed from '../components/Feed';
+import Feed from '../components/Homepage/Feed';
 import api from '../api/axios';
 
 

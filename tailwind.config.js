@@ -4,8 +4,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      display: ['Open Sans', 'sans-serif'],
-      body: ['Open Sans', 'sans-serif'],
+      sans: ['Inter var', 'sans'],
+      // display: ['Inter var', 'sans-serif'],
+      // body: ['Inter var', 'sans-serif'],
     },
     extend: {
       fontSize: {
@@ -41,7 +42,6 @@ module.exports = {
       },
       backgroundImage: {
         'hero-pattern':
-          // "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
           "url('/public/images/welcome-bg.svg')"
       },
     },

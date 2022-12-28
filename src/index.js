@@ -4,7 +4,6 @@ import App from './App';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthProvider';
 import { ContextProvider } from './Context/ContextProvider';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { registerLicense } from '@syncfusion/ej2-base';
 import './index.css';
 

@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { BsChatLeft } from 'react-icons/bs';
-import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 
 import NavProfile from '../NavbarDropdowns/NavProfile';
+import LoggedOutNavProfile from '../NavbarDropdowns/LoggedOutNavProfile';
 
 import { useStateContext } from '../../Context/ContextProvider';
 import useAuth from '../../hooks/useAuth';
@@ -38,7 +36,7 @@ const GlobalNavbar = () => {
 
   return (
     auth.user ? (
-      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
+      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg '>
         <div className='flex items-center'>
           <Link to='/'>
             <div>
@@ -68,15 +66,17 @@ const GlobalNavbar = () => {
             <img className='rounded-full w-8 h-8' src='/images/office1.jpg'/>
             <p>
               <span className='text-gray-400 text-14'>Hi, </span> {' '}
-              <span className='text-gray-400 font-bold ml-1 text-14'>Daniel</span>
+              <span className='text-gray-400 font-bold ml-1 text-14'>{auth.user}</span>
             </p>
             <MdKeyboardArrowDown className='text-gray-400 text-14'/>
-            {profileActive && <NavProfile />}
+            {profileActive && <NavProfile 
+              user={auth.user}
+            />}
           </div>
         </div>  
       </div>    
     ) : ( 
-      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
+      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg '>
         <div className='flex items-center'>
           <Link to='/'>
             <div>
@@ -111,13 +111,14 @@ const GlobalNavbar = () => {
             </ul>  
           </div>
           <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleProfileClick()}>
-            <img className='rounded-full w-8 h-8' src='/images/office1.jpg'/>
-            <p>
+            {/* <img className='rounded-full w-8 h-8' src='/images/user.jpg'/> */}
+            <IoPersonCircleOutline className='w-8 h-8 text-gray-700'/>
+            {/* <p>
               <span className='text-gray-400 text-14'>Hi, </span> {' '}
-              <span className='text-gray-400 font-bold ml-1 text-14'>Daniel</span>
-            </p>
+              <span className='text-gray-400 font-bold ml-1 text-14'>{auth.user}</span>
+            </p> */}
             <MdKeyboardArrowDown className='text-gray-400 text-14'/>
-            {profileActive && <NavProfile />}
+            {profileActive && <LoggedOutNavProfile />}
           </div>
         </div>  
       </div>    

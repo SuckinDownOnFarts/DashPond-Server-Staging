@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, generatePath, useParams } from 'react-router-dom';
+
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import links from '../../data/sidebarlinks';
+
+import { links } from '../../data/Data';
 import { useStateContext } from '../../Context/ContextProvider';
 import api from '../../api/axios';
 

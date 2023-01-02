@@ -5,8 +5,7 @@ import Button from '../../components/Globals/Button';
 import Stacked from '../../components/Charts/Stacked';
 import SparkLine from '../../components/Charts/SparkLine';
 
-import earningData from '../../data/earningData';
-import SparklineAreaData from '../../data/sparklineArea';
+import { earningData, SparklineAreaData } from '../../data/Data';
 
 import { useStateContext } from '../../Context/ContextProvider';
 
@@ -38,7 +37,6 @@ const Population = () => {
                   {item.amount}
                 </span>
                 <span className={`text-sm text-${item.pcColor} ml-2`}>
-                {/* <span className={`text-sm text-green-600 ml-2`}> */}
                   {item.percentage}
                 </span>
               </p>

@@ -10,6 +10,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import NavProfile from '../NavbarDropdowns/NavProfile';
 
 import { useStateContext } from '../../Context/ContextProvider';
+import useAuth from '../../hooks/useAuth';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor}) => (
   <TooltipComponent content={title} position='BottomCenter'>
@@ -30,6 +31,10 @@ const NavButton = ({ title, customFunc, icon, color, dotColor}) => (
 
 const Navbar = () => {
   const { activeMenu, setActiveMenu, profileActive, handleProfileClick, screenSize, setScreenSize, currentColor, setCurrentMode, currentMode } = useStateContext();
+
+  const { auth } = useAuth();
+
+  const baseURL = 'http://localhost:3000'
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -57,40 +62,90 @@ const Navbar = () => {
   // }, [])
 
   return (
-    <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
-      <NavButton 
-        title="Menu" 
-        customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
-        color={currentColor}
-        icon={<AiOutlineMenu />} 
-        />
-      <div className="flex items-center">
-        
-        {/* <NavButton title="Chat" dotColor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} /> */}
-        {/* <NavButton title="Notification" dotColor="rgb(254, 201, 15)" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} /> */}
-          <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray hover:dark:bg-secondary-dark-bg rounded-lg' onClick={() => handleProfileClick()}>
-            <img className='rounded-full w-8 h-8' src='/images/office1.jpg'/>
-            <p>
-              <span className='text-gray-400 text-14'>Hi, </span> {' '}
-              <span className='text-gray-400 font-bold ml-1 text-14'>Daniel</span>
-            </p>
-            <MdKeyboardArrowDown className='text-gray-400 text-14'/>
+    auth.user ? (
+      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
+        <NavButton 
+          title="Menu" 
+          customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
+          color={currentColor}
+          icon={<AiOutlineMenu />} 
+          />
+          <div className="flex items-center">
+          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
+            md:bg-white dark:bg-main-dark-bg">
+              <li>
+                <a href={`${baseURL}/about`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                md:hover:text-blue-700 md:p-0 dark:text-white">About</a>
+              </li>
+              <li>
+                <a href={`${baseURL}/create`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                md:hover:text-blue-700 md:p-0 dark:text-white">Create Dashboard</a>
+              </li>
+              <li>
+                <a href={`${baseURL}/contact`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                md:hover:text-blue-700 md:p-0 dark:text-white">Contact</a>
+              </li>
+            </ul>  
           </div>
-        {profileActive && <NavProfile />}
+            <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray hover:dark:bg-secondary-dark-bg rounded-lg' onClick={() => handleProfileClick()}>
+              <img className='rounded-full w-8 h-8' src='/images/office1.jpg'/>
+              <p>
+                <span className='text-gray-400 text-14'>Hi, </span> {' '}
+                <span className='text-gray-400 font-bold ml-1 text-14'>Daniel</span>
+              </p>
+              <MdKeyboardArrowDown className='text-gray-400 text-14'/>
+            </div>
+          {profileActive && <NavProfile />}
+        </div>
       </div>
-    </div>
-  )
-}
+      ) : (
+        <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
+          <NavButton 
+            title="Menu" 
+            customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
+            color={currentColor}
+            icon={<AiOutlineMenu />} 
+          />
+          <div className="flex items-center">
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+              <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
+              md:bg-white dark:bg-main-dark-bg ">
+                <li>
+                  <a href={`${baseURL}/About`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  md:hover:text-blue-700 md:p-0 dark:text-white">About</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/pricing" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  md:hover:text-blue-700 md:p-0 dark:text-white">Pricing</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/contact" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  md:hover:text-blue-700 md:p-0 dark:text-white">Contact</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/login" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  md:hover:text-blue-700 md:p-0 dark:text-white">Login</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/register" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  md:hover:text-blue-700 md:p-0 dark:text-white">Register</a>
+                </li>
+              </ul>  
+            </div>
+            <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleProfileClick()}>
+              <img className='rounded-full w-8 h-8' src='/images/office1.jpg'/>
+              <p>
+                <span className='text-gray-400 text-14'>Hi, </span> {' '}
+                <span className='text-gray-400 font-bold ml-1 text-14'>Daniel</span>
+              </p>
+              <MdKeyboardArrowDown className='text-gray-400 text-14'/>
+              {profileActive && <NavProfile />}
+            </div>
+          </div>
+        </div>  
+      )
+    )
+  }
 
 export default Navbar
-
-      {/* <Logo />
-      <nav className='float-right inline-block'>  
-        <div className='topnav-right mr-5'>
-          <h4 className="inline m-1"><Link to='/'>Home</Link></h4>
-          <h4 className="inline m-1"><Link to='create'>Create</Link></h4>
-          <h4 className="inline m-1"><Link to='login'>Login</Link></h4>
-          <h4 className="inline m-1"><Link to='register'>Register</Link></h4>
-          <h4 className="inline m-1"><Link to='profile'>Profile</Link></h4>
-        </div>
-      </nav> */}

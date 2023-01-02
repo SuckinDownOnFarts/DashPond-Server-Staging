@@ -2,11 +2,11 @@ import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 
 import Button from '../Globals/Button';
-import userProfileData from '../../data/userProfileData';
+import { userProfileData } from '../../data/Data';
 import { useStateContext } from '../../Context/ContextProvider';
 // import avatar from '/images/office1';
 
-const NavProfile = () => {
+const NavProfile = ({ user }) => {
   const { currentColor } = useStateContext();
 
   return (
@@ -24,11 +24,11 @@ const NavProfile = () => {
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
           className="rounded-full h-24 w-24"
-          src='/images/office1/jpg'
-          alt="user-profile"
+          src='/images/office1.jpg'
+          alt="profile-image"
         />
         <div>
-          <p className="font-semibold text-xl dark:text-gray-200"> Michael Roberts </p>
+          <p className="font-semibold text-xl dark:text-gray-200"> {user} </p>
           <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
           <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@shop.com </p>
         </div>

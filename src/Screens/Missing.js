@@ -23,7 +23,8 @@ const Missing = () => {
                 {/* <a href="https://www.freepik.com/vectors/business" target="_blank" class="text-xs text-gray-300">Business vector created by pikisuperstar - www.freepik.com</a> */}
             </div>
         </div>
-        <div class="w-64 md:w-96 h-96 md:h-full bg-blue-200 bg-opacity-30 absolute -top-64 md:-top-96 right-20 md:right-32 rounded-full pointer-events-none -rotate-45 transform"></div>
+        <div class="w-64 md:w-96 h-96 md:h-full bg-blue-200 bg-opacity-30 absolute -top-64 md:-top-96 right-20 md:right-32 rounded-full pointer-events-none -rotate-45 
+        transform"></div>
         <div class="w-96 h-full bg-yellow-200 bg-opacity-20 absolute -bottom-96 right-64 rounded-full pointer-events-none -rotate-45 transform"></div>
     </div>
 

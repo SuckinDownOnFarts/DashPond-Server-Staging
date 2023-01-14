@@ -1,3 +1,5 @@
 node_modules
 
-dashboardVid.txt
+.env
+
+.env.local

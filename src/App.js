@@ -6,9 +6,9 @@ import CreateDash from './Screens/CreateDash';
 import DashPage from './Screens/DashPage';
 import Missing from './Screens/Missing';
 import Profile from './Screens/Profile';
-import Register from './Screens/Register';
-import Login from './Screens/Login';
-import RequireAuth from './Screens/RequireAuth';
+import Register from './Screens/AuthScreens/Register';
+import Login from './Screens/AuthScreens/Login';
+import RequireAuth from './Screens/AuthScreens/RequireAuth';
 import Pricing from './Screens/Pricing';
 import Contact from './Screens/Contact';
 
@@ -62,8 +62,8 @@ function App() {
         <Route path='population' element={<Population />}/>
         <Route path='housing' element={<Housing />}/>
         <Route path='income' element={<Income />}/>
-        <Route path='education' element={<Education />}/>
-        <Route path='employement' element={<Employement />}/>
+        <Route path='education+employement' element={<Education />}/>
+        {/* <Route path='employement' element={<Employement />}/> */}
         <Route path='information' element={<PropertyInsights />}/>   
       </Route>
 

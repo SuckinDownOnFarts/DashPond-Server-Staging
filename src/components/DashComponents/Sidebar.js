@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, generatePath, useParams } from 'react-router-dom';
 
 import { MdOutlineCancel } from 'react-icons/md';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { BsHouseDoor, BsPeople, BsBinoculars } from 'react-icons/bs';
+import { IoSchoolOutline } from 'react-icons/io5';
+import { FaRegMoneyBillAlt } from 'react-icons/fa';
+
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { links } from '../../data/Data';
@@ -12,6 +17,59 @@ const Sidebar = () => {
   const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
   const [ propData, setPropData ] = useState(['Loading']);
+
+  const links = [
+    {
+      title: 'Key Insights',
+      links: [
+        {
+          name: 'overview',
+          link: 'overview',
+          icon: <BsBinoculars />,
+        },
+      ],
+    },
+  
+    {
+      title: 'Demographic Insights',
+      links: [
+        {
+          name: 'population',
+          link: 'population',
+          icon: <BsPeople />,
+        },
+        {
+          name: 'housing',
+          link: 'housing',
+          icon: <BsHouseDoor />,
+        },
+        {
+          name: 'income',
+          link: 'income',
+          icon: <FaRegMoneyBillAlt />,
+        },
+        {
+          name: 'education & employement',
+          link: 'education+employement',
+          icon: <IoSchoolOutline />,
+        },
+        // {
+        //   name: 'employement',
+        //   icon: <BsBriefcase />,
+        // },
+      ],
+    },
+    {
+      title: 'Property Details',
+      links: [
+        {
+          name: 'information',
+          link: 'information',
+          icon: <AiOutlineCalendar />,
+        },
+      ],
+    },
+  ];
 
   const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
   const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:hover:bg-main-dark-bg dark:text-gray-200  hover:bg-light-gray m-2';
@@ -71,7 +129,7 @@ const Sidebar = () => {
               <p className='text-gray-400 m-3 mt-4 uppercase'>{item.title}</p>
               {item.links.map((link) => (
                 <NavLink 
-                  to={`${currentPath}/${link.name}`}
+                  to={`${currentPath}/${link.link}`}
                   key={link.name}
                   onClick={handleCloseSideBar}
                   style={({ isActive }) => ({

@@ -15,20 +15,20 @@ export const userProfileData = [
       iconColor: '#03C9D7',
       iconBg: '#E5FAFB',
     },
-    {
-      icon: <BsShield />,
-      title: 'My Inbox',
-      desc: 'Messages & Emails',
-      iconColor: 'rgb(0, 194, 146)',
-      iconBg: 'rgb(235, 250, 242)',
-    },
-    {
-      icon: <FiCreditCard />,
-      title: 'My Tasks',
-      desc: 'To-do and Daily Tasks',
-      iconColor: 'rgb(255, 244, 229)',
-      iconBg: 'rgb(254, 201, 15)',
-    },
+    // {
+    //   icon: <BsShield />,
+    //   title: 'My Inbox',
+    //   desc: 'Messages & Emails',
+    //   iconColor: 'rgb(0, 194, 146)',
+    //   iconBg: 'rgb(235, 250, 242)',
+    // },
+    // {
+    //   icon: <FiCreditCard />,
+    //   title: 'My Tasks',
+    //   desc: 'To-do and Daily Tasks',
+    //   iconColor: 'rgb(255, 244, 229)',
+    //   iconBg: 'rgb(254, 201, 15)',
+    // },
   ];
 
 export const earningData = [
@@ -129,13 +129,19 @@ export const SparklineAreaData = [
 
   const stackedChartData = [
     [
-      { x: 'Jan', y: 111.1 },
-      { x: 'Feb', y: 127.3 },
-      { x: 'Mar', y: 143.4 },
-      { x: 'Apr', y: 159.9 },
-      { x: 'May', y: 159.9 },
-      { x: 'Jun', y: 159.9 },
-      { x: 'July', y: 159.9 },
+      { x: 'Under 5 Years', y: 111.1 },
+      { x: '5 to 9 Years', y: 111.1 },
+      { x: '10 to 14 Years', y: 127.3 },
+      { x: '15 to 19 Years', y: 143.4 },
+      { x: '20 to 24 Years', y: 159.9 },
+      { x: '25 to 34 Years', y: 159.9 },
+      { x: '35 to 44 Years', y: 159.9 },
+      { x: '45 to 54 Years', y: 159.9 },
+      { x: '55 to 59 Years', y: 159.9 },
+      { x: '60 to 64 Years', y: 159.9 },
+      { x: '65 to 74 Years', y: 159.9 },
+      { x: '75 to 84 Years', y: 159.9 },
+      { x: '85 Years and Over', y: 159.9 },
     ],
     [
       { x: 'Jan', y: 111.1 },
@@ -153,7 +159,7 @@ export const stackedCustomSeries = [
     { dataSource: stackedChartData[0],
       xName: 'x',
       yName: 'y',
-      name: 'Budget',
+      name: 'Male',
       type: 'StackingColumn',
       background: 'blue',
   
@@ -162,7 +168,7 @@ export const stackedCustomSeries = [
     { dataSource: stackedChartData[1],
       xName: 'x',
       yName: 'y',
-      name: 'Expense',
+      name: 'Female',
       type: 'StackingColumn',
       background: 'red',
   

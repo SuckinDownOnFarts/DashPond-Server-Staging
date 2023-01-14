@@ -36,7 +36,7 @@ const GlobalNavbar = () => {
 
   return (
     auth.user ? (
-      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg '>
+      <div className='flex sticky top-0 z-50 justify-between p-2 md:mx-6 dark:bg-main-dark-bg bg-main-bg border-b-1'>
         <div className='flex items-center'>
           <Link to='/'>
             <div>
@@ -76,7 +76,7 @@ const GlobalNavbar = () => {
         </div>  
       </div>    
     ) : ( 
-      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg '>
+      <div className='flex sticky top-0 z-50 justify-between p-2 md:mx-6 dark:bg-main-dark-bg bg-main-bg border-b-1'>
         <div className='flex items-center'>
           <Link to='/'>
             <div>

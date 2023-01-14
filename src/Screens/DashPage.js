@@ -39,11 +39,11 @@ const DashPage = () => {
       }
     }
 
-    fetchCensusData();
+    // fetchCensusData();
   }, [])
 
   //To view DB data in browser console
-  console.log();
+  console.log(dashData);
 
 
   useEffect(() => {

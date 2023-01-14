@@ -63,7 +63,7 @@ const Navbar = () => {
 
   return (
     auth.user ? (
-      <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
+      <div className='flex justify-between sticky top-0 z-50 p-2 md:mx-6 dark:bg-main-dark-bg bg-light-gray'>
         <NavButton 
           title="Menu" 
           customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
@@ -100,7 +100,7 @@ const Navbar = () => {
         </div>
       </div>
       ) : (
-        <div className='flex justify-between p-2 md:mx-6 relative dark:bg-main-dark-bg'>
+        <div className='flex justify-between sticky top-0 z-50 p-2 md:mx-6 dark:bg-main-dark-bg bg-gray-50  border-b-1'>
           <NavButton 
             title="Menu" 
             customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
@@ -116,19 +116,19 @@ const Navbar = () => {
                   md:hover:text-blue-700 md:p-0 dark:text-white">About</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/pricing" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  <a href={`${baseURL}/pricing`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
                   md:hover:text-blue-700 md:p-0 dark:text-white">Pricing</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/contact" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  <a href={`${baseURL}/contact`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
                   md:hover:text-blue-700 md:p-0 dark:text-white">Contact</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/login" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  <a href={`${baseURL}/login`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
                   md:hover:text-blue-700 md:p-0 dark:text-white">Login</a>
                 </li>
                 <li>
-                  <a href="http://localhost:3000/register" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
+                  <a href={`${baseURL}/register`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 
                   md:hover:text-blue-700 md:p-0 dark:text-white">Register</a>
                 </li>
               </ul>  

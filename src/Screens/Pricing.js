@@ -5,10 +5,10 @@ const Pricing = () => {
 
 
   return (
-    <div className="mx-4 my-16">
+    <div className="mx-4 my-16 h-screen">
         <div className="text-center">
             <h1 className="mb-4 text-2xl font-normal md:text-3xl lg:text-4xl">
-                Our <span className="font-semibold">plans</span> for your <span class="font-semibold">strategies</span>
+                Our <span className="font-semibold">plans</span> for your <span className="font-semibold">strategies</span>
             </h1>
             <p className="text-sm font-normal text-gray-400">
                 See below our main three plans for your business, for your startup and agency.
@@ -21,7 +21,7 @@ const Pricing = () => {
 
 
         {/* <!-- Plans --> */}
-        <div className="flex flex-col items-center justify-center mt-16 space-y-8 lg:flex-row lg:items-stretch lg:space-x-8 lg:space-y-0">
+        <div className=" flex flex-col items-center justify-center mt-16 space-y-8 lg:flex-row lg:items-stretch lg:space-x-8 lg:space-y-0">
             {pricingPlans.map((item) => (
                 <div className="flex-shrink-0" key={item.name}>
                     <span className="text-4xl font-medium tracking-tight">{item.price.monthly}</span>

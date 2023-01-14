@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div class="w-full mx-auto bottom-0 fixed border-t-1">
+    <div class="w-full mx-auto sticky inset-x-0 bottom-0 z-50 border-t-1 ">
       <footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com" class="hover:underline" target="_blank">DashPond™</a>. All Rights Reserved.
         </span>

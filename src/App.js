@@ -15,8 +15,6 @@ import Contact from './Screens/Contact';
 //Property Insight Screens
 import Population from './Screens/PropertyScreens/Population';
 import Overview from './Screens/PropertyScreens/Overview';
-import Education from './Screens/PropertyScreens/Education';
-import Employement from './Screens/PropertyScreens/Employement';
 import Housing from './Screens/PropertyScreens/Housing';
 import Income from './Screens/PropertyScreens/Income';
 import PropertyInsights from './Screens/PropertyScreens/PropertyInsights';
@@ -62,8 +60,6 @@ function App() {
         <Route path='population' element={<Population />}/>
         <Route path='housing' element={<Housing />}/>
         <Route path='income' element={<Income />}/>
-        <Route path='education+employement' element={<Education />}/>
-        {/* <Route path='employement' element={<Employement />}/> */}
         <Route path='information' element={<PropertyInsights />}/>   
       </Route>
 

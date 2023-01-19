@@ -1,23 +1,36 @@
 import React from 'react';
-import { PivotViewComponent } from '@syncfusion/ej2-react-pivotview';
+import { FieldList, Inject, PivotViewComponent } from '@syncfusion/ej2-react-pivotview';
 
-const PivotTable = ({ pivotData }) => {
-    const dataSourceSettings = {
-        columns: [{ name: 'Year', caption: 'Production Year' }, { name: 'Quarter' }],
-        dataSource: pivotData,
-        expandAll: false,
-        filters: [],
-        drilledMembers: [{ name: 'Country', items: ['France'] }],
-        formatSettings: [{ name: 'Amount', format: 'C0' }],
-        rows: [{ name: 'Country' }, { name: 'Products' }],
-        values: [{ name: 'Sold', caption: 'Units Sold' }, { name: 'Amount', caption: 'Sold Amount' }]
-    };
-    let pivotObj;
+
+
+const PivotTable = ({ id, setting }) => {
+
+  let pivotObj;
+
+  const primaryXAxis = {
+    labelIntersectionAction: true
+  }
+
+  const margin = {
+    left: 5
+  }
 
   return (
-  <PivotViewComponent ref={d => pivotObj = d} id='PivotView' height={350} dataSourceSettings={dataSourceSettings}>
+    <PivotViewComponent 
+      ref={d => pivotObj = d} 
+      id={id} 
+      height={550} 
+      width={1350}
+      dataSourceSettings={setting}
+      background='red'
+      // margin={margin}
+      // primaryXAxis={primaryXAxis}
+      showFieldList={true}
+      showGroupingBar={true}>
+        <Inject services={[FieldList]} />
+    </PivotViewComponent>
 
-  </PivotViewComponent>);
+  )
 }
 
 export default PivotTable

@@ -38,14 +38,76 @@ const Housing = () => {
 
   // console.log(data);
 
-  let pivotData = []
-  !loading ? pivotData = [
-    { 'Sold': 31, 'Amount': 52824, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q1' },
-    { 'Sold': 51, 'Amount': 86904, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q2' },
-    { 'Sold': 90, 'Amount': 153360, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q3' },
-    { 'Sold': 25, 'Amount': 42600, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q4' },
-    { 'Sold': 27, 'Amount': 46008, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2016', 'Quarter': 'Q1' }
-  ] : pivotData = []
+  let householdData = []
+  !loading ? householdData = [
+    { '# of Persons': data[0][0].DP02_0002E, 'Header': 'Total Households', 'Sub': 'Married Couple Households', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0002E, 'Header': 'Total Households', 'Sub': 'Married Couple Households', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0002E, 'Header': 'Total Households', 'Sub': 'Married Couple Households', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0004E, 'Header': 'Total Households', 'Sub': 'Non-Married Couple Households', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0004E, 'Header': 'Total Households', 'Sub': 'Non-Married Couple Households', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0004E, 'Header': 'Total Households', 'Sub': 'Non-Married Couple Households', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0006E, 'Header': 'Total Households', 'Sub': 'Male Householder', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0006E, 'Header': 'Total Households', 'Sub': 'Male Householder', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0006E, 'Header': 'Total Households', 'Sub': 'Male Householder', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0010E, 'Header': 'Total Households', 'Sub': 'Female Householder', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0010E, 'Header': 'Total Households', 'Sub': 'Female Householder', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0010E, 'Header': 'Total Households', 'Sub': 'Female Householder', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0014E, 'Header': 'Total Households', 'Sub': 'Households with at least one preson under 18', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0014E, 'Header': 'Total Households', 'Sub': 'Households with at least one preson under 18', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0014E, 'Header': 'Total Households', 'Sub': 'Households with at least one preson under 18', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0015E, 'Header': 'Total Households', 'Sub': 'Households with at least one preson over 65', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0015E, 'Header': 'Total Households', 'Sub': 'Households with at least one preson over 65', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0015E, 'Header': 'Total Households', 'Sub': 'Households with at least one preson over 65', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0019E, 'Header': 'Population in Households', 'Sub': 'House Holder', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0019E, 'Header': 'Population in Households', 'Sub': 'House Holder', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0019E, 'Header': 'Population in Households', 'Sub': 'House Holder', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0020E, 'Header': 'Population in Households', 'Sub': 'Spouse', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0020E, 'Header': 'Population in Households', 'Sub': 'Spouse', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0020E, 'Header': 'Population in Households', 'Sub': 'Spouse', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0021E, 'Header': 'Population in Households', 'Sub': 'Unmarried Partner', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0021E, 'Header': 'Population in Households', 'Sub': 'Unmarried Partner', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0021E, 'Header': 'Population in Households', 'Sub': 'Unmarried Partner', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0022E, 'Header': 'Population in Households', 'Sub': 'Child', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0022E, 'Header': 'Population in Households', 'Sub': 'Child', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0022E, 'Header': 'Population in Households', 'Sub': 'Child', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0023E, 'Header': 'Population in Households', 'Sub': 'Other Realtives', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0023E, 'Header': 'Population in Households', 'Sub': 'Other Realtives', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0023E, 'Header': 'Population in Households', 'Sub': 'Other Realtives', 'Radius': '10 Mile' },
+    { '# of Persons': data[0][0].DP02_0024E, 'Header': 'Population in Households', 'Sub': 'Non-relatives', 'Radius': '3 Mile' },
+    { '# of Persons': data[1][0].DP02_0024E, 'Header': 'Population in Households', 'Sub': 'Non-relatives', 'Radius': '5 Mile' },
+    { '# of Persons': data[2][0].DP02_0024E, 'Header': 'Population in Households', 'Sub': 'Non-relatives', 'Radius': '10 Mile' },
+  ] : householdData = []
+
+  const dataSourceSettingsHH = {
+    columns: [{ name: 'Radius', caption: 'Buffer' }],
+    dataSource: householdData,
+    expandAll: false,
+    filters: [],
+    showGrandTotals: false,
+    drilledMembers: [{ name: 'Header', items: ['Total Households'] }, 
+    { name: 'Header', items: ['Population in Households'] }],
+    // formatSettings: [{ name: 'Amount', format: 'C0' }],
+    rows: [{ name: 'Header' }, { name: 'Sub' }],
+    values: [{ name: '# of Persons' }]
+};
+
+let housingUnitData = []
+  !loading ? housingUnitData = [
+    { '# of Units': data[0][0].DP04_0002E, 'Header': 'Housing Units', 'Sub': 'Occupied Housing Units', 'Radius': '3 Mile' },
+    { '# of Units': data[0][0].DP04_0003E, 'Header': 'Housing Units', 'Sub': 'Vacant Housing Units', 'Radius': '3 Mile' },
+  ] : housingUnitData = []
+
+  const dataSourceSettingsHU = {
+    columns: [{ name: 'Radius', caption: 'Buffer' }],
+    dataSource: housingUnitData,
+    expandAll: false,
+    filters: [],
+    showGrandTotals: false,
+    drilledMembers: [{ name: 'Header', items: ['Housing Units'] }],
+    // formatSettings: [{ name: 'Amount', format: 'C0' }],
+    rows: [{ name: 'Header' }, { name: 'Sub' }],
+    values: [{ name: '# of Units' }]
+};
 
   return (
   <div className='mt-12 items-center'>
@@ -54,14 +116,23 @@ const Housing = () => {
         <span>Key Household Insights</span>
       </p>
     </div>
-    <div className=''>
+    <div className='px-4 pt-10 flex flex-wrap justify-center'>
       <PivotTable 
-        pivotData={pivotData}
+        pivotData={householdData}
+        setting={dataSourceSettingsHH}
+        id='HouseholdTable'
       />
+    </div>
+    <div className='px-4 flex flex-wrap justify-center'>
+      <PivotTable 
+        pivotData={housingUnitData}
+        setting={dataSourceSettingsHU}
+        id='HousingUnitTable'
+      /> 
     </div>
     {!loading ?
     <div>
-      {data[2][0].DP04_0001E} 
+      {data[0][0].DP04_0002E} 
     </div> : <></>}
   </div>
   )

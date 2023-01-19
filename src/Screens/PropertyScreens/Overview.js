@@ -13,14 +13,14 @@ const Overview = () => {
     id: id
   })
 
-  const [ overviewData, setOverviewData ] = useState([]);
+  const [ data, setData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
         const overviewResponse = await api.get(overviewPath);
-        setOverviewData(overviewResponse.data);
+        setData(overviewResponse.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {
@@ -52,10 +52,15 @@ const Overview = () => {
           <span>Key Facts and Insights</span>
         </p>
       </div>
-      <div>
+      {/* <div>
         <PivotTable 
           pivotData={pivotData}
         />
+      </div> */}
+      <div>
+      {!loading ? 
+        <div>{data[2][0].DP03_0050E}</div>
+      : <></>}
       </div>
     </div>
   )

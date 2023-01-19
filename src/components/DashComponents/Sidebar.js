@@ -48,11 +48,11 @@ const Sidebar = () => {
           link: 'income',
           icon: <FaRegMoneyBillAlt />,
         },
-        {
-          name: 'education & employement',
-          link: 'education+employement',
-          icon: <IoSchoolOutline />,
-        },
+        // {
+        //   name: 'education & employement',
+        //   link: 'education+employement',
+        //   icon: <IoSchoolOutline />,
+        // },
         // {
         //   name: 'employement',
         //   icon: <BsBriefcase />,

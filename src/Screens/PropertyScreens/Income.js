@@ -11,14 +11,14 @@ const Income = () => {
     id: id
   })
 
-  const [ incomeData, setIncomeData ] = useState([]);
+  const [ data, setData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     const fetchIncomeData = async () => {
       try {
         const incomeResponse = await api.get(incomePath);
-        setIncomeData(incomeResponse.data);
+        setData(incomeResponse.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {
@@ -34,12 +34,19 @@ const Income = () => {
     fetchIncomeData();
   }, [])
 
+  // console.log(data);
+
   return (
   <div className='mt-12'>
     <div className='flex flex-wrap justify-center pt-3 pb-10'>
       <p className='font-bold text-5xl' >
         <span>Key Income Insights</span>
       </p>
+    </div>
+    <div>
+      {!loading ? 
+        <div>{data[1][0].DP03_0060E}</div>
+      : <></>}
     </div>
   </div>
   )

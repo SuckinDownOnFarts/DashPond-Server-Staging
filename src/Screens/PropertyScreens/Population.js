@@ -20,14 +20,14 @@ const Population = () => {
     id: id
   })
 
-  const [ populationData, setPopulationData ] = useState([]);
+  const [ data, setData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     const fetchPopulationData = async () => {
       try {
         const populationResponse = await api.get(populationPath);
-        setPopulationData(populationResponse.data);
+        setData(populationResponse.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {
@@ -43,73 +43,73 @@ const Population = () => {
     fetchPopulationData();
   }, [])
 
-  // console.log(populationData);
+  console.log(data);
 
 
   let ageData = []
   !loading ? ageData = [
-    { x: 'Under 5', y: populationData[0].DP05_0005E},
-    { x: '5 to 9', y: populationData[0].DP05_0006E },
-    { x: '10 to 14', y: populationData[0].DP05_0007E },
-    { x: '15 to 19', y: populationData[0].DP05_0008E },
-    { x: '20 to 24', y: populationData[0].DP05_0009E },
-    { x: '25 to 34', y: populationData[0].DP05_0010E },
-    { x: '35 to 44', y: populationData[0].DP05_0011E },
-    { x: '45 to 54', y: populationData[0].DP05_0012E },
-    { x: '55 to 59', y: populationData[0].DP05_0013E },
-    { x: '60 to 64', y: populationData[0].DP05_0014E },
-    { x: '65 to 74', y: populationData[0].DP05_0015E },
-    { x: '75 to 84', y: populationData[0].DP05_0016E },
-    { x: '85+', y: populationData[0].DP05_0017E },
+    { x: 'Under 5', y: data[0][0].DP05_0005E},
+    { x: '5 to 9', y: data[0][0].DP05_0006E },
+    { x: '10 to 14', y: data[0][0].DP05_0007E },
+    { x: '15 to 19', y: data[0][0].DP05_0008E },
+    { x: '20 to 24', y: data[0][0].DP05_0009E },
+    { x: '25 to 34', y: data[0][0].DP05_0010E },
+    { x: '35 to 44', y: data[0][0].DP05_0011E },
+    { x: '45 to 54', y: data[0][0].DP05_0012E },
+    { x: '55 to 59', y: data[0][0].DP05_0013E },
+    { x: '60 to 64', y: data[0][0].DP05_0014E },
+    { x: '65 to 74', y: data[0][0].DP05_0015E },
+    { x: '75 to 84', y: data[0][0].DP05_0016E },
+    { x: '85+', y: data[0][0].DP05_0017E },
   ] : ageData=[]
 
   let raceData = []
   !loading ? raceData = [
-    { x: 'American', y: populationData[0].DP02_0125E},
-    { x: 'Arab', y: populationData[0].DP02_0126E },
-    { x: 'Czech', y: populationData[0].DP02_0127E },
-    { x: 'Danish', y: populationData[0].DP02_0128E },
-    { x: 'Dutch', y: populationData[0].DP02_0129E },
-    { x: 'English', y: populationData[0].DP02_0130E },
-    { x: 'French', y: populationData[0].DP02_0131E },
-    { x: 'French Canadian', y: populationData[0].DP02_0132E },
-    { x: 'German', y: populationData[0].DP02_0133E },
-    { x: 'Greek', y: populationData[0].DP02_0134E },
-    { x: 'Hungarian', y: populationData[0].DP02_0135E },
-    { x: 'Irish', y: populationData[0].DP02_0136E },
-    { x: 'Italian', y: populationData[0].DP02_0137E },
-    { x: 'Lithuanian', y: populationData[0].DP02_0138E },
-    { x: 'Norwegian', y: populationData[0].DP02_0139E },
-    { x: 'Polish', y: populationData[0].DP02_0140E },
-    { x: 'Portuguese', y: populationData[0].DP02_0141E },
-    { x: 'Russian', y: populationData[0].DP02_0142E },
-    { x: 'Scotch-Irish', y: populationData[0].DP02_0143E },
-    { x: 'Scottish', y: populationData[0].DP02_0144E },
-    { x: 'Slovak', y: populationData[0].DP02_0145E },
-    { x: 'Subsharan African', y: populationData[0].DP02_0146E },
-    { x: 'Swedish', y: populationData[0].DP02_0147E },
-    { x: 'Swiss', y: populationData[0].DP02_0148E },
-    { x: 'Ukrainian', y: populationData[0].DP02_0149E },
-    { x: 'Welsh', y: populationData[0].DP02_0150E },
-    { x: 'West Indian', y: populationData[0].DP02_0151E },
+    { x: 'American', y: data[0][0].DP02_0125E},
+    { x: 'Arab', y: data[0][0].DP02_0126E },
+    { x: 'Czech', y: data[0][0].DP02_0127E },
+    { x: 'Danish', y: data[0][0].DP02_0128E },
+    { x: 'Dutch', y: data[0][0].DP02_0129E },
+    { x: 'English', y: data[0][0].DP02_0130E },
+    { x: 'French', y: data[0][0].DP02_0131E },
+    { x: 'French Canadian', y: data[0][0].DP02_0132E },
+    { x: 'German', y: data[0][0].DP02_0133E },
+    { x: 'Greek', y: data[0][0].DP02_0134E },
+    { x: 'Hungarian', y: data[0][0].DP02_0135E },
+    { x: 'Irish', y: data[0][0].DP02_0136E },
+    { x: 'Italian', y: data[0][0].DP02_0137E },
+    { x: 'Lithuanian', y: data[0][0].DP02_0138E },
+    { x: 'Norwegian', y: data[0][0].DP02_0139E },
+    { x: 'Polish', y: data[0][0].DP02_0140E },
+    { x: 'Portuguese', y: data[0][0].DP02_0141E },
+    { x: 'Russian', y: data[0][0].DP02_0142E },
+    { x: 'Scotch-Irish', y: data[0][0].DP02_0143E },
+    { x: 'Scottish', y: data[0][0].DP02_0144E },
+    { x: 'Slovak', y: data[0][0].DP02_0145E },
+    { x: 'Subsharan African', y: data[0][0].DP02_0146E },
+    { x: 'Swedish', y: data[0][0].DP02_0147E },
+    { x: 'Swiss', y: data[0][0].DP02_0148E },
+    { x: 'Ukrainian', y: data[0][0].DP02_0149E },
+    { x: 'Welsh', y: data[0][0].DP02_0150E },
+    { x: 'West Indian', y: data[0][0].DP02_0151E },
   ] : raceData=[]
 
   let maritalData = []
   !loading ? maritalData = [
-      { x: 'Males 15 and Over Population', y: populationData[0].DP02_0025E},
-      { x: 'Never Married', y: populationData[0].DP02_0026E},
-      { x: 'Married', y: populationData[0].DP02_0027E},
-      { x: 'Seperated', y: populationData[0].DP02_0028E},
-      { x: 'Widowed', y: populationData[0].DP02_0029E},
-      { x: 'Divorced', y: populationData[0].DP02_0030E},
+      { x: 'Males 15 and Over Population', y: data[0][0].DP02_0025E},
+      { x: 'Never Married', y: data[0][0].DP02_0026E},
+      { x: 'Married', y: data[0][0].DP02_0027E},
+      { x: 'Seperated', y: data[0][0].DP02_0028E},
+      { x: 'Widowed', y: data[0][0].DP02_0029E},
+      { x: 'Divorced', y: data[0][0].DP02_0030E},
     
     
-      { x: 'Females 15 and Over Population', y: populationData[0].DP02_0031E},
-      { x: 'Never Married', y: populationData[0].DP02_0032E},
-      { x: 'Married', y: populationData[0].DP02_0033E},
-      { x: 'Seperated', y: populationData[0].DP02_0034E},
-      { x: 'Widowed', y: populationData[0].DP02_0035E},
-      { x: 'Divorced', y: populationData[0].DP02_0036E},
+      { x: 'Females 15 and Over Population', y: data[0][0].DP02_0031E},
+      { x: 'Never Married', y: data[0][0].DP02_0032E},
+      { x: 'Married', y: data[0][0].DP02_0033E},
+      { x: 'Seperated', y: data[0][0].DP02_0034E},
+      { x: 'Widowed', y: data[0][0].DP02_0035E},
+      { x: 'Divorced', y: data[0][0].DP02_0036E},
     
   ] : maritalData=[]
 
@@ -128,23 +128,23 @@ const Population = () => {
         <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
           <Descriptors 
             title='Total Population'
-            censusVar={populationData[0].DP05_0001E}
+            censusVar={data[0][0].DP05_0001E}
           />
           <Descriptors 
             title='Median Age'
-            censusVar={populationData[0].DP05_0018E}
+            censusVar={data[0][0].DP05_0018E}
           />
           <Descriptors 
             title='21 and Over'
-            censusVar={populationData[0].DP05_0022E}
+            censusVar={data[0][0].DP05_0022E}
           />
           <Descriptors 
             title='18 and Under'
-            censusVar={populationData[0].DP05_0019E}
+            censusVar={data[0][0].DP05_0019E}
           />
           <Descriptors 
             title='65 and Over'
-            censusVar={populationData[0].DP05_0024E}
+            censusVar={data[0][0].DP05_0024E}
           />
         </div>
         : <></>}
@@ -161,8 +161,8 @@ const Population = () => {
                 <div className='mt-5'>
                   {!loading ? 
                     <Pie 
-                      males={populationData[0].DP05_0002E}
-                      females={populationData[0].DP05_0003E}
+                      males={data[0][0].DP05_0002E}
+                      females={data[0][0].DP05_0003E}
                     /> : <></>
                   }
                 </div>
@@ -210,23 +210,23 @@ const Population = () => {
         <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
           <Descriptors 
             title='Civilian Population Over 18'
-            censusVar={populationData[0].DP02_0069E}
+            censusVar={data[0][0].DP02_0069E}
           />
           <Descriptors 
             title='Civilian Veterans'
-            censusVar={populationData[0].DP02_0070E}
+            censusVar={data[0][0].DP02_0070E}
           />
           <Descriptors 
             title='Foreign Born Population'
-            censusVar={populationData[0].DP02_0095E}
+            censusVar={data[0][0].DP02_0095E}
           />
           <Descriptors 
             title='Naturilized Citizens'
-            censusVar={populationData[0].DP02_0096E}
+            censusVar={data[0][0].DP02_0096E}
           />
           <Descriptors 
             title='Aliens'
-            censusVar={populationData[0].DP02_0097E}
+            censusVar={data[0][0].DP02_0097E}
           />
         </div>
         : <></>}

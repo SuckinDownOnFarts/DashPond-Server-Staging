@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthProvider';
-import { ContextProvider } from './Context/ContextProvider';
 import { registerLicense } from '@syncfusion/ej2-base';
 import './index.css';
 
@@ -12,14 +11,12 @@ registerLicense('ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXx
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<Router>
-  <AuthProvider>
-    <ContextProvider>
-      <Routes>
-          <Route path="/*" element={<App />} />
-      </Routes>
-    </ContextProvider>
-  </AuthProvider>
-</Router>
+<AuthProvider>  
+  <Router>
+    <Routes>
+        <Route path="/*" element={<App />} />
+    </Routes>
+  </Router>
+</AuthProvider>
 );
 

@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { IoPersonCircleOutline } from 'react-icons/io5';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import NavProfile from '../NavbarDropdowns/NavProfile';
 import LoggedOutNavProfile from '../NavbarDropdowns/LoggedOutNavProfile';
 
-import { useStateContext } from '../../Context/ContextProvider';
 import useAuth from '../../hooks/useAuth';
 
 import Logo from '../Globals/Logo'
@@ -28,16 +30,46 @@ import Logo from '../Globals/Logo'
 // )
 
 const GlobalNavbar = () => {
-  const { activeMenu, setActiveMenu, profileActive, handleProfileClick, currentColor } = useStateContext();
+  const [profileActive, setProfileActive ] = useState(false);
+  
+  const handleProfileClick = () => setProfileActive((profileActive) => !profileActive);
 
   const { auth } = useAuth();
 
-  const baseURL = 'http://localhost:3000'
+  const baseURL = 'http://localhost:3000';
+
+  console.log(auth.user);
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   const handleResize = () => setScreenSize(window.innerWidth);
+
+  //   window.addEventListener('resize', handleResize);
+
+  //   handleResize();
+
+  //   return () => window.removeEventListener('resize', handleResize)
+  // }, []);
+
+  // useEffect(() => {
+  //   if(screenSize <= 900) {
+  //     setActiveMenu(false);
+  //   } else {
+  //     setActiveMenu(true);
+  //   }
+  // }, [screenSize]);
+
 
   return (
-    auth.user ? (
+    auth.accessToken ? (
       <div className='flex sticky top-0 z-50 justify-between p-2 md:mx-6 dark:bg-main-dark-bg bg-main-bg border-b-1'>
         <div className='flex items-center'>
+          {/* {location.pathname.includes('dashpage') ? 
+            <NavButton 
+              title={!activeMenu ? 'Menu' : 'Close Menu'} 
+              customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
+              icon={<AiOutlineMenu />} 
+            /> : */}
           <Link to='/'>
             <div>
               <Logo />
@@ -45,19 +77,19 @@ const GlobalNavbar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
+          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
             md:bg-white">
               <li>
-                <a href={`${baseURL}/about`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${baseURL}/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">About</a>
               </li>
               <li>
-                <a href={`${baseURL}/create`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${baseURL}/create`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Create Dashboard</a>
               </li>
               <li>
-                <a href={`${baseURL}/contact`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${baseURL}/contact`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Contact</a>
               </li>
             </ul>  
@@ -78,6 +110,13 @@ const GlobalNavbar = () => {
     ) : ( 
       <div className='flex sticky top-0 z-50 justify-between p-2 md:mx-6 dark:bg-main-dark-bg bg-main-bg border-b-1'>
         <div className='flex items-center'>
+          {/* {location.pathname.includes('dashpage') ? 
+            <NavButton 
+              title={!activeMenu ? 'Sidebar' : 'Close Sidebar'}
+              customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
+              
+              icon={<AiOutlineMenu />} 
+            /> : */}
           <Link to='/'>
             <div>
               <Logo />
@@ -85,27 +124,27 @@ const GlobalNavbar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
+          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
             md:bg-white">
               <li>
-                <a href={`${baseURL}/About`} class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${baseURL}/About`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">About</a>
               </li>
               <li>
-                <a href="http://localhost:3000/pricing" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href="http://localhost:3000/pricing" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Pricing</a>
               </li>
               <li>
-                <a href="http://localhost:3000/contact" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href="http://localhost:3000/contact" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Contact</a>
               </li>
               <li>
-                <a href="http://localhost:3000/login" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href="http://localhost:3000/login" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Login</a>
               </li>
               <li>
-                <a href="http://localhost:3000/register" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href="http://localhost:3000/register" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Register</a>
               </li>
             </ul>  
@@ -126,30 +165,3 @@ const GlobalNavbar = () => {
   )
 }
 export default GlobalNavbar
-
-
-    //   <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
-    //   md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-    //    <li>
-    //      <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
-    //       dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-    //    </li>
-    //    <li>
-    //      <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
-    //       dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-    //    </li>
-    //    <li>
-    //      <a href="http://localhost:3000/create" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
-    //       dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Create Dashboard</a>
-    //    </li>
-    //    <li>
-    //      <a href="http://localhost:3000/login" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0
-    //       md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-    //        Login</a>
-    //    </li>
-    //    <li>
-    //      <a href="http://localhost:3000/register" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0
-    //       md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-    //        Register</a>
-    //    </li>
-    //  </ul>

@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, generatePath, useParams } from 'react-router-dom';
 
-import { MdOutlineCancel } from 'react-icons/md';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { BsHouseDoor, BsPeople, BsBinoculars } from 'react-icons/bs';
-import { IoSchoolOutline } from 'react-icons/io5';
 import { FaRegMoneyBillAlt } from 'react-icons/fa';
 
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import { links } from '../../data/Data';
-import { useStateContext } from '../../Context/ContextProvider';
 import api from '../../api/axios';
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
+  // const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
+  // const [ screenSize, setScreenSize ] = useState(undefined);
+  const [ activeMenu, setActiveMenu ] = useState(true);
   const [ propData, setPropData ] = useState(['Loading']);
+  const [ screenSize, setScreenSize ] = useState(undefined);
 
   const links = [
     {
@@ -48,15 +47,6 @@ const Sidebar = () => {
           link: 'income',
           icon: <FaRegMoneyBillAlt />,
         },
-        // {
-        //   name: 'education & employement',
-        //   link: 'education+employement',
-        //   icon: <IoSchoolOutline />,
-        // },
-        // {
-        //   name: 'employement',
-        //   icon: <BsBriefcase />,
-        // },
       ],
     },
     {
@@ -89,6 +79,24 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, []);
+
+  useEffect(() => {
+    if(screenSize <= 900) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
+
+  useEffect(() => {
     const fetchPropData = async () => {
       try {
         const propDataResponse = await api.get(pathProperty)
@@ -117,11 +125,11 @@ const Sidebar = () => {
               {propData[0].address}
             </div>
           </Link>
-          <TooltipComponent content='Menu' position='BottomCenter'>
+          {/* <TooltipComponent content='Menu' position='BottomCenter'>
             <button type='button' onClick={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} className='text-xl rounded-full p-3 hover:bg-light-gray hover:dark:bg-secondary-dark-bg dark:text-white mt-4 block '>
               <MdOutlineCancel />
             </button>
-          </TooltipComponent>
+          </TooltipComponent> */}
         </div>
         <div className='mt-10'>
           {links.map((item) => (
@@ -133,7 +141,7 @@ const Sidebar = () => {
                   key={link.name}
                   onClick={handleCloseSideBar}
                   style={({ isActive }) => ({
-                    backgroundColor: isActive ? currentColor : ''
+                    backgroundColor: isActive ? 'blue' : ''
                   })}
                   className={({ isActive }) => isActive ? activeLink : normalLink} 
                   // className='hover:dark:bg-main-dark-bg'

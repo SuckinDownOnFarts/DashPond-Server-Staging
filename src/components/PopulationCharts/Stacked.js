@@ -1,11 +1,9 @@
 import React from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, StackingColumnSeries, Tooltip } from '@syncfusion/ej2-react-charts';
 
-import { useStateContext } from '../../Context/ContextProvider';
+// import { useStateContext } from '../../Context/ContextProvider';
 
 const Stacked = ({ width, height, id, dataSource, yTitle, xTitle, chartTitle, yMin, yMax, yInterval, chartType }) => {
-
-  const { currentColor } = useStateContext();
 
   const stackedChartData = dataSource
 
@@ -15,7 +13,7 @@ const Stacked = ({ width, height, id, dataSource, yTitle, xTitle, chartTitle, yM
       yName: 'y',
       type: chartType,
       background: 'blue',
-      fill: currentColor
+      fill: 'blue'
     }, 
   ];
 

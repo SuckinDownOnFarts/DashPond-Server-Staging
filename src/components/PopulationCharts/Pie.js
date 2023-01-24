@@ -2,12 +2,12 @@ import React from 'react';
 import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, 
     AccumulationSeriesDirective, AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip, Inject } from '@syncfusion/ej2-react-charts';
 
-import { themeColors } from '../../data/Data';
-import { useStateContext } from '../../Context/ContextProvider';
+
+// import { useStateContext } from '../../Context/ContextProvider';
 
 const Pie = ({ males, females }) => {
 
-  const { currentColor } = useStateContext();
+  
 
   const pieChartData = [
       { x: 'Males', 
@@ -41,9 +41,13 @@ const Pie = ({ males, females }) => {
   ];
 
   const palettes = [
-    currentColor, 
+    '#1A97F5',
+    '#03C9D7',
+    '#7352FF',
+    '#FF5C8E',
     '#1E4DB7',
-  ]
+    '#FB9678',
+  ];
 
 
   return (

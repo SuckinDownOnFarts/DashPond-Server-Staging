@@ -77,7 +77,7 @@ const Register = () => {
 
   return (
     <section>
-        <div className="py-6 bg-light-gray  h-[calc(100vh-148px)] align-middle flex">
+        <div className="py-6 bg-light-gray  h-[calc(100vh-142px)] align-middle flex">
              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                 <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl w-1000">
                     <div className="hidden lg:block lg:w-1/2 bg-cover"></div>

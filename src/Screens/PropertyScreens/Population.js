@@ -8,11 +8,11 @@ import Descriptors from '../../components/PopulationCharts/Descriptors';
 import Stacked from '../../components/PopulationCharts/Stacked';
 import Pie from '../../components/PopulationCharts/Pie';
 
-import { useStateContext } from '../../Context/ContextProvider';
+// import { useStateContext } from '../../Context/ContextProvider';
 
 
 const Population = () => {
-  const { currentColor } = useStateContext();
+  // const { currentColor } = useStateContext();
 
   const { id } = useParams();
 
@@ -171,7 +171,7 @@ const Population = () => {
                 {!loading ?                 
                 <Stacked 
                   chartType='StackingColumn'
-                  color={currentColor}
+                  color='blue'
                   width='520px'
                   height='360px'
                   id='AgeBreakdown'
@@ -189,7 +189,7 @@ const Population = () => {
             {!loading ?                 
                 <Stacked 
                   chartType='StackingColumn'
-                  color={currentColor}
+                  color='blue'
                   width='820px'
                   height='360px'
                   id='ancestry'
@@ -235,7 +235,7 @@ const Population = () => {
         {!loading ?                 
         <Stacked 
           chartType='StackingColumn'
-          color={currentColor}
+          color='blue'
           width='520px'
           height='360px'
           id='maritalStatus'

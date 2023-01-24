@@ -1,5 +1,5 @@
 
-import { FiBarChart, FiCreditCard } from 'react-icons/fi';
+import { FiBarChart } from 'react-icons/fi';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import { HiOutlineRefresh } from 'react-icons/hi';
 import { AiOutlineCalendar } from 'react-icons/ai';

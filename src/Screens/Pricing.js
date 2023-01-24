@@ -26,7 +26,6 @@ const Pricing = () => {
                 <div className="flex-shrink-0" key={item.name}>
                     <span className="text-4xl font-medium tracking-tight">{item.price.monthly}</span>
                     <span className="text-gray-400">/monthly</span>
-
                     <div className="flex-shrink-0 pb-6 space-y-2 border-b">
                         <h2 className="text-2xl font-normal">{item.name}</h2>
                         <p className="text-sm text-gray-400" >{item.description}</p>
@@ -41,7 +40,7 @@ const Pricing = () => {
                         ))}
                     </ul>
 
-                    <div class="flex-shrink-0 pt-4">
+                    <div className="flex-shrink-0 pt-4">
                         <button
                             className="inline-flex items-center justify-center w-full max-w-xs px-4 py-2 
                             transition-colors border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -58,17 +57,17 @@ const Pricing = () => {
 export default Pricing
 
           {/* Plan switch
-        <div class="flex items-center justify-center mt-10 space-x-4">
-            <span class="text-base font-medium">Bill Monthly</span>
+        <div className="flex items-center justify-center mt-10 space-x-4">
+            <span className="text-base font-medium">Bill Monthly</span>
             <button
-                class="relative rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="relative rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 onClick={() => {}}>
                     {/* "billPlan == 'monthly' ? billPlan = 'annually' : billPlan = 'monthly'" 
-                    <span class="w-16 h-8 transition bg-indigo-500 rounded-full shadow-md outline-none block"></span>
+                    <span className="w-16 h-8 transition bg-indigo-500 rounded-full shadow-md outline-none block"></span>
                     <span
-                        class="block absolute items-center justify-center w-6 h-6 transition-all duration-200 ease-in-out transform bg-white rounded-full shadow-sm top-1 left-1"
-                         class="{ 'translate-x-0': billPlan == 'monthly', 'translate-x-8': billPlan == 'annually' }"
+                        className="block absolute items-center justify-center w-6 h-6 transition-all duration-200 ease-in-out transform bg-white rounded-full shadow-sm top-1 left-1"
+                         className="{ 'translate-x-0': billPlan == 'monthly', 'translate-x-8': billPlan == 'annually' }"
                     ></span>
                 </button>
-                <span class="text-base font-medium">Bill Annually</span>
+                <span className="text-base font-medium">Bill Annually</span>
             </div>  */}

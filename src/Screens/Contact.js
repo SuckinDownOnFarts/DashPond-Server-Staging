@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contact = () => {
   return (
-    <div className="flex justify-center items-center bg-light-gray h-[calc(100vh-148px)] bg-white">
+    <div className="flex justify-center items-center bg-light-gray h-[calc(100vh-142px)] ">
 	{/* <!-- COMPONENT CODE --> */}
         <div className="container mx-auto my-4 px-4 lg:px-20">
 

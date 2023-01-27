@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://localhost:5000';
+const BASE_URL = 'https://data-colosseum-api.onrender.com';
 
 export default axios.create({
     baseURL: BASE_URL

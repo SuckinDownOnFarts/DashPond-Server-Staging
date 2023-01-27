@@ -36,7 +36,7 @@ const GlobalNavbar = () => {
 
   const { auth } = useAuth();
 
-  const baseURL = 'http://localhost:3000';
+  const baseURL = 'https://dashpond.onrender.com';
 
   console.log(auth.user);
   // const location = useLocation();

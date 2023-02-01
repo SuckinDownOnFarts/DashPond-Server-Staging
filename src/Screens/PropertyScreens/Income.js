@@ -34,8 +34,6 @@ const Income = () => {
     fetchIncomeData();
   }, [])
 
-  // console.log(data);
-
   return (
   <div className='mt-12'>
     <div className='flex flex-wrap justify-center pt-3 pb-10'>

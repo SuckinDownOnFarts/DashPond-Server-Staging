@@ -13,7 +13,7 @@ const NavProfile = ({ user }) => {
   const { auth } = useAuth();
   const logout = useLogout();
   const navigate = useNavigate();
-  const BASE_URL = 'https://dashpond.onrender.com'
+  // const BASE_URL = process.env.BASE_URL
 
   console.log(auth.roles);
 

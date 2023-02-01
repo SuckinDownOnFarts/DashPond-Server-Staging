@@ -1,12 +1,12 @@
 import axios from 'axios';
-const BASE_URL = 'https://data-colosseum-api.onrender.com';
+
 
 export default axios.create({
-    baseURL: BASE_URL
+    baseURL: process.env.REACT_APP_API_ENDPOINT
   });
 
-// export const axiosPrivate = axios.create({
-//     baseURL: BASE_URL,
-//     headers: { 'Content-Type': 'application/json' },
-//     withCredentials: true
-// });
+export const axiosPrivate = axios.create({
+    baseURL: BASE_URL,
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true
+});

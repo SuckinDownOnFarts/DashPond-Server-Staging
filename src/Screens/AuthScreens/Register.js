@@ -7,7 +7,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}/
 
 const Register = () => {
 
-    const baseURL = 'http://localhost:3000'
+    const BASE_URL = 'http://localhost:3000'
 
     const userRef = useRef();
     const errRef = useRef();
@@ -201,7 +201,7 @@ const Register = () => {
                         </form>
                         <div className="mt-4 flex items-center justify-between">
                             <span className="border-b w-1/5 md:w-1/4"></span>
-                            <a href={`${baseURL}/login`} className="text-xs text-gray-500 uppercase">or login</a>
+                            <a href={`${BASE_URL}/login`} className="text-xs text-gray-500 uppercase">or login</a>
                             <span className="border-b w-1/5 md:w-1/4"></span>
                         </div>
                     </div>

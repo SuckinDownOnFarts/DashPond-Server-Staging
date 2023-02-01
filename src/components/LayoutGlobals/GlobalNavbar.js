@@ -36,7 +36,7 @@ const GlobalNavbar = () => {
 
   const { auth } = useAuth();
 
-  const baseURL = 'https://dashpond.onrender.com';
+  const BASE_URL = process.env.BASE_URL;
 
   console.log(auth.user);
   // const location = useLocation();
@@ -81,15 +81,15 @@ const GlobalNavbar = () => {
             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
             md:bg-white">
               <li>
-                <a href={`${baseURL}/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">About</a>
               </li>
               <li>
-                <a href={`${baseURL}/create`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/create`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Create Dashboard</a>
               </li>
               <li>
-                <a href={`${baseURL}/contact`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Contact</a>
               </li>
             </ul>  
@@ -128,23 +128,23 @@ const GlobalNavbar = () => {
             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0
             md:bg-white">
               <li>
-                <a href={`${baseURL}/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">About</a>
               </li>
               <li>
-                <a href={`${baseURL}/pricing`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/pricing`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Pricing</a>
               </li>
               <li>
-                <a href={`${baseURL}/contact`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Contact</a>
               </li>
               <li>
-                <a href={`${baseURL}/login`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/login`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Login</a>
               </li>
               <li>
-                <a href={`${baseURL}/register`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/register`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
                 ">Register</a>
               </li>
             </ul>  

@@ -6,7 +6,7 @@ import axios from '../../api/axios';
 
 const Login = () => {
 
-  const BASE_URL = process.env.BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const { setAuth, auth, persist } = useAuth();
 

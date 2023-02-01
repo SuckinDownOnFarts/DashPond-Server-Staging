@@ -7,7 +7,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}/
 
 const Register = () => {
 
-    const BASE_URL = 'http://localhost:3000'
+    const BASE_URL = process.env.REACT_APP_BASE_URL
 
     const userRef = useRef();
     const errRef = useRef();

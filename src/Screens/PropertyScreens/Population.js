@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, generatePath } from 'react-router-dom';
-import { GoPrimitiveDot } from 'react-icons/go';
 
 import api from '../../api/axios';
 
-import Descriptors from '../../components/PopulationCharts/Descriptors';
-import Stacked from '../../components/PopulationCharts/Stacked';
-import Pie from '../../components/PopulationCharts/Pie';
 
-// import { useStateContext } from '../../Context/ContextProvider';
+
 
 
 const Population = () => {
-  // const { currentColor } = useStateContext();
 
   const { id } = useParams();
 
@@ -26,8 +21,8 @@ const Population = () => {
   useEffect(() => {
     const fetchPopulationData = async () => {
       try {
-        const populationResponse = await api.get(populationPath);
-        setData(populationResponse.data);
+        const response = await api.get(populationPath);
+        setData(response.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {
@@ -126,26 +121,7 @@ const Population = () => {
 
         {!loading ?
         <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
-          <Descriptors 
-            title='Total Population'
-            censusVar={data[0][0].DP05_0001E}
-          />
-          <Descriptors 
-            title='Median Age'
-            censusVar={data[0][0].DP05_0018E}
-          />
-          <Descriptors 
-            title='21 and Over'
-            censusVar={data[0][0].DP05_0022E}
-          />
-          <Descriptors 
-            title='18 and Under'
-            censusVar={data[0][0].DP05_0019E}
-          />
-          <Descriptors 
-            title='65 and Over'
-            censusVar={data[0][0].DP05_0024E}
-          />
+          {/* Descriptors */}
         </div>
         : <></>}
       </div>
@@ -159,94 +135,21 @@ const Population = () => {
             <div className='mt-10 flex gap-10 justify-center'>
               <div className='border-r-1 border-color m-4 pr-10'>
                 <div className='mt-5'>
-                  {!loading ? 
-                    <Pie 
-                      males={data[0][0].DP05_0002E}
-                      females={data[0][0].DP05_0003E}
-                    /> : <></>
-                  }
+                  {/* Pie */}
                 </div>
               </div>
               <div>
-                {!loading ?                 
-                <Stacked 
-                  chartType='StackingColumn'
-                  color='blue'
-                  width='520px'
-                  height='360px'
-                  id='AgeBreakdown'
-                  dataSource={ageData}
-                  yTitle='# of Persons'
-                  xTitle='Age Range'
-                  chartTitle='Age Breakdown'
-                  yMin={0}
-                  yMax={1000}
-                  yInterval={100}
-                /> : <></>}
+                {/* Stacked */}
               </div>
             </div>
             <div className='mt-10 flex justify-center'>
-            {!loading ?                 
-                <Stacked 
-                  chartType='StackingColumn'
-                  color='blue'
-                  width='820px'
-                  height='360px'
-                  id='ancestry'
-                  dataSource={raceData}
-                  yTitle='# of Persons'
-                  xTitle='Ancestry'
-                  chartTitle='People by Race'
-                  yMin={0}
-                  yMax={500}
-                  yInterval={100}
-                /> : <></>}
+              {/* Stacked */}
             </div>
         </div>
       </div>
       <div className='flex flex-wrap lg:flex-nowrap justify-center'>
-
-        {!loading ?
-        <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
-          <Descriptors 
-            title='Civilian Population Over 18'
-            censusVar={data[0][0].DP02_0069E}
-          />
-          <Descriptors 
-            title='Civilian Veterans'
-            censusVar={data[0][0].DP02_0070E}
-          />
-          <Descriptors 
-            title='Foreign Born Population'
-            censusVar={data[0][0].DP02_0095E}
-          />
-          <Descriptors 
-            title='Naturilized Citizens'
-            censusVar={data[0][0].DP02_0096E}
-          />
-          <Descriptors 
-            title='Aliens'
-            censusVar={data[0][0].DP02_0097E}
-          />
-        </div>
-        : <></>}
       </div>
       <div className='mt-10 flex justify-center'>
-        {!loading ?                 
-        <Stacked 
-          chartType='StackingColumn'
-          color='blue'
-          width='520px'
-          height='360px'
-          id='maritalStatus'
-          dataSource={maritalData}
-          yTitle='# of Persons'
-          xTitle='Status'
-          chartTitle='Marital Status by Sex'
-          yMin={0}
-          yMax={2000}
-          yInterval={100}
-        /> : <></>}
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import { FiBarChart } from 'react-icons/fi';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import { HiOutlineRefresh } from 'react-icons/hi';
 import { AiOutlineCalendar } from 'react-icons/ai';
-import { BsHouseDoor, BsPeople, BsBinoculars, BsBriefcase, BsBoxSeam, BsCurrencyDollar, BsShield } from 'react-icons/bs';
+import { BsHouseDoor, BsPeople, BsBinoculars, BsBriefcase, BsBoxSeam, BsCurrencyDollar } from 'react-icons/bs';
 import { IoSchoolOutline } from 'react-icons/io5';
 import { FaRegMoneyBillAlt } from 'react-icons/fa';
 
@@ -118,86 +118,6 @@ export const links = [
     },
   ];
 
-export const SparklineAreaData = [
-    { x: 1, yval: 2 },
-    { x: 2, yval: 6 },
-    { x: 3, yval: 8 },
-    { x: 4, yval: 5 },
-    { x: 5, yval: 10 },
-  
-  ];
-
-  const stackedChartData = [
-    [
-      { x: 'Under 5 Years', y: 111.1 },
-      { x: '5 to 9 Years', y: 111.1 },
-      { x: '10 to 14 Years', y: 127.3 },
-      { x: '15 to 19 Years', y: 143.4 },
-      { x: '20 to 24 Years', y: 159.9 },
-      { x: '25 to 34 Years', y: 159.9 },
-      { x: '35 to 44 Years', y: 159.9 },
-      { x: '45 to 54 Years', y: 159.9 },
-      { x: '55 to 59 Years', y: 159.9 },
-      { x: '60 to 64 Years', y: 159.9 },
-      { x: '65 to 74 Years', y: 159.9 },
-      { x: '75 to 84 Years', y: 159.9 },
-      { x: '85 Years and Over', y: 159.9 },
-    ],
-    [
-      { x: 'Jan', y: 111.1 },
-      { x: 'Feb', y: 127.3 },
-      { x: 'Mar', y: 143.4 },
-      { x: 'Apr', y: 159.9 },
-      { x: 'May', y: 159.9 },
-      { x: 'Jun', y: 159.9 },
-      { x: 'July', y: 159.9 },
-    ],
-  ];
-
-export const stackedCustomSeries = [
-
-    { dataSource: stackedChartData[0],
-      xName: 'x',
-      yName: 'y',
-      name: 'Male',
-      type: 'StackingColumn',
-      background: 'blue',
-  
-    },
-  
-    { dataSource: stackedChartData[1],
-      xName: 'x',
-      yName: 'y',
-      name: 'Female',
-      type: 'StackingColumn',
-      background: 'red',
-  
-    },
-  
-  ];
-
-export const stackedPrimaryXAxis = {
-    majorGridLines: { width: 0 },
-    minorGridLines: { width: 0 },
-    majorTickLines: { width: 0 },
-    minorTickLines: { width: 0 },
-    interval: 1,
-    lineStyle: { width: 0 },
-    labelIntersectAction: 'Rotate45',
-    valueType: 'Category',
-  };
-  
-export const stackedPrimaryYAxis = {
-    lineStyle: { width: 0 },
-    minimum: 100,
-    maximum: 400,
-    interval: 100,
-    majorTickLines: { width: 0 },
-    majorGridLines: { width: 1 },
-    minorGridLines: { width: 1 },
-    minorTickLines: { width: 0 },
-    labelFormat: '{value}',
-  };
 
   export const themeColors = [
     {

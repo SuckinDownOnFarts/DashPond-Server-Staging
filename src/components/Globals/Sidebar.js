@@ -5,7 +5,6 @@ import { AiOutlineCalendar } from 'react-icons/ai';
 import { BsHouseDoor, BsPeople, BsBinoculars } from 'react-icons/bs';
 import { FaRegMoneyBillAlt } from 'react-icons/fa';
 
-import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import api from '../../api/axios';
 

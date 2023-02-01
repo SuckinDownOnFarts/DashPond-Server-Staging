@@ -3,7 +3,6 @@ import { useParams, generatePath } from 'react-router-dom';
 
 import api from '../../api/axios';
 
-import PivotTable from '../../components/PopulationCharts/PivotTable';
 
 const Overview = () => {
 
@@ -19,8 +18,8 @@ const Overview = () => {
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
-        const overviewResponse = await api.get(overviewPath);
-        setData(overviewResponse.data);
+        const response = await api.get(overviewPath);
+        setData(response.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {
@@ -36,14 +35,6 @@ const Overview = () => {
     fetchOverviewData();
   }, [])
 
-  let pivotData = [
-    { 'Sold': 31, 'Amount': 52824, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q1' },
-    { 'Sold': 51, 'Amount': 86904, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q2' },
-    { 'Sold': 90, 'Amount': 153360, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q3' },
-    { 'Sold': 25, 'Amount': 42600, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q4' },
-    { 'Sold': 27, 'Amount': 46008, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2016', 'Quarter': 'Q1' }
-];
-
   return (
 
     <div className='mt-12'>
@@ -52,11 +43,6 @@ const Overview = () => {
           <span>Key Facts and Insights</span>
         </p>
       </div>
-      {/* <div>
-        <PivotTable 
-          pivotData={pivotData}
-        />
-      </div> */}
       <div>
       {!loading ? 
         <div>{data[2][0].DP03_0050E}</div>

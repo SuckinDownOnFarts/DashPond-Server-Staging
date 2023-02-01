@@ -1,33 +1,13 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { IoPersonCircleOutline } from 'react-icons/io5';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import NavProfile from '../NavbarDropdowns/NavProfile';
 import LoggedOutNavProfile from '../NavbarDropdowns/LoggedOutNavProfile';
-
 import useAuth from '../../hooks/useAuth';
-
 import Logo from '../Globals/Logo'
 
-// const NavButton = ({ title, customFunc, icon, color, dotColor}) => (
-//   <TooltipComponent content={title} position='BottomCenter'>
-//     <button 
-//       type='button'
-//       onClick={customFunc}
-//       style={{ color}}
-//       className='relative text-xl rounded-full p-3 hover:bg-light-gray'
-//     >
-//       <span 
-//         style={{ background: dotColor}}
-//         className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2'
-//       />
-//         {icon}
-//     </button>
-//   </TooltipComponent>
-// )
 
 const GlobalNavbar = () => {
   const [profileActive, setProfileActive ] = useState(false);
@@ -39,7 +19,6 @@ const GlobalNavbar = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   console.log(auth.user);
-  // const location = useLocation();
 
   // useEffect(() => {
   //   const handleResize = () => setScreenSize(window.innerWidth);
@@ -95,7 +74,7 @@ const GlobalNavbar = () => {
             </ul>  
           </div>
           <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleProfileClick()}>
-            <img className='rounded-full w-8 h-8' src='/images/office1.jpg'/>
+            <img className='rounded-full w-8 h-8' src='/images/office1.jpg' alt='profile'/>
             <p>
               <span className='text-gray-400 text-14'>Hi, </span> {' '}
               <span className='text-gray-400 font-bold ml-1 text-14'>{auth.user}</span>

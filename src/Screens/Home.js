@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Feed from '../components/Homepage/Feed';
 import api from '../api/axios';
 
-import useAuth from '../hooks/useAuth';
-
-
 
 const Home = () => {
-
-  const { auth } = useAuth();
 
   const [ propData, setPropData ] = useState([]);
 
@@ -31,9 +26,6 @@ const Home = () => {
 
     fetchProperties();
   }, [])
-
-  // console.log(auth.user);
-
 
   return (
     <main className='min-h-[calc(100vh-148px)]'>

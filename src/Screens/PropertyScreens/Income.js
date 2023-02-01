@@ -17,8 +17,8 @@ const Income = () => {
   useEffect(() => {
     const fetchIncomeData = async () => {
       try {
-        const incomeResponse = await api.get(incomePath);
-        setData(incomeResponse.data);
+        const response = await api.get(incomePath);
+        setData(response.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {

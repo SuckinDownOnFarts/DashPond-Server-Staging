@@ -1,4 +1,3 @@
-import { setAttributeHtml } from "@syncfusion/ej2/drawings";
 import axios from "../api/axios";
 import useAuth from "./useAuth";
 

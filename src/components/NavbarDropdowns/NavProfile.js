@@ -42,7 +42,7 @@ const NavProfile = ({ user }) => {
         <img
           className="rounded-full h-24 w-24"
           src='/images/office1.jpg'
-          alt="profile-image"
+          alt="profile"
         />
         <div>
           <p className="font-semibold text-xl dark:text-gray-200"> {user} </p>

@@ -17,8 +17,8 @@ const PropertyInsights = () => {
   useEffect(() => {
     const fetchListingData = async () => {
       try {
-        const listingResponse = await api.get(listingPath);
-        setListingData(listingResponse.data);
+        const response = await api.get(listingPath);
+        setListingData(response.data);
         setLoading(false);
       } catch (err) {
         if (err.response) {

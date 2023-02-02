@@ -3,7 +3,7 @@ import Layout from './components/LayoutGlobals/Layout';
 //Screens
 import Home from './Screens/Home';
 import CreateDash from './Screens/CreateDash';
-import DashPage from './Screens/DashPage';
+import DashPage from './Screens/PropertyScreens/DashPage';
 import Missing from './Screens/Missing';
 import Profile from './Screens/Profile';
 import Pricing from './Screens/Pricing';
@@ -25,6 +25,7 @@ import PersistLogin from './components/Auth/PersistLogin';
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import '@tremor/react/dist/esm/tremor.css';
 
 const ROLES = {
   'User': 10,

@@ -31,6 +31,50 @@ export const userProfileData = [
     // },
   ];
 
+export const sidebarLinks = [
+    {
+      title: 'Key Insights',
+      links: [
+        {
+          name: 'overview',
+          link: 'overview',
+          icon: <BsBinoculars />,
+        },
+      ],
+    },
+  
+    {
+      title: 'Demographic Insights',
+      links: [
+        {
+          name: 'population',
+          link: 'population',
+          icon: <BsPeople />,
+        },
+        {
+          name: 'housing',
+          link: 'housing',
+          icon: <BsHouseDoor />,
+        },
+        {
+          name: 'income',
+          link: 'income',
+          icon: <FaRegMoneyBillAlt />,
+        },
+      ],
+    },
+    {
+      title: 'Property Details',
+      links: [
+        {
+          name: 'information',
+          link: 'information',
+          icon: <AiOutlineCalendar />,
+        },
+      ],
+    },
+  ];
+
 export const salesPeople = [
     {
         name: 'Peter Doe',
@@ -183,54 +227,6 @@ export const earningData = [
       pcColor: 'red-600',
     },
   ];
-
-export const links = [
-    {
-      title: 'Key Insights',
-      links: [
-        {
-          name: 'overview',
-          icon: <BsBinoculars />,
-        },
-      ],
-    },
-  
-    {
-      title: 'Demographic Insights',
-      links: [
-        {
-          name: 'population',
-          icon: <BsPeople />,
-        },
-        {
-          name: 'housing',
-          icon: <BsHouseDoor />,
-        },
-        {
-          name: 'income',
-          icon: <FaRegMoneyBillAlt />,
-        },
-        {
-          name: 'education',
-          icon: <IoSchoolOutline />,
-        },
-        {
-          name: 'employement',
-          icon: <BsBriefcase />,
-        },
-      ],
-    },
-    {
-      title: 'Property Details',
-      links: [
-        {
-          name: 'information',
-          icon: <AiOutlineCalendar />,
-        },
-      ],
-    },
-  ];
-
 
   export const themeColors = [
     {

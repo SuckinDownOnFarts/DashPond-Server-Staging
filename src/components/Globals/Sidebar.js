@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, generatePath, useParams } from 'react-router-dom';
 
-import { AiOutlineCalendar } from 'react-icons/ai';
-import { BsHouseDoor, BsPeople, BsBinoculars } from 'react-icons/bs';
-import { FaRegMoneyBillAlt } from 'react-icons/fa';
+import { sidebarLinks } from '../../data/Data';
 
 
 import api from '../../api/axios';
@@ -15,53 +13,6 @@ const Sidebar = () => {
   const [ activeMenu, setActiveMenu ] = useState(true);
   const [ propData, setPropData ] = useState(['Loading']);
   const [ screenSize, setScreenSize ] = useState(undefined);
-
-  const links = [
-    {
-      title: 'Key Insights',
-      links: [
-        {
-          name: 'overview',
-          link: 'overview',
-          icon: <BsBinoculars />,
-        },
-      ],
-    },
-  
-    {
-      title: 'Demographic Insights',
-      links: [
-        {
-          name: 'population',
-          link: 'population',
-          icon: <BsPeople />,
-        },
-        {
-          name: 'housing',
-          link: 'housing',
-          icon: <BsHouseDoor />,
-        },
-        {
-          name: 'income',
-          link: 'income',
-          icon: <FaRegMoneyBillAlt />,
-        },
-      ],
-    },
-    {
-      title: 'Property Details',
-      links: [
-        {
-          name: 'information',
-          link: 'information',
-          icon: <AiOutlineCalendar />,
-        },
-      ],
-    },
-  ];
-
-  const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
-  const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 hover:bg-light-gray m-2';
 
   const { id } = useParams();
   const currentPath = generatePath('/dashpage/:id', {
@@ -114,12 +65,15 @@ const Sidebar = () => {
     fetchPropData();
   }, [])
 
+  const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray-700 text-md m-2 underline decoration-red-400 decoration-2';
+  const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 hover:bg-light-gray m-2';
+
   return (
     <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pd-10 bg-slate-0'>
       {activeMenu && (
       <>
         <div className='flex justify-between items-center'>
-          <Link to='/' onClick={handleCloseSideBar} className='items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900'>
+          <Link to='/' onClick={handleCloseSideBar} className='items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight text-slate-700'>
             <div>
               {propData[0].address}
             </div>
@@ -131,7 +85,7 @@ const Sidebar = () => {
           </TooltipComponent> */}
         </div>
         <div className='mt-10'>
-          {links.map((item) => (
+          {sidebarLinks.map((item) => (
             <div key={item.title}>
               <p className='text-gray-400 m-3 mt-4 uppercase'>{item.title}</p>
               {item.links.map((link) => (
@@ -139,9 +93,9 @@ const Sidebar = () => {
                   to={`${currentPath}/${link.link}`}
                   key={link.name}
                   onClick={handleCloseSideBar}
-                  style={({ isActive }) => ({
-                    backgroundColor: isActive ? 'blue' : ''
-                  })}
+                  // style={({ isActive }) => ({
+                  //   backgroundColor: isActive ? '#f87171' : ''
+                  // })}
                   className={({ isActive }) => isActive ? activeLink : normalLink} 
                   // className='hover:dark:bg-main-dark-bg'
                 >

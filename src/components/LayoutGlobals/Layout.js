@@ -1,15 +1,20 @@
 import GlobalNavbar from './GlobalNavbar';
 import Footer from './Footer';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
+
+  const location = useLocation();
+
   return (
     <div className='h-screen'>
       <GlobalNavbar />
 
       <Outlet />
       
-      <Footer />
+      {location.pathname.includes('dashpage') 
+        ? <></> :  <Footer />}
+        
     </div>
   )
 }

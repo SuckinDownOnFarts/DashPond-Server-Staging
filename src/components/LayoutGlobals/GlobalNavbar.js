@@ -62,7 +62,7 @@ const GlobalNavbar = () => {
                 ">Create Dashboard</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:border-0 md:p-0
+                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded  md:hover:bg-transparent hover:text-blue-700 md:border-0 md:p-0
                 ">Contact</a>
               </li>
             </ul>  
@@ -73,7 +73,7 @@ const GlobalNavbar = () => {
               <span className='text-gray-400 text-14'>Hi, </span> {' '}
               <span className='text-gray-400 font-bold ml-1 text-14'>{auth.user}</span>
             </p>
-            <MdKeyboardArrowDown className='text-gray-400 text-14'/>
+            <MdKeyboardArrowDown className='text-gray-500 text-14'/>
             {profileActive && <NavProfile 
               user={auth.user}
             />}
@@ -124,7 +124,7 @@ const GlobalNavbar = () => {
           </div>
           <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleProfileClick()}>
             {/* <img className='rounded-full w-8 h-8' src='/images/user.jpg'/> */}
-            <IoPersonCircleOutline className='w-8 h-8 text-gray-700'/>
+            <IoPersonCircleOutline className='w-8 h-8 text-gray-500'/>
             {/* <p>
               <span className='text-gray-400 text-14'>Hi, </span> {' '}
               <span className='text-gray-400 font-bold ml-1 text-14'>{auth.user}</span>

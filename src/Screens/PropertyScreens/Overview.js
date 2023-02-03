@@ -5,6 +5,7 @@ import { AreaChart, Icon, Toggle, ToggleItem, Card, Title, Text, Tab, TabList, C
 
 import api from '../../api/axios';
 import { kpiData, performance, salesPeople } from '../../data/Data';
+import OverviewTopRow from '../../data/OverviewKpis';
 
 
 const Overview = () => {
@@ -21,6 +22,7 @@ const Overview = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedNames, setSelectedNames] = useState([]);
   const [selectedKpi, setSelectedKpi] = useState('Sales');
+  const [buffer, setBuffer] = useState(0);
 
   const isSalesPersonSelected = (salesPerson) => (
       (salesPerson.status === selectedStatus || selectedStatus === 'all')
@@ -50,75 +52,35 @@ const Overview = () => {
   return (
     <main className='p-10'>
       <Title>Key Demographic Insights</Title>
-      <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text> 
+      <Text>A complete overview of the key demographic insights from the areas surrounding.</Text> 
 
       <TabList defaultValue={ 1 } handleSelect={ (value) => setSelectedView(value) } marginTop="mt-6">
-        <Tab value={ 1 } text="Overview" />
+        <Tab value={ 1 } text="Key " />
         <Tab value={ 2 } text="Tables" />
       </TabList>
 
       { selectedView === 1 ? (
         <>
-          <ColGrid numColsMd={ 2 } numColsLg={ 3 } marginTop="mt-6" gapX="gap-x-6" gapY="gap-y-6">
-            { kpiData.map((item) => (
-                <Card key={ item.title }>
-                    <Flex alignItems="items-start">
-                        <Block truncate={ true }>
-                            <Text>{ item.title }</Text>
-                            <Metric truncate={ true }>{ item.metric }</Metric>
-                        </Block>
-                        <BadgeDelta deltaType={ item.deltaType } text={ item.delta } />
-                    </Flex>
-                    <Flex marginTop="mt-4" spaceX="space-x-2">
-                        <Text truncate={ true }>{ `${item.progress}% (${item.metric})` }</Text>
-                        <Text>{ item.target }</Text>
-                    </Flex>
-                    <ProgressBar percentageValue={ item.progress } marginTop="mt-2" />
-                </Card>
-            )) }
-          </ColGrid>
+          <div className='m-4'>
+            <Toggle value={buffer} onValueChange={ setBuffer}>
+              <ToggleItem value={0} text={'Three Mile'} />
+              <ToggleItem value={1} text={'Five Mile'} />
+              <ToggleItem value={2} text={'Ten Mile'} />
+            </Toggle>
+          </div>
 
-          <Block marginTop="mt-6">
-          <Card>
-            <div className="md:flex justify-between">
-                <Block>
-                    <Flex justifyContent="justify-start" spaceX="space-x-0.5" alignItems="items-center">
-                        <Title> Performance History </Title>
-                        {/* <Icon
-                            // icon={ InformationCircleIcon }
-                            variant="simple"
-                            tooltip="Shows day-over-day (%) changes of past performance"
-                        /> */}
-                    </Flex>
-                    <Text> Daily increase or decrease per domain </Text>
-                </Block>
-                <div className="mt-6 md:mt-0">
-                    <Toggle
-                        color="zinc"
-                        defaultValue={ selectedKpi }
-                        handleSelect={ (value) => setSelectedKpi(value) }
-                    >
-                        <ToggleItem value="Sales" text="Sales" />
-                        <ToggleItem value="Profit" text="Profit" />
-                        <ToggleItem value="Customers" text="Customers" />
-                    </Toggle>
-                </div>
-            </div>
-             <AreaChart
-                data={ performance }
-                dataKey="date"
-                categories={ [selectedKpi] }
-                colors={ ['blue'] }
-                showLegend={ false }
-                // valueFormatter={ formatters[selectedKpi] }
-                yAxisWidth="w-14"
-                height="h-96"
-                marginTop="mt-8"
-            /> 
-        </Card> 
-          </Block>
+          <ColGrid numColsMd={ 3 } numColsLg={ 4 } marginTop="mt-6" gapX="gap-x-6" gapY="gap-y-6">
+            {!loading ? 
+            <OverviewTopRow 
+              population={data[buffer][0].DP02_0053E}
+              medianHHincome={data[buffer][0].DP02_0054E}
+              HHsize={data[buffer][0].DP02_0055E}
+              medianAge={data[buffer][0].DP02_0056E}
+            /> : <></>}
+          </ColGrid>
         </>
       ) : (
+        <>
         <Block marginTop="mt-6">
         <Card>
             <div className="sm:mt-6 hidden sm:flex sm:justify-start sm:space-x-2">
@@ -195,6 +157,46 @@ const Overview = () => {
             </Table>
         </Card>
         </Block>
+        <Block marginTop="mt-6">
+        <Card>
+          <div className="md:flex justify-between">
+              <Block>
+                  <Flex justifyContent="justify-start" spaceX="space-x-0.5" alignItems="items-center">
+                      <Title> Performance History </Title>
+                      {/* <Icon
+                          // icon={ InformationCircleIcon }
+                          variant="simple"
+                          tooltip="Shows day-over-day (%) changes of past performance"
+                      /> */}
+                  </Flex>
+                  <Text> Daily increase or decrease per domain </Text>
+              </Block>
+              <div className="mt-6 md:mt-0">
+                  <Toggle
+                      color="zinc"
+                      defaultValue={ selectedKpi }
+                      handleSelect={ (value) => setSelectedKpi(value) }
+                  >
+                      <ToggleItem value="Sales" text="Sales" />
+                      <ToggleItem value="Profit" text="Profit" />
+                      <ToggleItem value="Customers" text="Customers" />
+                  </Toggle>
+              </div>
+          </div>
+           <AreaChart
+              data={ performance }
+              dataKey="date"
+              categories={ [selectedKpi] }
+              colors={ ['blue'] }
+              showLegend={ false }
+              // valueFormatter={ formatters[selectedKpi] }
+              yAxisWidth="w-14"
+              height="h-96"
+              marginTop="mt-8"
+          /> 
+      </Card> 
+        </Block>
+        </>
       )}
     </main>
   )

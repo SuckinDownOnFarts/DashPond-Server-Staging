@@ -69,11 +69,11 @@ const Sidebar = () => {
   const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 hover:bg-light-gray m-2';
 
   return (
-    <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pd-10 bg-slate-0'>
+    <div className='ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pd-10 bg-white'>
       {activeMenu && (
       <>
         <div className='flex justify-between items-center'>
-          <Link to='/' onClick={handleCloseSideBar} className='items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight text-slate-700'>
+          <Link to='/' onClick={handleCloseSideBar} className='items-center gap-3 mx-3 mt-7 flex text-lg font-semibold tracking-tight text-gray-800'>
             <div>
               {propData[0].address}
             </div>

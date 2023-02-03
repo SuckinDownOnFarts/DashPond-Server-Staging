@@ -41,7 +41,7 @@ const GlobalNavbar = () => {
 
   return (
     auth.accessToken ? (
-      <div className=' flex sticky top-0 z-50 justify-between p-2 md:mx-6 bg-main-bg border-b-1'>
+      <div className=' flex sticky top-0 z-50 justify-between p-2 md:mx-6 bg-white border-b-1'>
         <div className='flex items-center'>
           <Link to='/'>
             <div>
@@ -51,18 +51,18 @@ const GlobalNavbar = () => {
         </div>
         <div className="flex items-center">
           <div className="hidden w-full md:block md:w-auto">
-            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-main-bg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:border-0
+            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-white md:flex-row md:space-x-8 md:mt-0 md:text-sm md:border-0
             md:bg-white">
               <li>
-                <a href={`${BASE_URL}/about`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0
+                <a href={`${BASE_URL}/about`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:border-0 md:p-0
                 ">About</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/create`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0
+                <a href={`${BASE_URL}/create`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:border-0 md:p-0
                 ">Create Dashboard</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0
+                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:border-0 md:p-0
                 ">Contact</a>
               </li>
             </ul>  
@@ -81,7 +81,7 @@ const GlobalNavbar = () => {
         </div>  
       </div>    
     ) : ( 
-      <div className='flex sticky top-0 z-50 justify-between p-2 md:mx-6 dark:bg-main-dark-bg bg-main-bg border-b-1'>
+      <div className='flex sticky top-0 z-50 justify-between p-2 md:mx-6 bg-white border-b-1'>
         <div className='flex items-center'>
           {/* {location.pathname.includes('dashpage') ? 
             <NavButton 
@@ -98,26 +98,26 @@ const GlobalNavbar = () => {
         </div>
         <div className="flex items-center">
           <div className="hidden w-full md:block md:w-auto">
-            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:border-0
+            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-white md:flex-row md:space-x-8 md:mt-0 md:text-sm md:border-0
             md:bg-white">
               <li>
-                <a href={`${BASE_URL}/about`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/about`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-700 md:p-0
                 ">About</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/pricing`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/pricing`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-700 md:p-0
                 ">Pricing</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/contact`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-700 md:p-0
                 ">Contact</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/login`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/login`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-700 md:p-0
                 ">Login</a>
               </li>
               <li>
-                <a href={`${BASE_URL}/register`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0
+                <a href={`${BASE_URL}/register`} className="block py-2 pl-3 pr-4 text-sm text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-700 md:p-0
                 ">Register</a>
               </li>
             </ul>  

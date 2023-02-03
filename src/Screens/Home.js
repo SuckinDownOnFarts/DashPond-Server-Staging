@@ -28,7 +28,7 @@ const Home = () => {
   }, [])
 
   return (
-    <main className='min-h-[calc(100vh-148px)]'>
+    <main className='h-[calc(100vh-148px)] bg-slate-50'>
     {propData.length ? (
         <Feed posts={propData} />
     ) : (

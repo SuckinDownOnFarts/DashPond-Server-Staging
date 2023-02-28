@@ -8,7 +8,7 @@ import Missing from './Screens/Missing';
 import Profile from './Screens/Profile';
 import Pricing from './Screens/Pricing';
 import Contact from './Screens/Contact';
-import About from './Screens/About';
+import Docs from './Screens/Docs/Docs';
 
 //Property Insight Screens
 import Population from './Screens/PropertyScreens/Population';
@@ -60,7 +60,7 @@ function App() {
             <Route path='information' element={<PropertyInsights />}/>   
           </Route>
 
-          <Route path='about' element={<About />} />
+          <Route path='documentation' element={<Docs />} />
           <Route path='pricing' element={<Pricing />} /> {/* Pricing */}
           <Route path='contact' element={<Contact />} />
           <Route path='*' element={<Missing />} /> {/* 404 Route */}

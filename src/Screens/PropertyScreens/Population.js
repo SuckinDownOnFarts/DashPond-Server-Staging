@@ -15,8 +15,8 @@ const Population = () => {
     id: id
   })
 
-  const [ data, setData ] = useState([]);
-  const [ loading, setLoading ] = useState(true);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedView, setSelectedView] = useState(1);
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedNames, setSelectedNames] = useState([]);
@@ -52,7 +52,7 @@ const Population = () => {
       <Title>Population Insights</Title>
       <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</Text> 
 
-      <TabList defaultValue={ 1 } handleSelect={ (value) => setSelectedView(value) } marginTop="mt-6">
+      <TabList defaultValue={ 1 } onValueChange={ (value) => setSelectedView(value) } marginTop="mt-6">
         <Tab value={ 1 } text="Overview" />
         <Tab value={ 2 } text="Tables" />
       </TabList>
@@ -61,7 +61,7 @@ const Population = () => {
         <>
           <ColGrid numColsMd={ 2 } numColsLg={ 3 } marginTop="mt-6" gapX="gap-x-6" gapY="gap-y-6">
             { kpiData.map((item) => (
-                <Card key={ item.title }>
+                <Card key={ item.progress }>
                     <Flex alignItems="items-start">
                         <Block truncate={ true }>
                             <Text>{ item.title }</Text>
@@ -96,7 +96,7 @@ const Population = () => {
                     <Toggle
                         color="zinc"
                         defaultValue={ selectedKpi }
-                        handleSelect={ (value) => setSelectedKpi(value) }
+                        onValueChange={ (value) => setSelectedKpi(value) }
                     >
                         <ToggleItem value="Sales" text="Sales" />
                         <ToggleItem value="Profit" text="Profit" />
@@ -123,7 +123,7 @@ const Population = () => {
         <Card>
             <div className="sm:mt-6 hidden sm:flex sm:justify-start sm:space-x-2">
                 <MultiSelectBox
-                    handleSelect={ (value) => setSelectedNames(value) }
+                    onValueChange={ (value) => setSelectedNames(value) }
                     placeholder="Select Salespeople"
                     maxWidth="max-w-xs"
                 >
@@ -134,7 +134,7 @@ const Population = () => {
                 <Dropdown
                     maxWidth="max-w-xs"
                     defaultValue="all"
-                    handleSelect={ (value) => setSelectedStatus(value) }
+                    onValueChange={ (value) => setSelectedStatus(value) }
                 >
                     <DropdownItem value="all" text="All Performances" />
                     <DropdownItem value="overperforming" text="Overperforming" />
@@ -144,7 +144,7 @@ const Population = () => {
             </div>
             <div className="mt-6 sm:hidden space-y-2 sm:space-y-0">
                 <MultiSelectBox
-                    handleSelect={ (value) => setSelectedNames(value) }
+                    onValueChange={ (value) => setSelectedNames(value) }
                     placeholder="Select Salespeople"
                     maxWidth="max-w-full"
                 >
@@ -155,7 +155,7 @@ const Population = () => {
                 <Dropdown
                     maxWidth="max-w-full"
                     defaultValue="all"
-                    handleSelect={ (value) => setSelectedStatus(value) }
+                    onValueChange={ (value) => setSelectedStatus(value) }
                 >
                     <DropdownItem value="all" text="All Performances" />
                     <DropdownItem value="overperforming" text="Overperforming" />

@@ -1,40 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, generatePath } from 'react-router-dom';
-import { AreaChart, Icon, Toggle, ToggleItem, Card, Title, Text, Tab, TabList, ColGrid, Block, Metric, BadgeDelta, DeltaType, Dropdown, DropdownItem, Flex, MultiSelectBox,
+import { useParams, generatePath, useOutletContext } from 'react-router-dom';
+import { AreaChart, Icon, Toggle, ToggleItem, Card, Title, Text, Tab, TabList, ColGrid, Block, Metric, BadgeDelta, Divider, DeltaType, Dropdown, DropdownItem, Flex, MultiSelectBox,
   MultiSelectBoxItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, ProgressBar } from "@tremor/react";
 
 import api from '../../api/axios';
-import { kpiData, performance, salesPeople } from '../../data/Data';
-import OverviewTopRow from '../../data/OverviewKpis';
+import { performance, salesPeople } from '../../data/Data';
+import TopRow from '../../components/Dashboards/Overview/KeyFacts';
+import MiddleRow from '../../components/Dashboards/Overview/MiddleRow';
 
 
 const Overview = () => {
 
   const { id } = useParams();
-
   const overviewPath = generatePath('/overview/:id', {
     id: id
-  })
+  });
 
-  const [ data, setData ] = useState([]);
-  const [ loading, setLoading ] = useState(true);
+  const addressPath = generatePath('/address/:id', {
+    id: id
+  });
+
+  const [data, setData] = useState([]); //Stays
+  const [pLoading, setPLoading] = useState(true); //Stays
+  const [address, setAddress] = useState(); //Stays
+  const [aLoading, setALoading ] = useState(true); //Stays
   const [selectedView, setSelectedView] = useState(1);
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedNames, setSelectedNames] = useState([]);
   const [selectedKpi, setSelectedKpi] = useState('Sales');
-  const [buffer, setBuffer] = useState(0);
+  const [keyBuffer, setKeyBuffer] = useState(0);
+  const [employmentBuffer, setEmploymentBuffer] = useState(0);
 
   const isSalesPersonSelected = (salesPerson) => (
-      (salesPerson.status === selectedStatus || selectedStatus === 'all')
-          && (selectedNames.includes(salesPerson.name) || selectedNames.length === 0)
+    (salesPerson.status === selectedStatus || selectedStatus === 'all')
+      && (selectedNames.includes(salesPerson.name) || selectedNames.length === 0)
   );
 
+
+  //Fetch the census data property results 
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
-        const response = await api.get(overviewPath);
-        setData(response.data);
-        setLoading(false);
+          const response = await api.get(overviewPath);
+          setData(response.data);
+          setPLoading(false);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -49,43 +58,103 @@ const Overview = () => {
     fetchOverviewData();
   }, [])
 
-  return (
-    <main className='p-10'>
-      <Title>Key Demographic Insights</Title>
-      <Text>A complete overview of the key demographic insights from the areas surrounding.</Text> 
 
-      <TabList defaultValue={ 1 } handleSelect={ (value) => setSelectedView(value) } marginTop="mt-6">
-        <Tab value={ 1 } text="Key " />
-        <Tab value={ 2 } text="Tables" />
+  //Fetch property address  
+  useEffect(() => {
+    const fetchAddress = async () => {
+      try {
+          const response = await api.get(addressPath);
+          setAddress(response.data);
+          setALoading(false);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers); 
+        } else { 
+          console.log(`Error: ${err.message}`)
+        }
+      }
+    }
+
+    fetchAddress();
+  }, [])
+  
+
+  return (
+    <main className='md:px-16 sm:px-2 xs:px-4 my-16'>
+      <Block textAlignment="text-center">
+        {!aLoading ? <Metric marginTop='mt-6'>{address[0].address}</Metric> : <></>}
+        <Title marginTop='mt-2'>Demographic Insights</Title>
+        {/* <Text>A complete overview of the key demographic insights from the areas surrounding .</Text>  */}
+      </Block>
+      
+
+      <TabList defaultValue={ 1 } onValueChange={ (value) => setSelectedView(value) } marginTop="mt-16">
+        <Tab value={ 1 } text="At a Glance" />
+        <Tab value={ 2 } text="Population Insights" />
+        <Tab value={ 3 } text="Economic Insights" />
+        <Tab value={ 4 } text="Housing Insights" />
+        <Tab value={ 5 } text="Employement Insights" />
+        <Tab value={ 6 } text="Listing Information" />
+        <Tab value={ 7 } text="Map Views" />
       </TabList>
 
       { selectedView === 1 ? (
         <>
-          <div className='m-4'>
-            <Toggle value={buffer} onValueChange={ setBuffer}>
+        
+          {/* Key facts Top row  */}
+          <Block textAlignment="text-center" marginTop='mt-24'>
+            <Metric>Key Facts</Metric>
+            <Toggle value={keyBuffer} onValueChange={ setKeyBuffer } marginTop='mt-8'>
               <ToggleItem value={0} text={'Three Mile'} />
               <ToggleItem value={1} text={'Five Mile'} />
               <ToggleItem value={2} text={'Ten Mile'} />
             </Toggle>
-          </div>
+          </Block>
 
-          <ColGrid numColsMd={ 3 } numColsLg={ 4 } marginTop="mt-6" gapX="gap-x-6" gapY="gap-y-6">
-            {!loading ? 
-            <OverviewTopRow 
-              population={data[buffer][0].DP02_0053E}
-              medianHHincome={data[buffer][0].DP02_0054E}
-              HHsize={data[buffer][0].DP02_0055E}
-              medianAge={data[buffer][0].DP02_0056E}
+          <Divider />
+
+          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
+            {!pLoading ? 
+            <TopRow 
+              data={data}
+              buffer={keyBuffer}
             /> : <></>}
           </ColGrid>
+          {/* End of Key Facts top row */}
+
+          {/* Employement facts */}
+          <Block textAlignment="text-center" marginTop='mt-24'>
+            <Metric>Employment Overview</Metric>
+            <Toggle value={employmentBuffer} onValueChange={ setEmploymentBuffer } marginTop='mt-8'>
+              <ToggleItem value={0} text={'Three Mile'} />
+              <ToggleItem value={1} text={'Five Mile'} />
+              <ToggleItem value={2} text={'Ten Mile'} />
+            </Toggle>
+          </Block>
+
+          <Divider />
+
+          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
+            {!pLoading ? 
+            <MiddleRow 
+              laborForce={data[employmentBuffer][0].DP03_0003E}
+              employed={data[employmentBuffer][0].DP03_0004E}
+              unemployed={data[employmentBuffer][0].DP03_0005E}
+
+            /> : <></>}
+          </ColGrid>
+          {/* End of Employement Facts */}
+
         </>
       ) : (
         <>
         <Block marginTop="mt-6">
-        <Card>
+          <Card>
             <div className="sm:mt-6 hidden sm:flex sm:justify-start sm:space-x-2">
                 <MultiSelectBox
-                    handleSelect={ (value) => setSelectedNames(value) }
+                    onValueChange={ (value) => setSelectedNames(value) }
                     placeholder="Select Salespeople"
                     maxWidth="max-w-xs"
                 >
@@ -96,7 +165,7 @@ const Overview = () => {
                 <Dropdown
                     maxWidth="max-w-xs"
                     defaultValue="all"
-                    handleSelect={ (value) => setSelectedStatus(value) }
+                    onValueChange={ (value) => setSelectedStatus(value) }
                 >
                     <DropdownItem value="all" text="All Performances" />
                     <DropdownItem value="overperforming" text="Overperforming" />
@@ -106,7 +175,7 @@ const Overview = () => {
             </div>
             <div className="mt-6 sm:hidden space-y-2 sm:space-y-0">
                 <MultiSelectBox
-                    handleSelect={ (value) => setSelectedNames(value) }
+                    onValueChange={ (value) => setSelectedNames(value) }
                     placeholder="Select Salespeople"
                     maxWidth="max-w-full"
                 >
@@ -117,7 +186,7 @@ const Overview = () => {
                 <Dropdown
                     maxWidth="max-w-full"
                     defaultValue="all"
-                    handleSelect={ (value) => setSelectedStatus(value) }
+                    onValueChange={ (value) => setSelectedStatus(value) }
                 >
                     <DropdownItem value="all" text="All Performances" />
                     <DropdownItem value="overperforming" text="Overperforming" />
@@ -175,7 +244,7 @@ const Overview = () => {
                   <Toggle
                       color="zinc"
                       defaultValue={ selectedKpi }
-                      handleSelect={ (value) => setSelectedKpi(value) }
+                      onValueChange={ (value) => setSelectedKpi(value) }
                   >
                       <ToggleItem value="Sales" text="Sales" />
                       <ToggleItem value="Profit" text="Profit" />

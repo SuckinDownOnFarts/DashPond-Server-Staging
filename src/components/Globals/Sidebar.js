@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, generatePath, useParams } from 'react-router-dom';
+import { Link, NavLink, generatePath, useParams, useOutletContext } from 'react-router-dom';
 
 import { sidebarLinks } from '../../data/Data';
 
@@ -15,6 +15,11 @@ const Sidebar = () => {
   const [ screenSize, setScreenSize ] = useState(undefined);
 
   const { id } = useParams();
+
+  // const { penis } = useOutletContext<{ penis: string }>();
+
+  // console.log(penis);
+   
   const currentPath = generatePath('/dashpage/:id', {
     id: id
   });
@@ -38,6 +43,7 @@ const Sidebar = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, []);
 
+
   useEffect(() => {
     if(screenSize <= 900) {
       setActiveMenu(false);
@@ -45,6 +51,7 @@ const Sidebar = () => {
       setActiveMenu(true);
     }
   }, [screenSize]);
+
 
   useEffect(() => {
     const fetchPropData = async () => {

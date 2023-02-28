@@ -74,9 +74,6 @@ const NavProfile = ({ user }) => {
       </div>
       <div className="mt-5">
         <button
-          className=''
-          bgColor='blue'
-          borderRadius="10px"
           onClick={signout}
         >Logout</button>
       </div>

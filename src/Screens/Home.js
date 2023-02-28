@@ -28,16 +28,20 @@ const Home = () => {
   }, [])
 
   return (
-    <main className='h-[calc(100vh-142px)] bg-slate-50'>
-    {propData.length ? (
-        <Feed posts={propData} />
-    ) : (
-        <p style={{ marginTop: "2rem" }}>
-            Whoops.. Server Error!
-        </p>
-    )}
+    <main className=''>
+      
+        {propData.length ? (
+            <Feed posts={propData} />
+        ) : (
+            <p style={{ marginTop: "2rem" }}>
+                Whoops.. Server Error!
+            </p>
+        )}
+      
     </main>
   )
 }
 
 export default Home
+
+// h-[calc(100vh-100px)]

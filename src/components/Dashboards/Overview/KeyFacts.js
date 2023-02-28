@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { generatePath } from 'react-router-dom';
-import { Card, Text, Block, Metric, BadgeDelta, Icon, Flex, ProgressBar, Footer, Button } from "@tremor/react";
+import { Card, Text, Block, Metric, BadgeDelta, Icon, Flex, Toggle, ToggleItem, Divider, ColGrid, Footer, ButtonInline } from "@tremor/react";
 import { HiUserGroup } from 'react-icons/hi2';
 import { FaSearchDollar } from 'react-icons/fa';
 import { GiFamilyHouse } from 'react-icons/gi';
 import { TbOld } from 'react-icons/tb';
+import { HiArrowNarrowRight } from 'react-icons/hi';
 
 
-const KeyFacts = ({ data, buffer}) => {
+const KeyFacts = ({ data}) => {
 
     
 
@@ -16,6 +17,7 @@ const KeyFacts = ({ data, buffer}) => {
     const [medianHHIncome, setMedianHHIncome] = useState(0)
     const [medianAge, setMedianAge] = useState(0)
     const [incomeLoading, setIncomeLoading] = useState(true)
+    const [buffer, setBuffer] = useState(0)
 
     const medianHHIncomes = [
         [0, 9999],
@@ -162,22 +164,45 @@ const KeyFacts = ({ data, buffer}) => {
     ];
 
     return (
-        topRowData.map((item) => (
-            <Card key={ item.title } decoration="top" decorationColor={ item.color }>
+        <>
+          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
+            {topRowData.map((item) => (
+              <Card key={ item.title } decoration="top" decorationColor={ item.color }>
                 <Flex justifyContent='justify-start' spaceX='space-x-4'>
-                    <Icon
-                        icon={ item.icon }
-                        variant="light"
-                        size="xl"
-                        color={ item.color }
-                    />
-                    <Block truncate={ true }>
-                        <Text>{ item.title }</Text>
-                        <Metric truncate={ true }>{ item.metric }</Metric>
-                    </Block>
+                  <Icon
+                    icon={ item.icon }
+                    variant="light"
+                    size="xl"
+                    color={ item.color }
+                  />
+                  <Block truncate={ true }>
+                    <Text>{ item.title }</Text>
+                    <Metric truncate={ true }>{ item.metric }</Metric>
+                  </Block>
                 </Flex>
-            </Card>
-        ))
+                <Footer>
+                  <ButtonInline
+                      size="sm"
+                      text="View details"
+                      icon={ HiArrowNarrowRight }
+                      iconPosition="right"
+                  />
+                </Footer>
+              </Card>
+            ))}
+          </ColGrid>
+
+          <Block textAlignment="text-center" marginTop='mt-8'>
+            <Toggle value={buffer} onValueChange={ setBuffer }>
+              <ToggleItem value={0} text={'Three Mile'} />
+              <ToggleItem value={1} text={'Five Mile'} />
+              <ToggleItem value={2} text={'Ten Mile'} />
+            </Toggle>
+          </Block>
+
+          <Divider />
+        </>
+        
     )
 }
 

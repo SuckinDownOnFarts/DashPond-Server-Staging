@@ -5,8 +5,9 @@ import { AreaChart, Icon, Toggle, ToggleItem, Card, Title, Text, Tab, TabList, C
 
 import api from '../../api/axios';
 import { performance, salesPeople } from '../../data/Data';
-import TopRow from '../../components/Dashboards/Overview/KeyFacts';
-import MiddleRow from '../../components/Dashboards/Overview/MiddleRow';
+import KeyFacts from '../../components/Dashboards/Overview/KeyFacts';
+import EmploymentFacts from '../../components/Dashboards/Overview/EmploymentFacts';
+import EducationFacts from '../../components/Dashboards/Overview/EducationFacts';
 
 
 const Overview = () => {
@@ -28,7 +29,6 @@ const Overview = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedNames, setSelectedNames] = useState([]);
   const [selectedKpi, setSelectedKpi] = useState('Sales');
-  const [keyBuffer, setKeyBuffer] = useState(0);
   const [employmentBuffer, setEmploymentBuffer] = useState(0);
 
   const isSalesPersonSelected = (salesPerson) => (
@@ -82,8 +82,8 @@ const Overview = () => {
   
 
   return (
-    <main className='md:px-16 sm:px-2 xs:px-4 my-16'>
-      <Block textAlignment="text-center">
+    <main className='md:px-16 sm:px-2 xs:px-4 my-8'>
+      <Block>
         {!aLoading ? <Metric marginTop='mt-6'>{address[0].address}</Metric> : <></>}
         <Title marginTop='mt-2'>Demographic Insights</Title>
         {/* <Text>A complete overview of the key demographic insights from the areas surrounding .</Text>  */}
@@ -102,51 +102,23 @@ const Overview = () => {
 
       { selectedView === 1 ? (
         <>
-        
-          {/* Key facts Top row  */}
-          <Block textAlignment="text-center" marginTop='mt-24'>
+          <Block textAlignment="text-center" marginTop='mt-8'>
             <Metric>Key Facts</Metric>
-            <Toggle value={keyBuffer} onValueChange={ setKeyBuffer } marginTop='mt-8'>
-              <ToggleItem value={0} text={'Three Mile'} />
-              <ToggleItem value={1} text={'Five Mile'} />
-              <ToggleItem value={2} text={'Ten Mile'} />
-            </Toggle>
           </Block>
-
-          <Divider />
-
-          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
-            {!pLoading ? 
-            <TopRow 
+          {!pLoading ? 
+            <KeyFacts 
               data={data}
-              buffer={keyBuffer}
             /> : <></>}
-          </ColGrid>
-          {/* End of Key Facts top row */}
 
-          {/* Employement facts */}
-          <Block textAlignment="text-center" marginTop='mt-24'>
-            <Metric>Employment Overview</Metric>
-            <Toggle value={employmentBuffer} onValueChange={ setEmploymentBuffer } marginTop='mt-8'>
-              <ToggleItem value={0} text={'Three Mile'} />
-              <ToggleItem value={1} text={'Five Mile'} />
-              <ToggleItem value={2} text={'Ten Mile'} />
-            </Toggle>
-          </Block>
-
-          <Divider />
-
-          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
             {!pLoading ? 
-            <MiddleRow 
-              laborForce={data[employmentBuffer][0].DP03_0003E}
-              employed={data[employmentBuffer][0].DP03_0004E}
-              unemployed={data[employmentBuffer][0].DP03_0005E}
-
+            <EmploymentFacts 
+              data={data}
             /> : <></>}
-          </ColGrid>
-          {/* End of Employement Facts */}
 
+          {!pLoading ? 
+            <EducationFacts 
+              data={data}
+            /> : <></>}
         </>
       ) : (
         <>

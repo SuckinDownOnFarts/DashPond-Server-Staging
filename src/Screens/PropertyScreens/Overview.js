@@ -6,8 +6,9 @@ import { AreaChart, Icon, Toggle, ToggleItem, Card, Title, Text, Tab, TabList, C
 import api from '../../api/axios';
 import { performance, salesPeople } from '../../data/Data';
 import KeyFacts from '../../components/Dashboards/Overview/KeyFacts';
-import EmploymentFacts from '../../components/Dashboards/Overview/EmploymentFacts';
-import EducationFacts from '../../components/Dashboards/Overview/EducationFacts';
+import EmploymentFacts from '../../components/Dashboards/Overview/IndustryFacts';
+import EducationFacts from '../../components/Dashboards/Overview/EducationEmploymentFacts';
+import IncomeFacts from '../../components/Dashboards/Overview/IncomeFacts';
 
 
 const Overview = () => {
@@ -109,16 +110,22 @@ const Overview = () => {
             <KeyFacts 
               data={data}
             /> : <></>}
-
-            {!pLoading ? 
-            <EmploymentFacts 
-              data={data}
-            /> : <></>}
-
+          
           {!pLoading ? 
             <EducationFacts 
               data={data}
             /> : <></>}
+
+          {!pLoading ? 
+            <IncomeFacts 
+              data={data}
+            /> : <></>}
+
+          {!pLoading ? 
+            <EmploymentFacts 
+              data={data}
+            /> : <></>}
+
         </>
       ) : (
         <>

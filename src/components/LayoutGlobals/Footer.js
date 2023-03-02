@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-      <footer className="p-4 absolute inset-x-0 bottom-0 bg-white shadow md:flex md:items-center md:justify-between md:p-6 w-full mx-auto  z-50 border-t-.5 h-px">
+      <footer className="p-4 fixed inset-x-0 bottom-0 bg-white shadow md:flex md:items-center md:justify-between md:p-6 w-full mx-auto  z-50 border-t-.5 h-px">
         <span className="text-sm text-gray-500 sm:text-center ">© 2022 <a href="#" className="hover:underline">DashPond™</a>. All Rights Reserved.
         </span>
         <ul className="flex flex-wrap items-center mt-3 sm:mt-0">

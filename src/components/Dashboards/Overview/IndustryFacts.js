@@ -1,42 +1,12 @@
 import React, {useState} from 'react';
 import { Card, Text, Block, Metric, Flex, Icon, ColGrid, Col, Toggle, ToggleItem, Divider, BarChart, Title, ListItem, List, Subtitle} from "@tremor/react";
-import { GrWorkshop } from 'react-icons/gr';
-import { BsGraphDown } from 'react-icons/bs';
-import { IoWomanSharp, IoManSharp } from 'react-icons/io5';
+
 
 const EmploymentFacts = ({data}) => {
 
     const [buffer, setBuffer] = useState(0)
 
-    const unemploymentRate = data[buffer][0].DP03_0005E/data[buffer][0].DP03_0004E
-
-    const topRowData = [
-        {
-            title: 'Civilian Labor Force',
-            metric: data[buffer][0].DP03_0003E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-            icon: GrWorkshop,
-            color: 'orange'
-        },
-        {
-            title: 'Percentage of Women in Labor Force',
-            metric: (data[buffer][0].DP03_0012E / data[buffer][0].DP03_0003E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
-            icon: IoWomanSharp,
-            color: 'pink'
-        },
-        {
-            title: 'Percentage of Men in Labor Force',
-            metric: ((data[buffer][0].DP03_0003E - data[buffer][0].DP03_0012E) / data[buffer][0].DP03_0003E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
-            icon: IoManSharp,
-            color: 'blue'
-        },
-        {
-            title: 'Unemployment Rate',
-            metric: unemploymentRate.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
-            icon: BsGraphDown,
-            color: 'teal'
-        },
-        
-    ];
+    
 
     const industryData = [
         {
@@ -96,28 +66,8 @@ const EmploymentFacts = ({data}) => {
 
     return (
         <>
-            <ColGrid numColsSm={ 1 } numColsMd={ 2 } numColsLg={ 3 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
-                <Card decoration="top" decorationColor='orange'>
-                    <Title>Employment Facts</Title>
-                    <List marginTop="mt-6">
-                        {topRowData.map((item) => (
-                            <ListItem key={ item.title }>
-                                <Flex justifyContent='justify-start' spaceX='space-x-4' truncate={ true}>
-                                    <Icon
-                                        icon={ item.icon }
-                                        variant="light"
-                                        size="xl"
-                                        color={ item.color }
-                                    />
-                                    <Block truncate={ true }>
-                                        <Text>{ item.title }</Text>
-                                        <Metric truncate={ true }>{ item.metric }</Metric>
-                                    </Block>
-                                </Flex>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Card>
+            <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
+                
             
                 <Col numColSpan={1} numColSpanLg={2}>
                     <Card decoration="top" decorationColor='blue'>

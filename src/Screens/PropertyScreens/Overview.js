@@ -32,7 +32,6 @@ const Overview = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedNames, setSelectedNames] = useState([]);
   const [selectedKpi, setSelectedKpi] = useState('Sales');
-  const [employmentBuffer, setEmploymentBuffer] = useState(0);
 
   const isSalesPersonSelected = (salesPerson) => (
     (salesPerson.status === selectedStatus || selectedStatus === 'all')
@@ -82,6 +81,8 @@ const Overview = () => {
 
     fetchAddress();
   }, [])
+
+  !aLoading ? console.log(address[0].county) : console.log('gay');;
   
 
   return (

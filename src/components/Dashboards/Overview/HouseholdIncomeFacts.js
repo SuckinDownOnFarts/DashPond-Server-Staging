@@ -6,6 +6,8 @@ import { Card, Text, Block, ColGrid, Toggle, ToggleItem, Divider, Title, Bold, T
 
 const HouseholdIncomeFacts = ({ data, county }) => {
 
+    console.log(county);
+
     const incomesPath = generatePath('/incomes');
 
     const [buffer, setBuffer] = useState(0);

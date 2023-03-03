@@ -6,8 +6,6 @@ const EmploymentFacts = ({data}) => {
 
     const [buffer, setBuffer] = useState(0)
 
-    
-
     const industryData = [
         {
             name: "Agriculture",
@@ -61,14 +59,12 @@ const EmploymentFacts = ({data}) => {
             name: "Public administration",
             "Percentage": ((data[buffer][0].DP03_0045E/data[buffer][0].DP03_0032E) * 100)
         },
-
     ]
 
     return (
         <>
             <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
                 
-            
                 <Col numColSpan={1} numColSpanLg={2}>
                     <Card decoration="top" decorationColor='blue'>
                         <Title>Percentage of Labor Force by Industry</Title>
@@ -77,7 +73,7 @@ const EmploymentFacts = ({data}) => {
                             data={industryData}
                             dataKey="name"
                             categories={["Percentage"]}
-                            colors="fushia"
+                            colors={["amber"]}
                             stack="horizontal"
                         />
                     </Card>

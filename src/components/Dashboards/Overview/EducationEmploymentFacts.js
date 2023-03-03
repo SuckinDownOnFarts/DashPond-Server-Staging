@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Card, Text, Block, Metric, Flex, Icon, ColGrid, Toggle, ToggleItem, Divider, Title, ListItem, List, Bold, Table, TableHead, TableRow, TableHeaderCell, 
     TableBody, TableCell, Subtitle} from "@tremor/react";
 import { GiDiploma } from 'react-icons/gi';
-import { IoSchool, IoSchoolOutline } from 'react-icons/io5';
+import { IoSchool, IoSchoolOutline, IoHammerSharp } from 'react-icons/io5';
 import { MdBusinessCenter } from 'react-icons/md';
 import { HiBuildingLibrary } from 'react-icons/hi2';
 import { GrWorkshop } from 'react-icons/gr';
@@ -60,6 +60,12 @@ const EmploymentFacts = ({data}) => {
             metric: data[buffer][0].DP03_0003E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             icon: GrWorkshop,
             color: 'orange'
+        },
+        {
+            title: 'Total Employees',
+            metric: data[buffer][0].DP03_0004E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            icon: IoHammerSharp,
+            color: 'purple'
         },
         {
             title: 'Percentage of Women in Labor Force',

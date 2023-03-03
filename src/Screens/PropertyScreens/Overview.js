@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, generatePath, useOutletContext } from 'react-router-dom';
+import { useParams, generatePath } from 'react-router-dom';
 import { AreaChart, Icon, Toggle, ToggleItem, Card, Title, Text, Tab, TabList, ColGrid, Block, Metric, BadgeDelta, Divider, DeltaType, Dropdown, DropdownItem, Flex, MultiSelectBox,
   MultiSelectBoxItem, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, ProgressBar } from "@tremor/react";
 
@@ -8,7 +8,9 @@ import { performance, salesPeople } from '../../data/Data';
 import KeyFacts from '../../components/Dashboards/Overview/KeyFacts';
 import EmploymentFacts from '../../components/Dashboards/Overview/IndustryFacts';
 import EducationFacts from '../../components/Dashboards/Overview/EducationEmploymentFacts';
-import IncomeFacts from '../../components/Dashboards/Overview/IncomeFacts';
+import HouseholdIncomeFacts from '../../components/Dashboards/Overview/HouseholdIncomeFacts';
+import AgeFacts from '../../components/Dashboards/Overview/AgeFacts';
+
 
 
 const Overview = () => {
@@ -116,15 +118,22 @@ const Overview = () => {
               data={data}
             /> : <></>}
 
-          {!pLoading ? 
-            <IncomeFacts 
+          {!pLoading && !aLoading ? 
+            <HouseholdIncomeFacts 
               data={data}
+              county={address[0].county}
             /> : <></>}
 
           {!pLoading ? 
             <EmploymentFacts 
               data={data}
             /> : <></>}
+
+            <AgeFacts 
+            /> : <></>
+
+          
+          
 
         </>
       ) : (

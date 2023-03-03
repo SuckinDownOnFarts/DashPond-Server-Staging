@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { generatePath } from 'react-router-dom';
 import api from '../../../api/axios';
 import { Card, Text, Block, ColGrid, Toggle, ToggleItem, Divider, Title, Bold, Table, TableHead, TableRow, TableHeaderCell, 
-    TableBody, TableCell, Subtitle, SelectBox, SelectBoxItem, Flex} from "@tremor/react";
+    TableBody, TableCell, Subtitle, SelectBox, SelectBoxItem, Flex, Badge, DeltaBar} from "@tremor/react";
 
-const IncomeFacts = ({ data }) => {
+const HouseholdIncomeFacts = ({ data, county }) => {
 
     const incomesPath = generatePath('/incomes');
 
@@ -12,12 +12,12 @@ const IncomeFacts = ({ data }) => {
     const [largestBracket, setLargestBracket] = useState(null);
     const [smallestBracket, setSmallestBracket] = useState(null);
     const [parishes, setParishes] = useState();
-    const [parishSelected, setParishSelected] = useState(0)
-    const [parishesLoading, setParishesLoading] = useState(true)
+    const [parishSelected, setParishSelected] = useState(county.trimStart());
+    const [parishesLoading, setParishesLoading] = useState(true);
     const [incomeData, setIncomeData] = useState();
     const [loading, setLoading] = useState(true);
 
-    //Percentages of Income Bracket Breakdowns used in Table forProperty
+    //Percentages of Income Bracket Breakdowns used in Table for Property
     const propIncome = [
         {
             p1: (data[buffer][0].DP03_0053E + data[buffer][0].DP03_0052E) / data[buffer][0].DP02_0001E,
@@ -34,7 +34,7 @@ const IncomeFacts = ({ data }) => {
 
     //Local parishes Percantages used in diference calculations
     let localIncomes = []
-    !loading ? 
+    !loading && parishSelected ? 
         localIncomes = [
             {
                 p1: (parseInt(incomeData[2][parishSelected]) + parseInt(incomeData[1][parishSelected])) / parseInt(incomeData[0][parishSelected]),
@@ -55,56 +55,65 @@ const IncomeFacts = ({ data }) => {
         {
             bracket: '<$15,000',
             percentage: propIncome[0].p1.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
-            calc: ((data[buffer][0].DP03_0052E + data[buffer][0].DP03_0052E) / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p1 - localIncomes[0].p1).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2})  : null,
+            calc: ((data[buffer][0].DP03_0053E + data[buffer][0].DP03_0052E) / data[buffer][0].DP02_0001E),
+            localP: localIncomes[0].p1.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p1 - localIncomes[0].p1).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2})  : 'Select a County to Compare',
         },
         {
             bracket: '$15,000 - $24,999',
             percentage: propIncome[0].p2.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0054E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p2 - localIncomes[0].p2).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p2.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p2 - localIncomes[0].p2).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$25,000 - $34,999',
             percentage: propIncome[0].p3.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0055E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p3 - localIncomes[0].p3).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p3.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p3 - localIncomes[0].p3).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$35,000 - $49,999',
             percentage: propIncome[0].p4.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0056E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p4 - localIncomes[0].p4).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p4.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p4 - localIncomes[0].p4).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$50,000 - $74,999',
             percentage: propIncome[0].p5.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0057E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p5 - localIncomes[0].p5).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p5.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p5 - localIncomes[0].p5).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$75,000 - $99,999',
             percentage: propIncome[0].p6.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0058E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p6 - localIncomes[0].p6).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p6.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p6 - localIncomes[0].p6).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$100,000 - $149,999',
             percentage: propIncome[0].p7.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0059E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p7 - localIncomes[0].p7).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p7.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p7 - localIncomes[0].p7).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$150,000 - $199,999',
             percentage: propIncome[0].p8.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0060E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p8 - localIncomes[0].p8).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p8.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p8 - localIncomes[0].p8).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
         {
             bracket: '$200,000+',
             percentage: propIncome[0].p9.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             calc: (data[buffer][0].DP03_0061E / data[buffer][0].DP02_0001E),
-            difference: !loading ? (propIncome[0].p9 - localIncomes[0].p9).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : null,
+            localP: localIncomes[0].p9.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+            difference: !loading ? (propIncome[0].p9 - localIncomes[0].p9).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
     ];
 
@@ -155,7 +164,7 @@ const IncomeFacts = ({ data }) => {
         fetchIncomeData();
       }, [])
 
-      !loading ? console.log(incomeData) : console.log('loading');
+    //   !loading ? console.log(incomeData) : console.log('loading');
 
 
     //Creates an array of parishes
@@ -181,47 +190,63 @@ const IncomeFacts = ({ data }) => {
                     <Title>Household Income Facts</Title>
                     <Subtitle>Largest Income Bracket: <Bold>{largestBracket}</Bold></Subtitle>
                     <Subtitle>Smallest Income Bracket: <Bold>{smallestBracket}</Bold></Subtitle>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableHeaderCell>
-                                    Income Bracket
-                                </TableHeaderCell>
-                                <TableHeaderCell>
-                                    Percentage
-                                </TableHeaderCell>
-                                <TableHeaderCell>
-                                    Percentage Difference from Selected Parish  
-                                </TableHeaderCell>
-
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            { incomeTable.map((item) => (
-                                <TableRow key={ item.bracket }>
-                                    <TableCell>
-                                        { item.bracket }
-                                    </TableCell>
-                                    <TableCell>
-                                        <Text>{ item.percentage }</Text>
-                                    </TableCell>
-                                     <TableCell>
-                                        <Text>{ item.difference }</Text>
-                                    </TableCell> 
-                                    {/*<TableCell>
-                                        <Badge text={ item.status } color="emerald" icon={ StatusOnlineIcon } />
-                                    </TableCell> */}
-                                </TableRow>
-                            )) }
-                        </TableBody>
-                    </Table>
-                    <Flex justifyContent='justify-end'>
-                         <SelectBox maxWidth='max-w-xs' onValueChange={(value) => setParishSelected(value)}> 
+                    <Flex justifyContent='justify-center'>
+                         <SelectBox maxWidth='max-w-xs' onValueChange={(value) => setParishSelected(value)} placeholder={parishSelected}> 
                             {!parishesLoading ? parishes.map((item) => (
-                                <SelectBoxItem value={item} text={item}/>
+                                <SelectBoxItem key={item} value={item} text={item}/>
                             )) : <SelectBoxItem value={0} text={'loading parishes'}/>}
                         </SelectBox> 
                     </Flex>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableHeaderCell>
+                                        Income Bracket
+                                    </TableHeaderCell>
+                                    <TableHeaderCell>
+                                        Percentage
+                                    </TableHeaderCell>
+                                    <TableHeaderCell>
+                                        Percentage from Selected Parish  
+                                    </TableHeaderCell>
+                                    <TableHeaderCell>
+                                        Percentage Difference  
+                                    </TableHeaderCell>
+                                    <TableHeaderCell>
+                                        Delta Bar 
+                                    </TableHeaderCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                { incomeTable.map((item) => (
+                                    <TableRow key={ item.bracket }>
+                                        <TableCell>
+                                            { item.bracket }
+                                        </TableCell>
+                                        <TableCell>
+                                            <Text>{ item.percentage }</Text>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Text>{ item.localP }</Text>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Badge 
+                                                text={ item.difference }
+                                                color={parseInt(item.difference) < 0 ? 'red' : 'green'}
+                                                tooltip={parseInt(item.difference) < 0 ? `This property has ${(parseFloat(item.difference) * -1)} more people than the selectedinside this income bracket`
+                                                    : `The selected parish has ${item.difference} less people inside this income bracket` }
+                                            />
+                                        </TableCell> 
+                                        <TableCell>
+                                            <DeltaBar 
+                                                percentageValue={parseInt(item.difference) * 10}
+                                                isIncreasePositive={true}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                )) }
+                            </TableBody>
+                        </Table>
                 </Card>
             </ColGrid>
 
@@ -239,4 +264,4 @@ const IncomeFacts = ({ data }) => {
     )
 }
 
-export default IncomeFacts
+export default HouseholdIncomeFacts

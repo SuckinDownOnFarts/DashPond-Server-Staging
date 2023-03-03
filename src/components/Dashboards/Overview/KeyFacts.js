@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { generatePath } from 'react-router-dom';
-import { Card, Text, Block, Metric, BadgeDelta, Icon, Flex, Toggle, ToggleItem, Divider, ColGrid, Footer, ButtonInline } from "@tremor/react";
+import { Card, Text, Block, Metric, Title, Icon, Flex, Toggle, ToggleItem, Divider, ColGrid, Footer, ButtonInline } from "@tremor/react";
 import { HiUserGroup } from 'react-icons/hi2';
 import { FaSearchDollar } from 'react-icons/fa';
 import { GiFamilyHouse } from 'react-icons/gi';
@@ -117,7 +117,7 @@ const KeyFacts = ({ data}) => {
               const remainder = arr - .5
               const range = ageRanges[i][1] - ageRanges[i][0]
               const plus = range * remainder
-              const medianAgeCalc = (plus + ageRanges[i][0]).toFixed(0)
+              const medianAgeCalc = (plus + ageRanges[i][0]).toFixed(2)
               setMedianAge(medianAgeCalc)
               break
             }
@@ -155,12 +155,12 @@ const KeyFacts = ({ data}) => {
         icon: GiFamilyHouse,
         color: 'amber'
     },
-    {
-        title: 'Median Age',
-        metric: medianAge,
-        icon: TbOld,
-        color: 'fuchsia'
-    },
+    // {
+    //     title: 'Median Age',
+    //     metric: ` Years and ${((medianAge % 1) * 12).toFixed(0)} Months`,
+    //     icon: TbOld,
+    //     color: 'fuchsia'
+    // },
     ];
 
     return (
@@ -190,6 +190,29 @@ const KeyFacts = ({ data}) => {
                 </Footer>
               </Card>
             ))}
+
+            <Card decoration="top" decorationColor="fuchsia">
+                <Flex justifyContent='justify-start' spaceX='space-x-4'>
+                  <Icon
+                    icon={ TbOld }
+                    variant="light"
+                    size="xl"
+                    color="fuchsia"
+                  />
+                  <Block truncate={ true }>
+                    <Text>Median Age</Text>
+                    <Title truncate={ true }>{`${medianAge - (medianAge % 1) } Years and ${((medianAge % 1) * 12).toFixed(0)} Months`}</Title>
+                  </Block>
+                </Flex>
+                <Footer>
+                  <ButtonInline
+                      size="sm"
+                      text="View details"
+                      icon={ HiArrowNarrowRight }
+                      iconPosition="right"
+                  />
+                </Footer>
+              </Card>
           </ColGrid>
 
           <Block textAlignment="text-center" marginTop='mt-8'>

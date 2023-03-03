@@ -122,28 +122,35 @@ const HouseholdIncomeFacts = ({ data, county }) => {
     //Calculates the largest income bracket
     useEffect(() => {
         const calcLargest = () => {
-            const largest = Math.max(...incomeTable.map(o => o.calc))
-            var result = incomeTable.filter(obj => {
-                return obj.calc === largest
-              })
-            setLargestBracket(result[0].bracket)
-        }
+            if (!loading) {
+                const largest = Math.max(...incomeTable.map(o => o.calc))
+                var result = incomeTable.filter(obj => {
+                    return obj.calc === largest
+                })
+                setLargestBracket(result[0].bracket) 
+            } else {
 
+            }
+        }
         calcLargest()
-    }, [buffer])
+    }, [buffer, loading])
 
     //Calculates the smallest bracket
     useEffect(() => {
         const calcSmallest = () => {
-            const smallest = Math.min(...incomeTable.map(o => o.calc))
-            var result = incomeTable.filter(obj => {
-                return obj.calc === smallest
-              })
-            setSmallestBracket(result[0].bracket)
+            if (!loading) {
+                const smallest = Math.min(...incomeTable.map(o => o.calc))
+                var result = incomeTable.filter(obj => {
+                    return obj.calc === smallest
+                })
+                setSmallestBracket(result[0].bracket)
+            } else {
+
+            }
         }
 
         calcSmallest()
-    }, [buffer])
+    }, [buffer, loading])
 
     //Query for Parishes Incomes
     useEffect(() => {

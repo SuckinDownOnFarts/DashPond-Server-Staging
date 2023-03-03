@@ -51,7 +51,9 @@ const HouseholdIncomeFacts = ({ data, county }) => {
     : localIncomes = []
 
 
-    const incomeTable = [
+    let incomeTable = []
+    !loading ? 
+        incomeTable = [
         {
             bracket: '<$15,000',
             percentage: propIncome[0].p1.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
@@ -115,7 +117,7 @@ const HouseholdIncomeFacts = ({ data, county }) => {
             localP: localIncomes[0].p9.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             difference: !loading ? (propIncome[0].p9 - localIncomes[0].p9).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}) : 'Select a County to Compare',
         },
-    ];
+    ] : incomeTable = []
 
     //Calculates the largest income bracket
     useEffect(() => {

@@ -196,6 +196,21 @@ export const kpiData = [
     },
   ];
 
+export const bufferData = [
+  {
+    bufferName: '3 Miles',
+    value: 0
+  },
+  {
+    bufferName: '5 Miles',
+    value: 1
+  },
+  {
+    bufferName: '10 Miles',
+    value: 2
+  },
+];
+
 export const earningData = [
     {
       icon: <MdOutlineSupervisorAccount />,

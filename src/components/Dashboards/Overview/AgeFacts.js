@@ -41,10 +41,10 @@ const AgeFacts = () => {
     <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
       <Card>
         {!loading ? 
-        <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={center} zoom={13} scrollWheelZoom={false} maxZoom={16}>
           <TileLayer
             attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-            url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png'
+            url='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}'
           />
           <Marker position={center}>
             <Popup>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Card, Text, Block, Metric, Flex, Icon, ColGrid, Col, Toggle, ToggleItem, Divider, BarChart, Title, ListItem, List, Subtitle} from "@tremor/react";
+import { Card, Flex, ColGrid, BarChart, Title, Subtitle, Dropdown, DropdownItem} from "@tremor/react";
+import { bufferData } from '../../../data/Data';
 
 
 const EmploymentFacts = ({data}) => {
@@ -64,32 +65,35 @@ const EmploymentFacts = ({data}) => {
     return (
         <>
             <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
-                
-                <Col numColSpan={1} numColSpanLg={2}>
-                    <Card decoration="top" decorationColor='blue'>
+                <Card decoration="top" decorationColor='violet'>
+                    <Flex>
                         <Title>Percentage of Labor Force by Industry</Title>
-                        <Subtitle>Some words go here</Subtitle>
-                        <BarChart
-                            data={industryData}
-                            dataKey="name"
-                            categories={["Percentage"]}
-                            colors={["amber"]}
-                            stack="horizontal"
-                        />
-                    </Card>
-                </Col>
+                        {/* <Subtitle>Some words go here</Subtitle> */}
+                        <Dropdown
+                            defaultValue={0}
+                            onValueChange={(value) => setBuffer(value)}
+                            placeholder="3 Mile"
+                            maxWidth="max-w-0"
+                            marginTop="mt-0"
+                            >
+                            {bufferData.map((item) => (
+                                <DropdownItem
+                                value={item.value}
+                                text={item.bufferName}
+                                />
+                            ))}
+                        </Dropdown>
+                    </Flex>
+                    <BarChart
+                        data={industryData}
+                        dataKey="name"
+                        categories={["Percentage"]}
+                        colors={["purple"]}
+                        stack="horizontal"
+                        yAxisWidth='w-12'
+                    />
+                </Card>
             </ColGrid>
-
-            <Block textAlignment="text-center" marginTop='mt-8'>
-                {/* <Metric>Employment Overview</Metric> */}
-                <Toggle value={buffer} onValueChange={ setBuffer }>
-                <ToggleItem value={0} text={'Three Mile'} />
-                <ToggleItem value={1} text={'Five Mile'} />
-                <ToggleItem value={2} text={'Ten Mile'} />
-                </Toggle>
-            </Block>
-
-            <Divider />
         </>
     )
 }

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { generatePath } from 'react-router-dom';
 import api from '../../../api/axios';
 import { Card, Text, Block, ColGrid, Toggle, ToggleItem, Divider, Title, Bold, Table, TableHead, TableRow, TableHeaderCell, 
-    TableBody, TableCell, Subtitle, SelectBox, SelectBoxItem, Flex, Badge, DeltaBar} from "@tremor/react";
+    TableBody, TableCell, Subtitle, SelectBox, SelectBoxItem, Flex, Badge, DeltaBar, Dropdown, DropdownItem} from "@tremor/react";
+import { bufferData } from '../../../data/Data';
 
 const HouseholdIncomeFacts = ({ data, county }) => {
-
-    console.log(county);
 
     const incomesPath = generatePath('/incomes');
 
@@ -175,8 +174,6 @@ const HouseholdIncomeFacts = ({ data, county }) => {
         fetchIncomeData();
       }, [])
 
-    //   !loading ? console.log(incomeData) : console.log('loading');
-
 
     //Creates an array of parishes
     useEffect(() => {
@@ -187,7 +184,7 @@ const HouseholdIncomeFacts = ({ data, county }) => {
                 setParishes(parishes)
                 setParishesLoading(false)
              } else {
-                const parishes = []
+                
              }
         }
         parishesArray()
@@ -198,17 +195,36 @@ const HouseholdIncomeFacts = ({ data, county }) => {
             <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
 
                 <Card decoration="top" decorationColor='green' hFull='true'>
-                    <Title>Household Income Facts</Title>
-                    <Subtitle>Largest Income Bracket: <Bold>{largestBracket}</Bold></Subtitle>
-                    <Subtitle>Smallest Income Bracket: <Bold>{smallestBracket}</Bold></Subtitle>
-                    <Flex justifyContent='justify-center'>
-                         <SelectBox maxWidth='max-w-xs' onValueChange={(value) => setParishSelected(value)} placeholder={parishSelected}> 
-                            {!parishesLoading ? parishes.map((item) => (
-                                <SelectBoxItem key={item} value={item} text={item}/>
-                            )) : <SelectBoxItem value={0} text={'loading parishes'}/>}
-                        </SelectBox> 
+                    <Flex>
+                        <Block textAlignment='text-start'>
+                            <Title>Household Income Facts</Title>
+                            <Subtitle>Largest Income Bracket: <Bold>{largestBracket}</Bold></Subtitle>
+                            <Subtitle>Smallest Income Bracket: <Bold>{smallestBracket}</Bold></Subtitle>
+                        </Block>
+                        <Flex justifyContent='justify-end' spaceX='space-x-2' marginTop='mt-2'>
+                            <Dropdown
+                                defaultValue={0}
+                                onValueChange={(value) => setBuffer(value)}
+                                placeholder="3 Mile"
+                                maxWidth="max-w-0"
+                                marginTop="mt-0"
+                                >
+                                {bufferData.map((item) => (
+                                <DropdownItem
+                                    value={item.value}
+                                    text={item.bufferName}
+                                    />
+                                ))}
+                            </Dropdown>
+                            <Dropdown maxWidth='max-w-xs' onValueChange={(value) => setParishSelected(value)} placeholder={parishSelected}> 
+                                {!parishesLoading ? parishes.map((item) => (
+                                    <DropdownItem key={item} value={item} text={item}/>
+                                )) : <DropdownItem value={0} text={'loading parishes'}/>}
+                        </Dropdown> 
                     </Flex>
-                        <Table>
+                    </Flex>
+
+                        <Table marginTop='mt-4'>
                             <TableHead>
                                 <TableRow>
                                     <TableHeaderCell>
@@ -218,14 +234,14 @@ const HouseholdIncomeFacts = ({ data, county }) => {
                                         Percentage
                                     </TableHeaderCell>
                                     <TableHeaderCell>
-                                        Percentage from Selected Parish  
+                                        Selected Parish (%)  
                                     </TableHeaderCell>
                                     <TableHeaderCell>
                                         Percentage Difference  
                                     </TableHeaderCell>
-                                    <TableHeaderCell>
+                                    {/* <TableHeaderCell>
                                         Delta Bar 
-                                    </TableHeaderCell>
+                                    </TableHeaderCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -248,29 +264,18 @@ const HouseholdIncomeFacts = ({ data, county }) => {
                                                     : `The selected parish has ${item.difference} less people inside this income bracket` }
                                             />
                                         </TableCell> 
-                                        <TableCell>
+                                        {/* <TableCell>
                                             <DeltaBar 
                                                 percentageValue={parseInt(item.difference) * 10}
                                                 isIncreasePositive={true}
                                             />
-                                        </TableCell>
+                                        </TableCell> */}
                                     </TableRow>
                                 )) }
                             </TableBody>
                         </Table>
                 </Card>
             </ColGrid>
-
-            <Block textAlignment="text-center" marginTop='mt-8'>
-                {/* <Metric>Education Overview</Metric> */}
-                <Toggle value={buffer} onValueChange={ setBuffer }>
-                <ToggleItem value={0} text={'Three Mile'} />
-                <ToggleItem value={1} text={'Five Mile'} />
-                <ToggleItem value={2} text={'Ten Mile'} />
-                </Toggle>
-            </Block>
-
-            <Divider />
         </>
     )
 }

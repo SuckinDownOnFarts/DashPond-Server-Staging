@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import { generatePath } from 'react-router-dom';
-import { Card, Text, Block, Metric, Title, Icon, Flex, Toggle, ToggleItem, Divider, ColGrid, Footer, ButtonInline } from "@tremor/react";
+import { Card, Text, Block, Metric, Title, Icon, Flex, Toggle, ToggleItem, Divider, ColGrid, Footer, Dropdown, DropdownItem, Button } from "@tremor/react";
 import { HiUserGroup } from 'react-icons/hi2';
 import { FaSearchDollar } from 'react-icons/fa';
 import { GiFamilyHouse } from 'react-icons/gi';
 import { TbOld } from 'react-icons/tb';
 import { HiArrowNarrowRight } from 'react-icons/hi';
+import { bufferData } from '../../../data/Data';
 
+const KeyFacts = ({ data, setSelectedView }) => {
 
-const KeyFacts = ({ data}) => {
+    const [medianHHIncome, setMedianHHIncome] = useState(0);
+    const [medianAge, setMedianAge] = useState(0);
+    const [incomeLoading, setIncomeLoading] = useState(true);
 
-    
-
-
-    const [mALoading, setMALoading] = useState(true);
-    const [medianHHIncome, setMedianHHIncome] = useState(0)
-    const [medianAge, setMedianAge] = useState(0)
-    const [incomeLoading, setIncomeLoading] = useState(true)
-    const [buffer, setBuffer] = useState(0)
+    const [popBuffer, setPopBuffer] = useState(0);
+    const [hhBuffer, setHhBuffer] = useState(0);
+    const [hhSizeBuffer, setHhSizeBuffer] = useState(0);
+    const [ageBuffer, setAgeBuffer] = useState(0);
 
     const medianHHIncomes = [
         [0, 9999],
@@ -53,25 +53,28 @@ const KeyFacts = ({ data}) => {
     const calcHHIncome = async () =>{
       try {
           const incomePercents = [
-            data[buffer][0].DP03_0052E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0053E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0054E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0055E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0056E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0057E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0058E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0059E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0060E / data[buffer][0].DP02_0001E,
-            data[buffer][0].DP03_0061E / data[buffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0052E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0053E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0054E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0055E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0056E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0057E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0058E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0059E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0060E / data[hhBuffer][0].DP02_0001E,
+            data[hhBuffer][0].DP03_0061E / data[hhBuffer][0].DP02_0001E,
           ]
           let arr = 0
           for (let i = 0; i < incomePercents.length; i++) {
             arr += incomePercents[i]
             if (arr >= .5) {
-              const remainder = arr - .5
               const range = medianHHIncomes[i][1] - medianHHIncomes[i][0]
-              const plus = range * remainder
-              const medianHHIncomeCalc = (plus + medianHHIncomes[i][0]).toFixed(0)
+              const inward = .5 - (arr - incomePercents[i])
+              const distribution = incomePercents[i] / range
+
+              const result = inward / distribution
+
+              const medianHHIncomeCalc = (result + medianHHIncomes[i][0]).toFixed(0)
               setMedianHHIncome(medianHHIncomeCalc)
               break
             }
@@ -89,35 +92,39 @@ const KeyFacts = ({ data}) => {
     }
 
     calcHHIncome();
-  }, [buffer]);
+  }, [hhBuffer]);
 
     //Calculate Median Age 
   useEffect(() => {
     const calcMedianAge = async () =>{
       try {
           const agePercents = [
-            data[buffer][0].DP05_0005E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0006E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0007E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0008E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0009E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0010E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0011E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0012E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0013E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0014E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0015E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0016E / data[buffer][0].DP05_0001E,
-            data[buffer][0].DP05_0017E / data[buffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0006E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0007E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0008E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0009E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0010E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0011E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0012E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0013E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0014E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0015E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0016E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0017E / data[ageBuffer][0].DP05_0001E,
+            data[ageBuffer][0].DP05_0005E / data[ageBuffer][0].DP05_0001E,
           ]
+          // console.log(agePercents);
           let arr = 0
           for (let i = 0; i < agePercents.length; i++) {
             arr += agePercents[i]
             if (arr >= .5) {
-              const remainder = arr - .5
               const range = ageRanges[i][1] - ageRanges[i][0]
-              const plus = range * remainder
-              const medianAgeCalc = (plus + ageRanges[i][0]).toFixed(2)
+              const inward = .5 - (arr - agePercents[i])
+              const distribution = agePercents[i] / range
+              
+              const result = inward / distribution
+              
+              const medianAgeCalc = result + ageRanges[i][0]
               setMedianAge(medianAgeCalc)
               break
             }
@@ -134,39 +141,48 @@ const KeyFacts = ({ data}) => {
     }
 
     calcMedianAge();
-  }, [buffer]);
+  }, [ageBuffer]);
 
     const topRowData = [
     {
         title: 'Total Population',
-        metric: data[buffer][0].DP05_0001E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        metric: data[popBuffer][0].DP05_0001E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
         icon: HiUserGroup,
-        color: 'indigo'
+        color: 'indigo',
+        tab: 2
     },
     {
         title: 'Median Household Income',
         metric: `$ ${medianHHIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`,
         icon: FaSearchDollar,
-        color: 'green'
+        color: 'green',
+        tab: 3
     },
     {
         title: 'Household Size',
-        metric: (data[buffer][0].DP02_0018E / data[buffer][0].DP02_0001E).toFixed(2),
+        metric: (data[hhSizeBuffer][0].DP02_0018E / data[hhSizeBuffer][0].DP02_0001E).toFixed(2),
         icon: GiFamilyHouse,
-        color: 'amber'
+        color: 'amber',
+        tab: 4
     },
-    // {
-    //     title: 'Median Age',
-    //     metric: ` Years and ${((medianAge % 1) * 12).toFixed(0)} Months`,
-    //     icon: TbOld,
-    //     color: 'fuchsia'
-    // },
+    {
+        title: 'Median Age',
+        metric: medianAge,
+        icon: TbOld,
+        color: 'fuchsia'
+    },
     ];
+    const bufferFunctions = [
+      setPopBuffer,
+      setHhBuffer,
+      setHhSizeBuffer,
+      setAgeBuffer
+    ]
 
     return (
         <>
-          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
-            {topRowData.map((item) => (
+          <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } numColsXl={ 4 }marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
+            {topRowData.map((item, index) => (
               <Card key={ item.title } decoration="top" decorationColor={ item.color }>
                 <Flex justifyContent='justify-start' spaceX='space-x-4'>
                   <Icon
@@ -177,21 +193,43 @@ const KeyFacts = ({ data}) => {
                   />
                   <Block truncate={ true }>
                     <Text>{ item.title }</Text>
-                    <Metric truncate={ true }>{ item.metric }</Metric>
+                    {index != 3 ? 
+                    <Metric truncate={ true }>{ item.metric }</Metric> :
+                    <Title truncate={ true }>{`${item.metric - (item.metric % 1) } Years and ${((item.metric % 1) * 12).toFixed(0)} Months`}</Title> 
+                  }
                   </Block>
                 </Flex>
+
                 <Footer>
-                  <ButtonInline
-                      size="sm"
-                      text="View details"
-                      icon={ HiArrowNarrowRight }
-                      iconPosition="right"
-                  />
+                  <Flex justifyContent='justify-between'>
+                    <Button
+                        variant='light'
+                        size="sm"
+                        text="View details"
+                        icon={ HiArrowNarrowRight }
+                        iconPosition="right"
+                        onClick={() => setSelectedView(item.tab)}
+                    />
+                    <Dropdown
+                      defaultValue={0}
+                      onValueChange={(value) => bufferFunctions[index](value)}
+                      placeholder="3 Miles"
+                      maxWidth="max-w-0"
+                      marginTop="mt-0"
+                    >
+                      {bufferData.map((item) => (
+                        <DropdownItem
+                          value={item.value}
+                          text={item.bufferName}
+                        />
+                      ))}
+                    </Dropdown>
+                  </Flex>
                 </Footer>
               </Card>
             ))}
 
-            <Card decoration="top" decorationColor="fuchsia">
+            {/* <Card decoration="top" decorationColor="fuchsia">
                 <Flex justifyContent='justify-start' spaceX='space-x-4'>
                   <Icon
                     icon={ TbOld }
@@ -205,27 +243,17 @@ const KeyFacts = ({ data}) => {
                   </Block>
                 </Flex>
                 <Footer>
-                  <ButtonInline
+                  <Button
+                      variant='light'
                       size="sm"
                       text="View details"
                       icon={ HiArrowNarrowRight }
                       iconPosition="right"
                   />
                 </Footer>
-              </Card>
+              </Card> */}
           </ColGrid>
-
-          <Block textAlignment="text-center" marginTop='mt-8'>
-            <Toggle value={buffer} onValueChange={ setBuffer }>
-              <ToggleItem value={0} text={'Three Mile'} />
-              <ToggleItem value={1} text={'Five Mile'} />
-              <ToggleItem value={2} text={'Ten Mile'} />
-            </Toggle>
-          </Block>
-
-          <Divider />
-        </>
-        
+        </>  
     )
 }
 

@@ -3,7 +3,7 @@ import Layout from './components/LayoutGlobals/Layout';
 //Screens
 import Home from './Screens/Home';
 import CreateDash from './Screens/CreateDash';
-import DashPage from './Screens/PropertyScreens/DashPage';
+import DataProfile from './Screens/PropertyScreens/DataProfile';
 import Missing from './Screens/Missing';
 import Profile from './Screens/Profile';
 import Pricing from './Screens/Pricing';
@@ -52,12 +52,12 @@ function App() {
             <Route path='profile' element={<Profile />} /> {/* User Routes */}
           </Route> 
           
-          <Route path='/dashpage/:id' element={<DashPage />}> {/* Dashboards */}
+          <Route path='/dataprofile/:id' element={<DataProfile />}> {/* Dashboards */}
             <Route path='overview' index element={<Overview />} />
-            <Route path='population' element={<Population />}/>
+            {/* <Route path='population' element={<Population />}/>
             <Route path='housing' element={<Housing />}/>
             <Route path='income' element={<Income />}/>
-            <Route path='information' element={<PropertyInsights />}/>   
+            <Route path='information' element={<PropertyInsights />}/>    */}
           </Route>
 
           <Route path='documentation' element={<Docs />} />

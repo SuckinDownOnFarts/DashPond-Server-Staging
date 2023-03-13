@@ -24,7 +24,7 @@ const Layout = () => {
 
       <Outlet />
       
-      {location.pathname.includes('dashpage') || screenSize <= 1100  
+      {location.pathname.includes('dataprofile') || screenSize <= 1100  
         ? <></> :  <Footer />}
         
     </div>

@@ -194,7 +194,7 @@ const HouseholdIncomeFacts = ({ data, county }) => {
         <>
             <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
 
-                <Card decoration="top" decorationColor='green' hFull='true'>
+                <Card hFull='true'>
                     <Flex>
                         <Block textAlignment='text-start'>
                             <Title>Household Income Facts</Title>
@@ -211,6 +211,7 @@ const HouseholdIncomeFacts = ({ data, county }) => {
                                 >
                                 {bufferData.map((item) => (
                                 <DropdownItem
+                                    key={item.bufferName}
                                     value={item.value}
                                     text={item.bufferName}
                                     />

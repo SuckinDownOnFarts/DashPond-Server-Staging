@@ -85,11 +85,6 @@ const Sidebar = () => {
               {propData[0].address}
             </div>
           </Link>
-          {/* <TooltipComponent content='Menu' position='BottomCenter'>
-            <button type='button' onClick={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} className='text-xl rounded-full p-3 hover:bg-light-gray hover:dark:bg-secondary-dark-bg dark:text-white mt-4 block '>
-              <MdOutlineCancel />
-            </button>
-          </TooltipComponent> */}
         </div>
         <div className='mt-10'>
           {sidebarLinks.map((item) => (
@@ -104,7 +99,7 @@ const Sidebar = () => {
                   //   backgroundColor: isActive ? '#f87171' : ''
                   // })}
                   className={({ isActive }) => isActive ? activeLink : normalLink} 
-                  // className='hover:dark:bg-main-dark-bg'
+                  // className=''
                 >
                   {link.icon}
                   <span className='capitalize'>

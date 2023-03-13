@@ -148,28 +148,28 @@ const KeyFacts = ({ data, setSelectedView }) => {
         title: 'Total Population',
         metric: data[popBuffer][0].DP05_0001E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
         icon: HiUserGroup,
-        color: 'indigo',
+        // color: 'indigo',
         tab: 2
     },
     {
         title: 'Median Household Income',
         metric: `$ ${medianHHIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`,
         icon: FaSearchDollar,
-        color: 'green',
+        // color: 'green',
         tab: 3
     },
     {
         title: 'Household Size',
         metric: (data[hhSizeBuffer][0].DP02_0018E / data[hhSizeBuffer][0].DP02_0001E).toFixed(2),
         icon: GiFamilyHouse,
-        color: 'amber',
+        // color: 'amber',
         tab: 4
     },
     {
         title: 'Median Age',
         metric: medianAge,
         icon: TbOld,
-        color: 'fuchsia'
+        // color: 'fuchsia'
     },
     ];
     const bufferFunctions = [
@@ -183,7 +183,7 @@ const KeyFacts = ({ data, setSelectedView }) => {
         <>
           <ColGrid numColsSm={ 2 } numColsMd={ 2 } numColsLg={ 4 } numColsXl={ 4 }marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
             {topRowData.map((item, index) => (
-              <Card key={ item.title } decoration="top" decorationColor={ item.color }>
+              <Card key={ item.title } >
                 <Flex justifyContent='justify-start' spaceX='space-x-4'>
                   <Icon
                     icon={ item.icon }
@@ -195,7 +195,7 @@ const KeyFacts = ({ data, setSelectedView }) => {
                     <Text>{ item.title }</Text>
                     {index != 3 ? 
                     <Metric truncate={ true }>{ item.metric }</Metric> :
-                    <Title truncate={ true }>{`${item.metric - (item.metric % 1) } Years and ${((item.metric % 1) * 12).toFixed(0)} Months`}</Title> 
+                    <Title truncate={ true }>{`${item.metric - (item.metric % 1) } Years - ${((item.metric % 1) * 12).toFixed(0)} Months`}</Title> 
                   }
                   </Block>
                 </Flex>
@@ -219,6 +219,7 @@ const KeyFacts = ({ data, setSelectedView }) => {
                     >
                       {bufferData.map((item) => (
                         <DropdownItem
+                          key={item.bufferName}
                           value={item.value}
                           text={item.bufferName}
                         />

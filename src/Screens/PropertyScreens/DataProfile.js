@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 
 
-const DashPage = () => {
+const DataProfile = () => {
   
   const [bufferSize, setBufferSize] = useState(0)
 
@@ -18,4 +18,4 @@ const DashPage = () => {
   );
 };
 
-export default DashPage
+export default DataProfile

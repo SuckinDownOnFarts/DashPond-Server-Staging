@@ -4,7 +4,6 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
 import NavProfile from '../NavbarDropdowns/NavProfile';
-import LoggedOutNavProfile from '../NavbarDropdowns/LoggedOutNavProfile';
 import useAuth from '../../hooks/useAuth';
 import Logo from '../Globals/Logo'
 
@@ -17,6 +16,8 @@ const GlobalNavbar = () => {
   const { auth } = useAuth();
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+  // useOnClickOutside(ref, () => setProfileActive(false));
 
   // useEffect(() => {
   //   const handleResize = () => setScreenSize(window.innerWidth);
@@ -40,8 +41,9 @@ const GlobalNavbar = () => {
   return (
     
     auth.accessToken ? (
-      <nav className='mx-0'>
-        <div className=' pl-7 mx-0 flex sticky top-0 z-50 justify-between p-2 bg-white border-b-1'>
+      <nav className='mx-0 sticky top-0 z-50'>
+        <div className='pl-7 mx-0 flex sticky top-0 z-50 justify-between p-2 bg-white border-b-1'>
+
           <div className='flex items-center'>
             <Link to='/'>
               <div>
@@ -49,6 +51,7 @@ const GlobalNavbar = () => {
               </div>
             </Link>
           </div>
+
           <div className="pr-7 flex items-center">
             <div className="hidden w-full md:block md:w-auto">
               <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-white md:flex-row md:space-x-8 md:mt-0 md:text-sm md:border-0
@@ -67,6 +70,7 @@ const GlobalNavbar = () => {
                 </li>
               </ul>  
             </div>
+
             <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleProfileClick()}>
               <img className='rounded-full w-8 h-8' src='/images/office1.jpg' alt='profile'/>
               <p>
@@ -76,8 +80,10 @@ const GlobalNavbar = () => {
               <MdKeyboardArrowDown className='text-gray-500 text-14'/>
               {profileActive && <NavProfile 
                 user={auth.user}
+                setProfileActive={setProfileActive}
               />}
             </div>
+
           </div>  
         </div>    
       </nav>
@@ -123,16 +129,6 @@ const GlobalNavbar = () => {
                   ">Register</a>
                 </li>
               </ul>  
-            </div>
-            <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleProfileClick()}>
-              {/* <img className='rounded-full w-8 h-8' src='/images/user.jpg'/> */}
-              <IoPersonCircleOutline className='w-8 h-8 text-gray-500'/>
-              {/* <p>
-                <span className='text-gray-400 text-14'>Hi, </span> {' '}
-                <span className='text-gray-400 font-bold ml-1 text-14'>{auth.user}</span>
-              </p> */}
-              <MdKeyboardArrowDown className='text-gray-400 text-14'/>
-              {profileActive && <LoggedOutNavProfile />}
             </div>
           </div>  
         </div>   

@@ -4,11 +4,11 @@ import { GiDiploma } from 'react-icons/gi';
 import { IoSchool, IoSchoolOutline, IoHammerSharp } from 'react-icons/io5';
 import { MdBusinessCenter } from 'react-icons/md';
 import { HiBuildingLibrary } from 'react-icons/hi2';
-import { GrWorkshop } from 'react-icons/gr';
 import { BsGraphDown } from 'react-icons/bs';
 import { IoWomanSharp, IoManSharp } from 'react-icons/io5';
 import { bufferData } from '../../../data/Data';
 import { HiArrowNarrowRight } from 'react-icons/hi';
+import { FaPeopleCarry } from "react-icons/fa"
 
 const EmploymentFacts = ({data, setSelectedView}) => {
 
@@ -22,35 +22,35 @@ const EmploymentFacts = ({data, setSelectedView}) => {
             metric: ((data[eduBuffer][0].DP02_0061E + data[eduBuffer][0].DP02_0060E) / data[eduBuffer][0].DP02_0059E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             amount: data[eduBuffer][0].DP02_0061E + data[eduBuffer][0].DP02_0060E,
             icon: GiDiploma,
-            color: 'yellow'
+            // color: 'yellow'
         },
         {
             title: 'High School Graduate',
             metric: (data[eduBuffer][0].DP02_0062E / data[eduBuffer][0].DP02_0059E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             amount: data[eduBuffer][0].DP02_0062E,
             icon: IoSchoolOutline,
-            color: 'lime'
+            // color: 'lime'
         },
         {
             title: 'Some College',
             metric: (data[eduBuffer][0].DP02_0063E / data[eduBuffer][0].DP02_0059E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             amount: data[eduBuffer][0].DP02_0063E,
             icon: HiBuildingLibrary,
-            color: 'rose'
+            // color: 'rose'
         },
         {
             title: "Associate's Degree",
             metric: (data[eduBuffer][0].DP02_0064E / data[eduBuffer][0].DP02_0059E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             amount: data[eduBuffer][0].DP02_0064E,
             icon: MdBusinessCenter,
-            color: 'purple'
+            // color: 'purple'
         },
         {
             title: "Grad/Master's/Bachelor's Degree",
             metric: (data[eduBuffer][0].DP02_0068E / data[eduBuffer][0].DP02_0059E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             amount: data[eduBuffer][0].DP02_0068E,
             icon: IoSchool,
-            color: 'sky'
+            // color: 'sky'
         },
     ];
 
@@ -60,32 +60,32 @@ const EmploymentFacts = ({data, setSelectedView}) => {
         {
             title: 'Civilian Labor Force',
             metric: data[empBuffer][0].DP03_0003E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-            icon: GrWorkshop,
-            color: 'orange'
+            icon: FaPeopleCarry,
+            // color: 'orange'
         },
         {
             title: 'Total Employees',
             metric: data[empBuffer][0].DP03_0004E.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             icon: IoHammerSharp,
-            color: 'purple'
+            // color: 'purple'
         },
         {
             title: 'Percentage of Women in Labor Force',
             metric: (data[empBuffer][0].DP03_0012E / data[empBuffer][0].DP03_0003E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             icon: IoWomanSharp,
-            color: 'pink'
+            // color: 'pink'
         },
         {
             title: 'Percentage of Men in Labor Force',
             metric: ((data[empBuffer][0].DP03_0003E - data[empBuffer][0].DP03_0012E) / data[empBuffer][0].DP03_0003E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             icon: IoManSharp,
-            color: 'blue'
+            // color: 'blue'
         },
         {
             title: 'Unemployment Rate',
             metric: unemploymentRate.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
             icon: BsGraphDown,
-            color: 'teal'
+            // color: 'teal'
         },
         
     ];
@@ -95,7 +95,7 @@ const EmploymentFacts = ({data, setSelectedView}) => {
         <>
             <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 2 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
 
-                <Card decoration="top" decorationColor='red'>
+                <Card>
                     <Flex justifyContent='justify-center'>
                         <Title>Key Education Facts</Title>
                     </Flex>
@@ -137,6 +137,7 @@ const EmploymentFacts = ({data, setSelectedView}) => {
                             >
                             {bufferData.map((item) => (
                                 <DropdownItem
+                                key={item.bufferName}
                                 value={item.value}
                                 text={item.bufferName}
                                 />
@@ -146,7 +147,7 @@ const EmploymentFacts = ({data, setSelectedView}) => {
                     </Footer>
                 </Card>
 
-                <Card decoration="top" decorationColor='orange'>
+                <Card>
                     <Flex justifyContent='justify-center'>
                         <Title>Key Employment Facts</Title>
                     </Flex>
@@ -188,6 +189,7 @@ const EmploymentFacts = ({data, setSelectedView}) => {
                             >
                                 {bufferData.map((item) => (
                                     <DropdownItem
+                                        key={item.bufferName}
                                         value={item.value}
                                         text={item.bufferName}
                                     />

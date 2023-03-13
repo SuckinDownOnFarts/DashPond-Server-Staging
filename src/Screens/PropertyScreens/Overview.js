@@ -6,11 +6,13 @@ import { MdKeyboardDoubleArrowUp } from 'react-icons/md';
 import api from '../../api/axios';
 
 import KeyFacts from '../../components/Dashboards/Overview/KeyFacts';
-import EmploymentFacts from '../../components/Dashboards/Overview/IndustryFacts';
+import IndustryFacts from '../../components/Dashboards/Overview/IndustryFacts';
 import EducationFacts from '../../components/Dashboards/Overview/EducationEmploymentFacts';
 import HouseholdIncomeFacts from '../../components/Dashboards/Overview/HouseholdIncomeFacts';
-import AgeFacts from '../../components/Dashboards/Population/AgeFacts';
-
+import GrowthRate from '../../components/Dashboards/Population/GrowthRate';
+import AgesBreakdown from '../../components/Dashboards/Population/AgesBreakdown';
+import AditionalAges from '../../components/Dashboards/Population/AdditionalAges';
+import MalesFemales from '../../components/Dashboards/Population/MalesFemales';
 
 
 const Overview = () => {
@@ -24,11 +26,17 @@ const Overview = () => {
     id: id
   });
 
+  const tsPath = generatePath('/timeseries/:id', {
+    id: id
+})
+
   const [data, setData] = useState([]); //Stays
   const [pLoading, setPLoading] = useState(true); //Stays
   const [address, setAddress] = useState(); //Stays
   const [aLoading, setALoading ] = useState(true); //Stays
   const [selectedView, setSelectedView] = useState(1);
+  const [timeSeries, setTimeSeries] = useState([]);
+  const [tLoading, setTLoading] = useState(true);
 
 
 
@@ -75,6 +83,26 @@ const Overview = () => {
     fetchAddress();
   }, [])
 
+  //Fetch Time series Data
+  useEffect(() => {
+    const queryTimeSeries = async () => {
+        try {
+            const response = await api.get(tsPath);
+            setTimeSeries(response.data);
+            setTLoading(false);
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers); 
+            } else { 
+                console.log(`Error: ${err.message}`)
+            }
+        }
+    }
+    queryTimeSeries()
+}, [])
+
   // !aLoading ? console.log(address[0].county) : console.log('gay');;
   
 
@@ -90,18 +118,14 @@ const Overview = () => {
       <TabList defaultValue={ 1 } value={selectedView} onValueChange={ (value) => setSelectedView(value) } marginTop="mt-8">
         <Tab value={ 1 } text="At a Glance" />
         <Tab value={ 2 } text="Population Insights" />
-        <Tab value={ 3 } text="Economic Insights" />
+        <Tab value={ 3 } text="Income & Employment Insights" />
         <Tab value={ 4 } text="Housing Insights" />
-        <Tab value={ 5 } text="Employment Insights" />
-        <Tab value={ 6 } text="Education Facts" />
-        <Tab value={ 7 } text="Map Views" />
+        <Tab value={ 5 } text="Education Facts" />
+        <Tab value={ 6 } text="Map Views" />
       </TabList>
 
       { selectedView === 1 ? (
         <>
-          <Block textAlignment="text-center" marginTop='mt-8'>
-            <Metric>Key Facts</Metric>
-          </Block>
           {!pLoading ? 
             <KeyFacts 
               data={data}
@@ -121,7 +145,7 @@ const Overview = () => {
             /> : <></>}
 
           {!pLoading ? 
-            <EmploymentFacts 
+            <IndustryFacts 
               data={data}
               setSelectedView={setSelectedView}
             /> : <></>}
@@ -129,9 +153,28 @@ const Overview = () => {
         </>
       ) : selectedView === 2 ? (
         <>
-          {!pLoading ? 
-            <AgeFacts 
-              // data={data}
+          {!pLoading && !tLoading ? 
+            <GrowthRate 
+              data={data}
+              timeData={timeSeries}
+            /> : <></>}
+
+          {!pLoading && !tLoading ? 
+            <AgesBreakdown 
+              data={data}
+              timeData={timeSeries}
+            /> : <></>}
+
+          {!pLoading && !tLoading ? 
+            <AditionalAges
+              data={data}
+              timeData={timeSeries}
+            /> : <></>}
+
+          {!pLoading && !tLoading ? 
+            <MalesFemales
+              data={data}
+              timeData={timeSeries}
             /> : <></>}
         </>
       ) : selectedView === 3 ? (

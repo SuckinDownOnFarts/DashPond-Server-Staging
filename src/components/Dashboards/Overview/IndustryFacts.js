@@ -65,7 +65,7 @@ const EmploymentFacts = ({data}) => {
     return (
         <>
             <ColGrid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } marginTop="mt-8" gapX="gap-x-6" gapY="gap-y-6">
-                <Card decoration="top" decorationColor='violet'>
+                <Card>
                     <Flex>
                         <Title>Percentage of Labor Force by Industry</Title>
                         {/* <Subtitle>Some words go here</Subtitle> */}
@@ -78,6 +78,7 @@ const EmploymentFacts = ({data}) => {
                             >
                             {bufferData.map((item) => (
                                 <DropdownItem
+                                key={item.bufferName}
                                 value={item.value}
                                 text={item.bufferName}
                                 />

@@ -4,7 +4,7 @@ import api from '../../../api/axios';
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet';
 import { Card, Text, Block, Metric, Flex, Icon, ColGrid, Col, Toggle, ToggleItem, Divider, BarChart, Title, ListItem, List, Subtitle} from "@tremor/react";
 
-const AgeFacts = () => {
+const Maps = () => {
 
   const [coordinates, setCoordinates] = useState();
   const [loading, setLoading] = useState(true);
@@ -58,4 +58,4 @@ const AgeFacts = () => {
   )
 }
 
-export default AgeFacts
+export default Maps

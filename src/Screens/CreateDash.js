@@ -1,290 +1,236 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api/axios';
-import { Dropdown, DropdownItem, Card, Flex, Text, Metric, Block, Title, Subtitle, TextInput } from '@tremor/react';
-
-import { useState } from 'react';
 import { useNavigate, generatePath } from 'react-router-dom';
-
+import { useForm } from 'react-hook-form';
+import { stateNames } from '../data/Data';
+import MapModal from './MapModal';
 
 
 const CreateDash = () => {
 
-  const [ inputAddress, setInputAddress ] = useState('');
-  const [ inputSQFT, setInputSQFT ] = useState('');
-  const [ propType, setPropType ] = useState('');
-  const [ inputZoning, setInputZoning ] = useState('');
-  const [ inputCapRate, setInputCapRate ] = useState('');
-  const [ inputYearBuilt, setInputYearBuilt ] = useState('');
-  const [ inputSaleType, setInputSaleType ] = useState('');
-  const [ inputPrice, setInputPrice ] = useState('');
+  const latLng = [
+    {lat: null},
+    {lng: null}
+  ]
+
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('Florida');
+  const [zip, setZip] = useState('');
+  const [pointData, setPointData] = useState(latLng);
+  const [county, setCounty] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  
+  // const navigate = useNavigate();
+
+  const { register, formState: { errors }, handleSubmit } = useForm();
+  
+  const newAddress = {
+    address: `${address},${city},${state},${zip}`
+  };
+
+  const onSubmit = async () => {
+    setPointData([
+      {lat: null},
+      {lng: null}
+    ]);
+
+    const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${newAddress.address}`
+
+    try {
+      await fetch(url).then((response) => response.json())
+      .then((data) => {
+
+        setPointData([
+          {lat: data.response.features[0].geometry.coordinates[1]},
+          {lng: data.response.features[0].geometry.coordinates[0]}
+        ]); 
+        setCounty(data.response.features[0].properties.county)
+      });
+
+      setShowModal(true)
+      setLoading(false)
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    const logPointData = () => {
+      console.log(pointData);
+    }
+
+    logPointData()
+  }, [pointData])
   
 
-  const navigate = useNavigate();
 
 
-
-  async function postData(post) {
-    try {
-      const response = await api.post('/posts', post);
-      const res = response.data.toString()
-      const path = generatePath('/dataprofile/:id/overview', {
-        id: res
-      })
-      navigate(path)
-    } catch (err) {
-      console.log(`Error: ${err.message}`);
-    };
-  }
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    const newPost = {
-      address: inputAddress,
-      SQFT: inputSQFT,
-      propType: propType,
-      zoning: inputZoning,
-      capRate: inputCapRate,
-      yearBuilt: inputYearBuilt,
-      saleType: inputSaleType,
-      price: inputPrice
-    };
-
-    postData(newPost)
-      .then((response) => {
-        if (!response) {
-          console.log('no res');
-        }
-      })
-      .catch(err => {
-        console.log(err)
-     });
-  }
+  
 
 
   return (
-    <main className='md:px-96 sm:px-2 xs:px-4 my-8'>
-      {/* <Card > */}
-        <Block textAlignment='text-center' marginTop='mt-6'>
-          <Metric color='neutral'>
+    <main className='h-[calc(100vh-68px)] flex flex-col place-items-center '>
+
+      {showModal && !loading ? 
+        <MapModal 
+          coordinates={pointData}
+          county={county}
+          address={newAddress.address}
+          setShowModal={setShowModal}
+        /> : <></>}
+
+        <div className='mt-16 text-center'>
+          <div className='text-4xl font-semibold tracking-tight'>
             Property Form
-          </Metric>
-          <Subtitle>
-            Provide the necessary property information and we'll create a data profile
-          </Subtitle>
-        </Block>
-        <Flex marginTop='mt-16' justifyContent='center'>
-          <div className='px-10'>
-            <TextInput placeholder='Address'/>
           </div>
-        </Flex>
-      {/* </Card> */}
+          <div className='tracking-tight mt-4'>
+            Provide the necessary property information and we'll create a data profile
+          </div>
+        </div>
+
+        <form 
+          className="w-full max-w-lg mt-16"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+
+          {/* ADDRESS */}
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3 mb-6 md:mb-0">
+              <input 
+                className={errors.address ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"}
+                {...register('address', { required: true })}
+                aria-invalid={errors.address ? "true" : "false"}
+                id="address" 
+                type="text" 
+                placeholder="Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              {errors.address?.type === 'required' && <p className='text-red-500' role="alert">Address is required</p>}
+            </div>
+          </div>
+
+          {/* CITY */}
+          <div className="flex flex-wrap -mx-3">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <input 
+                className={errors.city ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
+                id="city" 
+                {...register('city', { required: true })}
+                type="text" 
+                placeholder="City"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                
+              />
+              {errors.city?.type === 'required' && <p className='text-red-500' role="alert">City is required</p>}
+            </div>
+
+            {/* STATE */}
+            <div className="w-full md:w-1/3 px-3 mb-6">
+              <div className={showModal ? "hidden" : "relative"}>
+                <select 
+                  className="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" 
+                  id="state"
+                  {...register('state', { required: true })}
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  
+                >
+                  {stateNames.map((state) => (
+                    <option key={state.name}>{state.name}</option>
+                  ))}
+                  
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+              </div>
+            </div>
+
+            {/* ZIP */}
+            <div className="w-full md:w-1/3 px-3 mb-6">
+              <input 
+                className={errors.zip ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
+                id="grid-zip" 
+                {...register('zip', { required: true, minLength: 5 })}
+                type="text" 
+                placeholder="Zip"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+                
+              />
+              {errors.zip?.type === 'required' && <p className='text-red-500' role="alert">Zip code is required</p>}
+            </div>
+          </div>
+
+            {/* BUTTON */}
+            <div className="flex flex-wrap -mx-3 mb-2 ">
+              <div className="w-full px-3 mb-6">
+                <button 
+                  className='place-self-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+                  text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+
+        </form>
     </main>
   )
-
-  //   <div className=' bg-light-gray h-[calc(100vh-148px)] flex'>
-  //   <div className=" ">
-  //     <div className="mt-5 md:mt-24 align-middle">
-
-
-  //       <form onSubmit={handleFormSubmit}>
-
-  //         <div className="shadow sm:overflow-hidden sm:rounded-md">
-  //           <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-  //             <div className="grid grid-cols-3 gap-6">
-  //               <div className="col-span-3 sm:col-span-2">
-  //                 <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-  //                   Address
-  //                 </label>
-  //                 <div className="mt-1 flex rounded-md shadow-sm">
-  //                   <input 
-  //                     type='text'
-  //                     name='address'
-  //                     id='address'
-  //                     className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-  //                     placeholder="123 Apple St. Metairie, LA 12345"
-  //                     value={inputAddress}
-  //                     onChange={(e) => setInputAddress(e.target.value)}
-  //                   /><br/>
-  //                 </div>
-  //               </div>
-  //                 <div className="col-span-3 sm:col-span-2">
-  //                   <label htmlFor="propType" className="block text-sm font-medium text-gray-700">
-  //                     Property Type
-  //                   </label>
-  //                   <Dropdown
-  //                     value={propType}
-  //                     defaultValue={''}
-  //                     onValueChange={setPropType}
-  //                     placeholder="Select..."
-  //                     icon={undefined}
-  //                     maxWidth="max-w-none"
-  //                     marginTop="mt-0"
-  //                   >
-  //                     <DropdownItem
-  //                       value='hospital'
-  //                       text='Medical'
-  //                       icon={undefined}
-  //                     />
-  //                     <DropdownItem
-  //                       value='industrial'
-  //                       text='Industrial'
-  //                       icon={undefined}
-  //                     />
-  //                   </Dropdown>
-  //                 </div>
-                
-  //             </div>
-  //             <div>
-  //               <label className="block text-sm font-medium text-gray-700">Property Pictures</label>
-  //               <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-  //                 <div className="space-y-1 text-center">
-  //                   <svg
-  //                     className="mx-auto h-12 w-12 text-gray-400"
-  //                     stroke="currentColor"
-  //                     fill="none"
-  //                     viewBox="0 0 48 48"
-                      
-  //                   >
-  //                     <path
-  //                       d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-  //                       strokeWidth={2}
-  //                       strokeLinecap="round"
-  //                       strokeLinejoin="round"
-  //                     />
-  //                   </svg>
-  //                   <div className="flex text-sm text-gray-600">
-  //                     <label
-  //                       htmlFor="file-upload"
-  //                       className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-  //                     >
-  //                       <span>Upload a file</span>
-  //                       <input id="file-upload" name="file-upload" type="file" className="sr-only" />
-  //                     </label>
-  //                     <p className="pl-1">or drag and drop</p>
-  //                   </div>
-  //                   <p className="text-xs text-gray-500">PNG or JPG up to 10MB</p>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //           <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-  //             <button
-  //               type="submit"
-  //               className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-  //             >
-  //               Save
-  //             </button>
-  //           </div>
-  //         </div>
-  //       </form>
-  //     </div>
-  //   </div>
-  // </div>
-   // <form onSubmit={handleFormSubmit}>
-    //         <label>Address</label>
-    //         <input 
-    //           type='text'
-    //           value={inputAddress}
-    //           onChange={(e) => setInputAddress(e.target.value)}
-    //         /><br/>
-
-    //         <label>Sale Type</label>
-    //         <input 
-    //           type='text'
-    //           value={inputSaleType}
-    //           onChange={(e) => setInputSaleType(e.target.value)}
-    //         /><br/>
-
-    //         <label>SQFT</label>
-    //         <input 
-    //           type='text'
-    //           value={inputSQFT}
-    //           onChange={(e) => setInputSQFT(e.target.value)}
-    //         /><br/>
-
-    //         <label>Property Type</label>
-    //         <input 
-    //           type='text'
-    //           value={inputPropType}
-    //           onChange={(e) => setInputPropType(e.target.value)}
-    //         /><br/>
-
-    //         <label>Zoning</label>
-    //         <input 
-    //           type='text'
-    //           value={inputZoning}
-    //           onChange={(e) => setInputZoning(e.target.value)}  
-    //         /><br/>
-
-    //         <label>Price</label>
-    //         <input 
-    //           type='text'
-    //           value={inputPrice}
-    //           onChange={(e) => setInputPrice(e.target.value)}
-    //         /><br/>
-
-    //         <label>Year Built</label>
-    //         <input 
-    //           type='text'
-    //           value={inputYearBuilt}
-    //           onChange={(e) => setInputYearBuilt(e.target.value)}
-    //         /><br/>
-
-    //         <label>Cap Rate</label>
-    //         <input 
-    //           type='text'
-    //           value={inputCapRate}
-    //           onChange={(e) => setInputCapRate(e.target.value)}
-    //         /><br/>
-
-    //         <button type='submit' variant='primary'>Submit</button>
-            
-    //     </form>
-  
-  }
-
-{/* <div className="hidden sm:block" >
-  <div className="py-5">
-    <div className="border-t border-gray-200"></div>
-  </div>
-</div> */}
-                {/* <div>
-                  <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                    About
-                  </label>
-                  <div className="mt-1">
-                    <textarea
-                      id="about"
-                      name="about"
-                      rows={3}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="you@example.com"
-                      defaultValue={''}
-                    />
-                  </div>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Brief description for your profile. URLs are hyperlinked.
-                  </p>
-                </div> */}
-
-                {/* <div>
-                  <label className="block text-sm font-medium text-gray-700">Photo</label>
-                  <div className="mt-1 flex items-center">
-                    <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                      <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                    </span>
-                    <button
-                      type="button"
-                      className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      Change
-                    </button>
-                  </div>
-                </div> */}
-
-
+}
 
 export default CreateDash
+
+  // async function geocode(post) {
+  //   try {
+  //     const response = await api.post('/posts', post);
+  //     if (response == 404) {
+  //       //handle invalid address
+  //       //Set error message to 'invalid address'
+  //     } else {
+  //         const res = response.data.toString()
+  //         const path = generatePath('/dataprofile/:id/overview', {
+  //           id: res
+  //         })
+  //         navigate(path)
+  //     }
+  //   } catch (err) {
+  //     console.log(`Error: ${err.message}`);
+  //   };
+  // }
+
+  // async function postData(post) {
+  //   try {
+  //     const response = await api.post('/posts', post);
+  //     if (response == 404) {
+  //       //handle invalid address
+  //       //Set error message to 'invalid address'
+  //     } else {
+  //         const res = response.data.toString()
+  //         const path = generatePath('/dataprofile/:id/overview', {
+  //           id: res
+  //         })
+  //         navigate(path)
+  //     }
+  //   } catch (err) {
+  //     console.log(`Error: ${err.message}`);
+  //   };
+  // }
+
+      // postData(newPost)
+    //   .then((response) => {
+    //     if (!response) {
+    //       //Handle server error
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //  }); data.response.features[0].geometry.coordinates

@@ -14,9 +14,11 @@ const useRefreshToken = () => {
                 ...prev, 
                 roles: response.data.roles,
                 accessToken: response.data.accessToken,
-                user: response.data.user
+                email: response.data.userEmail,
+                id: response.data.id
             }
         });
+        // console.log(response.data.accessToken);
         return response.data.accessToken;
     };
 

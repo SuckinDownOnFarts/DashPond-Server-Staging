@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await api.get('/properties');
+        const response = await api.get('/homepage/feed');
         setPropData(response.data);
         
       } catch (err) {

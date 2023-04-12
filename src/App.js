@@ -3,29 +3,38 @@ import Layout from './components/LayoutGlobals/Layout';
 //Screens
 import Home from './Screens/Home';
 import CreateDash from './Screens/CreateDash';
-import DataProfile from './Screens/PropertyScreens/DataProfile';
+import DataProfile from './Screens/DataProfile/DataProfile';
 import Missing from './Screens/Missing';
-import Profile from './Screens/Profile';
-import Pricing from './Screens/Pricing';
+
 import Contact from './Screens/Contact';
 import Docs from './Screens/Docs/Docs';
 
+//Pricing Screens
+import PricingPlan from './Screens/Pricing/PricingPlan';
+import Pricing from './Screens/Pricing/Pricing';
+import Checkout from './Screens/Pricing/Checkout';
+
 //Property Insight Screens
-import Population from './Screens/PropertyScreens/Population';
-import Overview from './Screens/PropertyScreens/Overview';
-import Housing from './Screens/PropertyScreens/Housing';
-import Income from './Screens/PropertyScreens/Income';
-import PropertyInsights from './Screens/PropertyScreens/PropertyInsights';
+import Overview from './Screens/DataProfile/Overview';
 
 // Auth Screens
 import Register from './Screens/AuthScreens/Register';
 import Login from './Screens/AuthScreens/Login';
 import RequireAuth from './components/Auth/RequireAuth';
 import PersistLogin from './components/Auth/PersistLogin';
+import PricingRequireAuth from './components/Auth/PricingRequireAuth';
+
+
+//Profile Screens
+import RequireProfileAuth from './components/Auth/RequireProfileAuth';
+import ProfileLayout from './Screens/Profile/Layout';
+import Info from './Screens/Profile/Info';
+import Insights from './Screens/Profile/Insights';
+import ProfilePlan from './Screens/Profile/Plan';
+import DataProfiles from './Screens/Profile/DataProfiles';
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import '@tremor/react/dist/esm/tremor.css';
 
 const ROLES = {
   'User': 10,
@@ -36,40 +45,58 @@ const ROLES = {
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route index element={<Home />} /> {/* Homepage Route */}
+      {/* Persisted Routes */}
+      <Route element={<PersistLogin />}>
 
-        {/* Persisted Routes */}
-        <Route element={<PersistLogin />}>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} /> {/* Homepage Route */}
+
+        
     
           {/* Protected Route */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]}/>}>
              <Route path='create' index element={<CreateDash/>} /> {/*Input for paying cutomers */}
           </Route> 
           
-          {/* Protected Route */}
+          {/* Profile Routes */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]}/>}>
-            <Route path='profile' element={<Profile />} /> {/* User Routes */}
+            <Route element={<RequireProfileAuth />}>
+              <Route path='profile/:id' element={<ProfileLayout />}>
+                <Route path='info' element={<Info />} />
+                <Route path='insights' element={<Insights />} />
+                <Route path='billing+plan' element={<ProfilePlan />} />
+                <Route path='dataprofiles' element={<DataProfiles />} />
+
+              </Route>
+            </Route>
+
           </Route> 
           
           <Route path='/dataprofile/:id' element={<DataProfile />}> {/* Dashboards */}
             <Route path='overview' index element={<Overview />} />
-            {/* <Route path='population' element={<Population />}/>
-            <Route path='housing' element={<Housing />}/>
-            <Route path='income' element={<Income />}/>
-            <Route path='information' element={<PropertyInsights />}/>    */}
           </Route>
 
           <Route path='documentation' element={<Docs />} />
-          <Route path='pricing' element={<Pricing />} /> {/* Pricing */}
+
+          <Route path='pricing' element={<Pricing />} />
+
+          <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]}/>} >
+            <Route path='getstarted/:plan/customize' element={<PricingPlan/>}/>
+          </Route>
+          
+          <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]}/>} >
+            <Route path=':plan/checkout' element={<Checkout/>}/>
+          </Route>
+
           <Route path='contact' element={<Contact />} />
           <Route path='*' element={<Missing />} /> {/* 404 Route */}
 
+          <Route path='login' element={<Login />}/>
+          <Route path='register' element={<Register />} /> 
         </Route>
 
         {/* Login and Register Routes */}
-        <Route path='login' element={<Login />}/>
-        <Route path='register' element={<Register />} /> 
+
       </Route>
     </Routes>
   );

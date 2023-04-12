@@ -1,5 +1,4 @@
 import GlobalNavbar from './GlobalNavbar';
-import Footer from './Footer';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -19,13 +18,12 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className='min-h-screen bg-slate-50'>
-      <GlobalNavbar />
+    <div className='flex flex-col min-h-screen bg-gradient-to-br from-slate-50 to-gray-200'>
+      {location.pathname.includes('getstarted') ? <></> : 
+        <GlobalNavbar />
+      }
 
       <Outlet />
-      
-      {location.pathname.includes('dataprofile') || screenSize <= 1100  
-        ? <></> :  <Footer />}
         
     </div>
   )

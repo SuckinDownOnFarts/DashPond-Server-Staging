@@ -1,16 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-
-import Button from '../Globals/Button';
+import { useNavigate, generatePath } from 'react-router-dom';
 
 import useLogout from '../../hooks/useLogout';
 import useAuth from '../../hooks/useAuth';
 
 import { userProfileData } from '../../data/Data';
-
-import { MdOutlineCancel } from 'react-icons/md';
-// import avatar from '/images/office1';
 
 const useOnClickOutside = (ref, handler) => {
   useEffect(
@@ -44,7 +38,7 @@ const useOnClickOutside = (ref, handler) => {
   )
 }
 
-const NavProfile = ({ user, setProfileActive }) => {
+const NavProfile = ({ setProfileActive }) => {
   const { auth } = useAuth();
   const logout = useLogout();
   const navigate = useNavigate();
@@ -57,32 +51,30 @@ const NavProfile = ({ user, setProfileActive }) => {
     navigate('/');
   }
 
+  const profilePath = generatePath('/profile/:id/info', {
+    id: auth.id
+  })
+
   const handleProfileClick = () => {
-    navigate('/profile')
+    navigate(profilePath)
   }
 
   
-
   useOnClickOutside(ref, () => setProfileActive(false));
 
   return (
-    <div className="nav-item absolute right-3 top-16 bg-white p-8 rounded-lg w-80 border border-color" ref={ref}>
+    <div className="nav-item absolute right-8 top-16 bg-white p-4 rounded-lg w-40 border border-color " ref={ref}>
       <div className="flex gap-5 items-center border-color border-b-1 pb-6">
-        <img
-          className="rounded-full h-24 w-24"
-          src='/images/office1.jpg'
-          alt="profile"
-        />
-        <div>
-          <p className="font-semibold text-xl"> {auth.user} </p>
+        <div className='relative'>
+          {/* <p className="font-semibold text-xl"> {auth.user} </p> */}
           {auth.roles === 11 
-          ? <p className="text-gray-500 text-sm ">Administrator </p>
+          ? <p className="text-gray-500 text-sm ">Administrator</p>
             : auth.roles === 10 
-            ? <p className="text-gray-500 text-sm ">Tier 1 Agent </p>
+            ? <p className="text-gray-500 text-sm ">Tier 1 Agent</p>
               : <p>Free Plan</p>
         }
           
-          <p className="text-gray-500 text-sm font-semibold "> info@shop.com </p>
+          <p className="text-gray-500 text-xs font-semibold whitespace-normal"> {auth.email} </p>
         </div>
       </div>
       <div>

@@ -1,12 +1,11 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
 
-const RequireAuth = ({ allowedRoles }) => {
+const PricingRequireAuth = ({ allowedRoles }) => {
     const { auth } = useAuth();
     const location = useLocation();
 
     return (
-        // auth?.roles?.find(role => allowedRoles?.includes(role))
         allowedRoles.includes(auth.roles)
             ? <Outlet /> 
             : auth?.accessToken //changed from user to accessToken to persist login after refresh
@@ -15,4 +14,4 @@ const RequireAuth = ({ allowedRoles }) => {
     );
 }
 
-export default RequireAuth;
+export default PricingRequireAuth;

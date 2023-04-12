@@ -8,6 +8,8 @@ const PersistLogin = () => {
     const refresh = useRefreshToken();
     const { auth, persist } = useAuth();
 
+    
+
     useEffect(() => {
         let isMounted = true;
 
@@ -29,6 +31,8 @@ const PersistLogin = () => {
         // console.log(auth.roles);
         return () => isMounted = false;
     }, [])
+
+    // console.log(auth);
 
     // useEffect(() => {
     //     console.log(`isLoading: ${isLoading}`)

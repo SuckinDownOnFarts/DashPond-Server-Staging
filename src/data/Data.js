@@ -11,188 +11,9 @@ export const userProfileData = [
     {
       icon: <BsCurrencyDollar />,
       title: 'My Profile',
-      desc: 'Account Settings',
+      desc: 'Account Details',
       iconColor: '#03C9D7',
       iconBg: '#E5FAFB',
-    },
-    // {
-    //   icon: <BsShield />,
-    //   title: 'My Inbox',
-    //   desc: 'Messages & Emails',
-    //   iconColor: 'rgb(0, 194, 146)',
-    //   iconBg: 'rgb(235, 250, 242)',
-    // },
-    // {
-    //   icon: <FiCreditCard />,
-    //   title: 'My Tasks',
-    //   desc: 'To-do and Daily Tasks',
-    //   iconColor: 'rgb(255, 244, 229)',
-    //   iconBg: 'rgb(254, 201, 15)',
-    // },
-  ];
-
-export const sidebarLinks = [
-    {
-      title: 'Key Insights',
-      links: [
-        {
-          name: 'overview',
-          link: 'overview',
-          icon: <BsBinoculars />,
-        },
-      ],
-    },
-  
-    {
-      title: 'Demographic Insights',
-      links: [
-        {
-          name: 'population',
-          link: 'population',
-          icon: <BsPeople />,
-        },
-        {
-          name: 'housing',
-          link: 'housing',
-          icon: <BsHouseDoor />,
-        },
-        {
-          name: 'income',
-          link: 'income',
-          icon: <FaRegMoneyBillAlt />,
-        },
-      ],
-    },
-    {
-      title: 'Property Details',
-      links: [
-        {
-          name: 'information',
-          link: 'information',
-          icon: <AiOutlineCalendar />,
-        },
-      ],
-    },
-  ];
-
-export const salesPeople = [
-    {
-        name: 'Peter Doe',
-        leads: 45,
-        sales: '1,000,000',
-        quota: '1,200,000',
-        variance: 'low',
-        region: 'Region A',
-        status: 'overperforming',
-        deltaType: 'moderateIncrease',
-    },
-    {
-        name: 'Lena Whitehouse',
-        leads: 35,
-        sales: '900,000',
-        quota: '1,000,000',
-        variance: 'low',
-        region: 'Region B',
-        status: 'average',
-        deltaType: 'unchanged',
-    },
-    {
-        name: 'Phil Less',
-        leads: 52,
-        sales: '930,000',
-        quota: '1,000,000',
-        variance: 'medium',
-        region: 'Region C',
-        status: 'underperforming',
-        deltaType: 'moderateDecrease',
-    },
-    {
-        name: 'John Camper',
-        leads: 22,
-        sales: '390,000',
-        quota: '250,000',
-        variance: 'low',
-        region: 'Region A',
-        status: 'overperforming',
-        deltaType: 'increase',
-    },
-    {
-        name: 'Max Balmoore',
-        leads: 49,
-        sales: '860,000',
-        quota: '750,000',
-        variance: 'low',
-        region: 'Region B',
-        status: 'overperforming',
-        deltaType: 'increase',
-    },
-    {
-        name: 'Peter Moore',
-        leads: 82,
-        sales: '1,460,000',
-        quota: '1,500,000',
-        variance: 'low',
-        region: 'Region A',
-        status: 'average',
-        deltaType: 'unchanged',
-    },
-    {
-        name: 'Joe Sachs',
-        leads: 49,
-        sales: '1,230,000',
-        quota: '1,800,000',
-        variance: 'medium',
-        region: 'Region B',
-        status: 'underperforming',
-        deltaType: 'moderateDecrease',
-    },
-  ];
-
-export const performance = [
-    {
-        date: '2021-01-01', Sales: 900.73, Profit: 173, Customers: 73,
-    },
-    {
-        date: '2021-01-02', Sales: 1000.74, Profit: 174.6, Customers: 74,
-    },
-    // ...
-    {
-        date: '2021-03-13', Sales: 882, Profit: 682, Customers: 682,
-    },
-  ];
-
-export const kpiData = [
-    {
-        title: 'Sales',
-        metric: '$ 12,699',
-        progress: 15.9,
-        target: '$ 80,000',
-        delta: '13.2%',
-        deltaType: 'moderateIncrease',
-    },
-    {
-        title: 'Profit',
-        metric: '$ 45,564',
-        progress: 36.5,
-        target: '$ 125,000',
-        delta: '23.9%',
-        deltaType: 'increase',
-    },
-    {
-      title: 'Bop',
-      metric: '$ 12,699',
-      progress: 16.9,
-      target: '$ 80,000',
-      delta: '13.2%',
-      deltaType: 'moderateIncrease',
-    },
-    {
-        title: 'Customers',
-        metric: '1,072',
-        progress: 53.6,
-        target: '2,000',
-        delta: '10.1%',
-        deltaType: 'moderateDecrease',
     },
   ];
 
@@ -211,100 +32,164 @@ export const bufferData = [
   },
 ];
 
-export const earningData = [
-    {
-      icon: <MdOutlineSupervisorAccount />,
-      amount: '39,354',
-      percentage: '-4%',
-      title: 'Customers',
-      iconColor: '#03C9D7',
-      iconBg: '#E5FAFB',
-      pcColor: 'red-600',
-    },
-    {
-      icon: <BsBoxSeam />,
-      amount: '4,396',
-      percentage: '+23%',
-      title: 'Products',
-      iconColor: 'rgb(255, 244, 229)',
-      iconBg: 'rgb(254, 201, 15)',
-      pcColor: 'green-600',
-    },
-    {
-      icon: <FiBarChart />,
-      amount: '423,39',
-      percentage: '+38%',
-      title: 'Sales',
-      iconColor: 'rgb(228, 106, 118)',
-      iconBg: 'rgb(255, 244, 229)',
-  
-      pcColor: 'green-600',
-    },
-    {
-      icon: <HiOutlineRefresh />,
-      amount: '39,354',
-      percentage: '-12%',
-      title: 'Refunds',
-      iconColor: 'rgb(0, 194, 146)',
-      iconBg: 'rgb(235, 250, 242)',
-      pcColor: 'red-600',
-    },
-  ];
-
-  export const themeColors = [
-    {
-      name: 'blue-theme',
-      color: '#1A97F5',
-    },
-    {
-      name: 'green-theme',
-      color: '#03C9D7',
-    },
-    {
-      name: 'purple-theme',
-      color: '#7352FF',
-    },
-    {
-      name: 'red-theme',
-      color: '#FF5C8E',
-    },
-    {
-      name: 'indigo-theme',
-      color: '#1E4DB7',
-    },
-    {
-      color: '#FB9678',
-      name: 'orange-theme',
-    },
-  ];
-
 export const pricingPlans = [
   {
-      name: 'Easy',
-      description: 'All the basics for businesses that are just getting started.',
-      price: {
-      monthly: 29,
-      annually: 29 * 12 - 199,
-      },
-      features: ['One project', 'Your dashboard'],
+      title: 'Solo',
+      price: 11.99,
+      baseDP: 2,
+      priceHead: 'Starts at $11.99/Month',
+      featureHead: "WHAT YOU'LL GET",
+      feature1: '10 Initial Data Profiles*',
+      feature2: '2 Data Profiles Per Month*',
+      feature3: '1 Agent Profile',
+      feature4: '24/7 Live Support',
+      buttonText: 'Get Started',
+      gradient: 'bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500',
+      link: '/getstarted/solo/customize',
+      isDisabled: false
+
   },
   {
-      name: 'Basic',
-      description: 'Better for growing businesses that want more customers.',
-      price: {
-      monthly: 59,
-      annually: 59 * 12 - 100,
-      },
-      features: ['Two projects', 'Your dashboard', 'Components included', 'Advanced charts'],
+      title: 'Team',
+      price: null, //39.99?
+      baseDP: 10,
+      priceHead: 'Coming Soon',
+      featureHead: "WHAT YOU'LL GET",
+      feature1: '40 Initial Data Profiles*',
+      feature2: '8 Data Profiles Per Month*',
+      feature3: '2+ Agent Profiles*',
+      feature4: '24/7 Live Support',
+      buttonText: 'Coming Soon',
+      gradient: 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500',
+      link: '/getstarted/team/customize',
+      isDisabled: true
   },
   {
-      name: 'Custom',
-      description: 'Advanced features for pros who need more customization.',
-      price: {
-      monthly: 139,
-      annually: 139 * 12 - 100,
-      },
-      features: ['Unlimited projects', 'Your dashboard', '+300 Components', 'Chat support'],
+      title: 'Agency',
+      price: null, //119.99?
+      baseDP: 40,
+      priceHead: 'Coming Soon',
+      featureHead: "WHAT YOU'LL GET",
+      feature1: '100 Initial Data Profiles*',
+      feature2: '40 Data Profiles Per Month*',
+      feature3: '20+ Agent Profiles*',
+      feature4: '24/7 Live Support',
+      buttonText: 'Coming Soon',
+      gradient: 'bg-gradient-to-r from-green-300 via-blue-500 to-purple-600',
+      link: '/getstarted/agency/customize',
+      isDisabled: true
   },
+]
+
+export const base = [
+  {
+      'Plan': 'solo',
+      'Price': 11.99,
+      'BaseInitial': 10,
+      'BaseMonthly': 2
+  },
+  {
+      'Plan': 'team',
+      'Price': 'Coming Soon',
+      'BaseInitial': 40,
+      'BaseMonthly': 10
+  },
+  {
+      'Plan': 'agency',
+      'Price': 'Coming Soon',
+      'BaseInitial': 100,
+      'BaseMonthly': 40
+  },
+]
+
+export const profileSidebar = [
+  {
+    'title': 'Info',
+    'link': 'info'
+  },
+  {
+    'title': 'Insights',
+    'link': 'insights'
+  },
+  {
+    'title': 'Billing & Plan',
+    'link': 'billing+plan'
+  },
+  {
+    'title': 'Data Profiles',
+    'link': 'dataprofiles'
+  },
+  // {
+  //   'title': 'Logout',
+  //   'link': 'logout'
+  // }
+]
+
+export const stateNames = [
+  { name: 'Alabama', abbrev: 'AL' },
+  { name: 'Alaska', abbrev: 'AK' },
+  { name: 'Arizona', abbrev: 'AZ' },
+  { name: 'Arkansas', abbrev: 'AR' },
+  { name: 'California', abbrev: 'CA' },
+  { name: 'Colorado', abbrev: 'CO' },
+  { name: 'Connecticut', abbrev: 'CT' },
+  { name: 'Delaware', abbrev: 'DE' },
+  { name: 'Florida', abbrev: 'FL' },
+  { name: 'Georgia', abbrev: 'GA' },
+  { name: 'Hawaii', abbrev: 'HI' },
+  { name: 'Idaho', abbrev: 'ID' },
+  { name: 'Illinois', abbrev: 'IL' },
+  { name: 'Indiana', abbrev: 'IN' },
+  { name: 'Iowa', abbrev: 'IA' },
+  { name: 'Kansas', abbrev: 'KS' },
+  { name: 'Kentucky', abbrev: 'KY' },
+  { name: 'Louisiana', abbrev: 'LA' },
+  { name: 'Maine', abbrev: 'ME' },
+  { name: 'Maryland', abbrev: 'MD' },
+  { name: 'Massachusetts', abbrev: 'MA' },
+  { name: 'Michigan', abbrev: 'MI' },
+  { name: 'Minnesota', abbrev: 'MN' },
+  { name: 'Mississippi', abbrev: 'MS' },
+  { name: 'Missouri', abbrev: 'MO' },
+  { name: 'Montana', abbrev: 'MT' },
+  { name: 'Nebraska', abbrev: 'NE' },
+  { name: 'Nevada', abbrev: 'NV' },
+  { name: 'New Hampshire', abbrev: 'NH' },
+  { name: 'New Jersey', abbrev: 'NJ' },
+  { name: 'New Mexico', abbrev: 'NM' },
+  { name: 'New York', abbrev: 'NY' },
+  { name: 'North Carolina', abbrev: 'NC' },
+  { name: 'North Dakota', abbrev: 'ND' },
+  { name: 'Ohio', abbrev: 'OH' },
+  { name: 'Oklahoma', abbrev: 'OK' },
+  { name: 'Oregon', abbrev: 'OR' },
+  { name: 'Pennsylvania', abbrev: 'PA' },
+  { name: 'Rhode Island', abbrev: 'RI' },
+  { name: 'South Carolina', abbrev: 'SC' },
+  { name: 'South Dakota', abbrev: 'SD' },
+  { name: 'Tennessee', abbrev: 'TN' },
+  { name: 'Texas', abbrev: 'TX' },
+  { name: 'Utah', abbrev: 'UT' },
+  { name: 'Vermont', abbrev: 'VT' },
+  { name: 'Virginia', abbrev: 'VA' },
+  { name: 'Washington', abbrev: 'WA' },
+  { name: 'West Virginia', abbrev: 'WV' },
+  { name: 'Wisconsin', abbrev: 'WI' },
+  { name: 'Wyoming', abbrev: 'WY' }
 ];
 
+export const ageRanges = [
+  [0, 4],
+  [5, 9],
+  [10, 14],
+  [15, 19],
+  [20, 24],
+  [25, 34],
+  [35, 44],
+  [45, 54],
+  [55, 59],
+  [60, 64],
+  [65, 74], 
+  [75, 84],
+  [85, 100]
+]

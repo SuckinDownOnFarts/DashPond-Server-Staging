@@ -1,21 +1,20 @@
 import GlobalNavbar from './GlobalNavbar';
 import { Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 const Layout = () => {
 
   const location = useLocation();
-  const [screenSize, setScreenSize] = useState(0);
+  // const [screenSize, setScreenSize] = useState(0);
 
-  useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
+  // useEffect(() => {
+  //   const handleResize = () => setScreenSize(window.innerWidth);
 
-    window.addEventListener('resize', handleResize);
+  //   window.addEventListener('resize', handleResize);
 
-    handleResize();
+  //   handleResize();
 
-    return () => window.removeEventListener('resize', handleResize)
-  }, []);
+  //   return () => window.removeEventListener('resize', handleResize)
+  // }, []);
 
   return (
     <div className='flex flex-col min-h-screen bg-gradient-to-br from-slate-50 to-gray-200'>

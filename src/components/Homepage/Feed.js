@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Feed = ({ posts }) => {
   return (
-    <div className='ml-4 items-center p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-5'>
+    <div className='items-center p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-5'>
 
       {posts.map(post => (
         <div className='rounded overflow-hidden shadow-lg bg-white' key={post.id}>

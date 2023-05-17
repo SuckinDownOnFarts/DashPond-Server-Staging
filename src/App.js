@@ -1,13 +1,18 @@
+//Layout
 import Layout from './components/LayoutGlobals/Layout';
 
 //Screens
 import Home from './Screens/Home';
-import CreateDash from './Screens/CreateDash';
 import DataProfile from './Screens/DataProfile/DataProfile';
 import Missing from './Screens/Missing';
-
 import Contact from './Screens/Contact';
 import Docs from './Screens/Docs/Docs';
+
+//Creat Dashboards
+import AddressInput from './Screens/CreateDash/AddressInput';
+import DashLayout from './Screens/CreateDash/DashLayout';
+import FileUploader from './Screens/CreateDash/FileUploader';
+import MapModal from './Screens/CreateDash/MapModal';
 
 //Pricing Screens
 import PricingPlan from './Screens/Pricing/PricingPlan';
@@ -55,7 +60,11 @@ function App() {
     
           {/* Protected Route */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]}/>}>
-             <Route path='create' index element={<CreateDash/>} /> {/*Input for paying cutomers */}
+             <Route path='create' element={<DashLayout/>}> {/*Input for paying cutomers */}
+              <Route path='address+input' element={<AddressInput/>} />
+              <Route path='address+input/map+confirmation' element={<MapModal />} />
+              <Route path='address+input/map+confirmation/image+upload' element={<FileUploader/>} /> 
+            </Route>
           </Route> 
           
           {/* Profile Routes */}

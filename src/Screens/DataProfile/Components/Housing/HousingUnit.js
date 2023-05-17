@@ -1,6 +1,17 @@
-import { Card, Dropdown, DropdownItem, Flex, Text, Title, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from '@tremor/react';
+import { Card, Dropdown, DropdownItem, Flex, Title } from '@tremor/react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import React, { useState } from "react";
 import { bufferData } from '../../../../data/Data';
+
+//theme
+import "primereact/resources/themes/lara-light-teal/theme.css";     
+    
+//core
+import "primereact/resources/primereact.min.css";
+
+//icons
+import "primeicons/primeicons.css";     
 
 const HousingUnit = ({ data }) => {
 
@@ -77,9 +88,27 @@ const HousingUnit = ({ data }) => {
     },
 ]
 
+const products = [
+    {
+        label: 'Total Housing Units',
+        values: data[buffer][0].DP04_0001E.toLocaleString("en-US"),
+        percentage: (data[buffer][0].DP04_0001E / data[buffer][0].DP04_0001E).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:2}),
+    },
+    {
+        label: 'Penis',
+        values: 'Other',
+        percentage: 'YeaBro',
+    },
+    {
+        label: 'Penis',
+        values: 'Other',
+        percentage: 'YeaBro',
+    },
+]
+
   return (
     <Card className='mt-8'>
-        <Flex className='px-4 justify-start space-x-4'>
+        <Flex className='px-4 justify-start space-x-4 mb-8'>
             <Title className='underline'>Housing Unit Facts</Title>
 
             <Dropdown
@@ -98,31 +127,13 @@ const HousingUnit = ({ data }) => {
             </Dropdown>
         </Flex>
 
-        <Table className='mt-2 justify-center'>
-            <TableHead>
-                <TableRow>
-                    <TableHeaderCell>Label</TableHeaderCell>
-                    <TableHeaderCell>Estimate</TableHeaderCell>
-                    <TableHeaderCell>Percentage</TableHeaderCell>
-                </TableRow>
-            </TableHead>
+        <DataTable value={products} size='small' showGridlines stripedRows tableStyle={{ minWidth: '50rem' }}>
+            <Column field="label" header="Label"></Column>
+            <Column field="values" header="Value"></Column>
+            <Column field="percentage" header="Percentage"></Column>
+            {/* <Column field="quantity" header="Quantity"></Column> */}
+        </DataTable>
 
-            <TableBody>
-                { tableData.map((item) => (
-                    <TableRow key={ item.label } className={item.bgColor}>
-                        <TableCell className=''>
-                          { item.label }
-                        </TableCell>
-                        <TableCell>
-                          <Text>{ item.estimate }</Text>
-                        </TableCell>
-                        <TableCell>
-                          <Text>{ item.percentage }</Text>
-                        </TableCell>
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
     </Card>
     );
   }

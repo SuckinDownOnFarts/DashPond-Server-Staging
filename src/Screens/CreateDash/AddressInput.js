@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api/axios';
-import { useNavigate, generatePath } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { stateNames } from '../data/Data';
+import { stateNames } from '../../data/Data';
 import MapModal from './MapModal';
+import FileUploader from './FileUploader';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 
 
-const CreateDash = () => {
+const AddressInput = () => {
 
-  const latLng = [
-    {lat: null},
-    {lng: null}
-  ]
+  const navigate = useNavigate();
 
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('Florida');
-  const [zip, setZip] = useState('');
-  const [pointData, setPointData] = useState(latLng);
-  const [county, setCounty] = useState('');
+  const {
+    pointData, setPointData,
+    county, setCounty,
+    address, setAddress,
+    city, setCity,
+    state, setState,
+    zip, setZip,
+    setActiveIndex
+  } = useOutletContext();
+
+  setActiveIndex(0);
+
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  
-  // const navigate = useNavigate();
 
-  const { register, formState: { errors }, handleSubmit } = useForm();
+
+  const { register, formState: { errors }, handleSubmit } = useForm(); //Stays
   
   const newAddress = {
-    address: `${address},${city},${state},${zip}`
+    address: `${address}, ${city}, ${state}, ${zip}`
   };
 
   const onSubmit = async () => {
@@ -36,60 +37,53 @@ const CreateDash = () => {
       {lng: null}
     ]);
 
-    const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${newAddress.address}`
+    const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${newAddress.address}`;
 
     try {
       await fetch(url).then((response) => response.json())
       .then((data) => {
-
         setPointData([
           {lat: data.response.features[0].geometry.coordinates[1]},
           {lng: data.response.features[0].geometry.coordinates[0]}
         ]); 
         setCounty(data.response.features[0].properties.county)
+        // setAddress
       });
-
-      setShowModal(true)
       setLoading(false)
-
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    const logPointData = () => {
-      console.log(pointData);
-    }
-
-    logPointData()
-  }, [pointData])
-  
-
-
-
-  
-
+    const navigateAfterLoading = () => {
+      if (!loading) {
+        navigate('/create/address+input/map+confirmation')
+      }
+    };
+    navigateAfterLoading();
+  }, [loading]);
 
   return (
-    <main className='h-[calc(100vh-68px)] flex flex-col place-items-center '>
+    <div className='flex flex-col place-items-center '>
 
-      {showModal && !loading ? 
+      
+      {/* {showModal && !loading ? 
         <MapModal 
           coordinates={pointData}
           county={county}
           address={newAddress.address}
-          setShowModal={setShowModal}
-        /> : <></>}
+          // setShowModal={setShowModal}
+        /> : <></>} */}
 
-        <div className='mt-16 text-center'>
+        {/* <div className='mt-16 text-center'>
           <div className='text-4xl font-semibold tracking-tight'>
             Property Form
           </div>
           <div className='tracking-tight mt-4'>
             Provide the necessary property information and we'll create a data profile
           </div>
-        </div>
+        </div> */}
 
         <form 
           className="w-full max-w-lg mt-16"
@@ -114,8 +108,9 @@ const CreateDash = () => {
             </div>
           </div>
 
-          {/* CITY */}
+          
           <div className="flex flex-wrap -mx-3">
+            {/* CITY */}
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <input 
                 className={errors.city ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
@@ -133,7 +128,7 @@ const CreateDash = () => {
 
             {/* STATE */}
             <div className="w-full md:w-1/3 px-3 mb-6">
-              <div className={showModal ? "hidden" : "relative"}>
+              <div className="relative">
                 <select 
                   className="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" 
                   id="state"
@@ -170,67 +165,22 @@ const CreateDash = () => {
             </div>
           </div>
 
-            {/* BUTTON */}
-            <div className="flex flex-wrap -mx-3 mb-2 ">
-              <div className="w-full px-3 mb-6">
-                <button 
-                  className='place-self-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
-                  text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-                >
-                  Continue
-                </button>
-              </div>
-            </div>
+          {/* <FileUploader /> */}
 
+          {/* BUTTON */}
+          <div className="flex flex-wrap -mx-3 mb-2 mt-2">
+            <div className="w-full px-3 mb-6">
+              <button 
+                className='place-self-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+                text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+              >
+                Continue
+              </button>
+            </div>
+          </div>            
         </form>
-    </main>
+    </div>
   )
 }
 
-export default CreateDash
-
-  // async function geocode(post) {
-  //   try {
-  //     const response = await api.post('/posts', post);
-  //     if (response == 404) {
-  //       //handle invalid address
-  //       //Set error message to 'invalid address'
-  //     } else {
-  //         const res = response.data.toString()
-  //         const path = generatePath('/dataprofile/:id/overview', {
-  //           id: res
-  //         })
-  //         navigate(path)
-  //     }
-  //   } catch (err) {
-  //     console.log(`Error: ${err.message}`);
-  //   };
-  // }
-
-  // async function postData(post) {
-  //   try {
-  //     const response = await api.post('/posts', post);
-  //     if (response == 404) {
-  //       //handle invalid address
-  //       //Set error message to 'invalid address'
-  //     } else {
-  //         const res = response.data.toString()
-  //         const path = generatePath('/dataprofile/:id/overview', {
-  //           id: res
-  //         })
-  //         navigate(path)
-  //     }
-  //   } catch (err) {
-  //     console.log(`Error: ${err.message}`);
-  //   };
-  // }
-
-      // postData(newPost)
-    //   .then((response) => {
-    //     if (!response) {
-    //       //Handle server error
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //  }); data.response.features[0].geometry.coordinates
+export default AddressInput

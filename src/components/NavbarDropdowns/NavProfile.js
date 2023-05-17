@@ -4,7 +4,7 @@ import { useNavigate, generatePath } from 'react-router-dom';
 import useLogout from '../../hooks/useLogout';
 import useAuth from '../../hooks/useAuth';
 
-import { userProfileData } from '../../data/Data';
+// import { userProfileData } from '../../data/Data';
 
 const useOnClickOutside = (ref, handler) => {
   useEffect(
@@ -77,7 +77,7 @@ const NavProfile = ({ setProfileActive }) => {
           <p className="text-gray-500 text-xs font-semibold whitespace-normal"> {auth.email} </p>
         </div>
       </div>
-      <div>
+      {/* <div>
         {userProfileData.map((item, index) => (
           <div key={index} className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer ">
             <button
@@ -95,7 +95,7 @@ const NavProfile = ({ setProfileActive }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
       <div className="mt-5">
         <button
           onClick={signout}

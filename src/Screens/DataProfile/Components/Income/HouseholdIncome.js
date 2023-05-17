@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Text, Grid, Toggle, ToggleItem, Divider, Title, Bold, Table, TableHead, TableRow, TableHeaderCell, 
-    TableBody, TableCell, Subtitle, SelectBox, SelectBoxItem, Flex, Badge, DeltaBar, Dropdown, DropdownItem } from '@tremor/react';
+import { Flex, Card, Text, Title, Table, TableHead, TableRow, TableHeaderCell, 
+    TableBody, TableCell, Dropdown, DropdownItem } from '@tremor/react';
 import { bufferData } from '../../../../data/Data';
 
 const HouseholdIncome = ({data}) => {

@@ -1,22 +1,4 @@
 
-import { FiBarChart } from 'react-icons/fi';
-import { MdOutlineSupervisorAccount } from 'react-icons/md';
-import { HiOutlineRefresh } from 'react-icons/hi';
-import { AiOutlineCalendar } from 'react-icons/ai';
-import { BsHouseDoor, BsPeople, BsBinoculars, BsBriefcase, BsBoxSeam, BsCurrencyDollar } from 'react-icons/bs';
-import { IoSchoolOutline } from 'react-icons/io5';
-import { FaRegMoneyBillAlt } from 'react-icons/fa';
-
-export const userProfileData = [
-    {
-      icon: <BsCurrencyDollar />,
-      title: 'My Profile',
-      desc: 'Account Details',
-      iconColor: '#03C9D7',
-      iconBg: '#E5FAFB',
-    },
-  ];
-
 export const bufferData = [
   {
     bufferName: '3 Miles',
@@ -118,11 +100,7 @@ export const profileSidebar = [
   {
     'title': 'Data Profiles',
     'link': 'dataprofiles'
-  },
-  // {
-  //   'title': 'Logout',
-  //   'link': 'logout'
-  // }
+  }
 ]
 
 export const stateNames = [
@@ -192,4 +170,168 @@ export const ageRanges = [
   [65, 74], 
   [75, 84],
   [85, 100]
+];
+
+export const pricingSteps = [
+    {
+        label: 'Plans',
+    },
+    {
+        label: 'Confirmation'
+    },
+    {
+        label: 'Check Out'
+    },
+];
+
+export const createDashSteps = [
+    {
+        label: 'Address',
+    },
+    {
+        label: 'Map Confirmation'
+    },
+    {
+        label: 'Property Image'
+    },
 ]
+
+export const profileTieredMenu = [
+    {
+        label: 'File',
+        icon: 'pi pi-fw pi-file',
+        items: [
+            {
+                label: 'New',
+                icon: 'pi pi-fw pi-plus',
+                items: [
+                    {
+                        label: 'Bookmark',
+                        icon: 'pi pi-fw pi-bookmark'
+                    },
+                    {
+                        label: 'Video',
+                        icon: 'pi pi-fw pi-video'
+                    }
+                ]
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-fw pi-trash'
+            },
+            {
+                separator: true
+            },
+            {
+                label: 'Export',
+                icon: 'pi pi-fw pi-external-link'
+            }
+        ]
+    },
+    {
+        label: 'Edit',
+        icon: 'pi pi-fw pi-pencil',
+        items: [
+            {
+                label: 'Left',
+                icon: 'pi pi-fw pi-align-left'
+            },
+            {
+                label: 'Right',
+                icon: 'pi pi-fw pi-align-right'
+            },
+            {
+                label: 'Center',
+                icon: 'pi pi-fw pi-align-center'
+            },
+            {
+                label: 'Justify',
+                icon: 'pi pi-fw pi-align-justify'
+            }
+        ]
+    },
+    {
+        label: 'Users',
+        icon: 'pi pi-fw pi-user',
+        items: [
+            {
+                label: 'New',
+                icon: 'pi pi-fw pi-user-plus'
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-fw pi-user-minus'
+            },
+            {
+                label: 'Search',
+                icon: 'pi pi-fw pi-users',
+                items: [
+                    {
+                        label: 'Filter',
+                        icon: 'pi pi-fw pi-filter',
+                        items: [
+                            {
+                                label: 'Print',
+                                icon: 'pi pi-fw pi-print'
+                            }
+                        ]
+                    },
+                    {
+                        icon: 'pi pi-fw pi-bars',
+                        label: 'List'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        label: 'Events',
+        icon: 'pi pi-fw pi-calendar',
+        items: [
+            {
+                label: 'Edit',
+                icon: 'pi pi-fw pi-pencil',
+                items: [
+                    {
+                        label: 'Save',
+                        icon: 'pi pi-fw pi-calendar-plus'
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-fw pi-calendar-minus'
+                    }
+                ]
+            },
+            {
+                label: 'Archive',
+                icon: 'pi pi-fw pi-calendar-times',
+                items: [
+                    {
+                        label: 'Remove',
+                        icon: 'pi pi-fw pi-calendar-minus'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        separator: true
+    },
+    {
+        label: 'Quit',
+        icon: 'pi pi-fw pi-power-off'
+    }
+  ];
+
+  export const dataProfileMenuItems = [
+    {label: 'Active Profiles', icon: 'pi pi-fw pi-home'},
+    {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
+  ];
+
+export const accountInfoMenuItems = [
+    {label: 'Personal Information', icon: 'pi pi-fw pi-user-edit'},
+    {label: 'Payment Information', icon: 'pi pi-fw pi-dollar'},
+    {label: 'Account Preferences', icon: 'pi pi-fw pi-id-card'},
+    // {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
+    // {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
+  ];

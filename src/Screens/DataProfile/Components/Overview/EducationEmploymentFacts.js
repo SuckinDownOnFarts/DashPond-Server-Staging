@@ -7,13 +7,11 @@ import { HiBuildingLibrary } from 'react-icons/hi2';
 import { BsGraphDown } from 'react-icons/bs';
 import { IoWomanSharp, IoManSharp } from 'react-icons/io5';
 import { bufferData } from '../../../../data/Data';
-import { HiArrowNarrowRight } from 'react-icons/hi';
 import { FaPeopleCarry } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai"
 
 const EmploymentFacts = ({data, setSelectedView}) => {
-
-    const [buffer, setBuffer] = useState(0);
+    
     const [eduBuffer, setEduBuffer] = useState(0);
     const [empBuffer, setEmpBuffer] = useState(0);
 
@@ -110,7 +108,7 @@ const EmploymentFacts = ({data, setSelectedView}) => {
                             > View Details </Button>
                             <Dropdown
                                 defaultValue={0}
-                                onValueChange={(value) => setEmpBuffer(value)}
+                                onValueChange={(value) => setEduBuffer(value)}
                                 placeholder="3 Mile"
                                 className="mt-0 max-w-0"
                             >

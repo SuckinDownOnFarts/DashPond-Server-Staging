@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { generatePath, Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Steps } from 'primereact/steps';
 
 import { IoIosArrowForward } from 'react-icons/io';
 import { Toggle, ToggleItem } from '@tremor/react';
 import { base } from '../../data/Data';
-
-import api from '../../api/axios';
-import useAuth from '../../hooks/useAuth';
-
+import { Button } from "@tremor/react";
+import { Dialog } from 'primereact/dialog';
+// import useAuth from '../../hooks/useAuth';
 import ConfirmationModal from './Components/ConfirmationModal';
-import AddonTable from './Components/AddonTable';
 import Logo from '../../components/Globals/Logo';
+import { pricingSteps } from '../../data/Data'
 
 
 const PricingPlan = () => {
     const { plan } = useParams();
-    const { auth } = useAuth();
-    const navigate = useNavigate();
+    // const { auth } = useAuth();
+    // const navigate = useNavigate();
 
     const planBase = base.find(obj => obj.Plan === plan);
 
     const [totalPrice, setTotalPrice] = useState(planBase.Price);
     const [paymentFreq, setPayementFreq] = useState('monthly');
     const [basePrice, setBasePrice] = useState(planBase.Price);
-    const [monthlyIncrement, setMonthlyIncrement] = useState(0);
-    // const [initialIncrement, setInitialIncrement] = useState(0);
+    const [monthlyIncrement, setMonthlyIncrement] = useState(0)
     const [showModal, setShowModal] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     //Calculates the Total Price
     useEffect(() => {
@@ -47,25 +47,28 @@ const PricingPlan = () => {
         currency: 'USD',
     });
     
-    const modalControl = (e) => {
-        e.preventDefault();
-        setShowModal(true);
-    }
+    // const modalControl = (e) => {
+    //     e.preventDefault();
+    //     setShowModal(true);
+    // }
+
+    const activeIndex = 1
+
 
   return (
     <div className='flex'>
 
-            {showModal ? 
+            {/* {showModal ? 
                 <ConfirmationModal 
                     setShowModal={setShowModal}
                     monthlyIncrement={monthlyIncrement}
                     totalPrice={totalPrice}
                     paymentFreq={paymentFreq}
                 /> 
-            : <></> }
+            : <></> } */}
 
         
-            <div className={showModal ? ' w-[512px] p-16 float-left h-screen md:overflow-hidden  bg-white' : 'w-[512px] p-16 float-left h-screen md:overflow-hidden  bg-white'}>
+            <div className='w-[512px] p-16 float-left h-screen md:overflow-hidden  bg-white'>
 
                 {/* Logo */}
                 <div className='flex items-center'>
@@ -76,61 +79,39 @@ const PricingPlan = () => {
                     </Link>
                 </div>
 
-                {/* Step Tracker */}
-                <div className='text-sm text-gray-400 font-semibold tracking-tight flex flex-row mt-8 space-x-2 items-center'>
-                    <Link to='/pricing'>
-                        <div className=''>
-                            Plans
+                <div className=' mt-8'>
+                    <Steps model={pricingSteps} activeIndex={activeIndex} readOnly={false}/>  
+                </div>
+
+                {/*********************************************HEADERS ************************************************************/}
+                <div className='grid grid-cols-1 mt-8 min-h-[calc(100%-124px)] content-between '>
+                    <div>
+                        <div className='text-lg tracking-tight text-gray-800 font-bold'>
+                            Confirm Plan
                         </div>
-                    </Link>
-                    <span>
-                        <IoIosArrowForward />
-                    </span>
-                    <div className='text-emerald-500'>
-                        Customize
+                        <div className='mt-4 text-sm tracking-tight text-gray-600'>
+                            Select a plan that suits your needs.
+                        </div>
                     </div>
-                    <span>
-                        <IoIosArrowForward />
-                    </span>
-                    <div className=''>
-                        Check-Out
-                    </div>
-                </div>
 
-                {/* Headers */}
-                <div className='mt-8'>
-                    <div className='text-lg tracking-tight text-gray-800 font-bold'>
-                        Customize Plan
+                    <div className='rounded border mb-4 text-center p-4 flex flex-col space-y-2 bottom-0'>
+                        <div className='text-xs tracking-tight leading-relaxed'>
+                            This order process is conducted by our online reseller & Merchant of Record, Stripe.com, who also handles order-related inquiries and returns.
+                        </div>
+                        <div className='text-xs tracking-tight text-gray-500 leading-relaxed'>
+                            Your data will be shared with DashPond Data Inc for product fulfilment. Stripe.com Inc, 3811 Ditmars Blvd #1071, Astoria, NY 11105-1803
+                        </div>
+                        <div className='text-xs tracking-tight flex flex-rol space-x-2 justify-center '>
+                            <span onclick="window.location='/terms+conditions'" className='underline'>Terms & Conditions</span>
+                            <span>|</span>
+                            <span className='underline'>Privacy Policy</span>
+                        </div>
                     </div>
-                    <div className='mt-4 text-sm tracking-tight text-gray-600'>
-                        Build a plan that suits your needs with additional data profiles.
-                    </div>
-                </div>
 
-                {/* Addon selector */}
-                
-                <AddonTable 
-                    plan={plan}
-                    setMonthlyIncrement={setMonthlyIncrement}
-                    modalControl={modalControl}
-                /> 
-
-                <div className='rounded border mt-8 text-center p-4 flex flex-col space-y-2 bottom-0'>
-                    <div className='text-xs tracking-tight leading-relaxed'>
-                        This order process is conducted by our online reseller & Merchant of Record, Stripe.com, who also handles order-related inquiries and returns.
-                    </div>
-                    <div className='text-xs tracking-tight text-gray-500 leading-relaxed'>
-                        Your data will be shared with DashPond Data Inc for product fulfilment. Stripe.com Inc, 3811 Ditmars Blvd #1071, Astoria, NY 11105-1803
-                    </div>
-                    <div className='text-xs tracking-tight flex flex-rol space-x-2 justify-center '>
-                        <span onclick="window.location='/terms+conditions'" className='underline'>Terms & Conditions</span>
-                        <span>|</span>
-                        <span className='underline'>Privacy Policy</span>
-                    </div>
                 </div>
             </div>
 
-            {/* OtherSide */}
+                               {/********************************************* OTHERSIDE ************************************************************/}
             <div className='flex flex-col h-screen w-[calc(100%-512px)] float-right bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))]
             from-green-300 via-blue-500 to-purple-600 p-24 text-white'>
                 <div className='w-[512px]'>
@@ -194,6 +175,22 @@ const PricingPlan = () => {
                             <span className='text-lg font-bold'>Total price</span>
                             <span>{USDollar.format(totalPrice)}</span>
                         </div>
+
+
+                    </div>
+                    
+                    <div className='mt-8'>
+                        <Button className="" size="xl" onClick={() => setVisible(true)}>
+                            Continue to Checkout
+                        </Button>
+                        <Dialog header="Header" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+                            <p className="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </Dialog>
                     </div>
                 </div>
             </div>

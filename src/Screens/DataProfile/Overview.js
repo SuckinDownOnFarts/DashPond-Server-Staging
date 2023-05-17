@@ -180,7 +180,7 @@ const Overview = () => {
               data={data}
             /> : <></>}
 
-           {!pLoading && !tLoading ? 
+           {/* {!pLoading && !tLoading ? 
             <GrowthRate 
               data={data}
               timeData={timeSeries}
@@ -196,7 +196,7 @@ const Overview = () => {
             <AditionalAges
               data={data}
               timeData={timeSeries}
-            /> : <></>}
+            /> : <></>} */}
 
           {/* {!pLoading && !tLoading ? 
             <AgesBreakdown 

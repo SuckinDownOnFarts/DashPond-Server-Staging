@@ -1,22 +1,98 @@
 import { useState, useEffect } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
-import { useForm } from 'react-hook-form';
+import { Box, Progress, Center, TextInput, PasswordInput, Checkbox, Anchor, Paper, Title, Text, Container, Group, Button, Popover } from '@mantine/core';
+import { useInputState } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
+import { IconCheck, IconX } from '@tabler/icons-react';
 import useAuth from '../../hooks/useAuth';
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}/
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}/
+
+function PasswordRequirement({ meets, label }) {
+    return (
+      <Text
+        color={meets ? 'teal' : 'red'}
+        sx={{ display: 'flex', alignItems: 'center' }}
+        mt={7}
+        size="sm"
+      >
+        {meets ? <IconCheck size="0.9rem" /> : <IconX size="0.9rem" />} <Box ml={10}>{label}</Box>
+      </Text>
+    );
+  }
+
+  const requirements = [
+    { re: /[0-9]/, label: 'Includes number' },
+    { re: /[a-z]/, label: 'Includes lowercase letter' },
+    { re: /[A-Z]/, label: 'Includes uppercase letter' },
+    { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Includes special symbol' },
+  ];
+
+  function getStrength(password) {
+    let multiplier = password.length > 5 ? 0 : 1;
+  
+    requirements.forEach((requirement) => {
+      if (!requirement.re.test(password)) {
+        multiplier += 1;
+      }
+    });
+    
+        return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 0);
+  }
 
 const Register = () => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
-
     const { setAuth } = useAuth();
     const navigate = useNavigate();
+    const [value, setValue] = useInputState('');
+    const [popoverOpened, setPopoverOpened] = useState(false);
 
-    const { register, setError, formState: { errors }, handleSubmit } = useForm();
+    const form = useForm({
+        initialValues: {
+          email: '',
+          password: ''
+        },
+        validate: (values) => ({
+          email: 
+            values.email.length === 0
+            ? 'Email is required'
+            : EMAIL_REGEX.test(values.email)
+            ? null
+            : 'Invalid email format',
+          password: 
+            values.password.length === 0
+            ? 'Password is required'
+            : PWD_REGEX.test(values.password)
+            ? null
+            : 'Password is invalid'
+        })
+      });
 
-    const onSubmit = async (data) => {
+    const strength = getStrength(form.values.password);
+    const color = strength === 100 ? 'teal' : strength > 50 ? 'yellow' : 'red';
+
+    const checks = requirements.map((requirement, index) => (
+      <PasswordRequirement key={index} label={requirement.label} meets={requirement.re.test(form.values.password)} />
+    ));
+
+    const bars = Array(4)
+    .fill(0)
+    .map((_, index) => (
+      <Progress
+        styles={{ bar: { transitionDuration: '0ms' } }}
+        value={
+            form.values.password.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0
+        }
+        color={strength > 80 ? 'teal' : strength > 50 ? 'yellow' : 'red'}
+        key={index}
+        size={4}
+      />
+    ));
+
+    const submitRegistration = async (data) => {
         try {
             const response = await api.post('/register', (data));
             console.log(response?.data);
@@ -35,9 +111,9 @@ const Register = () => {
 
         } catch (err) {
             if (err?.response?.status === 409) {
-                setError('root.serverError', { 
-                    type: err.response.status,
-                })
+                // form.setErrors('root.serverError', { 
+                //     type: err.response.status,
+                // })
             } 
             // else if (err?.response?.status === 400) {
             //     setError('root.serverError', { 
@@ -47,8 +123,91 @@ const Register = () => {
         }
     }
 
+
+
   return (
-    <div className="bg-light-gray flex justify-center items-center flex-grow flex-col">
+    <Container size={520} my={120}>
+        <Title
+            align="center"
+            sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
+        >
+            Welcome!
+        </Title>
+        <Text color="dimmed" size="sm" align="center" mt={5}>
+            Already have a Dashpond account?{' '}
+            <Anchor size="sm" component="button">
+                Sign in
+            </Anchor>
+        </Text>
+
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+            <form onSubmit={form.onSubmit((values) => submitRegistration(values))}>
+                <TextInput 
+                    label="Email" 
+                    placeholder="you@daspond.com" 
+                    {...form.getInputProps('email')}
+                />
+                <Popover opened={popoverOpened} position="bottom" width="target" transitionProps={{ transition: 'pop' }}>
+                    <Popover.Target>
+                        <div
+                            onFocusCapture={() => setPopoverOpened(true)}
+                            onBlurCapture={() => setPopoverOpened(false)}
+                        >
+                            <PasswordInput
+                                // withAsterisk
+                                // value={value}
+                                // onChange={setValue}
+                                label="Your password"
+                                placeholder="Your password"
+                                {...form.getInputProps('password')} 
+                            />
+                        </div>
+                    </Popover.Target>
+                    <Popover.Dropdown>
+                        <Progress color={color} value={strength} size={5} mb="xs" />
+                        <PasswordRequirement label="Includes at least 6 characters" meets={form.values.password.length > 5} />
+                        {checks}
+                    </Popover.Dropdown>
+                </Popover>
+                <Button 
+                    fullWidth 
+                    mt="xl"
+                    type='submit'
+                >
+                    Register
+                </Button>
+            </form>
+        </Paper>
+    </Container>
+  )
+}
+
+export default Register
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* <div className="bg-light-gray flex justify-center items-center flex-grow flex-col">
         <div className="bg-white rounded-lg shadow-lg w-1/4">
             <div className="w-full p-8 ">
                 <h2 className="text-2xl font-semibold text-gray-700 text-center">DashPond</h2>
@@ -72,7 +231,7 @@ const Register = () => {
 
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    {/**************************************************    EMAIL    ******************************************************************* */}
+                    {/**************************************************    EMAIL    ******************************************************************* 
                     <div className="mt-4">
                         {errors?.email ? (
                             <>
@@ -111,7 +270,7 @@ const Register = () => {
 
 
                     
-                    {/**************************************************      PASSWORD      ********************************************************************/} 
+                    {/**************************************************      PASSWORD      ********************************************************************
                     <div className="mt-4">
                         {errors.password ? (
                             <>
@@ -181,7 +340,7 @@ const Register = () => {
                                 onChange={(e) => setMatchPwd(e.target.value)}
                                 value={matchPwd}
                             />
-                    </div> */}
+                    </div> *
 
                     <div className="mt-8">
                         <button className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Sign Up</button>
@@ -197,11 +356,6 @@ const Register = () => {
                    
             </div>
         </div>
-    </div>
-
-  )
-}
-
-export default Register
+    </div> */}
 
 

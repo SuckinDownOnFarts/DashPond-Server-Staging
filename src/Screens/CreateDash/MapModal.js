@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import { useOutletContext, useNavigate, redirect } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Button, Group } from '@mantine/core';
 
 const MapModal = () => {
+  const { pointData, nextStep, prevStep, setActive, position, setPosition, center } = useOutletContext();
 
-  const { pointData, county, address, setActiveIndex } = useOutletContext();
-
-  setActiveIndex(1);
-  
-  const center = [pointData[0].lat, pointData[1].lng];
-  const markerRef = useRef(null);
+  setActive(1);
   const navigate = useNavigate();
+  const markerRef = useRef(null);
+
+  useEffect(() => {
+    const redirectIfPointDataEmpty = () => {
+      if (!pointData[0].lat && !pointData[1].lng) {
+        navigate('/create/address+input')
+      }
+    }
+    redirectIfPointDataEmpty()
+  }, [])
 
   const eventHandlers = useMemo(
     () => ({
@@ -28,26 +35,31 @@ const MapModal = () => {
     [],
   );
 
-  const [position, setPosition] = useState(center);
+  // const [position, setPosition] = useState(center);
 
-  // useEffect(() => {
-  //   const logPointData = () => {
-  //     console.log(position);
-  //     console.log(address);
-  //     console.log(county);
-  //   }
+  useEffect(() => {
+    const logPointData = () => {
+      console.log(pointData[0].lat);
+      console.log(position);
+      // console.log(county);
+    }
 
-  //   logPointData()
-  // }, [position])
+    logPointData()
+  }, []);
 
   const proceed = () => {
-    navigate('/create/address+input/map+confirmation/image+upload')
+    nextStep();
+    navigate('/create/address+input/map+confirmation/image+upload');
+  };
+
+  const back = () => {
+    prevStep();
+    navigate('/create/address+input');
   };
     
   return (
-    <div className='absolute mt-8 h-1/2 w-1/2 rounded border border-grey-500'>
-
-
+    <div className='absolute mt-16 h-1/2 w-1/2 rounded border border-grey-500'>
+        {center && position ? 
         <MapContainer center={center} zoom={13}>
           <TileLayer
             attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -65,15 +77,13 @@ const MapModal = () => {
             </Popup>
           </Marker>
 
-        </MapContainer>
-        
-        <div className='flex flex-row justify-between'>
-          {/* <button onClick={() => setShowModal(false)}>Close</button> */}
-          <button onClick={proceed}>Continue</button>
-        </div>
-  
+        </MapContainer> 
+        : <></>}
+          <Group position="center" mt="xl">
+            <Button variant="default" onClick={back}>Back</Button>
+            <Button onClick={proceed}>Next step</Button>
+          </Group>
     </div>
-
   )
 }
 

@@ -1,3 +1,13 @@
+import {
+    IconNotification,
+    IconCode,
+    IconBook,
+    IconChartPie3,
+    IconFingerprint,
+    IconCoin,
+    IconChevronDown,
+  } from '@tabler/icons-react';
+
 
 export const bufferData = [
   {
@@ -104,57 +114,57 @@ export const profileSidebar = [
 ]
 
 export const stateNames = [
-  { name: 'Alabama', abbrev: 'AL' },
-  { name: 'Alaska', abbrev: 'AK' },
-  { name: 'Arizona', abbrev: 'AZ' },
-  { name: 'Arkansas', abbrev: 'AR' },
-  { name: 'California', abbrev: 'CA' },
-  { name: 'Colorado', abbrev: 'CO' },
-  { name: 'Connecticut', abbrev: 'CT' },
-  { name: 'Delaware', abbrev: 'DE' },
-  { name: 'Florida', abbrev: 'FL' },
-  { name: 'Georgia', abbrev: 'GA' },
-  { name: 'Hawaii', abbrev: 'HI' },
-  { name: 'Idaho', abbrev: 'ID' },
-  { name: 'Illinois', abbrev: 'IL' },
-  { name: 'Indiana', abbrev: 'IN' },
-  { name: 'Iowa', abbrev: 'IA' },
-  { name: 'Kansas', abbrev: 'KS' },
-  { name: 'Kentucky', abbrev: 'KY' },
-  { name: 'Louisiana', abbrev: 'LA' },
-  { name: 'Maine', abbrev: 'ME' },
-  { name: 'Maryland', abbrev: 'MD' },
-  { name: 'Massachusetts', abbrev: 'MA' },
-  { name: 'Michigan', abbrev: 'MI' },
-  { name: 'Minnesota', abbrev: 'MN' },
-  { name: 'Mississippi', abbrev: 'MS' },
-  { name: 'Missouri', abbrev: 'MO' },
-  { name: 'Montana', abbrev: 'MT' },
-  { name: 'Nebraska', abbrev: 'NE' },
-  { name: 'Nevada', abbrev: 'NV' },
-  { name: 'New Hampshire', abbrev: 'NH' },
-  { name: 'New Jersey', abbrev: 'NJ' },
-  { name: 'New Mexico', abbrev: 'NM' },
-  { name: 'New York', abbrev: 'NY' },
-  { name: 'North Carolina', abbrev: 'NC' },
-  { name: 'North Dakota', abbrev: 'ND' },
-  { name: 'Ohio', abbrev: 'OH' },
-  { name: 'Oklahoma', abbrev: 'OK' },
-  { name: 'Oregon', abbrev: 'OR' },
-  { name: 'Pennsylvania', abbrev: 'PA' },
-  { name: 'Rhode Island', abbrev: 'RI' },
-  { name: 'South Carolina', abbrev: 'SC' },
-  { name: 'South Dakota', abbrev: 'SD' },
-  { name: 'Tennessee', abbrev: 'TN' },
-  { name: 'Texas', abbrev: 'TX' },
-  { name: 'Utah', abbrev: 'UT' },
-  { name: 'Vermont', abbrev: 'VT' },
-  { name: 'Virginia', abbrev: 'VA' },
-  { name: 'Washington', abbrev: 'WA' },
-  { name: 'West Virginia', abbrev: 'WV' },
-  { name: 'Wisconsin', abbrev: 'WI' },
-  { name: 'Wyoming', abbrev: 'WY' }
-];
+    { label: 'Alabama', value: 'Alabama' },
+    { label: 'Alaska', value: 'Alaska' },
+    { label: 'Arizona', value: 'Arizona' },
+    { label: 'Arkansas', value: 'Arkansas' },
+    { label: 'California', value: 'California' },
+    { label: 'Colorado', value: 'Colorado' },
+    { label: 'Connecticut', value: 'Connecticut' },
+    { label: 'Delaware', value: 'Delaware' },
+    { label: 'Florida', value: 'Florida' },
+    { label: 'Georgia', value: 'Georgia' },
+    { label: 'Hawaii', value: 'Hawaii' },
+    { label: 'Idaho', value: 'Idaho' },
+    { label: 'Illinois', value: 'Illinois' },
+    { label: 'Indiana', value: 'Indiana' },
+    { label: 'Iowa', value: 'Iowa' },
+    { label: 'Kansas', value: 'Kansas' },
+    { label: 'Kentucky', value: 'Kentucky' },
+    { label: 'Louisiana', value: 'Louisiana' },
+    { label: 'Maine', value: 'Maine' },
+    { label: 'Maryland', value: 'Maryland' },
+    { label: 'Massachusetts', value: 'Massachusetts' },
+    { label: 'Michigan', value: 'Michigan' },
+    { label: 'Minnesota', value: 'Minnesota' },
+    { label: 'Mississippi', value: 'Mississippi' },
+    { label: 'Missouri', value: 'Missouri' },
+    { label: 'Montana', value: 'Montana' },
+    { label: 'Nebraska', value: 'Nebraska' },
+    { label: 'Nevada', value: 'Nevada' },
+    { label: 'New Hampshire', value: 'New Hampshire' },
+    { label: 'New Jersey', value: 'New Jersey' },
+    { label: 'New Mexico', value: 'New Mexico' },
+    { label: 'New York', value: 'New York' },
+    { label: 'North Carolina', value: 'North Carolina' },
+    { label: 'North Dakota', value: 'North Dakota' },
+    { label: 'Ohio', value: 'Ohio' },
+    { label: 'Oklahoma', value: 'Oklahoma' },
+    { label: 'Oregon', value: 'Oregon' },
+    { label: 'Pennsylvania', value: 'Pennsylvania' },
+    { label: 'Rhode Island', value: 'Rhode Island' },
+    { label: 'South Carolina', value: 'South Carolina' },
+    { label: 'South Dakota', value: 'South Dakota' },
+    { label: 'Tennessee', value: 'Tennessee' },
+    { label: 'Texas', value: 'Texas' },
+    { label: 'Utah', value: 'Utah' },
+    { label: 'Vermont', value: 'Vermont' },
+    { label: 'Virginia', value: 'Virginia' },
+    { label: 'Washington', value: 'Washington' },
+    { label: 'West Virginia', value: 'West Virginia' },
+    { label: 'Wisconsin', value: 'Wisconsin' },
+    { label: 'Wyoming', value: 'Wyoming' }
+  ];
 
 export const ageRanges = [
   [0, 4],
@@ -192,7 +202,7 @@ export const createDashSteps = [
         label: 'Map Confirmation'
     },
     {
-        label: 'Property Image'
+        label: 'Upload Property Photo'
     },
 ]
 
@@ -335,3 +345,38 @@ export const accountInfoMenuItems = [
     // {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
     // {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
   ];
+
+  export const mockdata = [
+    {
+      icon: IconCode,
+      title: 'Open source',
+      description: 'This Pokémon’s cry is very loud and distracting',
+    },
+    {
+      icon: IconCoin,
+      title: 'Free for everyone',
+      description: 'The fluid of Smeargle’s tail secretions changes',
+    },
+    {
+      icon: IconBook,
+      title: 'Documentation',
+      description: 'Yanma is capable of seeing 360 degrees without',
+    },
+    {
+      icon: IconFingerprint,
+      title: 'Security',
+      description: 'The shell’s rounded shape and the grooves on its.',
+    },
+    {
+      icon: IconChartPie3,
+      title: 'Analytics',
+      description: 'This Pokémon uses its flying ability to quickly chase',
+    },
+    {
+      icon: IconNotification,
+      title: 'Notifications',
+      description: 'Combusken battles with the intensely hot flames it spews',
+    },
+  ];
+
+export const BASE_URL = process.env.REACT_APP_BASE_URL;

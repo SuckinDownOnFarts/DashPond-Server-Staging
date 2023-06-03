@@ -1,114 +1,124 @@
-import React, { useRef, useState } from 'react';
-import { Toast } from 'primereact/toast';
-import { FileUpload } from 'primereact/fileupload';
-import { ProgressBar } from 'primereact/progressbar';
-import { Button } from 'primereact/button';
-import { Tooltip } from 'primereact/tooltip';
-import { Tag } from 'primereact/tag';
-import { useOutletContext } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { useOutletContext, useNavigate } from 'react-router-dom';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import { Text, Group, Button, createStyles, rem } from '@mantine/core';
+import { Dropzone, MIME_TYPES } from '@mantine/dropzone';
+import { IconCloudUpload, IconX, IconDownload } from '@tabler/icons-react';
+
+const useStyles = createStyles((theme) => ({
+    wrapper: {
+      position: 'relative',
+      marginBottom: rem(30),
+    },
+  
+    dropzone: {
+      borderWidth: rem(1),
+      paddingBottom: rem(50),
+    },
+  
+    icon: {
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4],
+    },
+  
+    control: {
+      position: 'absolute',
+      width: rem(250),
+      left: `calc(50% - ${rem(125)})`,
+      bottom: rem(-20),
+    },
+  }));
+
 
 export default function FileUploader() {
-    const { setActiveIndex } = useOutletContext();
+    const { setActive, position, setImage, submitForm, isAppLoading } = useOutletContext();
+    const navigate = useNavigate();
+    setActive(2);
 
-    const toast = useRef(null);
-    const [totalSize, setTotalSize] = useState(0);
-    const fileUploadRef = useRef(null);
-
-    setActiveIndex(2)
+    const { classes, theme } = useStyles();
+    const openRef = useRef(null);
     
-    const onTemplateSelect = (e) => {
-        let _totalSize = totalSize;
-        let files = e.files;
-
-        Object.keys(files).forEach((key) => {
-            _totalSize += files[key].size || 0;
-        });
-
-        setTotalSize(_totalSize);
+    
+    
+    const back = () => {
+        navigate('/create/address+input/map+confirmation')
     };
 
-    const onTemplateUpload = (e) => {
-        let _totalSize = 0;
+    useEffect(() => {
+        const redirectIfPointDataEmpty = () => {
+          if (!position) {
+            navigate('/create/address+input')
+          }
+        }
+        redirectIfPointDataEmpty()
+    }, [])
 
-        e.files.forEach((file) => {
-            _totalSize += file.size || 0;
-        });
+    // const createDashImageUpload = ({ files }) => {
+    //     const [file] = files;
+    //     const fileReader = new FileReader();
+    //     fileReader.onload = (e) => {
+    //         console.log(e.target.result);
+    //         setImage(e.target.result)
+    //     };
+    //     fileReader.readAsDataURL(file)
+    // }
 
-        setTotalSize(_totalSize);
-        toast.current.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
-    };
-
-    const onTemplateRemove = (file, callback) => {
-        setTotalSize(totalSize - file.size);
-        callback();
-    };
-
-    const onTemplateClear = () => {
-        setTotalSize(0);
-    };
-
-    const headerTemplate = (options) => {
-        const { chooseButton, uploadButton, cancelButton } = options;
-        const value = totalSize / 10000;
-        const formatedValue = fileUploadRef && fileUploadRef.current ? fileUploadRef.current.formatSize(totalSize) : '0 B';
-
-        return (
-            <div className='p-5 border border-solid flex flex-wrap gap-1.5 rounded-t items-center'>
-                {chooseButton}
-                {/* {uploadButton} */}
-                {cancelButton}
-                <div className="flex align-items-center gap-3 ml-auto">
-                    <span>{formatedValue} / 1 MB</span>
-                    <ProgressBar value={value} showValue={false} style={{ width: '10rem', height: '12px' }}></ProgressBar>
-                </div>
-            </div>
-        );
-    };
-
-    const itemTemplate = (file, props) => {
-        return (
-            <div className="flex items-center flex-wrap ">
-                <div className="flex items-center space-x-2">
-                    <img alt={file.name} role="presentation" src={file.objectURL} width={100} />
-                    <span className="flex flex-column text-left ml-3">
-                        {file.name}
-                    </span>
-                </div>
-                <Tag value={props.formatSize} severity="warning" className="px-3 py-2" />
-                <Button type="button" icon="pi pi-times" className="p-button-outlined p-button-rounded p-button-danger ml-auto" onClick={() => onTemplateRemove(file, props.onRemove)} />
-            </div>
-        );
-    };
-
-    const emptyTemplate = () => {
-        return (
-            <div className="flex items-center justify-center flex-column space-x-2 ">
-                <i className="pi pi-image mt-3 p-5" style={{ fontSize: '5em', borderRadius: '50%', backgroundColor: 'var(--surface-b)', color: 'var(--surface-d)' }}></i>
-                <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className="my-5">
-                    Drag and Drop Image Here
-                </span>
-            </div>
-        );
-    };
-
-    const chooseOptions = { icon: 'pi pi-fw pi-images', iconOnly: true, className: 'custom-choose-btn p-button-rounded p-button-outlined' };
-    // const uploadOptions = { icon: 'pi pi-fw pi-cloud-upload', iconOnly: true, className: 'custom-upload-btn p-button-success p-button-rounded p-button-outlined' };
-    const cancelOptions = { icon: 'pi pi-fw pi-times', iconOnly: true, className: 'custom-cancel-btn p-button-danger p-button-rounded p-button-outlined' };
 
     return (
-        <div className='mt-8 w-[100%] h-[75%] '>
-            {/* <Toast ref={toast}></Toast> */}
+        <div className='mt-16 w-[100%] h-[75%] '>
+            {!isAppLoading ? 
+            <div className={classes.wrapper}>
+              <Dropzone
+                openRef={openRef}
+                onDrop={() => {}}
+                className={classes.dropzone}
+                radius="md"
+                accept={[MIME_TYPES.jpeg, MIME_TYPES.png]}
+                maxSize={30 * 1024 ** 2}
+              >
+                <div style={{ pointerEvents: 'none' }}>
+                  <Group position="center">
+                    <Dropzone.Accept>
+                      <IconDownload
+                        size={rem(50)}
+                        color={theme.colors[theme.primaryColor][6]}
+                        stroke={1.5}
+                      />
+                    </Dropzone.Accept>
+                    <Dropzone.Reject>
+                      <IconX size={rem(50)} color={theme.colors.red[6]} stroke={1.5} />
+                    </Dropzone.Reject>
+                    <Dropzone.Idle>
+                      <IconCloudUpload
+                        size={rem(50)}
+                        color={theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black}
+                        stroke={1.5}
+                      />
+                    </Dropzone.Idle>
+                  </Group>
+        
+                  <Text ta="center" fw={700} fz="lg" mt="xl">
+                    <Dropzone.Accept>Drop files here</Dropzone.Accept>
+                    <Dropzone.Reject>Pdf file less than 30mb</Dropzone.Reject>
+                    <Dropzone.Idle>Upload a property image</Dropzone.Idle>
+                  </Text>
+                  <Text ta="center" fz="sm" mt="xs" c="dimmed">
+                    Drag&apos;n&apos;drop files here to upload. We can accept only <i>.jpg</i> or <i>.png</i> files that
+                    are less than 30mb in size.
+                  </Text>
+                </div>
+              </Dropzone>
+        
+              <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current?.()}>
+                Select files
+              </Button>
+            </div>
+            : <></>}
 
-            <Tooltip target=".custom-choose-btn" content="Choose" position="bottom" />
-            {/* <Tooltip target=".custom-upload-btn" content="Upload" position="bottom" /> */}
-            <Tooltip target=".custom-cancel-btn" content="Clear" position="bottom" />
-
-            <FileUpload ref={fileUploadRef} name="demo[]" url="/api/upload" multiple accept="image/*" maxFileSize={1000000}
-                onUpload={onTemplateUpload} onSelect={onTemplateSelect} onError={onTemplateClear} onClear={onTemplateClear}
-                headerTemplate={headerTemplate} itemTemplate={itemTemplate} emptyTemplate={emptyTemplate}
-                chooseOptions={chooseOptions}  cancelOptions={cancelOptions} />
-
-            <button>Submit</button>
+            {isAppLoading ? 
+                <div className="relative top-[50%] translate-y-1/2 justify-content-center">
+                    <ProgressSpinner style={{width: '75px', height: '75px'}} animationDuration="1.5s"/>
+                </div>
+            : <></>}
         </div>
     )
 }

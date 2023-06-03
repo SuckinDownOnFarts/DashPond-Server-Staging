@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Feed from '../components/Homepage/Feed';
 import api from '../api/axios';
+import useAuth from '../hooks/useAuth';
 
 
 const Home = () => {
 
   const [ propData, setPropData ] = useState([]);
+  const { auth } = useAuth();
+
+
+  console.log(auth);
 
   useEffect(() => {
     const fetchProperties = async () => {

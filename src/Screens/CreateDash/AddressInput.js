@@ -1,55 +1,81 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { stateNames } from '../../data/Data';
-import MapModal from './MapModal';
-import FileUploader from './FileUploader';
+import { ProgressSpinner } from 'primereact/progressspinner';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-
+import { TextInput, Checkbox, Select, Button, Group, Box, LoadingOverlay } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { useForm } from '@mantine/form'
 
 const AddressInput = () => {
+  const [streetAddress, setStreetAddress] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [isThinking, setIsThinking] = useState(false);
+  const [visible, { toggle }] = useDisclosure(false);
 
   const navigate = useNavigate();
 
+  const form = useForm({
+    initialValues: { address: '', city: '' , state: '', zip: ''},
+    validate: (values) => ({
+      address: 
+        values.address.length === 0
+        ? 'Address is required'
+        : null,
+      city: 
+        values.city.length === 0
+        ? 'City is required'
+        : /^[a-zA-Z]+$/.test(values.city)
+        ? null
+        : 'Cities can only contain letters',
+      zip: 
+        values.zip.length === 0 
+        ? 'Zip code is required'
+        : /^[0-9]+$/.test(values.zip)
+        ? null
+        : 'Zip code must contain only numbers',
+      state: 
+        values.state.length === 0
+        ? 'State is required'
+        : null,
+    }),
+  });
+
   const {
-    pointData, setPointData,
-    county, setCounty,
-    address, setAddress,
-    city, setCity,
-    state, setState,
-    zip, setZip,
-    setActiveIndex
+    setPointData,
+    setCounty,
+    setFullAddress,
+    nextStep,
+    prevStep,
+    setActive
   } = useOutletContext();
 
-  setActiveIndex(0);
-
-  const [loading, setLoading] = useState(true);
+  setActive(0);
 
 
-  const { register, formState: { errors }, handleSubmit } = useForm(); //Stays
-  
-  const newAddress = {
-    address: `${address}, ${city}, ${state}, ${zip}`
-  };
-
-  const onSubmit = async () => {
+  const handleSubmit = async (value) => {
+    toggle();
     setPointData([
       {lat: null},
       {lng: null}
     ]);
 
-    const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${newAddress.address}`;
+    const searchAddress = `${value.address}, ${value.city}, ${value.state}, ${value.zip}`;
+  
+
+    const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${searchAddress}`;
 
     try {
-      await fetch(url).then((response) => response.json())
+      await fetch(url).then((response) => response.json()) //handle logic for incorrect address or address not found
       .then((data) => {
         setPointData([
           {lat: data.response.features[0].geometry.coordinates[1]},
           {lng: data.response.features[0].geometry.coordinates[0]}
         ]); 
         setCounty(data.response.features[0].properties.county)
-        // setAddress
+        setFullAddress(searchAddress)
       });
-      setLoading(false)
+      setLoading(false);
+      toggle();
     } catch (err) {
       console.log(err);
     }
@@ -58,129 +84,184 @@ const AddressInput = () => {
   useEffect(() => {
     const navigateAfterLoading = () => {
       if (!loading) {
-        navigate('/create/address+input/map+confirmation')
+        nextStep();
+        navigate('/create/address+input/map+confirmation');
       }
     };
     navigateAfterLoading();
   }, [loading]);
 
+
+  // console.log(streetAddress);
+
+
   return (
-    <div className='flex flex-col place-items-center '>
-
-      
-      {/* {showModal && !loading ? 
-        <MapModal 
-          coordinates={pointData}
-          county={county}
-          address={newAddress.address}
-          // setShowModal={setShowModal}
-        /> : <></>} */}
-
-        {/* <div className='mt-16 text-center'>
-          <div className='text-4xl font-semibold tracking-tight'>
-            Property Form
-          </div>
-          <div className='tracking-tight mt-4'>
-            Provide the necessary property information and we'll create a data profile
-          </div>
-        </div> */}
-
-        <form 
-          className="w-full max-w-lg mt-16"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-
-          {/* ADDRESS */}
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3 mb-6 md:mb-0">
-              <input 
-                className={errors.address ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"}
-                {...register('address', { required: true })}
-                aria-invalid={errors.address ? "true" : "false"}
-                id="address" 
-                type="text" 
-                placeholder="Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              {errors.address?.type === 'required' && <p className='text-red-500' role="alert">Address is required</p>}
+    <div className='flex flex-col flex-grow place-items-center '>
+      {!isThinking ? 
+        <div>
+        
+          <div className='mb-8 mt-16 text-center '>
+            <div className='text-4xl font-semibold tracking-tight'>
+              Address Input
+            </div>
+            <div className='tracking-tight mt-4'>
+              Input the listing's address so we can find it on the map
             </div>
           </div>
 
-          
-          <div className="flex flex-wrap -mx-3">
-            {/* CITY */}
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <input 
-                className={errors.city ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
-                id="city" 
-                {...register('city', { required: true })}
-                type="text" 
-                placeholder="City"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                
-              />
-              {errors.city?.type === 'required' && <p className='text-red-500' role="alert">City is required</p>}
-            </div>
+          <Box maw={300} mx="auto" mt='md' >
+          <LoadingOverlay visible={visible} overlayBlur={2} />
+            <form 
+              // className="w-full max-w-lg mt-16"
+              // onSubmit={form.onSubmit((values) => console.log(values.address))}
+              onSubmit={form.onSubmit((values) => handleSubmit(values))}
+            >
 
-            {/* STATE */}
-            <div className="w-full md:w-1/3 px-3 mb-6">
-              <div className="relative">
-                <select 
-                  className="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" 
-                  id="state"
-                  {...register('state', { required: true })}
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                  
+            {/* ADDRESS */}
+            <TextInput
+              withAsterisk
+              label="Address"
+              placeholder="123 Paris Avenue"
+              // value={streetAddress}
+              // onChange={(event) => setStreetAddress(event.currentTarget.value)}
+              {...form.getInputProps('address')}
+            />
+
+            <TextInput
+              withAsterisk
+              label="City"
+              placeholder="New Iberia"
+              {...form.getInputProps('city')}
+            />
+
+            {/* <TextInput
+              withAsterisk
+              label="State"
+              placeholder="New York"
+              {...form.getInputProps('state')}
+            /> */}
+
+            <Select
+              withAsterisk
+              searchable
+              nothingFound="No states found"
+              label="State"
+              placeholder="New York"
+              data={stateNames}
+              {...form.getInputProps('state')}
+            />
+
+            <TextInput
+              withAsterisk
+              label="Zip"
+              placeholder="90210"
+              {...form.getInputProps('zip')}
+            />
+
+
+
+            {/* BUTTON */}
+            <div className="flex flex-wrap -mx-3 mb-2 mt-2">
+              <div className="w-full px-3 mb-6">
+                {/* <Button 
+                  className='place-self-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+                    text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+                  type="submit"
                 >
-                  {stateNames.map((state) => (
-                    <option key={state.name}>{state.name}</option>
-                  ))}
-                  
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                </div>
+                  Continue
+                </Button> */}
+                <Group position="center" mt="xl">
+                  {/* <Button variant="default" onClick={prevStep}>Back</Button> */}
+                  <Button type='submit'>Next step</Button>
+                </Group>
               </div>
-            </div>
-
-            {/* ZIP */}
-            <div className="w-full md:w-1/3 px-3 mb-6">
-              <input 
-                className={errors.zip ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
-                id="grid-zip" 
-                {...register('zip', { required: true, minLength: 5 })}
-                type="text" 
-                placeholder="Zip"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-                
-              />
-              {errors.zip?.type === 'required' && <p className='text-red-500' role="alert">Zip code is required</p>}
-            </div>
-          </div>
-
-          {/* <FileUploader /> */}
-
-          {/* BUTTON */}
-          <div className="flex flex-wrap -mx-3 mb-2 mt-2">
-            <div className="w-full px-3 mb-6">
-              <button 
-                className='place-self-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
-                text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-              >
-                Continue
-              </button>
-            </div>
-          </div>            
-        </form>
-    </div>
+            </div>            
+          </form>
+        </Box>
+      </div>
+        : <></>}
+      {isThinking ? 
+        <div className="relative top-[50%] translate-y-1/2 justify-content-center">
+          <ProgressSpinner style={{width: '75px', height: '75px'}} animationDuration="1.5s"/>
+        </div>
+      : <></>}
+    </div> 
   )
 }
 
 export default AddressInput
+
+
+/* <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3 mb-6 md:mb-0">
+                <input 
+                  className={errors.streetAddress ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"}
+                  {...register('streetAddress', { required: true })}
+                  aria-invalid={errors.streetAddress ? "true" : "false"}
+                  id="streetAddress" 
+                  type="text" 
+                  placeholder="Address"
+                  value={streetAddress}
+                  onChange={(e) => setStreetAddress(e.target.value)}
+                />
+                {errors.streetAddress?.type === 'required' && <p className='text-red-500' role="alert">Address is required</p>}
+              </div>
+            </div> 
+
+            
+            {/* <div className="flex flex-wrap -mx-3">
+              {/* CITY 
+              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <input 
+                  className={errors.city ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
+                  id="city" 
+                  {...register('city', { required: true })}
+                  type="text" 
+                  placeholder="City"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  
+                />
+                {errors.city?.type === 'required' && <p className='text-red-500' role="alert">City is required</p>}
+              </div>
+
+              {/* STATE 
+              <div className="w-full md:w-1/3 px-3 mb-6">
+                <div className="relative">
+                  <select 
+                    className="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" 
+                    id="state"
+                    {...register('state', { required: true })}
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    
+                  >
+                    {stateNames.map((state) => (
+                      <option key={state.name}>{state.name}</option>
+                    ))}
+                    
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* ZIP 
+              <div className="w-full md:w-1/3 px-3 mb-6">
+                <input 
+                  className={errors.zip ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
+                  id="grid-zip" 
+                  {...register('zip', { required: true, minLength: 5 })}
+                  type="text" 
+                  placeholder="Zip"
+                  value={zip}
+                  onChange={(e) => setZip(e.target.value)}
+                  
+                />
+                {errors.zip?.type === 'required' && <p className='text-red-500' role="alert">Zip code is required</p>}
+              </div>
+            </div> */

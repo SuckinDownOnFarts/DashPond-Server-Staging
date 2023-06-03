@@ -8,9 +8,9 @@ import Missing from './Screens/Missing';
 import Contact from './Screens/Contact';
 import Docs from './Screens/Docs/Docs';
 
-//Creat Dashboards
+//Create Dashboards
 import AddressInput from './Screens/CreateDash/AddressInput';
-import DashLayout from './Screens/CreateDash/DashLayout';
+import DashLayout from './Screens/CreateDash/Layout/DashLayout';
 import FileUploader from './Screens/CreateDash/FileUploader';
 import MapModal from './Screens/CreateDash/MapModal';
 
@@ -28,11 +28,12 @@ import Login from './Screens/AuthScreens/Login';
 import RequireAuth from './components/Auth/RequireAuth';
 import PersistLogin from './components/Auth/PersistLogin';
 import PricingRequireAuth from './components/Auth/PricingRequireAuth';
+import AlreadyLoggedIn from './Screens/AuthScreens/AlreadyLoggedIn';
 
 
 //Profile Screens
 import RequireProfileAuth from './components/Auth/RequireProfileAuth';
-import ProfileLayout from './Screens/Profile/Layout';
+import ProfileLayout from './Screens/Profile/Layout/Layout';
 import Info from './Screens/Profile/Info';
 import Insights from './Screens/Profile/Insights';
 import ProfilePlan from './Screens/Profile/Plan';
@@ -56,8 +57,6 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} /> {/* Homepage Route */}
 
-        
-    
           {/* Protected Route */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]}/>}>
              <Route path='create' element={<DashLayout/>}> {/*Input for paying cutomers */}
@@ -68,17 +67,15 @@ function App() {
           </Route> 
           
           {/* Profile Routes */}
-          <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]}/>}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]}/>}> 
             <Route element={<RequireProfileAuth />}>
               <Route path='profile/:id' element={<ProfileLayout />}>
                 <Route path='info' element={<Info />} />
                 <Route path='insights' element={<Insights />} />
                 <Route path='billing+plan' element={<ProfilePlan />} />
                 <Route path='dataprofiles' element={<DataProfiles />} />
-
               </Route>
             </Route>
-
           </Route> 
           
           <Route path='/dataprofile/:id' element={<DataProfile />}> {/* Dashboards */}
@@ -102,10 +99,8 @@ function App() {
 
           <Route path='login' element={<Login />}/>
           <Route path='register' element={<Register />} /> 
+          <Route path='already+logged+in' element={<AlreadyLoggedIn />}/>
         </Route>
-
-        {/* Login and Register Routes */}
-
       </Route>
     </Routes>
   );

@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { profileSidebar } from '../../data/Data';
+import { profileSidebar } from '../../../data/Data';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 
-import useLogout from '../../hooks/useLogout';
-import api from '../../api/axios';
-import useAuth from '../../hooks/useAuth';
-
+import useLogout from './../../../hooks/useLogout';
+import api from './../../../api/axios';
+import useAuth from './../../../hooks/useAuth';
+import Sidebar from './Sidebar';
 
 const ProfileLayout = () => {
 
@@ -63,8 +63,8 @@ const ProfileLayout = () => {
 
   return (
     <div className='flex flex-row'>
-        <div className='fixed flex flex-col w-[129px] bg-white min-h-[calc(100vh-68px)]'>
-            <ul className='flex flex-col space-y-4 p-4 text-end'>
+        <div className='fixed flex flex-col bg-white'>
+            {/* <ul className='flex flex-col space-y-4 p-4 text-end'>
                 {profileSidebar.map((item) => (
                     <NavLink 
                         key={item.title} 
@@ -76,15 +76,15 @@ const ProfileLayout = () => {
                     </NavLink>
                 ))}
 
-                {/* <Toast ref={toast} /> */}
+                {/* <Toast ref={toast} /> 
                 <ConfirmDialog /> 
 
                 <button className='text-end' onClick={confirmLogout}>
                     Logout
                 </button>
-            </ul>
+            </ul> */}
 
-            {/* <TieredMenu model={profileTieredMenu} breakpoint="767px" /> */}
+            <Sidebar />
 
         </div>
         <div className='px-8 py-6 ml-[129px] min-h-[calc(100vh-68px)] w-[calc(100%-129px)]'>

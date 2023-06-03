@@ -8,7 +8,6 @@ import { base } from '../../data/Data';
 import { Button } from "@tremor/react";
 import { Dialog } from 'primereact/dialog';
 // import useAuth from '../../hooks/useAuth';
-import ConfirmationModal from './Components/ConfirmationModal';
 import Logo from '../../components/Globals/Logo';
 import { pricingSteps } from '../../data/Data'
 

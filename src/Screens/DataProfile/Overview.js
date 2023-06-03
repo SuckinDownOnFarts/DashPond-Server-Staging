@@ -3,6 +3,7 @@ import { useParams, generatePath } from 'react-router-dom';
 import { Title, Tab, TabList, Metric, Text } from "@tremor/react";
 import { MdKeyboardDoubleArrowUp } from 'react-icons/md';
 
+
 import api from '../../api/axios';
 
 import KeyFacts from './Components/Overview/KeyFacts';
@@ -46,6 +47,8 @@ const Overview = () => {
   const [selectedView, setSelectedView] = useState(1);
   const [timeSeries, setTimeSeries] = useState([]);
   const [tLoading, setTLoading] = useState(true);
+  const [version, setVersion] = useState();
+  const [publicId, setPublicId] = useState();
 
 
 
@@ -76,7 +79,10 @@ const Overview = () => {
     const fetchAddress = async () => {
       try {
           const response = await api.get(addressPath);
+          console.log(response.data);
           setAddress(response.data);
+          setPublicId(response.data[0].cloudinary_public_id);
+          setVersion(response.data[0].cloudinary_version);
           setALoading(false);
       } catch (err) {
         if (err.response) {
@@ -120,9 +126,10 @@ const Overview = () => {
     <main className='md:px-16 sm:px-2 xs:px-4 my-8'>
       <div className='flex flex-row'>
         <div className=''>
+          {!aLoading ? 
           <img 
-            src={`/images/medical.jpg`} className='object-contain h-48 w-96'
-          />
+            src={`https://res.cloudinary.com/djlalgsmk/image/upload/v${version}/${publicId}`} className='object-contain h-48 w-96'
+          /> : <></>}
         </div>
 
         

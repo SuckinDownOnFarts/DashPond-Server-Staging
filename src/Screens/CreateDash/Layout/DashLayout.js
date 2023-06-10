@@ -6,8 +6,6 @@ import Stepper from './Stepper';
 import { Group, Button } from '@mantine/core';
 import { css } from '@emotion/react'
 
-// import { Card } from 'prime/card';
-
 const DashLayout = () => {
     const { auth } = useAuth();
     const navigate = useNavigate();
@@ -31,6 +29,7 @@ const DashLayout = () => {
     const [image, setImage] = useState();
     const [isAppLoading, setIsAppLoading] = useState();
     const [active, setActive] = useState(1);
+    const [form, setForm] = useState();
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
@@ -43,6 +42,23 @@ const DashLayout = () => {
       }
       createCenter()
     }, [pointData])
+    
+    const config = {
+      headers: {
+       'content-type': 'multipart/form-data'
+      }
+    };
+
+    // useEffect(() => {
+    //   const imageToFormData = () => {
+    //     if (image) {
+    //       const formData = new FormData();
+    //       formData.append('file', image);
+    //       setForm(formData)
+    //     }
+    //   }
+    //   imageToFormData();
+    // }, [image]);
 
     useEffect(() => {
       const invokePosition = () => {
@@ -57,7 +73,7 @@ const DashLayout = () => {
     
 
     //////////////////////////////////////FORM SUBMIT//////////////////////////////////////////
-    async function postData() {
+    async function postData(form) {
         try {
           setIsAppLoading(true);
           const response = await api.post('/createdash', {
@@ -82,8 +98,9 @@ const DashLayout = () => {
         }
       };
 
-      const submitForm = (e) => {
-        e.preventDefault();
+      const submitForm = () => {
+
+        // e.preventDefault();
         postData()
           .then((response) => {
             if (!response) {

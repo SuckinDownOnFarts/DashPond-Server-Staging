@@ -1,23 +1,22 @@
-import React from 'react';
-import { Card, Grid, Title, Text } from '@tremor/react';
+import React, { useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { Text } from '@mantine/core';
 
 const Plan = () => {
+  const { setActive } = useOutletContext();
+  useEffect(() => {
+    const setActiveIndex = () => {
+      setActive(3)
+    }
+    setActiveIndex();
+  }, []);
   return (
     <main>
       <div className='mb-8'>
-        <Title>Your Plan and Billing</Title>
+        <Text fw={500}>Your Plan and Billing</Text>
         <Text>View details and change settings for your subscription.</Text>
       </div>
-
-      <Grid numColsSm={ 1 } numColsMd={ 1 } numColsLg={ 1 } className=" gap-x-6 gap-y-6">
-        <Card className='m-auto' decoration="top" decorationColor="indigo">
-          <div>
-            Subscription
-          </div>
-        </Card>
-      </Grid>
-    </main>
-    // <div></div>
+    </main> 
   )
 }
 

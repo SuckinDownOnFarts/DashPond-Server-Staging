@@ -1,43 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Avatar,
-  Tabs,
-  Container,
-  Button,
-  Group,
-  Text,
-  Menu,
-  rem,
-} from '@mantine/core';
+import { Avatar, Tabs, Container, Button, Group, Text, Menu, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import {
-  IconLogout,
-  IconHeart,
-  IconStar,
-  IconMessage,
-  IconSettings,
-  IconPlayerPause,
-  IconTrash,
-  IconSwitchHorizontal,
-  IconChevronDown,
-} from '@tabler/icons-react';
+import { IconLogout, IconHeart, IconStar, IconMessage, IconSettings, IconPlayerPause, IconTrash, IconSwitchHorizontal, IconChevronDown } from '@tabler/icons-react';
 import LogoutModal from './LogoutModal';
 import { useStylesAvatar } from './Styles/Styles';
 
 
-  
-  
-
 const UserAvatar = ({ user, tabs }) => {
     const { classes, theme, cx } = useStylesAvatar();
-    const [opened, { toggle }] = useDisclosure(false);
     const [openLogout, { open, close }] = useDisclosure(false);
     const [userMenuOpened, setUserMenuOpened] = useState(false);
     const navigate = useNavigate();
-    const BASE_URL = process.env.REACT_APP_BASE_URL
-
-
 
   return (
     <div>
@@ -52,7 +26,8 @@ const UserAvatar = ({ user, tabs }) => {
             <Menu.Target>
               <Button
                 className={cx(classes.user, { [classes.userActive]: userMenuOpened })} 
-                variant='filled'
+                variant='gradient'
+                gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}
               >
                 <Group spacing={7}>
                    <Avatar src={!user.image ? '/images/office1.jpg' : user.image} alt={user.email} radius="xl" size={20} />
@@ -66,7 +41,7 @@ const UserAvatar = ({ user, tabs }) => {
             <Menu.Dropdown>
               <Menu.Item
                 icon={<IconHeart size="0.9rem" stroke={1.5} color={theme.colors.red[6]} />}
-                onClick={() => navigate(`/profile/${user.id}/dataprofiles`)}
+                onClick={() => navigate(`/profile/${user.id}/data+profiles`)}
               >
                 Your data profiles
               </Menu.Item>

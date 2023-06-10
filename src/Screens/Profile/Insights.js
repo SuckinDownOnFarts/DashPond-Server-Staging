@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { SimpleGrid, Skeleton, Container, Stack, useMantineTheme, px } from '@mantine/core';
 
 const getChild = (height) => <Skeleton height={height} radius="md" animate={false} />;
@@ -7,6 +9,17 @@ const getSubHeight = (children, spacing) =>
 
 const Insights = () => {
   const theme = useMantineTheme();
+  const { setActive } = useOutletContext();
+
+  useEffect(() => {
+    const setActiveIndex = () => {
+      setActive(1)
+    }
+    setActiveIndex();
+  }, []);
+  
+  
+
   return (
     <Container my="md">
       <SimpleGrid cols={4} breakpoints={[{ maxWidth: 'xs', cols: 1 }]}>

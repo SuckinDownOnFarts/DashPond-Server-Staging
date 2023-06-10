@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Container, Grid, SimpleGrid, Skeleton, useMantineTheme, rem } from '@mantine/core';
 
 const PRIMARY_COL_HEIGHT = rem(300);
 
 const UserProfileInfo = () => {
+  const { setActive } = useOutletContext();
+  useEffect(() => {
+    const setActiveIndex = () => {
+      setActive(0)
+    }
+    setActiveIndex();
+  }, []);
     const theme = useMantineTheme();
     const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - ${theme.spacing.md} / 2)`;
   

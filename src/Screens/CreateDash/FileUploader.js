@@ -52,15 +52,15 @@ export default function FileUploader() {
         redirectIfPointDataEmpty()
     }, [])
 
-    // const createDashImageUpload = ({ files }) => {
-    //     const [file] = files;
-    //     const fileReader = new FileReader();
-    //     fileReader.onload = (e) => {
-    //         console.log(e.target.result);
-    //         setImage(e.target.result)
-    //     };
-    //     fileReader.readAsDataURL(file)
-    // }
+    const createDashImageUpload = (files) => {
+      const [file] = files;
+      const fileReader = new FileReader();
+      fileReader.onload = (e) => {
+          console.log(e.target.result);
+          setImage(e.target.result);
+      };
+      fileReader.readAsDataURL(file)
+  }
 
 
     return (
@@ -68,8 +68,12 @@ export default function FileUploader() {
             {!isAppLoading ? 
             <div className={classes.wrapper}>
               <Dropzone
+                // name='imageUpload'
                 openRef={openRef}
-                onDrop={() => {}}
+                onDrop={(files) => {
+                  console.log(files);
+                  createDashImageUpload(files)
+                }}
                 className={classes.dropzone}
                 radius="md"
                 accept={[MIME_TYPES.jpeg, MIME_TYPES.png]}
@@ -110,6 +114,9 @@ export default function FileUploader() {
         
               <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current?.()}>
                 Select files
+              </Button>
+              <Button className='' size="md" radius="xl" onClick={() => submitForm()}>
+                Submit
               </Button>
             </div>
             : <></>}

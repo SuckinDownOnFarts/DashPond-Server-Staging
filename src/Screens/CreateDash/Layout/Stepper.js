@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Stepper, Button, Group } from '@mantine/core';
 
-const CreateStepper = ({ nextStep, prevStep, active, setActive }) => {
+const CreateStepper = ({ active }) => {
 
 
   return (

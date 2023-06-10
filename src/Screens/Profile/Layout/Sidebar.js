@@ -1,19 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Navbar, Center, Tooltip, UnstyledButton, createStyles, Stack, rem } from '@mantine/core';
-import {
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconHome2,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
-  IconSettings,
-  IconLogout,
-  IconSwitchHorizontal,
-} from '@tabler/icons-react';
+import { IconGauge, IconDeviceDesktopAnalytics, IconHome2, IconFingerprint, IconCalendarStats, IconUser, IconSettings, IconLogout, IconSwitchHorizontal } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { useStylesNavbar } from './Styles/Styles';
 import LogoutModal from '../../../components/LayoutGlobals/LogoutModal';
+import useAuth from '../../../hooks/useAuth';
 
 
 
@@ -26,30 +18,32 @@ import LogoutModal from '../../../components/LayoutGlobals/LogoutModal';
         </UnstyledButton>
       </Tooltip>
     );
-  }
+  };
 
-  const mockdata = [
-    { icon: IconUser, label: 'Account',  },
-    { icon: IconDeviceDesktopAnalytics, label: 'Insights' },
-    { icon: IconGauge, label: 'Data Profiles' },
-    { icon: IconSettings, label: 'Billing and Subscriptions' },
-    // { icon: IconHome2, label: 'Home' },
-    // { icon: IconCalendarStats, label: 'Releases' },
-    // { icon: IconFingerprint, label: 'Security' },
-  ];
+  
 
 
 
-const Sidebar = () => {
-    const [active, setActive] = useState(2);
+
+
+const Sidebar = ({ active, setActive}) => {
+    const navigate = useNavigate();
+    const { auth } = useAuth();
     const [openLogout, { open, close }] = useDisclosure(false);
+
+    const mockdata = [
+      { icon: IconUser, label: 'Account', address: `/profile/${auth?.id}/info` },
+      { icon: IconDeviceDesktopAnalytics, label: 'Insights', address: `/profile/${auth?.id}/insights` },
+      { icon: IconGauge, label: 'Data Profiles', address: `/profile/${auth?.id}/data+profiles` },
+      { icon: IconSettings, label: 'Billing and Subscriptions', address: `/profile/${auth?.id}/billing+plan` },
+    ];
 
     const links = mockdata.map((link, index) => (
         <NavbarLink
           {...link}
           key={link.label}
           active={index === active}
-          onClick={() => setActive(index)}
+          onClick={() => navigate(link.address)}
         />
       ));
 

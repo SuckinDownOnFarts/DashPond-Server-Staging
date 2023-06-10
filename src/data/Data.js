@@ -6,8 +6,13 @@ import {
     IconFingerprint,
     IconCoin,
     IconChevronDown,
+    IconReceiptOff,
+    IconFileCode,
+    IconCircleDotted, 
+    IconFlame
   } from '@tabler/icons-react';
 
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const bufferData = [
   {
@@ -71,7 +76,7 @@ export const pricingPlans = [
       link: '/getstarted/agency/customize',
       isDisabled: true
   },
-]
+];
 
 export const base = [
   {
@@ -92,26 +97,7 @@ export const base = [
       'BaseInitial': 100,
       'BaseMonthly': 40
   },
-]
-
-export const profileSidebar = [
-  {
-    'title': 'Info',
-    'link': 'info'
-  },
-  {
-    'title': 'Insights',
-    'link': 'insights'
-  },
-  {
-    'title': 'Billing & Plan',
-    'link': 'billing+plan'
-  },
-  {
-    'title': 'Data Profiles',
-    'link': 'dataprofiles'
-  }
-]
+];
 
 export const stateNames = [
     { label: 'Alabama', value: 'Alabama' },
@@ -164,7 +150,20 @@ export const stateNames = [
     { label: 'West Virginia', value: 'West Virginia' },
     { label: 'Wisconsin', value: 'Wisconsin' },
     { label: 'Wyoming', value: 'Wyoming' }
-  ];
+];
+
+export const medianHHIncomes = [
+  [0, 9999],
+  [10000, 14999],
+  [15000, 24999],
+  [25000, 34999],
+  [35000, 49999],
+  [50000, 74999],
+  [75000, 99999],
+  [100000, 149999],
+  [150000, 199999],
+  [200000, 1000000]
+];
 
 export const ageRanges = [
   [0, 4],
@@ -194,159 +193,7 @@ export const pricingSteps = [
     },
 ];
 
-export const createDashSteps = [
-    {
-        label: 'Address',
-    },
-    {
-        label: 'Map Confirmation'
-    },
-    {
-        label: 'Upload Property Photo'
-    },
-]
-
-export const profileTieredMenu = [
-    {
-        label: 'File',
-        icon: 'pi pi-fw pi-file',
-        items: [
-            {
-                label: 'New',
-                icon: 'pi pi-fw pi-plus',
-                items: [
-                    {
-                        label: 'Bookmark',
-                        icon: 'pi pi-fw pi-bookmark'
-                    },
-                    {
-                        label: 'Video',
-                        icon: 'pi pi-fw pi-video'
-                    }
-                ]
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-trash'
-            },
-            {
-                separator: true
-            },
-            {
-                label: 'Export',
-                icon: 'pi pi-fw pi-external-link'
-            }
-        ]
-    },
-    {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-            {
-                label: 'Left',
-                icon: 'pi pi-fw pi-align-left'
-            },
-            {
-                label: 'Right',
-                icon: 'pi pi-fw pi-align-right'
-            },
-            {
-                label: 'Center',
-                icon: 'pi pi-fw pi-align-center'
-            },
-            {
-                label: 'Justify',
-                icon: 'pi pi-fw pi-align-justify'
-            }
-        ]
-    },
-    {
-        label: 'Users',
-        icon: 'pi pi-fw pi-user',
-        items: [
-            {
-                label: 'New',
-                icon: 'pi pi-fw pi-user-plus'
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-user-minus'
-            },
-            {
-                label: 'Search',
-                icon: 'pi pi-fw pi-users',
-                items: [
-                    {
-                        label: 'Filter',
-                        icon: 'pi pi-fw pi-filter',
-                        items: [
-                            {
-                                label: 'Print',
-                                icon: 'pi pi-fw pi-print'
-                            }
-                        ]
-                    },
-                    {
-                        icon: 'pi pi-fw pi-bars',
-                        label: 'List'
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        label: 'Events',
-        icon: 'pi pi-fw pi-calendar',
-        items: [
-            {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
-                items: [
-                    {
-                        label: 'Save',
-                        icon: 'pi pi-fw pi-calendar-plus'
-                    },
-                    {
-                        label: 'Delete',
-                        icon: 'pi pi-fw pi-calendar-minus'
-                    }
-                ]
-            },
-            {
-                label: 'Archive',
-                icon: 'pi pi-fw pi-calendar-times',
-                items: [
-                    {
-                        label: 'Remove',
-                        icon: 'pi pi-fw pi-calendar-minus'
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        separator: true
-    },
-    {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-power-off'
-    }
-  ];
-
-  export const dataProfileMenuItems = [
-    {label: 'Active Profiles', icon: 'pi pi-fw pi-home'},
-    {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
-  ];
-
-export const accountInfoMenuItems = [
-    {label: 'Personal Information', icon: 'pi pi-fw pi-user-edit'},
-    {label: 'Payment Information', icon: 'pi pi-fw pi-dollar'},
-    {label: 'Account Preferences', icon: 'pi pi-fw pi-id-card'},
-    // {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
-    // {label: 'Inactive Profiles', icon: 'pi pi-fw pi-eye-slash'},
-  ];
-
-  export const mockdata = [
+export const navbarFeatureList = [
     {
       icon: IconCode,
       title: 'Open source',
@@ -377,6 +224,30 @@ export const accountInfoMenuItems = [
       title: 'Notifications',
       description: 'Combusken battles with the intensely hot flames it spews',
     },
-  ];
+];
 
-export const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+export const features = [
+  {
+    icon: IconReceiptOff,
+    title: 'Free and open source',
+    description: 'All packages are published under MIT license, you can use Mantine in any project',
+  },
+  {
+    icon: IconFileCode,
+    title: 'TypeScript based',
+    description: 'Build type safe applications, all components and hooks export types',
+  },
+  {
+    icon: IconCircleDotted,
+    title: 'No annoying focus ring',
+    description:
+      'With new :focus-visible selector focus ring will appear only when user navigates with keyboard',
+  },
+  {
+    icon: IconFlame,
+    title: 'Flexible',
+    description:
+      'Customize colors, spacing, shadows, fonts and many other settings with global theme object',
+  },
+];

@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, generatePath } from 'react-router-dom';
-import { Title, Tab, TabList, Metric, Text } from "@tremor/react";
-import { MdKeyboardDoubleArrowUp } from 'react-icons/md';
+import DPSidebar from './DPSidebar';
 
 
-import api from '../../api/axios';
+import api from '../../../api/axios';
 
-import KeyFacts from './Components/Overview/KeyFacts';
-import IndustryFacts from './Components/Overview/IndustryFacts';
-import EducationFacts from './Components/Overview/EducationEmploymentFacts';
-import HouseholdIncomeFacts from './Components/Overview/HouseholdIncomeFacts';
-import GrowthRate from './Components/Population/GrowthRate';
-import AgesBreakdown from './Components/Population/AgesBreakdown';
-import AditionalAges from './Components/Population/AdditionalAges';
-import MalesFemales from './Components/Population/MalesFemales';
+import KeyFacts from '../Components/Main/KeyFacts';
+import IndustryFacts from '../Components/Main/IndustryFacts';
+import EducationFacts from '../Components/Main/EducationEmploymentFacts';
+import HouseholdIncomeFacts from '../Components/Main/HouseholdIncomeFacts';
+import GrowthRate from '../Components/Population/GrowthRate';
+import AgesBreakdown from '../Components/Population/AgesBreakdown';
+import AditionalAges from '../Components/Population/AdditionalAges';
+import MalesFemales from '../Components/Population/MalesFemales';
 
-import HouseholdIncome from './Components/Income/HouseholdIncome';
+import HouseholdIncome from '../Components/Income/HouseholdIncome';
 
-import HousingUnits from './Components/Housing/HousingUnit';
-import UnitsYear from './Components/Housing/UnitsYear';
+import HousingUnits from '../Components/Housing/HousingUnit';
+import UnitsYear from '../Components/Housing/UnitsYear';
 
-import Education from './Components/Education/Education';
+import Education from '../Components/Education/Education';
 
-import Maps from './Components/Maps/Maps';
-import SexAgeTable from './Components/Population/SexAgeTable';
+import Maps from '../Components/Maps/Maps';
+import SexAgeTable from '../Components/Population/SexAgeTable';
 
 const Overview = () => {
 
@@ -44,7 +43,7 @@ const Overview = () => {
   const [pLoading, setPLoading] = useState(true); //Stays
   const [address, setAddress] = useState(); //Stays
   const [aLoading, setALoading ] = useState(true); //Stays
-  const [selectedView, setSelectedView] = useState(1);
+  const [selectedView, setSelectedView] = useState('first');
   const [timeSeries, setTimeSeries] = useState([]);
   const [tLoading, setTLoading] = useState(true);
   const [version, setVersion] = useState();
@@ -123,8 +122,9 @@ const Overview = () => {
   
 
   return (
-    <main className='md:px-16 sm:px-2 xs:px-4 my-8'>
-      <div className='flex flex-row'>
+    <main className='flex flex-row ml-[300px]'>
+      <DPSidebar />
+      {/* <div className='flex flex-row'>
         <div className=''>
           {!aLoading ? 
           <img 
@@ -141,26 +141,49 @@ const Overview = () => {
           <Title className='mt-2'>Demographic Insights</Title>
           <Text>For a 3 Mile, 5 Mile, and 10 Mile Radius </Text> 
         </div>
-      </div>
+      </div> */}
       
 
-      <TabList defaultValue={ 1 } value={selectedView} onValueChange={ (value) => setSelectedView(value) } className="mt-8">
-        <Tab value={ 1 } text="At a Glance" />
-        <Tab value={ 2 } text="Population Insights" />
-        <Tab value={ 3 } text="Income & Employment Insights" />
-        <Tab value={ 4 } text="Housing Insights" />
-        <Tab value={ 5 } text="Education Facts" />
-        {/* <Tab value={ 6 } text="Map Views" /> */}
-      </TabList>
+      {/* <Tabs defaultValue='first' onTabChange={(value) => setSelectedView(value)}>
+        <Tabs.List>
+          <Tabs.Tab value='first'>At a Glance</Tabs.Tab>
+          <Tabs.Tab value='second'>Population Insights</Tabs.Tab>
+          <Tabs.Tab value='third'>Income & Employment Insights</Tabs.Tab>
+          <Tabs.Tab value='fourth'>Housing Insights</Tabs.Tab>
+          <Tabs.Tab value='fifth'>Education Facts</Tabs.Tab>
+          {/* <Tab value={ 6 } text="Map Views" > 
+        </Tabs.List>
+      </Tabs> */}
 
-      { selectedView === 1 ? (
-        <>
-          {!pLoading ? 
+      
+        {/* <> */}
+          <div className='flex flex-col w-full'>
             <KeyFacts 
-              data={data}
+              // data={data}
+              setSelectedView={setSelectedView} />
+
+            <EducationFacts 
+              // data={data}
               setSelectedView={setSelectedView}
-            /> : <></>}
-          
+            />
+
+            <HouseholdIncomeFacts
+              // county={address[0].county}
+              setSelectedView={setSelectedView}
+            />
+            
+            <div className='flex flex-row '>
+              <IndustryFacts 
+                data={data}
+                setSelectedView={setSelectedView}
+              /> 
+              <IndustryFacts 
+                data={data}
+                setSelectedView={setSelectedView}
+              /> 
+            </div>
+          </div>
+      {/* { selectedView === 'first' ? (
           {!pLoading ? 
             <EducationFacts 
               data={data}
@@ -174,18 +197,25 @@ const Overview = () => {
             /> : <></>}
 
           {!pLoading ? 
+          <div className='flex flex-row '>
             <IndustryFacts 
               data={data}
               setSelectedView={setSelectedView}
-            /> : <></>}
+            /> 
+            <IndustryFacts 
+              data={data}
+              setSelectedView={setSelectedView}
+            /> 
+            </div>
+            : <></>}
 
         </>
-      ) : selectedView === 2 ? (
+      ) : selectedView === 'second' ? (
         <>
           {!pLoading && !tLoading ? 
             <SexAgeTable
               data={data}
-            /> : <></>}
+            /> : <></>} */}
 
            {/* {!pLoading && !tLoading ? 
             <GrowthRate 
@@ -214,15 +244,15 @@ const Overview = () => {
 
 
            */}
-        </>
-      ) : selectedView === 3 ? (
+        {/* </>
+      ) : selectedView === 'third' ? (
         <>
           {!pLoading && !tLoading ? 
             <HouseholdIncome
               data={data}
             /> : <></>}
         </>
-      ) : selectedView === 4 ? (
+      ) : selectedView === 'fourth' ? (
         <>
           {!pLoading ? 
             <HousingUnits
@@ -234,7 +264,7 @@ const Overview = () => {
               data={data}
             /> : <></>}
         </>
-      ) :  selectedView === 5 ? (
+      ) :  selectedView === 'fifth' ? (
         <>
           {!pLoading ? 
             <Education
@@ -250,7 +280,7 @@ const Overview = () => {
       //       /> : <></>}
       //   </>
       // ) 
-      : <></>}
+      : <></>} */}
 
 
     </main>

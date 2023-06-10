@@ -24,7 +24,7 @@ const AddressInput = () => {
       city: 
         values.city.length === 0
         ? 'City is required'
-        : /^[a-zA-Z]+$/.test(values.city)
+        : /[a-zA-Z][a-zA-Z ]+/.test(values.city)
         ? null
         : 'Cities can only contain letters',
       zip: 
@@ -45,7 +45,7 @@ const AddressInput = () => {
     setCounty,
     setFullAddress,
     nextStep,
-    prevStep,
+    // prevStep,
     setActive
   } = useOutletContext();
 
@@ -112,6 +112,7 @@ const AddressInput = () => {
           <Box maw={300} mx="auto" mt='md' >
           <LoadingOverlay visible={visible} overlayBlur={2} />
             <form 
+              autoComplete='on'
               // className="w-full max-w-lg mt-16"
               // onSubmit={form.onSubmit((values) => console.log(values.address))}
               onSubmit={form.onSubmit((values) => handleSubmit(values))}
@@ -120,15 +121,17 @@ const AddressInput = () => {
             {/* ADDRESS */}
             <TextInput
               withAsterisk
+              autoComplete='on'
               label="Address"
               placeholder="123 Paris Avenue"
-              // value={streetAddress}
-              // onChange={(event) => setStreetAddress(event.currentTarget.value)}
+              value={streetAddress}
+              onChange={(event) => setStreetAddress(event.currentTarget.value)}
               {...form.getInputProps('address')}
             />
 
             <TextInput
               withAsterisk
+              autoComplete='on'
               label="City"
               placeholder="New Iberia"
               {...form.getInputProps('city')}
@@ -153,6 +156,7 @@ const AddressInput = () => {
 
             <TextInput
               withAsterisk
+              autoComplete='on'
               label="Zip"
               placeholder="90210"
               {...form.getInputProps('zip')}

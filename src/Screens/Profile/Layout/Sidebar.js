@@ -3,27 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { Navbar, Center, Tooltip, UnstyledButton, createStyles, Stack, rem } from '@mantine/core';
 import { IconGauge, IconDeviceDesktopAnalytics, IconHome2, IconFingerprint, IconCalendarStats, IconUser, IconSettings, IconLogout, IconSwitchHorizontal } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
-import { useStylesNavbar } from './Styles/Styles';
+import { useStylesNavbar } from './Styles/ProfileLayoutStyles';
 import LogoutModal from '../../../components/LayoutGlobals/LogoutModal';
 import useAuth from '../../../hooks/useAuth';
 
 
-
-  const NavbarLink = ({ icon: Icon, label, active, onClick }) => {
-    const { classes, cx } = useStylesNavbar();
-    return (
-      <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
-        <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })}>
-          <Icon size="1.2rem" stroke={1.5} />
-        </UnstyledButton>
-      </Tooltip>
-    );
-  };
-
-  
-
-
-
+const NavbarLink = ({ icon: Icon, label, active, onClick }) => {
+  const { classes, cx } = useStylesNavbar();
+  return (
+    <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
+      <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })}>
+        <Icon size="1.2rem" stroke={1.5} />
+      </UnstyledButton>
+    </Tooltip>
+  );
+};
 
 
 const Sidebar = ({ active, setActive}) => {
@@ -49,13 +43,12 @@ const Sidebar = ({ active, setActive}) => {
 
   return (
     <Navbar
-        // height={750}
-        width={{ base: 80 }}
-        p="md"
-        sx={(theme) => ({
-        backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-            .background,
-        })}
+      width={{ base: 80 }}
+      p="md"
+      sx={(theme) => ({
+      backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
+        .background,
+      })}
     >
     <Navbar.Section grow mt={20}>
       <Stack justify="center" spacing={0}>

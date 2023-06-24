@@ -1,44 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Image, Text, Group, Badge, createStyles, Center, Button, rem } from '@mantine/core';
+import { Card, Image, Text, Group, Badge, createStyles, Center, Button, rem, Title } from '@mantine/core';
 import { IconGasStation, IconGauge, IconManualGearbox, IconUsers } from '@tabler/icons-react';
+import { useFeedStyles } from './Styles/FeedStyles';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-  },
-
-  imageSection: {
-    padding: theme.spacing.md,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-  },
-
-  label: {
-    marginBottom: theme.spacing.xs,
-    lineHeight: 1,
-    fontWeight: 700,
-    fontSize: theme.fontSizes.xs,
-    letterSpacing: rem(-0.25),
-    textTransform: 'uppercase',
-  },
-
-  section: {
-    padding: theme.spacing.md,
-    borderTop: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-  },
-
-  icon: {
-    marginRight: rem(5),
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[5],
-  },
-}));
 
 const mockdata = [
   { label: 'Total Population: ', icon: IconUsers },
@@ -48,7 +13,7 @@ const mockdata = [
 ];
 
 const Feed = ({posts}) => {
-  const { classes } = useStyles();
+  const { classes } = useFeedStyles();
   const navigate = useNavigate();
 
   const features = mockdata.map((feature) => (
@@ -61,40 +26,42 @@ const Feed = ({posts}) => {
   return (
     <div className='items-center p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-5 auto-rows-fr'>
       {posts.map(post => (
-        <Card withBorder radius="md" className={classes.card}>
-          {/* <Link to={`/dataprofile/${post.id}/overview`}> */}
-            <Card.Section className={classes.imageSection}>
-              <Image src={`https://res.cloudinary.com/djlalgsmk/image/upload/v${post.cloudinary_version}/${post.cloudinary_public_id}`} alt="Tesla Model S" />
-            </Card.Section>
+        <Card withBorder radius="md" className={classes.card} shadow="sm">
+          <Card.Section className={classes.imageSection}>
+            <Image 
+              src={`https://res.cloudinary.com/djlalgsmk/image/upload/v${post.cloudinary_version}/${post.cloudinary_public_id}`} 
+              alt="Tesla Model S" 
+              height={180}
+              width={320}
+            />
+          </Card.Section>
 
-            <Group position="apart" mt="md">
-              <div>
-                <Text fw={500}>{post.address.substring(0, post.address.indexOf(","))}</Text>
-                <Text fz="xs" c="dimmed">
-                  {`${post.address.split(",")[1]}, ${post.address.split(",")[2]}, ${post.address.split(",")[3]}`} {/*//FIX THIS LATER PLEASE */}
-                </Text>
-              </div>
-              <Badge variant="outline">25% off</Badge>
-            </Group>
-
-            <Card.Section className={classes.section} mt="md">
-              <Text fz="sm" c="dimmed" className={classes.label}>
-                5 Mile Key Demographics
+          <Group position="apart" mt="md">
+            <div>
+              <Text tt="capitalize" fw={600}>{post.address.substring(0, post.address.indexOf(","))}</Text>
+              <Text fz="xs" c="dimmed" tt="capitalize">
+                {`${post.address.split(",")[1]}, ${post.address.split(",")[2]}, ${post.address.split(",")[3]}`} {/*//FIX THIS LATER PLEASE */}
               </Text>
+            </div>
+          </Group>
 
-              <Group spacing={8} mb={-8}>
-                {features}
-              </Group>
-            </Card.Section>
+          <Card.Section className={classes.section} mt="md">
+            <Text fz="sm" c="dimmed" className={classes.label}>
+              5 Mile Key Demographics
+            </Text>
 
-            <Card.Section className={classes.section}>
-              <Group spacing={30}>
-                <Button onClick={() => navigate(`/dataprofile/${post.id}/overview`)} radius="xl" style={{ flex: 1 }}>
-                  View Details
-                </Button>
-              </Group>
-            </Card.Section>
-          {/* </Link> */}
+            <Group spacing={8} mb={-8}>
+              {features}
+            </Group>
+          </Card.Section>
+
+          <Card.Section className={classes.section}>
+            <Group spacing={30}>
+              <Button onClick={() => navigate(`/dataprofile/${post.id}/overview`)} radius="xl" style={{ flex: 1 }}>
+                View Details
+              </Button>
+            </Group>
+          </Card.Section>
         </Card>
       ))}
     </div>

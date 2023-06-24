@@ -1,39 +1,6 @@
 import { ThemeIcon, Text, Title, Container, SimpleGrid, createStyles, rem } from '@mantine/core';
-import { IconGauge, IconCookie, IconUser, IconMessage2, IconLock } from '@tabler/icons-react';
-import { secondSectionStyles } from '../FeatureStyles'
-
-export const MOCKDATA = [
-  {
-    icon: IconGauge,
-    title: 'Extreme performance',
-    description:
-      'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
-  },
-  {
-    icon: IconUser,
-    title: 'Privacy focused',
-    description:
-      'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
-  },
-  {
-    icon: IconCookie,
-    title: 'No third parties',
-    description:
-      'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
-  },
-  {
-    icon: IconLock,
-    title: 'Secure by default',
-    description:
-      'Although it still can’t fly, its jumping power is outstanding, in Alola the mushrooms on Paras don’t grow up quite right',
-  },
-  {
-    icon: IconMessage2,
-    title: '24/7 Support',
-    description:
-      'Rapidash usually can be seen casually cantering in the fields and plains, Skitty is known to chase around after its own tail',
-  },
-];
+import { useSecondSectionStyles } from '../Styles/FeatureStyles';
+import { secondFeatureSectionData as data }  from '../../../data/Data';
 
 export function Feature({ icon: Icon, title, description }) {
   return (
@@ -52,8 +19,8 @@ export function Feature({ icon: Icon, title, description }) {
 }
 
 
-const SecondFeatureSection = ({ title, description, data = MOCKDATA }) => {
-  const { classes } = secondSectionStyles();
+const SecondFeatureSection = ({ title, description }) => {
+  const { classes } = useSecondSectionStyles();
   const features = data.map((feature, index) => <Feature {...feature} key={index} />);
 
   return (

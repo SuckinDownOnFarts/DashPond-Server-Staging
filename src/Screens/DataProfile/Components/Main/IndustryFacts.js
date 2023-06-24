@@ -5,41 +5,45 @@ import { bufferData } from '../../../../data/Data';
 import { useIndustryStyles } from './Styles/DPStyles';
 
 
-const EmploymentFacts = () => {
+const EmploymentFacts = ({ data }) => {
     const { classes } = useIndustryStyles();
     const [buffer, setBuffer] = useState(0);
 
     
-    const total =  "345,765";
+    const total =  data[0][0][12];
     const diff =  18;
-    const data = [
+    const cardData = [
           {
-            "label": "Mobile",
-            "count": "204,001",
-            "part": 59,
+            "label": "White Collar",
+            "count": data[0][0][9],
+            "part": parseInt(((data[0][0][9] / data[0][0][12]) * 100).toFixed(0)),
+            "tooltip": 'Number of White Collar Workers',
             "color": "#47d6ab"
           },
           {
-            "label": "Desktop",
-            "count": "121,017",
-            "part": 35,
+            "label": "Blue Collar",
+            "count": data[0][0][10],
+            "part": parseInt(((data[0][0][10] / data[0][0][12]) * 100).toFixed(0)),
+            "tooltip": 'Number of Blue Collar Workers',
             "color": "#03141a"
           },
           {
-            "label": "Tablet",
-            "count": "31,118",
-            "part": 6,
+            "label": "Services",
+            "count": data[0][0][11],
+            "part": parseInt(((data[0][0][11] / data[0][0][12]) * 100).toFixed(0)),
+            "tooltip": 'Number of Service Workers',
             "color": "#4fcdf7"
           }
     ]; 
 
-    const segments = data.map((segment) => ({
+    const segments = cardData.map((segment) => ({
         value: segment.part,
         color: segment.color,
-        label: segment.part > 10 ? `${segment.part}%` : undefined,
+        label: `${segment.part}%`,
+        tooltip: segment.tooltip
     }));
 
-    const descriptions = data.map((stat) => (
+    const descriptions = cardData.map((stat) => (
         <Box key={stat.label} sx={{ borderBottomColor: stat.color }} className={classes.stat}>
           <Text tt="uppercase" fz="xs" c="dimmed" fw={700}>
             {stat.label}
@@ -54,10 +58,7 @@ const EmploymentFacts = () => {
         </Box>
       ));
 
-
-
     return (
-
         <Paper withBorder p="md" radius="md" className={classes.paper}>
         <Group position="apart">
           <Group align="flex-end" spacing="xs">

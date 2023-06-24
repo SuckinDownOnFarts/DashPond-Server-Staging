@@ -10,6 +10,8 @@ import useAuth from '../../hooks/useAuth';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}/
+const FIRSTNAME_REGEX = /^[a-z ,.'-]+$/i
+const LASTNAME_REGEX = /^[a-z ,.'-]+$/i
 
 function PasswordRequirement({ meets, label }) {
     return (
@@ -47,27 +49,41 @@ const Register = () => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const { setAuth } = useAuth();
     const navigate = useNavigate();
-    const [value, setValue] = useInputState('');
+    // const [value, setValue] = useInputState('');
     const [popoverOpened, setPopoverOpened] = useState(false);
 
     const form = useForm({
         initialValues: {
-          email: '',
-          password: ''
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
         },
         validate: (values) => ({
-          email: 
-            values.email.length === 0
-            ? 'Email is required'
-            : EMAIL_REGEX.test(values.email)
-            ? null
-            : 'Invalid email format',
-          password: 
-            values.password.length === 0
-            ? 'Password is required'
-            : PWD_REGEX.test(values.password)
-            ? null
-            : 'Password is invalid'
+            firstName: 
+                values.firstName.length === 0 
+                ? 'First name is required'
+                : FIRSTNAME_REGEX.test(values.firstName)
+                ? null
+                : 'First name should only contain certain characters',
+            lastName: 
+                values.lastName.length === 0 
+                ? 'Last name is required'
+                : LASTNAME_REGEX.test(values.lastName)
+                ? null
+                : 'Last name should only contain certain characters',
+            email: 
+                values.email.length === 0
+                ? 'Email is required'
+                : EMAIL_REGEX.test(values.email)
+                ? null
+                : 'Invalid email format',
+            password: 
+                values.password.length === 0
+                ? 'Password is required'
+                : PWD_REGEX.test(values.password)
+                ? null
+                : 'Invalid password format'
         })
       });
 
@@ -79,30 +95,32 @@ const Register = () => {
     ));
 
     const bars = Array(4)
-    .fill(0)
-    .map((_, index) => (
-      <Progress
-        styles={{ bar: { transitionDuration: '0ms' } }}
-        value={
-            form.values.password.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0
-        }
-        color={strength > 80 ? 'teal' : strength > 50 ? 'yellow' : 'red'}
-        key={index}
-        size={4}
-      />
+        .fill(0)
+        .map((_, index) => (
+        <Progress
+            styles={{ bar: { transitionDuration: '0ms' } }}
+            value={
+                form.values.password.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0
+            }
+            color={strength > 80 ? 'teal' : strength > 50 ? 'yellow' : 'red'}
+            key={index}
+            size={4}
+        />
     ));
 
     const submitRegistration = async (data) => {
         try {
             const response = await api.post('/register', (data));
             console.log(response?.data);
+            const firstName = response?.data?.firstName
+            const lastName = response?.data?.lastName
             const accessToken = response?.data?.accessToken;
             const id = response?.data?.id;
             const roles = response?.data?.roles;
             const email = response?.data?.email;
 
 
-            setAuth({ accessToken, id, roles, email });
+            setAuth({ firstName, lastName, accessToken, id, roles, email });
             const path = generatePath('/profile/:id/info', {
                 id: id
             });
@@ -135,7 +153,7 @@ const Register = () => {
         </Title>
         <Text color="dimmed" size="sm" align="center" mt={5}>
             Already have a Dashpond account?{' '}
-            <Anchor size="sm" component="button">
+            <Anchor size="sm" component="button" onClick={() => navigate('/login')}>
                 Sign in
             </Anchor>
         </Text>
@@ -143,6 +161,19 @@ const Register = () => {
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
             <form onSubmit={form.onSubmit((values) => submitRegistration(values))}>
                 <TextInput 
+                    withAsterisk
+                    label="First Name" 
+                    placeholder="John" 
+                    {...form.getInputProps('firstName')}
+                />
+                <TextInput 
+                    withAsterisk
+                    label="Last Name" 
+                    placeholder="Smith" 
+                    {...form.getInputProps('lastName')}
+                />
+                <TextInput 
+                    withAsterisk
                     label="Email" 
                     placeholder="you@daspond.com" 
                     {...form.getInputProps('email')}
@@ -154,7 +185,7 @@ const Register = () => {
                             onBlurCapture={() => setPopoverOpened(false)}
                         >
                             <PasswordInput
-                                // withAsterisk
+                                withAsterisk
                                 // value={value}
                                 // onChange={setValue}
                                 label="Your password"

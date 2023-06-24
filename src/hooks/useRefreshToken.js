@@ -12,10 +12,14 @@ const useRefreshToken = () => {
             // console.log(response.data.user);
             return { 
                 ...prev, 
+                firstName: response.data.firstName,
+                lastName: response.data.lastName,
                 roles: response.data.roles,
                 accessToken: response.data.accessToken,
                 email: response.data.userEmail,
-                id: response.data.id
+                id: response.data.id,
+                profile_image_version: response.data.profileImageVersion,
+                profile_image_public_id: response.data.profileImagePublicId
             }
         });
         // console.log(response.data.accessToken);

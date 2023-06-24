@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BsCheckLg } from 'react-icons/bs';
+import { IconCheck } from '@tabler/icons-react'
 import { pricingPlans } from '../../data/Data';
 import { pricingStyles } from './Styles/PricingStyles';
-import { Title } from '@mantine/core';
+import { Title, Text, Card, Paper, ThemeIcon, Button, rem } from '@mantine/core';
+
 
 
 const Pricing = () => {
@@ -19,16 +20,88 @@ const Pricing = () => {
           <Title className={classes.title}>Level Up Your Commercial Real Estate Marketing</Title>
       </div>
 
-      {/* mb-4 text-4xl tracking-tight font-extrabold text-gray-900 */}
-
       {/* Pricing Panes */}
       <div className='flex flex-row justify-center space-x-8 mt-24'>
         
         {pricingPlans.map((item, index) => (
-          <div key={item.title} className={classes.plans}>
-            <div className='w-full h-full  p-8 flex flex-col'>
+          <Paper withBorder key={item.title} className={classes.plans}>
+            <div className='w-full h-full p-8 flex flex-col items-center'>
 
-              {index === 0 ? 
+              <ThemeIcon
+                size={44}
+                radius="md"
+                variant="gradient"
+                gradient={{ deg: 133, from: 'blue', to: 'cyan' }}
+              >          
+                <item.icon size={rem(26)} stroke={1.5} />
+              </ThemeIcon>
+
+              <Title className=' mt-4 text-3xl tracking-tight font-extrabold text-gray-900'>{item.title}</Title>
+
+              <Title order={6} className=' mt-4 text-xs tracking-tight text-gray-500'>{item.priceHead}</Title>
+
+              {/* <div className="relative flex py-4 items-center">
+                <div className="flex-grow border-t border-gray-400">asdasdasd</div>
+              </div> */}
+
+              <Title className='text-sm tracking-tight font-bold text-gray-900 mt-4'>{item.featureHead}</Title>
+
+              <div className='flex flex-col mt-4 space-y-2 tracking-tight align-middle'>
+                {item.features.map((features) => (
+                  <div className='flex flex-row items-center'>
+                    <span className='mr-2 text-emerald-400'><IconCheck/></span>
+                    <Text className={classes.text}>{features.feature}</Text>
+                  </div>
+                ))} 
+              </div>
+              
+              {item.isDisabled ? 
+                <Button 
+                  className={classes.button}
+                  radius="xl"
+                  color="red"
+                  size="md"
+                  onClick={() => navigate(item.link)}
+                  disabled
+                >
+                  {item.buttonText}
+                </Button>
+                : 
+                <Button
+                  className={classes.button}
+                  radius="xl"
+                  color="red"
+                  size="md"
+                  onClick={() => navigate(item.link)}
+                >
+                  {item.buttonText}
+                </Button>
+              }
+
+
+                
+              {/* <button 
+                type="button"  
+                className={item.isDisabled ? `opacity-50 text-white mt-12 ${item.gradient} font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 tracking-tight w-full` 
+                : `text-white mt-12 ${item.gradient} font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 tracking-tight w-full`}
+                disabled={item.isDisabled}
+                onClick={() => navigate(item.link)}
+              >
+                {item.buttonText}
+              </button> */}
+            </div>
+          </Paper>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default Pricing
+
+
+
+{/* {index === 0 ? 
                 <div className='justify-content-center flex mx-auto'>
                   <div className={`rounded-full w-8 h-8 bg-gradient-to-r ${item.gradient}`} />
                 </div>
@@ -43,66 +116,7 @@ const Pricing = () => {
                     <div className={`rounded-full w-8 h-8 bg-gradient-to-r ${item.gradient}`} />
                     <div className={`rounded-full w-8 h-8 bg-gradient-to-r ${item.gradient}`} />
                   </div>
-                }
-
-                <div className='text-center'>
-                  <h2 className=' mt-4 text-3xl tracking-tight font-extrabold text-gray-900'>{item.title}</h2>
-                </div>
-
-                <div className='text-center'>
-                  <h2 className=' mt-4 text-xs tracking-tight text-gray-500'>{item.priceHead}</h2>
-                </div>
-
-                <div className="relative flex py-4 items-center">
-                  <div className="flex-grow border-t border-gray-400"></div>
-                </div>
-
-                <div className='text-center'>
-                  <h2 className='text-sm tracking-tight font-bold text-gray-900'>{item.featureHead}</h2>
-                </div>
-
-                <div className='flex flex-col text-sm mt-4 space-y-2 tracking-tight align-middle'>
-                  <div className='flex flex-row items-center'>
-                    <span className='mr-2 text-emerald-400'><BsCheckLg/></span>
-                    {item.feature1}
-                  </div>
-                  <div className='flex flex-row items-center'>
-                    <span className='mr-2 text-emerald-400'><BsCheckLg/></span>
-                    {item.feature2}
-                  </div>
-                  <div className='flex flex-row items-center'>
-                    <span className='mr-2 text-emerald-400'><BsCheckLg/></span>
-                    {item.feature3}
-                  </div>
-                  <div className='flex flex-row items-center'>
-                    <span className='mr-2 text-emerald-400'><BsCheckLg/></span>
-                    {item.feature4}
-                  </div>
-                </div>
-
-                  
-                <button 
-                  type="button"  
-                  className={item.isDisabled ? `opacity-50 text-white mt-12 ${item.gradient} font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 tracking-tight w-full` 
-                  : `text-white mt-12 ${item.gradient} font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 tracking-tight w-full`}
-                  disabled={item.isDisabled}
-                  onClick={() => navigate(item.link)}
-                >
-                  {item.buttonText}
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
-    </div>
-  )
-}
-
-export default Pricing
-
-
-
-
+                } */}
 
 
 

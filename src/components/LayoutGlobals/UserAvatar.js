@@ -51,12 +51,6 @@ const UserAvatar = ({ user, tabs }) => {
               >
                 Insights
               </Menu.Item>
-              {/* <Menu.Item
-                icon={<IconMessage size="0.9rem" stroke={1.5} color={theme.colors.blue[6]} />}
-              >
-                Your comments
-              </Menu.Item> */}
-
               <Menu.Label>Settings</Menu.Label>
               <Menu.Item 
                 icon={<IconSettings size="0.9rem" stroke={1.5} />}

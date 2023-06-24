@@ -1,45 +1,7 @@
-import { createStyles, ThemeIcon, Text, SimpleGrid, Box, Stack } from '@mantine/core';
+import { ThemeIcon, Text, SimpleGrid, Box, Stack } from '@mantine/core';
 import { IconSun, IconPhone, IconMapPin, IconAt } from '@tabler/icons-react';
+import { useContactIconListStyles as useStyles } from './ContactStyles'
 
-// type ContactIconVariant = 'white' | 'gradient';
-
-// interface ContactIconStyles {
-//   variant: ContactIconVariant;
-// }
-
-const useStyles = createStyles((theme, { variant }) => ({
-  wrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    color: theme.white,
-  },
-
-  icon: {
-    marginRight: theme.spacing.md,
-    backgroundImage:
-      variant === 'gradient'
-        ? `linear-gradient(135deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
-            theme.colors[theme.primaryColor][6]
-          } 100%)`
-        : 'none',
-    backgroundColor: 'transparent',
-  },
-
-  title: {
-    color: variant === 'gradient' ? theme.colors.gray[6] : theme.colors[theme.primaryColor][0],
-  },
-
-  description: {
-    color: variant === 'gradient' ? theme.black : theme.white,
-  },
-}));
-
-// interface ContactIconProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
-//   icon: React.FC<any>;
-//   title: React.ReactNode;
-//   description: React.ReactNode;
-//   variant?: ContactIconVariant;
-// }
 
 function ContactIcon({
   icon: Icon,
@@ -72,15 +34,10 @@ function ContactIcon({
   );
 }
 
-// interface ContactIconsListProps {
-//   data?: ContactIconProps[];
-//   variant?: ContactIconVariant;
-// }
-
 const MOCKDATA = [
-  { title: 'Email', description: 'hello@mantine.dev', icon: IconAt },
-  { title: 'Phone', description: '+49 (800) 335 35 35', icon: IconPhone },
-  { title: 'Address', description: '844 Morris Park avenue', icon: IconMapPin },
+  { title: 'Email', description: 'support@dashpond.com', icon: IconAt },
+  { title: 'Phone', description: '(504) 496-3265', icon: IconPhone },
+  { title: 'Address', description: '512 Faun Street Metairie, LA 70003', icon: IconMapPin },
   { title: 'Working hours', description: '8 a.m. – 11 p.m.', icon: IconSun },
 ];
 

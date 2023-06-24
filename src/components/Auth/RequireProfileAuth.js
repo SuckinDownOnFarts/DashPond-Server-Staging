@@ -7,7 +7,7 @@ const RequireProfileAuth = () => {
     const location = useLocation();
     const { id } = useParams();
 
-    console.log(auth);
+    // console.log(auth);
     
     return (
         auth?.id == id 

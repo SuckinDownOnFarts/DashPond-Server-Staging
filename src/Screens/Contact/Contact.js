@@ -1,55 +1,117 @@
 import React from 'react';
-import { Text, TextInput, Textarea, Title, Button, Group, SimpleGrid, createStyles, rem } from '@mantine/core';
+import { Paper, Text, TextInput, Textarea, Title, Button, Group, SimpleGrid } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { ContactIconsList } from './ContactIconsList';
-import { contactStyles } from './Styles';
-
+import { useContactMainStyles as useStyles } from './ContactStyles';
+import api from '../../api/axios'
 
 
 const Contact = () => {
-    const { classes } = contactStyles();
+  const { classes } = useStyles();
 
-    return (
-      <div className={classes.wrapper}>
-      <SimpleGrid cols={2} spacing={50} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
-        <div className=''>
-          <Title className={classes.title}>Contact us</Title>
-          <Text className={classes.description} mt="sm" mb={30}>
-            Leave your email and we will get back to you within 24 hours
-          </Text>
+  const form = useForm({
+    initialValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
 
-          <ContactIconsList variant="white" />
+    validate: (values) => ({
+      name: 
+        values.name.length === 0 
+        ? 'Name is required'
+        : null,
+      email: 
+        values.email.length === 0
+        ? 'Address is required'
+        : /^\S+@\S+$/.test(values.email)
+        ? null
+        : 'Invalid email format',
+      subject: 
+        values.subject.length === 0 
+        ? 'Subject is required'
+        : null,
+      message:
+        values.message.length === 0 
+        ? 'Message is required'
+        : null, 
+    }),
+  });
 
-          {/* <Group mt="xl">{icons}</Group> */}
-        </div>
-        <div className={classes.form}>
-          <TextInput
-            label="Email"
-            placeholder="your@email.com"
-            required
-            classNames={{ input: classes.input, label: classes.inputLabel }}
-          />
-          <TextInput
-            label="Name"
-            placeholder="John Doe"
-            mt="md"
-            classNames={{ input: classes.input, label: classes.inputLabel }}
-          />
-          <Textarea
-            required
-            label="Your message"
-            placeholder="I want to order your goods"
-            minRows={4}
-            mt="md"
-            classNames={{ input: classes.input, label: classes.inputLabel }}
-          />
+  const handleSubmit = async (values) => {
+    try {
+      // console.log(values);
+      const response = await api.post('/contactform', (values));
+      // console.log(response); 
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
-          <Group position="right" mt="md">
-            <Button className={classes.control}>Send message</Button>
-          </Group>
-        </div>
-      </SimpleGrid>
+  return (
+    <div className='grid min-h-[calc(100vh-60px)] w-full place-items-center '>
+      <div className='flex pb-4'>
+        <Paper shadow="md" radius="lg">
+          <div className={classes.wrapper}>
+            <div className={classes.contacts}>
+              <Text fz="lg" fw={700} className={classes.title} c="#fff">
+                Contact information
+              </Text>
+
+              <ContactIconsList variant="white" />
+            </div>
+
+            <form className={classes.form} onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+              <Text fz="lg" fw={700} className={classes.title}>
+                Get in touch
+              </Text>
+
+              <div className={classes.fields}>
+                <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+                  <TextInput 
+                    withAsterisk
+                    label="Your name" 
+                    placeholder="Your name"
+                    {...form.getInputProps('name')}
+                  />
+                  <TextInput 
+                    withAsterisk
+                    label="Your email"    
+                    placeholder="hello@mantine.dev"  
+                    {...form.getInputProps('email')}
+                  />
+                </SimpleGrid>
+
+                <TextInput 
+                  withAsterisk
+                  mt="md" 
+                  label="Subject" 
+                  placeholder="Subject"  
+                  {...form.getInputProps('subject')}
+                />
+
+                <Textarea
+                  withAsterisk
+                  mt="md"
+                  label="Your message"
+                  placeholder="Please include all relevant information"
+                  minRows={3}
+                  {...form.getInputProps('message')}
+                />
+
+                <Group position="right" mt="md">
+                  <Button type="submit" className={classes.control}>
+                    Send message
+                  </Button>
+                </Group>
+              </div>
+            </form>
+          </div>
+        </Paper>
+      </div>
     </div>
-    )
+  )
 }
 
 export default Contact

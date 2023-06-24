@@ -52,12 +52,14 @@ const Login = () => {
         }
       );
 
+      const firstName = response?.data?.firstName
+      const lastName = response?.data?.lastName
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
       const id = response?.data?.id;
       const email = response?.data?.userEmail;
 
-      setAuth({ accessToken, roles, id, email });
+      setAuth({ firstName, lastName, accessToken, roles, id, email });
 
       navigate(from, {replace: true});
     } catch (err) {

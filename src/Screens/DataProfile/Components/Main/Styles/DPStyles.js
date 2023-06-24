@@ -1,5 +1,7 @@
 import { createStyles, rem } from "@mantine/core";
 
+const CARD_PROGRESS_ICON_SIZE = rem(60);
+
 export const useKeyFactsStyles = createStyles((theme) => ({
     root: {
     //   padding: `calc(${theme.spacing.xl} * 1.5)`,
@@ -13,7 +15,7 @@ export const useKeyFactsStyles = createStyles((theme) => ({
     label: {
       fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     },
-    }));
+}));
 
 export const useEduEmpStyles = createStyles((theme) => ({
     root: {
@@ -131,7 +133,7 @@ export const useEduEmpStyles = createStyles((theme) => ({
         transform: 'rotate(-90deg)',
       },
     },
-    }));
+}));
 
 export const useHHIncomeStyles = createStyles((theme) => ({
     root: {
@@ -191,12 +193,12 @@ export const useHHIncomeStyles = createStyles((theme) => ({
         },
       },
     },
-    }));
+}));
 
 export const useIndustryStyles = createStyles((theme) => ({
     paper: {
         width: '50%',
-        marginLeft: '1rem',
+        // marginLeft: '1rem',
         flexBasis: '1',
     },
 
@@ -226,4 +228,35 @@ export const useIndustryStyles = createStyles((theme) => ({
     icon: {
       color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4],
     },
-  }));
+}));
+
+export const useCardProgressStyles = createStyles((theme) => ({
+  card: {
+    position: 'relative',
+    width: '33%',
+    overflow: 'visible',
+    padding: theme.spacing.xl,
+    paddingTop: `calc(${theme.spacing.xl} * 1.5 + ${CARD_PROGRESS_ICON_SIZE} / 3)`,
+  },
+
+  icon: {
+    position: 'absolute',
+    top: `calc(-${CARD_PROGRESS_ICON_SIZE} / 3)`,
+    left: `calc(50% - ${CARD_PROGRESS_ICON_SIZE} / 2)`,
+  },
+
+  title: {
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    lineHeight: 1,
+  },
+}));
+
+export const useTableExampleStyles = createStyles((theme) => ({
+  progressBar: {
+    '&:not(:first-of-type)': {
+      borderLeft: `${rem(3)} solid ${
+        theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white
+      }`,
+    },
+  },
+}));

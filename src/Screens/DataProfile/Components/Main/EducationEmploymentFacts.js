@@ -1,31 +1,60 @@
-import React, { useState } from 'react';
-import { createStyles, UnstyledButton, Text, Paper, Group, rem } from '@mantine/core';
-import { IconSwimming, IconBike, IconRun, IconChevronDown, IconChevronUp } from '@tabler/icons-react';
+import React, { useEffect, useState } from 'react';
+import { UnstyledButton, Text, Paper, Group } from '@mantine/core';
+import { IconCoins, IconCake, IconUserPlus, IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { bufferData } from '../../../../data/Data';
 import { useEduEmpStyles } from './Styles/DPStyles';
 
-
-const EmploymentFacts = ({ setSelectedView}) => {
-    const data = [
-        { icon: IconRun, label: 'Running' },
-        { icon: IconSwimming, label: 'Swimming' },
-        { icon: IconBike, label: 'Bike' },
-    ];
-
+const EmploymentFacts = ({ data }) => {
     const { classes } = useEduEmpStyles();
     const [date, setDate] = useState(new Date(2021, 9, 24));
-    
+    const [index, setIndex] = useState(9);
+    const [disableUp, setDisableUp] = useState(false);
+    const [disableDown, setDisableDown] = useState(false);
     const [eduBuffer, setEduBuffer] = useState(0);
     const [empBuffer, setEmpBuffer] = useState(0);
 
-    const stats = data.map((stat) => (
+    const cardData = [
+        { icon: IconUserPlus, label: 'Population', popData: data[1] },
+        { icon: IconCoins, label: 'Median HouseHold Income' },
+        { icon: IconCake, label: 'Median Age' },
+    ];
+
+    const handleYearUp = () => {
+        if (index <= 9) {
+            setDate((current) => dayjs(current).add(1, 'year').toDate());
+            setIndex((oldIndex) => oldIndex + 1);
+        } 
+    }
+
+    const handleYearDown = () => {
+        if (index > 0) {
+            setDate((current) => dayjs(current).subtract(1, 'year').toDate());
+            setIndex((oldIndex) => oldIndex - 1);
+        }
+    }
+
+    useEffect(() => {
+        const handleIndexConstraints = () => {
+            if (index === 9) {
+                setDisableUp(true)
+            } else if (index === 0) {
+                setDisableDown(true)
+            } else {
+                setDisableUp(false);
+                setDisableDown(false);
+            }
+        }
+        handleIndexConstraints()
+    }, [index])
+
+    const stats = cardData.map((stat) => (
         <Paper className={classes.stat} radius="md" shadow="md" p="xs" key={stat.label}>
           <stat.icon size={32} className={classes.icon} stroke={1.5} />
           <div>
             <Text className={classes.label}>{stat.label}</Text>
             <Text fz="xs" className={classes.count}>
-              <span className={classes.value}>{Math.floor(Math.random() * 6 + 4)}km</span> / 10km
+              <span className={classes.value}>{data[1][index]}</span>
             </Text>
           </div>
         </Paper>
@@ -36,19 +65,20 @@ const EmploymentFacts = ({ setSelectedView}) => {
             <div className={classes.controls}>
                 <UnstyledButton
                     className={classes.control}
-                    onClick={() => setDate((current) => dayjs(current).add(1, 'day').toDate())}
+                    onClick={handleYearUp}
+                    disabled={disableUp ? true : false}
                 >
                     <IconChevronUp size="1rem" className={classes.controlIcon} stroke={1.5} />
                 </UnstyledButton>
 
                 <div className={classes.date}>
-                    <Text className={classes.day}>{dayjs(date).format('DD')}</Text>
-                    <Text className={classes.month}>{dayjs(date).format('MMMM')}</Text>
+                    <Text className={classes.day}>{dayjs(date).format('YYYY')}</Text>
+                    {/* <Text className={classes.month}>{dayjs(date).format('MMMM')}</Text> */}
                 </div>
 
                 <UnstyledButton
                     className={classes.control}
-                    onClick={() => setDate((current) => dayjs(current).subtract(1, 'day').toDate())}
+                    onClick={handleYearDown}
                 >
                     <IconChevronDown size="1rem" className={classes.controlIcon} stroke={1.5} />
                 </UnstyledButton>

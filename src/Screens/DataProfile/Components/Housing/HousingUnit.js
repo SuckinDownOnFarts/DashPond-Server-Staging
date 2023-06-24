@@ -1,17 +1,5 @@
-import { Card, Dropdown, DropdownItem, Flex, Title } from '@tremor/react';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import React, { useState } from "react";
-import { bufferData } from '../../../../data/Data';
-
-//theme
-import "primereact/resources/themes/lara-light-teal/theme.css";     
-    
-//core
-import "primereact/resources/primereact.min.css";
-
-//icons
-import "primeicons/primeicons.css";     
+import { bufferData } from '../../../../data/Data'; 
 
 const HousingUnit = ({ data }) => {
 
@@ -107,34 +95,35 @@ const products = [
 ]
 
   return (
-    <Card className='mt-8'>
-        <Flex className='px-4 justify-start space-x-4 mb-8'>
-            <Title className='underline'>Housing Unit Facts</Title>
+    <></>
+    // <Card className='mt-8'>
+    //     <Flex className='px-4 justify-start space-x-4 mb-8'>
+    //         <Title className='underline'>Housing Unit Facts</Title>
 
-            <Dropdown
-                defaultValue={0}
-                onValueChange={(value) => setBuffer(value)}
-                placeholder="3 Mile"
-                className="mt-0 max-w-0"
-                >
-                {bufferData.map((item) => (
-                <DropdownItem
-                    key={item.bufferName}
-                    value={item.value}
-                    text={item.bufferName}
-                    />
-                ))}
-            </Dropdown>
-        </Flex>
+    //         <Dropdown
+    //             defaultValue={0}
+    //             onValueChange={(value) => setBuffer(value)}
+    //             placeholder="3 Mile"
+    //             className="mt-0 max-w-0"
+    //             >
+    //             {bufferData.map((item) => (
+    //             <DropdownItem
+    //                 key={item.bufferName}
+    //                 value={item.value}
+    //                 text={item.bufferName}
+    //                 />
+    //             ))}
+    //         </Dropdown>
+    //     </Flex>
 
-        <DataTable value={products} size='small' showGridlines stripedRows tableStyle={{ minWidth: '50rem' }}>
-            <Column field="label" header="Label"></Column>
-            <Column field="values" header="Value"></Column>
-            <Column field="percentage" header="Percentage"></Column>
-            {/* <Column field="quantity" header="Quantity"></Column> */}
-        </DataTable>
+    //     <DataTable value={products} size='small' showGridlines stripedRows tableStyle={{ minWidth: '50rem' }}>
+    //         <Column field="label" header="Label"></Column>
+    //         <Column field="values" header="Value"></Column>
+    //         <Column field="percentage" header="Percentage"></Column>
+    //         {/* <Column field="quantity" header="Quantity"></Column> */}
+    //     </DataTable>
 
-    </Card>
+    // </Card>
     );
   }
 export default HousingUnit

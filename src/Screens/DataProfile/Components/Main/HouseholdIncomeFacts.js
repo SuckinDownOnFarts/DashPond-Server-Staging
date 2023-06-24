@@ -5,7 +5,7 @@ import { Text } from '@mantine/core';
 import { bufferData } from '../../../../data/Data';
 import { useHHIncomeStyles } from './Styles/DPStyles';
 
-const HouseholdIncomeFacts = ({  }) => {
+const HouseholdIncomeFacts = ({ data }) => {
 
     const incomesPath = generatePath('/incomes');
 
@@ -191,20 +191,20 @@ const HouseholdIncomeFacts = ({  }) => {
     // }, [loading]);
 
 
-    const data = [
+    const cardData = [
         {
-          "title": "Page views",
-          "stats": "456,133",
+          "title": "Vacancy Rate",
+          "stats": data[0][0][6],
           "description": "24% more than in the same month last year, 33% more that two years ago"
         },
         {
-          "title": "New users",
-          "stats": "2,175",
+          "title": "Average Home Built Year",
+          "stats": data[0][0][7],
           "description": "13% less compared to last month, new user engagement up by 6%"
         },
         {
-          "title": "Completed orders",
-          "stats": "1,994",
+          "title": "Average Home Value",
+          "stats": ` $ ${data[0][0][8]}`,
           "description": "1994 orders were completed this month, 97% satisfaction rate"
         }
       ]
@@ -212,7 +212,7 @@ const HouseholdIncomeFacts = ({  }) => {
 
     const { classes } = useHHIncomeStyles();
 
-    const stats = data.map((stat) => (
+    const stats = cardData.map((stat) => (
       <div key={stat.title} className={classes.stat}>
         <Text className={classes.count}>{stat.stats}</Text>
         <Text className={classes.title}>{stat.title}</Text>

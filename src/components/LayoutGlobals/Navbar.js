@@ -1,4 +1,4 @@
-import { createStyles, Header, HoverCard, Group, Button, UnstyledButton, Text, SimpleGrid, ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, rem } from '@mantine/core';
+import { Header, HoverCard, Group, Button, UnstyledButton, Text, SimpleGrid, ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, rem } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import Logo from '../Globals/Logo';
 import { useDisclosure } from '@mantine/hooks';
@@ -16,12 +16,6 @@ import { navbarStyles } from './Styles/Styles';
     const { classes, theme } = navbarStyles();
     const { auth } = useAuth();
     const navigate = useNavigate();
-    const logout = useLogout();
-
-    const signout = async () => {
-      await logout();
-      navigate('/');
-  }
 
     const links = navbarFeatureList.map((item) => (
       <UnstyledButton className={classes.subLink} key={item.title}>
@@ -54,7 +48,7 @@ import { navbarStyles } from './Styles/Styles';
           
   
             <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-              <a href={`${BASE_URL}/documentation`} className={classes.link}>
+              <a href={`${BASE_URL}/documentation/home`} className={classes.link}>
                 Documentation
               </a>
               <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -72,7 +66,7 @@ import { navbarStyles } from './Styles/Styles';
                 <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
                   <Group position="apart" px="md">
                     <Text fw={500}>Features</Text>
-                    <Anchor href="#" fz="xs">
+                    <Anchor href={`${BASE_URL}/dashpond+features`} fz="xs">
                       View all
                     </Anchor>
                   </Group>
@@ -87,17 +81,17 @@ import { navbarStyles } from './Styles/Styles';
                     {links}
                   </SimpleGrid>
   
-                  <div className={classes.dropdownFooter}>
+                  <div className={auth.accessToken ? 'hidden' : classes.dropdownFooter} >
                     <Group position="apart">
                       <div>
                         <Text fw={500} fz="sm">
                           Get started
                         </Text>
                         <Text size="xs" color="dimmed">
-                          Their food sources have decreased, and their numbers
+                          Create an account and access our expanding product assortment 
                         </Text>
                       </div>
-                      <Button variant="default">Get started</Button>
+                      <Button variant="default" onClick={() => navigate('/register')}>Get started</Button>
                     </Group>
                   </div>
                 </HoverCard.Dropdown>
@@ -105,8 +99,8 @@ import { navbarStyles } from './Styles/Styles';
               <a href={`${BASE_URL}/pricing`} className={classes.link}>
                 Pricing
               </a>
-              <a href={`${BASE_URL}/create/address+input`} className={classes.link}>
-                Create Dash
+              <a href={`${BASE_URL}/products`} className={classes.link}>
+                Products
               </a>
               <a href={`${BASE_URL}/contact`} className={classes.link}>
                 Contact

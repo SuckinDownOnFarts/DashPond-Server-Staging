@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, generatePath } from 'react-router-dom';
 import DPSidebar from './DPSidebar';
-
-
 import api from '../../../api/axios';
+import useAuth from '../../../hooks/useAuth'
 
-import KeyFacts from '../Components/Main/KeyFacts';
+import KeyTrendsHeader from '../Components/Main/KeyTrendsHeaders';
 import IndustryFacts from '../Components/Main/IndustryFacts';
 import EducationFacts from '../Components/Main/EducationEmploymentFacts';
 import HouseholdIncomeFacts from '../Components/Main/HouseholdIncomeFacts';
+import CardProgress from '../Components/Main/CardProgress';
+import TableExample from '../Components/Main/TableExample';
+
 import GrowthRate from '../Components/Population/GrowthRate';
 import AgesBreakdown from '../Components/Population/AgesBreakdown';
 import AditionalAges from '../Components/Population/AdditionalAges';
@@ -27,6 +29,7 @@ import SexAgeTable from '../Components/Population/SexAgeTable';
 const Overview = () => {
 
   const { id } = useParams();
+  const { auth } = useAuth();
   const overviewPath = generatePath('/overview/:id', {
     id: id
   });
@@ -37,58 +40,53 @@ const Overview = () => {
 
   const tsPath = generatePath('/timeseries/:id', {
     id: id
-})
+  })
 
   const [data, setData] = useState([]); //Stays
-  const [pLoading, setPLoading] = useState(true); //Stays
+  const [demoDataLoading, setDemoDataLoading] = useState(true); //Stays
   const [address, setAddress] = useState(); //Stays
-  const [aLoading, setALoading ] = useState(true); //Stays
+  const [addressQueryLoading, setAddressQueryLoading] = useState(true); //Stays
   const [selectedView, setSelectedView] = useState('first');
   const [timeSeries, setTimeSeries] = useState([]);
   const [tLoading, setTLoading] = useState(true);
-  const [version, setVersion] = useState();
-  const [publicId, setPublicId] = useState();
-
-
 
   //Fetch the census data property results 
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
-          const response = await api.get(overviewPath);
-          setData(response.data);
-          setPLoading(false);
+        const response = await api.get(overviewPath);
+        setData(response.data);
+        setDemoDataLoading(false);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
           console.log(err.response.status);
-          console.log(err.response.headers); 
-        } else { 
+          console.log(err.response.headers);
+        } else {
           console.log(`Error: ${err.message}`)
         }
       }
     }
 
     fetchOverviewData();
-  }, [])
+  }, []);
+
+  console.log(data);
 
 
-  //Fetch property address  
+  //Query prop address table  
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-          const response = await api.get(addressPath);
-          console.log(response.data);
-          setAddress(response.data);
-          setPublicId(response.data[0].cloudinary_public_id);
-          setVersion(response.data[0].cloudinary_version);
-          setALoading(false);
+        const response = await api.get(addressPath);
+        setAddress(response.data);
+        setAddressQueryLoading(false);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
           console.log(err.response.status);
-          console.log(err.response.headers); 
-        } else { 
+          console.log(err.response.headers);
+        } else {
           console.log(`Error: ${err.message}`)
         }
       }
@@ -100,30 +98,35 @@ const Overview = () => {
   //Fetch Time series Data
   useEffect(() => {
     const queryTimeSeries = async () => {
-        try {
-            const response = await api.get(tsPath);
-            // console.log(response.data[0].length);
-            setTimeSeries(response.data);
-            setTLoading(false);
-        } catch (err) {
-            if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers); 
-            } else { 
-                console.log(`Error: ${err.message}`)
-            }
+      try {
+        const response = await api.get(tsPath);
+        // console.log(response.data[0].length);
+        setTimeSeries(response.data);
+        setTLoading(false);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`)
         }
+      }
     }
     queryTimeSeries()
-}, [])
+  }, [])
 
-  // !aLoading ? console.log(address[0].county) : console.log('gay');;
-  
 
   return (
     <main className='flex flex-row ml-[300px]'>
-      <DPSidebar />
+      {(!addressQueryLoading ? 
+        <DPSidebar
+          email={address[0].email}
+          firstName={address[0].first_name}
+          lastName={address[0].last_name}
+        /> 
+        : <DPSidebar />
+      )}
       {/* <div className='flex flex-row'>
         <div className=''>
           {!aLoading ? 
@@ -142,47 +145,64 @@ const Overview = () => {
           <Text>For a 3 Mile, 5 Mile, and 10 Mile Radius </Text> 
         </div>
       </div> */}
-      
 
-      {/* <Tabs defaultValue='first' onTabChange={(value) => setSelectedView(value)}>
-        <Tabs.List>
-          <Tabs.Tab value='first'>At a Glance</Tabs.Tab>
-          <Tabs.Tab value='second'>Population Insights</Tabs.Tab>
-          <Tabs.Tab value='third'>Income & Employment Insights</Tabs.Tab>
-          <Tabs.Tab value='fourth'>Housing Insights</Tabs.Tab>
-          <Tabs.Tab value='fifth'>Education Facts</Tabs.Tab>
-          {/* <Tab value={ 6 } text="Map Views" > 
-        </Tabs.List>
-      </Tabs> */}
+
 
       
-        {/* <> */}
-          <div className='flex flex-col w-full'>
-            <KeyFacts 
-              // data={data}
-              setSelectedView={setSelectedView} />
-
-            <EducationFacts 
-              // data={data}
-              setSelectedView={setSelectedView}
+      <div className='flex flex-col w-full mb-4'>
+        {!demoDataLoading ?
+        <div>
+          <div> 
+            <KeyTrendsHeader
+              data={data}
             />
-
-            <HouseholdIncomeFacts
-              // county={address[0].county}
-              setSelectedView={setSelectedView}
-            />
-            
-            <div className='flex flex-row '>
-              <IndustryFacts 
-                data={data}
-                setSelectedView={setSelectedView}
-              /> 
-              <IndustryFacts 
-                data={data}
-                setSelectedView={setSelectedView}
-              /> 
-            </div>
           </div>
+          <div>
+            <EducationFacts
+              data={data}
+            />
+          </div>
+          <div className='flex flex-row space-x-4 mx-4 mt-4'>
+            <IndustryFacts
+              data={data}
+            />
+            <IndustryFacts
+              data={data}
+            />
+          </div>
+          <div>
+            <HouseholdIncomeFacts
+              data={data}
+            />
+          </div>
+          <div className='mx-4'>
+            <TableExample 
+              data={data}
+            />
+          </div>
+        </div>
+        : <></> }
+
+
+
+
+
+        {/* <div className='flex flex-row space-x-4 mx-4 '>
+          <IndustryFacts
+            data={data}
+            setSelectedView={setSelectedView}
+          />
+          <IndustryFacts
+            data={data}
+            setSelectedView={setSelectedView}
+          />
+        </div> */}
+        {/* <div className='flex flex-row space-x-4 mx-4 mt-2'>
+          <CardProgress />
+          <CardProgress />
+          <CardProgress />
+        </div> */}
+      </div>
       {/* { selectedView === 'first' ? (
           {!pLoading ? 
             <EducationFacts 
@@ -217,7 +237,7 @@ const Overview = () => {
               data={data}
             /> : <></>} */}
 
-           {/* {!pLoading && !tLoading ? 
+      {/* {!pLoading && !tLoading ? 
             <GrowthRate 
               data={data}
               timeData={timeSeries}
@@ -235,7 +255,7 @@ const Overview = () => {
               timeData={timeSeries}
             /> : <></>} */}
 
-          {/* {!pLoading && !tLoading ? 
+      {/* {!pLoading && !tLoading ? 
             <AgesBreakdown 
               data={data}
               timeData={timeSeries}
@@ -244,7 +264,7 @@ const Overview = () => {
 
 
            */}
-        {/* </>
+      {/* </>
       ) : selectedView === 'third' ? (
         <>
           {!pLoading && !tLoading ? 

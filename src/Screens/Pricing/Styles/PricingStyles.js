@@ -15,5 +15,12 @@ export const pricingStyles = createStyles((theme) => ({
         borderRadius: '0.25rem',
         width: '20%',
         display: 'flex'
+    },
+    button: {
+        marginTop: 32
+    },
+
+    text: {
+        fontFamily: 'Verdana, sans-serif',
     }
 }))

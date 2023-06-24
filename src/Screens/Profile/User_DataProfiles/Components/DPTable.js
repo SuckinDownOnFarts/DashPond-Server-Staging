@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 import { Box, Button, Menu, Text, Title } from '@mantine/core';
-import { DatePickerInput } from '@mantine/dates';
+// import { DatePickerInput } from '@mantine/dates';
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
 import { tableData } from '../../../../data/Data';
 
@@ -74,14 +74,15 @@ const Example = ({ userDPData }) => {
                         Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(),
                         Header: ({ column }) => <em>{column.columnDef.header}</em>,
                         Filter: ({ column }) => (
-                            <DatePickerInput
-                                placeholder="Filter by Start Date"
-                                onChange={(newValue) => {
-                                    column.setFilterValue(newValue);
-                                }}
-                                value={column.getFilterValue()}
-                                modalProps={{ withinPortal: true }}
-                            />
+                            // <DatePickerInput
+                            //     placeholder="Filter by Start Date"
+                            //     onChange={(newValue) => {
+                            //         column.setFilterValue(newValue);
+                            //     }}
+                            //     value={column.getFilterValue()}
+                            //     modalProps={{ withinPortal: true }}
+                            // />
+                            <div>this part is broken</div>
                         ),
                     },
                 ],

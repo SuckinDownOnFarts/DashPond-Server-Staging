@@ -90,14 +90,6 @@ function App() {
             <Route path='integrations' element={<DocumentationIntegrations />} />
             <Route path='releases' element={<DocumentationReleases />} />
             <Route path='support' element={<DocumentationSupport />} />
-          </Route>  
-
-          {/*********************** PRICING ******************************/}
-          <Route path='pricing' element={<Pricing />} />
-
-          <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
-            <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
-            <Route path='getstarted/:plan/checkout' element={<Checkout />} />
           </Route>
 
           {/*********************** PRODUCTS ******************************/}
@@ -121,6 +113,14 @@ function App() {
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='already+logged+in' element={<AlreadyLoggedIn />} />
+        </Route>
+
+        {/*********************** PRICING ******************************/}
+        <Route path='pricing' element={<Pricing />} />
+
+        <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
+          <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
+          <Route path='getstarted/:plan/checkout' element={<Checkout />} />
         </Route>
       </Route>
     </Routes>

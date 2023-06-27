@@ -51,8 +51,8 @@ const PricingPlan = () => {
     });
 
   return (
-    <div className='flex'>
-        <div className='w-[512px] p-16 float-left h-screen md:overflow-hidden  bg-white'>
+    <div className='flex h-screen '>
+        <div className='w-[512px] p-16 float-left md:overflow-hidden  bg-white'>
 
             {/* Logo */}
             <div className='flex items-center'>
@@ -64,7 +64,7 @@ const PricingPlan = () => {
             </div>
 
             {/*********************************************HEADERS ************************************************************/}
-            <div className='grid grid-cols-1 mt-8 min-h-[calc(100%-60px)] content-between'>
+            <div className='grid grid-cols-1 mt-8 content-between'>
                 <div>
                     <Title className=' tracking-tight text-gray-800 font-bold'>
                         Confirm Plan
@@ -96,7 +96,7 @@ const PricingPlan = () => {
         </div>
 
         {/********************************************* OTHERSIDE ************************************************************/}
-        <div className='flex flex-col h-screen w-[calc(100%-512px)] float-right bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))]
+        <div className='flex flex-col w-[calc(100%-512px)] float-right bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))]
         from-green-300 via-blue-500 to-purple-600 p-24 text-white'>
 
             <div className='w-[512px]'>

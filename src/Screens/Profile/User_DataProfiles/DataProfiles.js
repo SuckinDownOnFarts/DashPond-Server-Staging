@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { generatePath, useNavigate, useOutletContext } from 'react-router-dom';
 import api from '../../../api/axios'
 import useAuth from '../../../hooks/useAuth';
-import { Avatar, Badge, Table, Group, Text, Select, ScrollArea } from '@mantine/core';
-import Example from './Components/DPTable';
+import DPTable from './Components/DPTable';
 
 const rolesData = ['Active', 'Sold', 'Hidden'];
 
@@ -12,37 +11,40 @@ const DataProfiles = ({}) => {
   const { auth } = useAuth(); 
   setActive(2);
 
-  const [profiles, setProfiles] = useState([]);
+  const [profiles, setProfiles] = useState(null);
 
   const fetchProfilePath = generatePath('/fetchdataprofiles/:id', {
     id: auth.id
   });
 
   useEffect(() => {
-      const fetchProfiles = async () => {
-        try {
-          const response = await api.get(fetchProfilePath);
-          setProfiles(response.data);
-        } catch (err) {
-          if (err.response) {
-            console.log(err.response.data);
-            console.log(err.response.status);
-            console.log(err.response.headers); 
-          } else { 
-            console.log(`Error: ${err.message}`)
-          }
+    const fetchProfiles = async () => {
+      try {
+        const response = await api.get(fetchProfilePath);
+        setProfiles(response.data);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers); 
+        } else { 
+          console.log(`Error: ${err.message}`)
         }
       }
-  
-      fetchProfiles();
-    }, []);
+    }
+
+    fetchProfiles();
+  }, []);
+
+  // profiles ? console.log(profiles) : console.log('loading profiles');
 
 
   return (
     <div className='m-8'>
-      <Example 
-        userDPData={profiles}
-      />
+      {!profiles ? <></> :
+      <DPTable 
+        data={profiles}
+      />}
     </div>
   )
 }

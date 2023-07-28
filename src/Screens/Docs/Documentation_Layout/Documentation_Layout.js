@@ -10,7 +10,7 @@ const DocsLayout = () => {
       </div>
 
 
-      <div className='w-2/3 ml-[300px]'>
+      <div className='w-2/3'>
         <Outlet />
       </div>
 

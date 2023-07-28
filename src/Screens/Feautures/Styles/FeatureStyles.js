@@ -12,7 +12,7 @@ export const useFeatureHeaderStyles = createStyles((theme) => ({
   title: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontSize: rem(36),
-    fontWeight: 900,
+    fontWeight: 800,
     lineHeight: 1.1,
     marginBottom: theme.spacing.md,
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
@@ -67,7 +67,7 @@ export const useHeroSectionStyles = createStyles((theme) => ({
   },
 
   highlight: {
-    color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6],
+    color: theme.colorScheme === 'dark' ? theme.colors.orange[7] : 'pink',
   },
 
   description: {
@@ -119,6 +119,7 @@ export const useSecondSectionStyles = createStyles((theme) => ({
     fontWeight: 900,
     marginBottom: theme.spacing.md,
     textAlign: 'center',
+    color: theme.colorScheme === 'dark' ? 'white' : theme.dark,
 
     [theme.fn.smallerThan('sm')]: {
       fontSize: rem(28),
@@ -143,6 +144,10 @@ export const useThirdSectionStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('sm')]: {
       fontSize: rem(24),
     },
+  },
+
+  root: {
+    color: theme.colorScheme === 'dark' ? 'orange' : 'pink'
   },
 
   description: {
@@ -184,7 +189,7 @@ export const useFooterStyles = createStyles((theme) => ({
     marginTop: rem(120),
     paddingTop: `calc(${theme.spacing.xl} * 2)`,
     paddingBottom: `calc(${theme.spacing.xl} * 2)`,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
@@ -249,7 +254,7 @@ export const useFooterStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: `calc(${theme.spacing.xs} / 2)`,
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    // color: theme.colorScheme === 'dark' ? theme.white : theme.black,
   },
 
   afterFooter: {

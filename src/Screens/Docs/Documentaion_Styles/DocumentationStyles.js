@@ -4,9 +4,9 @@ const CARD_PROGRESS_ICON_SIZE = rem(60);
 
 export const useDocumentationNavbarStyles = createStyles((theme) => ({
     navbar: {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
       paddingBottom: 0,
-      position: 'fixed',
+      position: 'sticky',
     },
   
     header: {

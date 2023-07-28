@@ -24,7 +24,7 @@ const Home = () => {
           console.log(err.response.status);
           console.log(err.response.headers); 
         } else { 
-          console.log(`Error: ${err.message}`)
+          console.log(`Error: ${err.stack}`)
         }
       }
     }

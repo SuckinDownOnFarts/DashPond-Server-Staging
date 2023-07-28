@@ -3,9 +3,10 @@ import { useSecondSectionStyles } from '../Styles/FeatureStyles';
 import { secondFeatureSectionData as data }  from '../../../data/Data';
 
 export function Feature({ icon: Icon, title, description }) {
+  const { classes, theme } = useSecondSectionStyles();
   return (
     <div>
-      <ThemeIcon variant="light" size={40} radius={40}>
+      <ThemeIcon variant="gradient" gradient={{ from: 'yellow', to: 'orange' }} size={40} radius={40}>
         <Icon size="1.1rem" stroke={1.5} />
       </ThemeIcon>
       <Text mt="sm" mb={7}>

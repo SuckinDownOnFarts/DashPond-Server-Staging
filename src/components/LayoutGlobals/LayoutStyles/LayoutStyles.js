@@ -4,21 +4,28 @@ import { createStyles, rem } from "@mantine/core";
 export const useStylesAvatar = createStyles((theme) => ({
     user: {
       color: 'linear-gradient(to botton, #ed6ea0, #ec8c69)',
-      padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
+      // padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
       borderRadius: theme.radius.sm,
       transition: 'background-color 100ms ease',
+      padding: '0',
+      paddingLeft: '1.125rem',
+      paddingRight: '1.125rem',
   
-      '&:hover': {
-        backgroundColor: theme.fn.lighten(
-          theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
-          0.1
-        ),
-      },
+      // '&:hover': {
+      //   backgroundColor: theme.fn.lighten(
+      //     theme.fn.variant({ variant: 'filled', color: 'dark' }).background,
+      //     0.1
+      //   ),
+      // },
   
       [theme.fn.smallerThan('xs')]: {
         display: 'none',
       },
     },
+
+    // root: {
+    //   padding: '0'
+    // },
   
     burger: {
       [theme.fn.largerThan('xs')]: {
@@ -28,7 +35,7 @@ export const useStylesAvatar = createStyles((theme) => ({
   
     userActive: {
       backgroundColor: theme.fn.lighten(
-        theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
+        theme.fn.variant({ variant: 'filled', color: 'dark' }).background,
         0.1
       ),
     },
@@ -75,7 +82,7 @@ export const navbarStyles = createStyles((theme) => ({
     paddingLeft: theme.spacing.md,
     paddingRight: theme.spacing.md,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    color: theme.colorScheme === 'dark' ? theme.colors.gray[6] : theme.black,
     fontWeight: 500,
     fontSize: theme.fontSizes.sm,
 
@@ -126,3 +133,12 @@ export const navbarStyles = createStyles((theme) => ({
     },
   },
 }));
+
+export const useLayoutStyles = createStyles((theme) => ({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[6]
+  }
+}))

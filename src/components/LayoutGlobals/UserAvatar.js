@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Tabs, Container, Button, Group, Text, Menu, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconLogout, IconHeart, IconStar, IconMessage, IconSettings, IconPlayerPause, IconTrash, IconSwitchHorizontal, IconChevronDown } from '@tabler/icons-react';
+import { IconLogout, IconHeart, IconStar, IconSettings, IconSwitchHorizontal, IconChevronDown } from '@tabler/icons-react';
 import LogoutModal from './LogoutModal';
-import { useStylesAvatar } from './Styles/Styles';
+import { useStylesAvatar } from './LayoutStyles/LayoutStyles';
 
 
-const UserAvatar = ({ user, tabs }) => {
+const UserAvatar = ({ user }) => {
     const { classes, theme, cx } = useStylesAvatar();
     const [openLogout, { open, close }] = useDisclosure(false);
     const [userMenuOpened, setUserMenuOpened] = useState(false);
@@ -26,15 +26,15 @@ const UserAvatar = ({ user, tabs }) => {
             <Menu.Target>
               <Button
                 className={cx(classes.user, { [classes.userActive]: userMenuOpened })} 
-                variant='gradient'
-                gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}
+                variant='outline'
+                color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'}
               >
                 <Group spacing={7}>
                    <Avatar src={!user.image ? '/images/office1.jpg' : user.image} alt={user.email} radius="xl" size={20} />
-                  <Text weight={500} size="sm" sx={{ lineHeight: 1, color: theme.white }} mr={3}>
+                  <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
                     {user.email}
                   </Text>
-                  <IconChevronDown size={rem(12)} stroke={1.5} />
+                  <IconChevronDown size={rem(12)} stroke={1.5} color={theme.colorScheme === 'dark' ? theme.colors.orange[5] : theme.colors.pink[3]} />
                 </Group>
               </Button>
             </Menu.Target>

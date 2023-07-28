@@ -1,11 +1,15 @@
 import Navbar from './Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
+import { useLayoutStyles as useStyles } from './LayoutStyles/LayoutStyles';
 
 const Layout = () => {
   const location = useLocation();
+  const { classes, theme } = useStyles();
+
+  console.log(theme.colorScheme);
 
   return (
-    <div className='flex flex-col flex-container min-h-screen bg-gradient-to-br from-slate-50 to-gray-200'>
+    <div className={classes.main}>
       {location.pathname.includes('getstarted') ? <></> : 
         <Navbar />
       }
@@ -18,3 +22,5 @@ const Layout = () => {
 }
 
 export default Layout
+
+// flex flex-col min-h-screen bg-gradient-to-br from-slate-50 to-gray-200

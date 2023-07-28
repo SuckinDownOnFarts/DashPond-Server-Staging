@@ -38,13 +38,13 @@ const ProfileLayout = () => {
 
   return (
     <div className='flex flex-row'>
-        <div className='fixed flex flex-col bg-white z-50'>
+        <div className='fixed flex flex-col z-50'>
             <Sidebar 
                 active={active}
                 setActive={setActive}
             />
         </div>
-        <div className='bg-slate-100 ml-[80px] min-h-[calc(100vh-60px)] w-[calc(100%-80px)]'>
+        <div className='ml-[80px] min-h-[calc(100vh-60px)] w-[calc(100%-80px)]'>
             {/* {!loading ?  */}
             <Outlet context={{ setActive }} />
             {/* : <></>} */}

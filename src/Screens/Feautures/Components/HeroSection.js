@@ -3,7 +3,7 @@ import Dots from './Dots';
 import { useHeroSectionStyles as useStyles } from '../Styles/FeatureStyles';
 
 const HeroSection = () => {
-  const { classes } = useStyles();
+  const { classes, theme } = useStyles();
 
   return (
     <Container className={classes.wrapper} size={1700}>
@@ -31,10 +31,10 @@ const HeroSection = () => {
         </Container>
 
         <div className={classes.controls}>
-          <Button className={classes.control} size="lg" variant="default" color="gray">
+          <Button className={classes.control} size="lg" variant="default" color="dark">
             View Documentation
           </Button>
-          <Button className={classes.control} size="lg">
+          <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'}>
             Get in touch 
           </Button>
         </div>

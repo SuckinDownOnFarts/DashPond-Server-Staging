@@ -6,7 +6,7 @@ import { features } from '../../../data/Data';
 
 
 const Header = () => {
-    const { classes } = useFeatureHeaderStyles();
+    const { classes, theme } = useFeatureHeaderStyles();
     const navigate = useNavigate();
 
     const items = features.map((feature) => (
@@ -15,7 +15,7 @@ const Header = () => {
           size={44}
           radius="md"
           variant="gradient"
-          gradient={{ deg: 133, from: 'blue', to: 'cyan' }}
+          gradient={{ deg: 133, from: 'yellow', to: 'orange' }}
         >
           <feature.icon size={rem(26)} stroke={1.5} />
         </ThemeIcon>
@@ -43,8 +43,8 @@ const Header = () => {
                 </Text>
     
                 <Button
-                    variant="gradient"
-                    gradient={{ deg: 133, from: 'blue', to: 'cyan' }}
+                    variant="outline"
+                    color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'}
                     size="lg"
                     radius="md"
                     mt="xl"

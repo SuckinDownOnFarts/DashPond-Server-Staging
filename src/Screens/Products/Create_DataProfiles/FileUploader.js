@@ -1,43 +1,54 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import { Text, Group, Button, rem, LoadingOverlay } from '@mantine/core';
+import { Text, Group, Button, rem, SimpleGrid, LoadingOverlay, Image } from '@mantine/core';
 
-import { Dropzone, MIME_TYPES } from '@mantine/dropzone';
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { IconCloudUpload, IconX, IconDownload } from '@tabler/icons-react';
 import { useFileUploadStyles } from './Styles/CreateDashStyles';
 
 
 const FileUploader = () => {
-    const { setActive, position, setImage, submitForm, visible } = useOutletContext();
+  const { setActive, position, image, setImage, submitForm, visible } = useOutletContext();
 
-    const navigate = useNavigate();
-    setActive(2);
+  const navigate = useNavigate();
+  setActive(2);
 
-    const { classes, theme } = useFileUploadStyles();
-    const openRef = useRef(null);
-    
-    const back = () => {
-        navigate('/products/create/address+input/map+confirmation')
+  const { classes, theme } = useFileUploadStyles();
+  const openRef = useRef(null);
+
+  const back = () => {
+    navigate('/products/create/address+input/map+confirmation')
+  };
+
+  useEffect(() => {
+    const redirectIfPointDataEmpty = () => {
+      if (!position) {
+        navigate('/products/create/address+input')
+      }
+    }
+    redirectIfPointDataEmpty()
+  }, []) //Redirect backwards if previous step is not complete 
+
+  const createDashImageUpload = (files) => {
+    const [file] = files;
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      console.log(e.target.result);
+      setImage(e.target.result);
     };
+    fileReader.readAsDataURL(file)
+  };
 
-    useEffect(() => {
-        const redirectIfPointDataEmpty = () => {
-          if (!position) {
-            navigate('/products/create/address+input')
-          }
-        }
-        redirectIfPointDataEmpty()
-    }, [])
-
-    const createDashImageUpload = (files) => {
-      const [file] = files;
-      const fileReader = new FileReader();
-      fileReader.onload = (e) => {
-          console.log(e.target.result);
-          setImage(e.target.result);
-      };
-      fileReader.readAsDataURL(file)
-  }
+  const previews = image.map((file, index) => {
+    const imageUrl = URL.createObjectURL(file);
+    return (
+      <Image
+        key={index}
+        src={imageUrl}
+        imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
+      />
+    );
+  });
 
   return (
     <div className='mt-16 w-[100%] h-[75%] '>
@@ -46,12 +57,12 @@ const FileUploader = () => {
         <Dropzone
           openRef={openRef}
           onDrop={(files) => {
-            console.log(files);
+            // console.log(files);
             createDashImageUpload(files)
           }}
           className={classes.dropzone}
           radius="md"
-          accept={[MIME_TYPES.jpeg, MIME_TYPES.png]}
+          accept={IMAGE_MIME_TYPE}
           maxSize={30 * 1024 ** 2}
         >
           <div style={{ pointerEvents: 'none' }}>
@@ -74,7 +85,7 @@ const FileUploader = () => {
                 />
               </Dropzone.Idle>
             </Group>
-  
+
             <Text ta="center" fw={700} fz="lg" mt="xl">
               <Dropzone.Accept>Drop files here</Dropzone.Accept>
               <Dropzone.Reject>Pdf file less than 30mb</Dropzone.Reject>
@@ -86,7 +97,15 @@ const FileUploader = () => {
             </Text>
           </div>
         </Dropzone>
-  
+
+        <SimpleGrid
+          cols={4}
+          breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
+          mt={previews.length > 0 ? 'xl' : 0}
+        >
+          {previews}
+        </SimpleGrid>
+
         <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current?.()}>
           Select files
         </Button>

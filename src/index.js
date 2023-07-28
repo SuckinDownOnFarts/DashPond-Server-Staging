@@ -10,16 +10,29 @@ import './index.css';
 
 if (process.env.NODE_ENV === 'production') disableReactDevTools();
 
+let dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<AuthProvider>
-  <MantineProvider>  
-    <Router>
-      <Routes>
+  <AuthProvider>
+    <MantineProvider
+      theme={{
+        colorScheme: dark ? 'dark' : 'light',
+        // colors: {
+        //   'orange': ['#fc6400']
+        // }
+        primaryColor: dark ? 'orange' : 'pink'
+      }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      <Router>
+        <Routes>
           <Route path="/*" element={<App />} />
-      </Routes>
-    </Router>
-  </MantineProvider>
-</AuthProvider>
+        </Routes>
+      </Router>
+    </MantineProvider>
+  </AuthProvider>
 );
 

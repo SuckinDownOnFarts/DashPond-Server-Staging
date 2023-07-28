@@ -3,7 +3,7 @@ import { createStyles, rem } from "@mantine/core";
 
 export const useDPSidebarStyles = createStyles((theme) => ({
     navbar: {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
       // paddingTop: rem(16),
       paddingLeft: rem(16),
       paddingRight: rem(16),

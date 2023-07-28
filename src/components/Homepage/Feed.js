@@ -6,66 +6,72 @@ import { useFeedStyles } from './Styles/FeedStyles';
 
 
 const mockdata = [
-  { label: 'Total Population: ', icon: IconUsers },
-  { label: 'Median Age:', icon: IconGauge },
-  { label: 'Household Size:', icon: IconManualGearbox },
-  { label: 'Median Household Income:', icon: IconGasStation },
+    { label: 'Total Population: ', icon: IconUsers },
+    { label: 'Median Age:', icon: IconGauge },
+    { label: 'Household Size:', icon: IconManualGearbox },
+    { label: 'Median Household Income:', icon: IconGasStation },
 ];
 
-const Feed = ({posts}) => {
-  const { classes } = useFeedStyles();
-  const navigate = useNavigate();
+const Feed = ({ posts }) => {
+    const { classes, theme } = useFeedStyles();
+    const navigate = useNavigate();
 
-  const features = mockdata.map((feature) => (
-    <Center key={feature.label}>
-      <feature.icon size="1.05rem" className={classes.icon} stroke={1.5} />
-      <Text size="xs">{feature.label}</Text>
-    </Center>
-  ));
+    const features = mockdata.map((feature) => (
+        <Center key={feature.label}>
+            <feature.icon size="1.05rem" className={classes.icon} stroke={1.5} />
+            <Text size="xs">{feature.label}</Text>
+        </Center>
+    ));
 
-  return (
-    <div className='items-center p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-5 auto-rows-fr'>
-      {posts.map(post => (
-        <Card withBorder radius="md" className={classes.card} shadow="sm">
-          <Card.Section className={classes.imageSection}>
-            <Image 
-              src={`https://res.cloudinary.com/djlalgsmk/image/upload/v${post.cloudinary_version}/${post.cloudinary_public_id}`} 
-              alt="Tesla Model S" 
-              height={180}
-              width={320}
-            />
-          </Card.Section>
+    return (
+        <div className='items-center p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 auto-rows-fr'>
+            {posts.map(post => (
+                <Card withBorder radius="md" className={classes.card} shadow="sm">
+                    <Card.Section className={classes.imageSection}>
+                        <Image
+                            src={`https://res.cloudinary.com/djlalgsmk/image/upload/v${post.cloudinary_version}/${post.cloudinary_public_id}`}
+                            alt="Tesla Model S"
+                            height={180}
+                        // width={320}
+                        />
+                    </Card.Section>
 
-          <Group position="apart" mt="md">
-            <div>
-              <Text tt="capitalize" fw={600}>{post.address.substring(0, post.address.indexOf(","))}</Text>
-              <Text fz="xs" c="dimmed" tt="capitalize">
-                {`${post.address.split(",")[1]}, ${post.address.split(",")[2]}, ${post.address.split(",")[3]}`} {/*//FIX THIS LATER PLEASE */}
-              </Text>
-            </div>
-          </Group>
+                    <Group position="apart" mt="md">
+                        <div>
+                            <Text tt="capitalize" fw={600}>{post.address.substring(0, post.address.indexOf(","))}</Text>
+                            <Text fz="xs" c="dimmed" tt="capitalize">
+                                {`${post.address.split(",")[1]}, ${post.address.split(",")[2]}, ${post.address.split(",")[3]}`} {/*//FIX THIS LATER PLEASE */}
+                            </Text>
+                        </div>
+                    </Group>
 
-          <Card.Section className={classes.section} mt="md">
-            <Text fz="sm" c="dimmed" className={classes.label}>
-              5 Mile Key Demographics
-            </Text>
+                    <Card.Section className={classes.section} mt="md">
+                        <Text fz="sm" c="dimmed" className={classes.label}>
+                            5 Mile Key Demographics
+                        </Text>
 
-            <Group spacing={8} mb={-8}>
-              {features}
-            </Group>
-          </Card.Section>
+                        <Group spacing={8} mb={-8}>
+                            {features}
+                        </Group>
+                    </Card.Section>
 
-          <Card.Section className={classes.section}>
-            <Group spacing={30}>
-              <Button onClick={() => navigate(`/dataprofile/${post.id}/overview`)} radius="xl" style={{ flex: 1 }}>
-                View Details
-              </Button>
-            </Group>
-          </Card.Section>
-        </Card>
-      ))}
-    </div>
-  );
+                    <Card.Section className={classes.section}>
+                        <Group spacing={30}>
+                            <Button 
+                                onClick={() => navigate(`/dataprofile/${post.id}/overview`)} 
+                                radius="xl" 
+                                style={{ flex: 1 }}
+                                variant='outline'
+                                color={theme.colorScheme === 'dark' ? 'orange' : 'pink'}
+                            >
+                                View Details
+                            </Button>
+                        </Group>
+                    </Card.Section>
+                </Card>
+            ))}
+        </div>
+    );
 }
 //     <div className='items-center p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-5 auto-rows-fr'>
 

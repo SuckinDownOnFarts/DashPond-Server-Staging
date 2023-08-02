@@ -1,9 +1,9 @@
-import { ThemeIcon, Text, Title, Container, SimpleGrid, createStyles, rem } from '@mantine/core';
+import { ThemeIcon, Text, Title, Container, SimpleGrid } from '@mantine/core';
 import { useSecondSectionStyles } from '../Styles/FeatureStyles';
 import { secondFeatureSectionData as data }  from '../../../data/Data';
 
 export function Feature({ icon: Icon, title, description }) {
-  const { classes, theme } = useSecondSectionStyles();
+  // const { classes, theme } = useSecondSectionStyles();
   return (
     <div>
       <ThemeIcon variant="gradient" gradient={{ from: 'yellow', to: 'orange' }} size={40} radius={40}>
@@ -20,7 +20,7 @@ export function Feature({ icon: Icon, title, description }) {
 }
 
 
-const SecondFeatureSection = ({ title, description }) => {
+const SecondFeatureSection = ({ description }) => {
   const { classes } = useSecondSectionStyles();
   const features = data.map((feature, index) => <Feature {...feature} key={index} />);
 

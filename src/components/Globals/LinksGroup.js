@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton } from '@mantine/core';
-import { IconCalendarStats, IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import { useLinksGroupStyles } from '../../Screens/DataProfile/Layout/Styles/DPLayoutStyles';
 
 
@@ -27,7 +27,7 @@ const LinksGroup = ({ icon: Icon, label, initiallyOpened, links }) => {
         <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
           <Group position="apart" spacing={0}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <ThemeIcon variant="light" size={30}>
+              <ThemeIcon color={theme.colorScheme === 'dark' ? 'orange.7': 'pink'} size={30}>
                 <Icon size="1.1rem" />
               </ThemeIcon>
               <Box ml="md">{label}</Box>

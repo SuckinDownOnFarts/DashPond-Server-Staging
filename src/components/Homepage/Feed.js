@@ -38,15 +38,15 @@ const Feed = ({ posts }) => {
 
                     <Group position="apart" mt="md">
                         <div>
-                            <Text tt="capitalize" fw={600}>{post.address.substring(0, post.address.indexOf(","))}</Text>
-                            <Text fz="xs" c="dimmed" tt="capitalize">
+                            <Text tt="capitalize" fw={600} c='white'>{post.address.substring(0, post.address.indexOf(","))}</Text>
+                            <Text fz="xs" c="white" tt="capitalize">
                                 {`${post.address.split(",")[1]}, ${post.address.split(",")[2]}, ${post.address.split(",")[3]}`} {/*//FIX THIS LATER PLEASE */}
                             </Text>
                         </div>
                     </Group>
 
                     <Card.Section className={classes.section} mt="md">
-                        <Text fz="sm" c="dimmed" className={classes.label}>
+                        <Text fz="sm" c="white" className={classes.label}>
                             5 Mile Key Demographics
                         </Text>
 
@@ -62,7 +62,7 @@ const Feed = ({ posts }) => {
                                 radius="xl" 
                                 style={{ flex: 1 }}
                                 variant='outline'
-                                color={theme.colorScheme === 'dark' ? 'orange' : 'pink'}
+                                color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'}
                             >
                                 View Details
                             </Button>

@@ -1,6 +1,5 @@
 import { Navbar, Group, Code, ScrollArea } from '@mantine/core';
 import { IconPlayerPlay, IconFileAnalytics, IconCircleDashed, IconHome2, IconBusinessplan, IconHelp, IconVersions } from '@tabler/icons-react';
-import UserButton from '../../../components/Globals/UserButton';
 import LinksGroup from '../../../components/Globals/LinksGroup';
 import { useDocumentationNavbarStyles as useStyles } from '../Documentaion_Styles/DocumentationStyles';
 // import { Logo } from './Logo';

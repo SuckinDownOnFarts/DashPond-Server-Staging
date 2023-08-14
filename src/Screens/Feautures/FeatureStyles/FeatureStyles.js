@@ -11,7 +11,7 @@ export const useFeatureHeaderStyles = createStyles((theme) => ({
 
   title: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontSize: rem(36),
+    fontSize: rem(46),
     fontWeight: 800,
     lineHeight: 1.1,
     marginBottom: theme.spacing.md,
@@ -22,9 +22,15 @@ export const useFeatureHeaderStyles = createStyles((theme) => ({
 export const useHeroSectionStyles = createStyles((theme) => ({
   wrapper: {
     position: 'relative',
+    display: 'flex',
     paddingTop: rem(120),
     paddingBottom: rem(80),
     width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    placeItems: 'center',
+    justifyItems: 'center',
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7],
 
     [theme.fn.smallerThan('sm')]: {
       paddingTop: rem(80),
@@ -34,6 +40,9 @@ export const useHeroSectionStyles = createStyles((theme) => ({
 
   inner: {
     position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+
     zIndex: 1,
   },
 
@@ -134,6 +143,11 @@ export const useSecondSectionStyles = createStyles((theme) => ({
       textAlign: 'left',
     },
   },
+
+  emblaSlide : {
+    flex: '0 0 100%',
+    minWidth: 0,
+  }
 }));
 
 export const useThirdSectionStyles = createStyles((theme) => ({

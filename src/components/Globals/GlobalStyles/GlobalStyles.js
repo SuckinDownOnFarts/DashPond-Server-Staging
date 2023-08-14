@@ -12,3 +12,7 @@ export const useUserButtonStyles = createStyles((theme) => ({
     },
   },
 }));
+
+export const logoStyles = createStyles((theme) => ({
+
+}));

@@ -1,24 +1,20 @@
-import Navbar from './Navbar';
+import Navbar from './Navbar/Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useLayoutStyles as useStyles } from './LayoutStyles/LayoutStyles';
 
 const Layout = () => {
-  const location = useLocation();
-  const { classes, theme } = useStyles();
+    const location = useLocation();
+    const { classes, theme } = useStyles();
 
-  console.log(theme.colorScheme);
+    return (
+        <div className={classes.main}>
+            <Navbar />
 
-  return (
-    <div className={classes.main}>
-      {location.pathname.includes('getstarted') ? <></> : 
-        <Navbar />
-      }
-
-      <div className='min-h-[calc(100vh-60px)]'>
-        <Outlet />
-      </div>
-    </div>
-  )
+            <div className='min-h-[calc(100vh-60px)]'>
+                <Outlet />
+            </div>
+        </div>
+    )
 }
 
 export default Layout

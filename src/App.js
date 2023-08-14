@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 /////////////////////////////////////////////**************LAYOUT*************///////////////////////////////////////////////////////////
 import Layout from './components/LayoutGlobals/Layout';
 /////////////////////////////////////////////**************SCREENS*************///////////////////////////////////////////////////////////
@@ -47,84 +49,128 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 const ROLES = {
-  'User': 10,
-  'Customer': 12,
-  'Admin': 11
+    'User': 10,
+    'Customer': 12,
+    'Admin': 11
 };
 
 function App() {
-  return (
-    <Routes>
-      <Route element={<PersistLogin />}>
+    const [colorScheme, setColorScheme] = useState(localStorage.getItem('colorScheme'));
+    const toggleColorScheme = () => setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
 
-        <Route path='/' element={<Layout />}>
-          <Route index element={<Home />} /> {/* Homepage Route */}
+    useEffect(() => {
+        const getColorScheme = () => {
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches && localStorage.getItem('colorScheme') === 'dark') {
+                setColorScheme('dark')
+            } else {
+                setColorScheme('light')
+            }
+        }
+        getColorScheme()
+    }, [])
+
+    useEffect(() => {
+        const setColorScheme = () => {
+            if (colorScheme === 'dark') {
+                localStorage.setItem("colorScheme", "dark");
+            } 
+            if (colorScheme === 'light') {
+                localStorage.setItem("colorScheme", "light");
+            }
+        }
+        setColorScheme()
+    }, [toggleColorScheme])
 
 
-          {/*********************** USER PROFILES ******************************/}
-          <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />}>
-            <Route element={<RequireProfileAuth />}>
-              <Route path='profile/:id' element={<ProfileLayout />}>
-                <Route path='info' element={<Info />} />
-                <Route path='insights' element={<Insights />} />
-                <Route path='billing+plan' element={<ProfilePlan />} />
-                <Route path='data+profiles' element={<DataProfiles />} />
-              </Route>
-            </Route>
-          </Route>
 
-          {/*********************** DEMOGRAPHIC PROFILES ******************************/}
-          <Route path='/dataprofile/:id' element={<DPLayout />}> {/* Dashboards */}
-            <Route path='overview' index element={<Overview />} />
-          </Route>
+    return (
+        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+            <MantineProvider
+                theme={{
+                    colorScheme,
+                    // colors: {
+                    //   'orange': ['#fc6400']
+                    // }
+                    primaryColor: colorScheme === 'dark' ? 'orange' : 'pink'
+                }}
+                withGlobalStyles
+                withNormalizeCSS
+            >
+                <Routes>
+                    <Route element={<PersistLogin />}>
 
-          {/*********************** FEATURES ******************************/}
-          <Route path='dashpond+features' element={<Features />} />
+                        <Route path='/' element={<Layout />}>
+                            <Route index element={<Home />} /> {/* Homepage Route */}
 
-          {/*********************** DOCUMENTATION ******************************/}
-          <Route path='documentation' element={<DocsLayout />}>
-            <Route path='home' element={<DocumentationHome />} />
-            <Route path='getting+started' element={<DocumentationGettingStarted />} />
-            <Route path='products' element={<DocumentationProducts />} />
-            <Route path='plans' element={<DocumentationPlans />} />
-            <Route path='integrations' element={<DocumentationIntegrations />} />
-            <Route path='releases' element={<DocumentationReleases />} />
-            <Route path='support' element={<DocumentationSupport />} />
-          </Route>
 
-          {/*********************** PRODUCTS ******************************/}
-          <Route path='products' element={<ProductLayout />}>
-            <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]} />}>
-              <Route path='create' element={<DashLayout />}> {/*Input for paying cutomers */}
-                <Route path='address+input' element={<AddressInput />} />
-                <Route path='address+input/map+confirmation' element={<MapModal />} />
-                <Route path='address+input/map+confirmation/image+upload' element={<FileUploader />} />
-              </Route>
-            </Route>
-          </Route>
+                            {/*********************** USER PROFILES ******************************/}
+                            <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />}>
+                                <Route element={<RequireProfileAuth />}>
+                                    <Route path='profile/:id' element={<ProfileLayout />}>
+                                        <Route path='info' element={<Info />} />
+                                        <Route path='insights' element={<Insights />} />
+                                        <Route path='billing+plan' element={<ProfilePlan />} />
+                                        <Route path='data+profiles' element={<DataProfiles />} />
+                                    </Route>
+                                </Route>
+                            </Route>
 
-          {/*********************** CONTACT ******************************/}
-          <Route path='contact' element={<Contact />} />
+                            {/*********************** PRICING ******************************/}
+                            <Route path='pricing' element={<Pricing />} />
 
-          {/*********************** 404 MISSING  ******************************/}
-          <Route path='*' element={<Missing />} /> {/* 404 Route */}
+                            <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
+                                <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
+                                <Route path='getstarted/:plan/checkout' element={<Checkout />} />
+                            </Route>
 
-          {/*********************** AUTH SCREENS ******************************/}
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
-          <Route path='already+logged+in' element={<AlreadyLoggedIn />} />
-        </Route>
+                            {/*********************** DEMOGRAPHIC PROFILES ******************************/}
+                            <Route path='/dataprofile/:id' element={<DPLayout />}> {/* Dashboards */}
+                                <Route path='overview' index element={<Overview />} />
+                            </Route>
 
-        {/*********************** PRICING ******************************/}
-        <Route path='pricing' element={<Pricing />} />
+                            {/*********************** FEATURES ******************************/}
+                            <Route path='dashpond+features' element={<Features />} />
 
-        <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
-          <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
-          <Route path='getstarted/:plan/checkout' element={<Checkout />} />
-        </Route>
-      </Route>
-    </Routes>
-  );
+                            {/*********************** DOCUMENTATION ******************************/}
+                            <Route path='documentation' element={<DocsLayout />}>
+                                <Route path='home' element={<DocumentationHome />} />
+                                <Route path='getting+started' element={<DocumentationGettingStarted />} />
+                                <Route path='products' element={<DocumentationProducts />} />
+                                <Route path='plans' element={<DocumentationPlans />} />
+                                <Route path='integrations' element={<DocumentationIntegrations />} />
+                                <Route path='releases' element={<DocumentationReleases />} />
+                                <Route path='support' element={<DocumentationSupport />} />
+                            </Route>
+
+                            {/*********************** PRODUCTS ******************************/}
+                            <Route path='products' element={<ProductLayout />}>
+                                <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]} />}>
+                                    <Route path='create' element={<DashLayout />}> {/*Input for paying cutomers */}
+                                        <Route path='address+input' element={<AddressInput />} />
+                                        <Route path='address+input/map+confirmation' element={<MapModal />} />
+                                        <Route path='address+input/map+confirmation/image+upload' element={<FileUploader />} />
+                                    </Route>
+                                </Route>
+                            </Route>
+
+                            {/*********************** CONTACT ******************************/}
+                            <Route path='contact' element={<Contact />} />
+
+                            {/*********************** 404 MISSING  ******************************/}
+                            <Route path='*' element={<Missing />} /> {/* 404 Route */}
+
+                            {/*********************** AUTH SCREENS ******************************/}
+                            <Route path='login' element={<Login />} />
+                            <Route path='register' element={<Register />} />
+                            <Route path='already+logged+in' element={<AlreadyLoggedIn />} />
+                        </Route>
+
+
+                    </Route>
+                </Routes>
+            </MantineProvider>
+        </ColorSchemeProvider>
+    );
 }
 
 export default App;

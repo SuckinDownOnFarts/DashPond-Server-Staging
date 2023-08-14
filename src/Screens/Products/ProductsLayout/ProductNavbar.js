@@ -30,8 +30,6 @@ const ProductNavbar = () => {
     const { auth } = useAuth();
     const navigate = useNavigate();
 
-    console.log(auth);
-
     const mainLinks = links.map((link) => (
         <UnstyledButton key={link.label} className={classes.mainLink}>
             <div className={classes.mainLinkInner}>
@@ -60,14 +58,16 @@ const ProductNavbar = () => {
 
     return (
         <Navbar width={{ sm: 300 }} className={classes.navbar}>
-            <Navbar.Section className={classes.section}>
-                <UserButton
-                    image={`https://res.cloudinary.com/djlalgsmk/image/upload/v${auth.profile_image_version}/${auth.profile_image_public_id}`}
-                    name={`${auth.firstName} ${auth.lastName}`}
-                    email={auth.email}
-                    icon={<IconSelector size="0.9rem" stroke={1.5} />}
-                />
-            </Navbar.Section>
+            <div className={!auth.email ? 'hidden' : null}>
+                <Navbar.Section className={classes.section}>
+                    <UserButton
+                        image={`https://res.cloudinary.com/djlalgsmk/image/upload/v${auth.profile_image_version}/${auth.profile_image_public_id}`}
+                        name={`${auth.firstName} ${auth.lastName}`}
+                        email={auth.email}
+                        icon={<IconSelector size="0.9rem" stroke={1.5} />}
+                    />
+                </Navbar.Section>
+            </div>
 
             <TextInput
                 placeholder="Search"
@@ -77,6 +77,7 @@ const ProductNavbar = () => {
                 rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
                 styles={{ rightSection: { pointerEvents: 'none' } }}
                 mb="sm"
+                mt='sm'
             />
 
             <Navbar.Section className={classes.section}>

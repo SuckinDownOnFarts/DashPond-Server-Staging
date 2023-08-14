@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar, Tabs, Container, Button, Group, Text, Menu, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconLogout, IconHeart, IconStar, IconSettings, IconSwitchHorizontal, IconChevronDown } from '@tabler/icons-react';
-import LogoutModal from './LogoutModal';
-import { useStylesAvatar } from './LayoutStyles/LayoutStyles';
+import LogoutModal from '../LogoutModal';
+import { useStylesAvatar } from '../LayoutStyles/LayoutStyles';
 
 
 const UserAvatar = ({ user }) => {

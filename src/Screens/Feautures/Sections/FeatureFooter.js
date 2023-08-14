@@ -1,6 +1,6 @@
 import { Text, Container, ActionIcon, Group } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { useFooterStyles as useStyles } from '../Styles/FeatureStyles';
+import { useFooterStyles as useStyles } from '../FeatureStyles/FeatureStyles';
 import { featureFooterData as data } from '../../../data/Data';
 import Logo from '../../../components/Globals/Logo'
 
@@ -34,14 +34,14 @@ const FeatureFooter = () => {
                 <div className={classes.logo}>
                     <Logo size={30} />
                     <Text size="xs" color="dimmed" className={classes.description}>
-                        Build fully functional accessible web applications faster than ever
+                        Make Commericial Real Estate Decisions More Confidently than Ever
                     </Text>
                 </div>
                 <div className={classes.groups}>{groups}</div>
             </Container>
             <Container className={classes.afterFooter}>
                 <Text color="dimmed" size="sm">
-                    © 2020 mantine.dev. All rights reserved.
+                    © 2023 DashPond. All rights reserved.
                 </Text>
 
                 <Group spacing={0} className={classes.social} position="right" noWrap>

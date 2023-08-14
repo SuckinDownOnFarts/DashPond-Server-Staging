@@ -1,9 +1,17 @@
-
+import { logoStyles } from "./GlobalStyles/GlobalStyles"
 
 const Logo = () => {
-  return (
-    <img className='inline-block'  src={'/images/logo1.png'} alt='' width='160px' height='35px' />
-  )
+    const { theme } = logoStyles();
+
+    return (
+        <img
+            className='inline-block'
+            src={theme.colorScheme === 'dark' ? '/images/logo-orange.png' : '/images/logo-pink.png'}
+            alt='Beautiful Dashpond Logo'
+            width='160px'
+            height='35px'
+        />
+    )
 }
 
 export default Logo

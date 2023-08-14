@@ -28,7 +28,9 @@ import {
   IconBellSchool,
   IconCash,
   IconMapPin,
-  IconColumns
+  IconColumns,
+  IconChartArrows,
+  IconBinaryTree
 } from '@tabler/icons-react';
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -280,83 +282,26 @@ export const navbarFeatureList = [
 export const features = [
   {
     icon: IconDatabaseCog,
-    title: '500+ data insights',
-    description: 'All packages are published under MIT license, you can use Mantine in any project',
+    title: '500+ Data Insights',
+    description: 'Leverage critical real estate decisions with a wide range of demographic indicators.',
   },
   {
     icon: IconFileCode,
-    title: 'Dynamically generated reports',
-    description: 'Build and export data reports that cover any demographic topic',
+    title: 'Unlimited Use Anywhere in the U.S.',
+    description: 'We provide coverage for any property or land tract in the United States.',
   },
   {
     icon: IconCircleDotted,
-    title: 'Seemless integration',
+    title: 'Simple to Use',
     description:
-      'Between static pdfs and custom web pages DasPond makes it easy to integrate marketing assets into any listings',
+      'Simply type in the address or find it on the map and our application will generate a comprehensive report.',
   },
   {
     icon: IconFlame,
-    title: 'High fidelity assets',
+    title: 'A.I. Expanded Data',
     description:
-      'Reporting templates designed by marketing experts, because your clients deserve the best',
+      'Gain that competitve edge with A.I. enhanced demographic insights.',
   },
-];
-
-export const TableExampleData = [
-  {
-    "title": "Foundation",
-    "author": "Isaac Asimov",
-    "year": 1951,
-    "reviews": {
-      "positive": 2223,
-      "negative": 259
-    }
-  },
-  {
-    "title": "Frankenstein",
-    "author": "Mary Shelley",
-    "year": 1818,
-    "reviews": {
-      "positive": 5677,
-      "negative": 1265
-    }
-  },
-  {
-    "title": "Solaris",
-    "author": "Stanislaw Lem",
-    "year": 1961,
-    "reviews": {
-      "positive": 3487,
-      "negative": 1845
-    }
-  },
-  {
-    "title": "Dune",
-    "author": "Frank Herbert",
-    "year": 1965,
-    "reviews": {
-      "positive": 8576,
-      "negative": 663
-    }
-  },
-  {
-    "title": "The Left Hand of Darkness",
-    "author": "Ursula K. Le Guin",
-    "year": 1969,
-    "reviews": {
-      "positive": 6631,
-      "negative": 993
-    }
-  },
-  {
-    "title": "A Scanner Darkly",
-    "author": "Philip K Dick",
-    "year": 1977,
-    "reviews": {
-      "positive": 8124,
-      "negative": 1847
-    }
-  }
 ];
 
 export const pricingSegmentedControlData = [
@@ -368,306 +313,6 @@ export const pricingSegmentedControlData = [
     value: 'annually',
     label: 'Annually',
   }
-];
-
-export const tableData = [
-  {
-    firstName: 'Joseph',
-    lastName: 'Hand',
-    email: 'Joanny_Carter@yahoo.com',
-    salary: 57752,
-    jobTitle: 'Customer Directives Architect',
-    startDate: '2022-12-28T20:59:36.586Z',
-    signatureCatchPhrase: 'Front-line logistical service-desk',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/528.jpg',
-  },
-  {
-    firstName: 'Paula',
-    lastName: 'Kohler',
-    email: 'Webster.Monahan68@yahoo.com',
-    salary: 47029,
-    jobTitle: 'Direct Configuration Agent',
-    startDate: '2023-01-04T08:03:36.832Z',
-    signatureCatchPhrase: 'Stand-alone non-volatile encoding',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/461.jpg',
-  },
-  {
-    firstName: 'Domenic',
-    lastName: 'Cassin',
-    email: 'Roma_Nicolas7@hotmail.com',
-    salary: 55602,
-    jobTitle: 'Corporate Operations Planner',
-    startDate: '2022-02-07T13:34:22.224Z',
-    signatureCatchPhrase: 'Digitized asynchronous definition',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/787.jpg',
-  },
-  {
-    firstName: 'Rey',
-    lastName: 'Runte',
-    email: 'Perry.Ferry@yahoo.com',
-    salary: 88782,
-    jobTitle: 'Direct Optimization Manager',
-    startDate: '2022-10-02T00:14:02.192Z',
-    signatureCatchPhrase: 'Automated next generation knowledge base',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/407.jpg',
-  },
-  {
-    firstName: 'Buck',
-    lastName: 'Mosciski',
-    email: 'Alf_Lehner33@gmail.com',
-    salary: 95101,
-    jobTitle: 'Internal Mobility Orchestrator',
-    startDate: '2022-11-14T10:56:33.026Z',
-    signatureCatchPhrase: 'Ameliorated clear-thinking capacity',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/696.jpg',
-  },
-  {
-    firstName: 'Johnson',
-    lastName: 'Nitzsche',
-    email: 'Emerson42@gmail.com',
-    salary: 96104,
-    jobTitle: 'Lead Accounts Director',
-    startDate: '2022-08-12T22:15:41.531Z',
-    signatureCatchPhrase: 'Down-sized scalable application',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/305.jpg',
-  },
-  {
-    firstName: 'Silas',
-    lastName: 'Hermiston',
-    email: 'Jane_Hoeger42@gmail.com',
-    salary: 64532,
-    jobTitle: 'International Operations Consultant',
-    startDate: '2022-06-03T16:42:52.698Z',
-    signatureCatchPhrase: 'Face to face grid-enabled encryption',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1171.jpg',
-  },
-  {
-    firstName: 'Kailey',
-    lastName: 'Bergstrom',
-    email: 'Bo_Brakus@hotmail.com',
-    salary: 26096,
-    jobTitle: 'Regional Web Planner',
-    startDate: '2022-10-17T21:12:54.687Z',
-    signatureCatchPhrase: 'Implemented bottom-line algorithm',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/914.jpg',
-  },
-  {
-    firstName: 'Lilian',
-    lastName: 'Tromp',
-    email: 'Karson2@gmail.com',
-    salary: 72692,
-    jobTitle: 'Central Implementation Orchestrator',
-    startDate: '2022-09-13T11:55:16.045Z',
-    signatureCatchPhrase: 'Open-architected tangible moderator',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/151.jpg',
-  },
-  {
-    firstName: 'Maxine',
-    lastName: 'Schmidt',
-    email: 'Quinton13@hotmail.com',
-    salary: 89317,
-    jobTitle: 'Principal Communications Orchestrator',
-    startDate: '2022-07-01T07:29:03.182Z',
-    signatureCatchPhrase: 'Focused intermediate groupware',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/102.jpg',
-  },
-  {
-    firstName: 'Robyn',
-    lastName: 'Stroman',
-    email: 'Jorge.Wiegand27@gmail.com',
-    salary: 9167,
-    jobTitle: 'Internal Group Manager',
-    startDate: '2022-09-04T16:39:46.068Z',
-    signatureCatchPhrase: 'Open-architected upward-trending info-mediaries',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/18.jpg',
-  },
-  {
-    firstName: 'Asha',
-    lastName: 'Rolfson',
-    email: 'Randal15@hotmail.com',
-    salary: 45363,
-    jobTitle: 'District Integration Technician',
-    startDate: '2022-11-14T16:19:21.814Z',
-    signatureCatchPhrase: 'Visionary 6th generation definition',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/880.jpg',
-  },
-  {
-    firstName: 'Serena',
-    lastName: 'Reynolds',
-    email: 'Prince91@yahoo.com',
-    salary: 11166,
-    jobTitle: 'Principal Accounts Strategist',
-    startDate: '2022-08-03T03:54:24.200Z',
-    signatureCatchPhrase: 'Robust attitude-oriented structure',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1219.jpg',
-  },
-  {
-    firstName: 'Ulices',
-    lastName: 'Buckridge',
-    email: 'Geoffrey.Champlin@gmail.com',
-    salary: 97400,
-    jobTitle: 'Central Communications Designer',
-    startDate: '2022-02-20T10:26:24.947Z',
-    signatureCatchPhrase: 'Team-oriented leading edge utilisation',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/408.jpg',
-  },
-  {
-    firstName: 'Paxton',
-    lastName: 'Gottlieb',
-    email: 'Leopoldo_Ondricka43@yahoo.com',
-    salary: 84030,
-    jobTitle: 'International Operations Producer',
-    startDate: '2022-07-07T10:34:23.518Z',
-    signatureCatchPhrase: 'Programmable uniform knowledge user',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/918.jpg',
-  },
-  {
-    firstName: 'Monserrat',
-    lastName: 'Walter',
-    email: 'Concepcion.Brekke33@gmail.com',
-    salary: 16797,
-    jobTitle: 'Direct Marketing Planner',
-    startDate: '2022-05-16T20:27:12.189Z',
-    signatureCatchPhrase: 'Customizable motivating flexibility',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/578.jpg',
-  },
-  {
-    firstName: 'Alva',
-    lastName: 'Hodkiewicz',
-    email: 'Sadie.Homenick@hotmail.com',
-    salary: 48676,
-    jobTitle: 'Future Factors Associate',
-    startDate: '2022-12-20T16:49:15.685Z',
-    signatureCatchPhrase: 'Customizable even-keeled methodology',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1106.jpg',
-  },
-  {
-    firstName: 'Marc',
-    lastName: 'Willms',
-    email: 'Gaetano_Sipes88@hotmail.com',
-    salary: 21843,
-    jobTitle: 'Lead Identity Liaison',
-    startDate: '2023-01-09T09:13:15.011Z',
-    signatureCatchPhrase: 'Optimized context-sensitive structure',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/331.jpg',
-  },
-  {
-    firstName: 'Alexys',
-    lastName: 'Hills',
-    email: 'Duncan0@hotmail.com',
-    salary: 67328,
-    jobTitle: 'Human Infrastructure Liaison',
-    startDate: '2022-10-25T14:07:34.391Z',
-    signatureCatchPhrase: 'Multi-lateral 3rd generation analyzer',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/913.jpg',
-  },
-  {
-    firstName: 'Annamae',
-    lastName: 'Braun',
-    email: 'Dolores_Reichel@gmail.com',
-    salary: 76900,
-    jobTitle: 'Principal Usability Consultant',
-    startDate: '2022-07-28T19:35:28.462Z',
-    signatureCatchPhrase: 'Ergonomic coherent utilisation',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1073.jpg',
-  },
-  {
-    firstName: 'Cletus',
-    lastName: 'Gleason',
-    email: 'Tyson_Hackett0@hotmail.com',
-    salary: 38627,
-    jobTitle: 'District Paradigm Agent',
-    startDate: '2022-06-20T10:51:23.449Z',
-    signatureCatchPhrase: 'Monitored web-enabled support',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/274.jpg',
-  },
-  {
-    firstName: 'Reinhold',
-    lastName: 'Kunze',
-    email: 'Ahmad.Effertz39@gmail.com',
-    salary: 70691,
-    jobTitle: 'Customer Intranet Consultant',
-    startDate: '2022-10-28T04:52:20.153Z',
-    signatureCatchPhrase: 'Multi-channelled static contingency',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1121.jpg',
-  },
-  {
-    firstName: 'Gina',
-    lastName: 'McGlynn',
-    email: 'Chadrick84@yahoo.com',
-    salary: 75478,
-    jobTitle: 'National Mobility Specialist',
-    startDate: '2022-03-05T01:27:19.980Z',
-    signatureCatchPhrase: 'Public-key discrete encoding',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/485.jpg',
-  },
-  {
-    firstName: 'Dejon',
-    lastName: 'Considine',
-    email: 'Percival96@hotmail.com',
-    salary: 7438,
-    jobTitle: 'Lead Response Specialist',
-    startDate: '2022-10-16T13:08:23.224Z',
-    signatureCatchPhrase: 'Sharable even-keeled archive',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/957.jpg',
-  },
-  {
-    firstName: 'Ransom',
-    lastName: 'Kerluke',
-    email: 'Reymundo.Stanton74@yahoo.com',
-    salary: 31847,
-    jobTitle: 'National Assurance Consultant',
-    startDate: '2022-10-07T13:08:31.062Z',
-    signatureCatchPhrase: 'Virtual systematic hierarchy',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/447.jpg',
-  },
-  {
-    firstName: 'Ken',
-    lastName: 'Stiedemann',
-    email: 'Chanel.Veum78@hotmail.com',
-    salary: 93663,
-    jobTitle: 'Lead Group Analyst',
-    startDate: '2022-11-27T19:10:24.464Z',
-    signatureCatchPhrase: 'Vision-oriented scalable challenge',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/780.jpg',
-  },
-  {
-    firstName: 'Freda',
-    lastName: 'Morissette',
-    email: 'Micaela_Stamm96@hotmail.com',
-    salary: 24774,
-    jobTitle: 'Forward Web Technician',
-    startDate: '2022-06-01T09:47:45.260Z',
-    signatureCatchPhrase: 'De-engineered asymmetric infrastructure',
-    avatar:
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1137.jpg',
-  },
 ];
 
 export const secondFeatureSectionData = [
@@ -705,22 +350,22 @@ export const secondFeatureSectionData = [
 
 export const thirdFeatureSectionData = [
   {
-    title: 'Extreme performance',
+    title: 'Knowledge in Seconds',
     description:
-      'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
+      'Our web application transforms any address into market knowledge extremely fast while retaining low margins of error for extreme reliability.',
     icon: IconGauge,
   },
   {
-    title: 'Privacy focused',
+    title: 'Justify your Decisions',
     description:
-      'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
-    icon: IconUser,
+      'Our reports are specifically tailored to serve the most critical insights and help developers and investors to better understand a property before they pull the trigger.',
+    icon: IconChartArrows,
   },
   {
-    title: 'No third parties',
+    title: 'A.I. Expanded Data',
     description:
-      'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
-    icon: IconCookie,
+      'Peer farther into the future than traditional Census data with Artifical Intelligence powered projections up to the year 2050 on select insights.',
+    icon: IconBinaryTree,
   },
 ];
 

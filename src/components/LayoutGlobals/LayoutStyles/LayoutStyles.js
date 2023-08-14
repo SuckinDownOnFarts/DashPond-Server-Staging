@@ -139,6 +139,12 @@ export const useLayoutStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[6]
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]
+  }
+}))
+
+export const colorToggleStyles = createStyles((theme) => ({
+  body: {
+    cursor: 'pointer'
   }
 }))

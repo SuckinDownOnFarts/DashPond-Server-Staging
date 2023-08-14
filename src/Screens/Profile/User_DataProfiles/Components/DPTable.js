@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import { Box, Button, Menu, Text, Title } from '@mantine/core';
 import { IconUserCircle, IconSend } from '@tabler/icons-react';
-import { tableData as data } from '../../../../data/Data';
 
 const DPTable = ({ data }) => {
 

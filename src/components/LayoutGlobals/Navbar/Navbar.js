@@ -1,13 +1,14 @@
 import { Header, HoverCard, Group, Button, UnstyledButton, Text, SimpleGrid, ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, rem } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
-import Logo from '../Globals/Logo';
+import Logo from '../../Globals/Logo';
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
-import { navbarFeatureList } from '../../data/Data';
+import { navbarFeatureList } from '../../../data/Data';
 import UserAvatar from './UserAvatar';
-import useAuth from '../../hooks/useAuth';
-import { BASE_URL } from '../../data/Data';
-import { navbarStyles } from './LayoutStyles/LayoutStyles';
+import useAuth from '../../../hooks/useAuth';
+import { BASE_URL } from '../../../data/Data';
+import { navbarStyles } from '../LayoutStyles/LayoutStyles';
+import ColorSchemeToggle from './ColorSchemeToggle';
 
 const Navbar = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
         <UnstyledButton className={classes.subLink} key={item.title}>
             <Group noWrap align="flex-start">
                 <ThemeIcon size={34} variant="default" radius="md">
-                    <item.icon size={rem(22)} color={theme.colors.orange[7]} />
+                    <item.icon size={rem(22)} color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} />
                 </ThemeIcon>
                 <div>
                     <Text size="sm" fw={500}>
@@ -57,7 +58,7 @@ const Navbar = () => {
                                         <Box component="span" mr={5}>
                                             Features
                                         </Box>
-                                        <IconChevronDown size={16} color={theme.colors.orange[7]} />
+                                        <IconChevronDown size={16} color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} />
                                     </Center>
                                 </a>
                             </HoverCard.Target>
@@ -65,7 +66,7 @@ const Navbar = () => {
                             <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
                                 <Group position="apart" px="md">
                                     <Text fw={500}>Features</Text>
-                                    <Anchor href={`${BASE_URL}/dashpond+features`} fz="xs" color='orange.7'>
+                                    <Anchor href={`${BASE_URL}/dashpond+features`} fz="xs" color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink.7'}>
                                         View all
                                     </Anchor>
                                 </Group>
@@ -73,12 +74,18 @@ const Navbar = () => {
                                 <Divider
                                     my="sm"
                                     mx="-md"
-                                    color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
+                                    color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.4'}
                                 />
 
                                 <SimpleGrid cols={2} spacing={0}>
                                     {links}
                                 </SimpleGrid>
+
+                                {/* <Divider
+                                    my="sm"
+                                    mx="-md"
+                                    color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.4'}
+                                /> */}
 
                                 <div className={auth.accessToken ? 'hidden' : classes.dropdownFooter} >
                                     <Group position="apart">
@@ -95,6 +102,7 @@ const Navbar = () => {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
+
                         <a href={`${BASE_URL}/pricing`} className={classes.link}>
                             Pricing
                         </a>
@@ -104,32 +112,37 @@ const Navbar = () => {
                         <a href={`${BASE_URL}/contact`} className={classes.link}>
                             Contact
                         </a>
+
                     </Group>
 
-                    {!auth?.accessToken ?
-                        <div>
-                            <Group className={classes.hiddenMobile}>
-                                <Button
-                                    onClick={() => navigate('/login')} 
-                                    variant="default"
-                                >
-                                    Log in
-                                </Button>
+                    <Group>
+                        
+                        <ColorSchemeToggle />
+                        {!auth?.accessToken 
+                            ? <div>
+                                <Group className={classes.hiddenMobile}>
+                                    <Button
+                                        onClick={() => navigate('/login')}
+                                        variant="default"
+                                    >
+                                        Log in
+                                    </Button>
 
-                                <Button
-                                    onClick={() => navigate('/register')} 
-                                    variant="gradient" 
-                                    gradient={{ from: 'yellow', to: 'orange', deg: 25 }}
-                                >
-                                    Sign up
-                                </Button>
-                            </Group>
+                                    <Button
+                                        onClick={() => navigate('/register')}
+                                        variant="filled"
+                                        gradient={theme.colorScheme === 'dark' ? 'orange' : 'pink'}
+                                    >
+                                        Sign up
+                                    </Button>
+                                </Group>
 
-                            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
-                        </div>
-                        : <UserAvatar
-                            user={auth}
-                        />}
+                                <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+                            </div>
+                            : <UserAvatar
+                                user={auth}
+                            />}
+                    </Group>
                 </Group>
 
             </Header>

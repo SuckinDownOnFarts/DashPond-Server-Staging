@@ -1,23 +1,23 @@
 import React from 'react';
-import Header from './Components/FeatureHeader';
-import SecondFeatureSection from './Components/SecondFeatureSection';
-import HeroSection from './Components/HeroSection';
-import ThirdFeatureSection from './Components/ThirdFeatureSection';
-import FeatureFooter from './Components/FeatureFooter';
+import Header from './Sections/FeatureHeader';
+import SecondFeatureSection from './Sections/SecondFeatureSection';
+import HeroSection from './Sections/HeroSection';
+import ThirdFeatureSection from './Sections/ThirdFeatureSection';
+import FeatureFooter from './Sections/FeatureFooter';
 
 const Features = () => {
   
     return (
         <div>
-            <div className='flex items-center min-h-[calc(70vh-60px)]'>
+            <div className='flex items-center min-h-[calc(80vh-60px)]'>
                 <Header />
             </div>
 
-            <HeroSection />
+            <ThirdFeatureSection />
 
             <SecondFeatureSection />
 
-            <ThirdFeatureSection />
+            <HeroSection />
 
             <FeatureFooter />
         </div>

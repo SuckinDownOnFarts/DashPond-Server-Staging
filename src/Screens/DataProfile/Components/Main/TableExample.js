@@ -1,6 +1,5 @@
 import { Table, Progress, Anchor, Text, Group, ScrollArea, Card } from '@mantine/core';
 import { useTableExampleStyles } from './Styles/DPStyles';
-// import { TableExampleData as data } from '../../../../data/Data';
 
 const TableExample = ({ data }) => {
     const { classes, theme } = useTableExampleStyles();

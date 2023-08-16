@@ -18,7 +18,7 @@ const SolutionHeaders = () => {
                             Analyze, Forecast and <br /> Screen Properties Like a Pro 
                         </Title>
                         <Text color="dimmed" mt="md">
-                            DashPond's web api makes it quick and simple to leverage professional market analysis for real estate investment decisions
+                            DashPond makes it easy to leverage professional market analysis for real estate investment decisions
                         </Text>
 
                         <List

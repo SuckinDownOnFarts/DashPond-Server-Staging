@@ -13,7 +13,7 @@ const MapModal = () => {
   useEffect(() => {
     const redirectIfPointDataEmpty = () => {
       if (!pointData[0].lat && !pointData[1].lng) {
-        navigate('/products/create/address+input')
+        navigate('/property+search/address+input')
       }
     }
     redirectIfPointDataEmpty()
@@ -49,7 +49,7 @@ const MapModal = () => {
 
   const proceed = () => {
     nextStep();
-    navigate('/products/create/address+input/map+confirmation/image+upload');
+    navigate('/property+search/address+input/map+confirmation/image+upload');
   };
 
   const back = () => {

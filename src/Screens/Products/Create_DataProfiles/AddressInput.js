@@ -83,7 +83,7 @@ const AddressInput = () => {
     const navigateAfterLoading = () => {
       if (!loading) {
         nextStep();
-        navigate('/products/create/address+input/map+confirmation');
+        navigate('/property+search/address+input/map+confirmation');
       }
     };
     navigateAfterLoading();

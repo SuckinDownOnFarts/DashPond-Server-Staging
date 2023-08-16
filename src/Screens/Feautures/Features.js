@@ -3,7 +3,7 @@ import Header from './Sections/FeatureHeader';
 import SecondFeatureSection from './Sections/SecondFeatureSection';
 import HeroSection from './Sections/HeroSection';
 import ThirdFeatureSection from './Sections/ThirdFeatureSection';
-import FeatureFooter from './Sections/FeatureFooter';
+import Footer from '../../components/LayoutGlobals/Footer';
 
 const Features = () => {
   
@@ -19,7 +19,7 @@ const Features = () => {
 
             <HeroSection />
 
-            <FeatureFooter />
+            <Footer />
         </div>
     )
 }

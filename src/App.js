@@ -44,6 +44,8 @@ import DocumentationPlans from './Screens/Docs/Documentation_Screens/Documentati
 import DocumentationIntegrations from './Screens/Docs/Documentation_Screens/Documentation_Integrations';
 import DocumentationReleases from './Screens/Docs/Documentation_Screens/Documentation_Releases';
 import DocumentationSupport from './Screens/Docs/Documentation_Screens/Documentation_Support';
+/////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
+import SolutionsLayout from './Screens/Solutions/SolutionsLayout';
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -100,7 +102,7 @@ function App() {
                     <Route element={<PersistLogin />}>
 
                         <Route path='/' element={<Layout />}>
-                            <Route index element={<Home />} /> {/* Homepage Route */}
+                            <Route index element={<Features />} /> {/* Homepage Route */}
 
 
                             {/*********************** USER PROFILES ******************************/}
@@ -143,15 +145,22 @@ function App() {
                             </Route>
 
                             {/*********************** PRODUCTS ******************************/}
-                            <Route path='products' element={<ProductLayout />}>
-                                <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]} />}>
-                                    <Route path='create' element={<DashLayout />}> {/*Input for paying cutomers */}
-                                        <Route path='address+input' element={<AddressInput />} />
-                                        <Route path='address+input/map+confirmation' element={<MapModal />} />
-                                        <Route path='address+input/map+confirmation/image+upload' element={<FileUploader />} />
-                                    </Route>
+                            {/* <Route path='products' element={<ProductLayout />}> */}
+                            <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]} />}>
+                                <Route path='property+search' element={<DashLayout />}> {/*Input for paying cutomers */}
+                                    <Route path='address+input' element={<AddressInput />} />
+                                    <Route path='address+input/map+confirmation' element={<MapModal />} />
+                                    <Route path='address+input/map+confirmation/image+upload' element={<FileUploader />} />
                                 </Route>
                             </Route>
+                            {/* </Route> */}
+
+                            {/*********************** SOLUTIONS ******************************/}
+                            <Route path='solutions' element={<SolutionsLayout />}>
+                                
+                            </Route>
+
+
 
                             {/*********************** CONTACT ******************************/}
                             <Route path='contact' element={<Contact />} />

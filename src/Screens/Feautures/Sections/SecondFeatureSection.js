@@ -24,7 +24,7 @@ export function Feature({ icon: Icon, title, description }) {
 
 
 const SecondFeatureSection = ({ description }) => {
-    const { classes } = useSecondSectionStyles();
+    const { classes, theme } = useSecondSectionStyles();
     const features = data.map((feature, index) => <Feature {...feature} key={index} />);
     const [emblaRef] = useEmblaCarousel()
 
@@ -34,20 +34,24 @@ const SecondFeatureSection = ({ description }) => {
                 Easily Gain Market Insight
             </Title>
 
-            <Container size={560} p={0}>
-                <Text size="sm" className={classes.description}>
-                    {description}
+            <Container size={560} pb={10}>
+                <Text size="md" className={classes.description}>
+                    Explore hidden market trends, evaluate more opportunities, and make reliable decisions through our dynamic property reports 
                 </Text>
             </Container>
 
             <Container>
                 <div className="overflow-hidden" ref={emblaRef}>      
-                    <div className="flex">        
+                    {theme.colorScheme === 'dark' 
+                    ? <div className="flex">
                         <img className={classes.emblaSlide} src={'/images/Dark-Page.png'} alt=''/>        
-                        <img className={classes.emblaSlide} src={'/images/Dark-Table.png'} alt=''/>        
-                        <img className={classes.emblaSlide} src={'/images/Light-Page.png'} alt=''/>        
-                        <img className={classes.emblaSlide} src={'/images/Light-Table.png'} alt=''/>            
+                        <img className={classes.emblaSlide} src={'/images/Dark-Table.png'} alt=''/>
                     </div>
+                    : <div className="flex">
+                        <img className={classes.emblaSlide} src={'/images/Light-Page.png'} alt=''/>        
+                        <img className={classes.emblaSlide} src={'/images/Light-Table.png'} alt=''/> 
+                    </div>
+                    }       
                 </div>
             </Container>
 

@@ -9,16 +9,16 @@ const HeroSection = () => {
         <div className={classes.wrapper} >
             <div className={classes.inner}>
                 <Title className={classes.title}>
-                    Build {' '}
+                    Make the  {' '}
                     <Text component="span" className={classes.highlight} inherit>
-                        report generation
+                        Correct
                     </Text>{' '}
-                    for any marketing requirement
+                    Real Estate Decision
                 </Title>
 
                 <Container p={0} size={600}>
                     <Text size="lg" color="white" className={classes.description}>
-                        Build reliable demographic reports to better help clients make more informed buying and leasing decisions.
+                        
                     </Text>
                 </Container>
 
@@ -26,7 +26,7 @@ const HeroSection = () => {
                     <Button className={classes.control} size="lg" variant="default" color="dark">
                         View Documentation
                     </Button>
-                    <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'}>
+                    <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.5' : 'pink'}>
                         Get in touch
                     </Button>
                 </div>

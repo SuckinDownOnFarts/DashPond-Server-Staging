@@ -4,11 +4,13 @@ import { useDisclosure } from '@mantine/hooks';
 import useAuth from '../../../../hooks/useAuth'
 import api from '../../../../api/axios'
 import Stepper from './Stepper';
-import { css } from '@emotion/react'
+import { css } from '@emotion/react';
+import { useMantineTheme } from '@mantine/core';
 
 const DashLayout = () => {
     const { auth } = useAuth();
     const navigate = useNavigate();
+    const theme = useMantineTheme();
 
     const latLng = [
       {lat: null},
@@ -114,7 +116,7 @@ const DashLayout = () => {
   return (
     <main className='h-[calc(100vh-68px)] flex flex-col place-items-center mx-8'>
       {/************************** Header *********************************/}
-      <div className='mt-8 mb-8 bg-white rounded h-[100%] w-[100%] shadow-sm flex flex-row'>
+      <div className={theme.colorScheme === 'dark' ? 'mt-8 mb-8 bg-[#1A1B1E] rounded h-[100%] w-[100%] shadow-sm flex flex-row' : 'mt-8 mb-8 bg-[#f8f9fa] rounded h-[100%] w-[100%] shadow-sm flex flex-row'}>
         <div className='w-[100%] mx-16 my-8'>
 
           <Stepper 

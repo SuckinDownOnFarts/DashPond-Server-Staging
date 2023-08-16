@@ -1,8 +1,8 @@
 import { Text, Container, ActionIcon, Group } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { useFooterStyles as useStyles } from '../FeatureStyles/FeatureStyles';
-import { featureFooterData as data } from '../../../data/Data';
-import Logo from '../../../components/Globals/Logo'
+import { useFooterStyles as useStyles } from './LayoutStyles/LayoutStyles';
+import { featureFooterData as data } from '../../data/Data';
+import Logo from '../Globals/Logo'
 
 const FeatureFooter = () => {
     const { classes } = useStyles();
@@ -34,7 +34,7 @@ const FeatureFooter = () => {
                 <div className={classes.logo}>
                     <Logo size={30} />
                     <Text size="xs" color="dimmed" className={classes.description}>
-                        Make Commericial Real Estate Decisions More Confidently than Ever
+                        Helping You Make Better Real Estate Investment Decisions
                     </Text>
                 </div>
                 <div className={classes.groups}>{groups}</div>

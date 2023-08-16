@@ -54,13 +54,6 @@ const Contact = () => {
             <div className='flex pb-4'>
                 <Paper shadow="md" radius="lg">
                     <div className={classes.wrapper}>
-                        <div className={classes.contacts}>
-                            <Text fz="lg" fw={700} className={classes.title} c="#fff">
-                                Contact information
-                            </Text>
-
-                            <ContactIconsList variant="white" />
-                        </div>
 
                         <form className={classes.form} onSubmit={form.onSubmit((values) => handleSubmit(values))}>
                             <Text fz="lg" fw={700} className={classes.title}>
@@ -105,7 +98,7 @@ const Contact = () => {
                                         type="submit" 
                                         className={classes.control}
                                         variant='outline'
-                                        color='orange.7'
+                                        color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}
                                     >
                                         Send message
                                     </Button>

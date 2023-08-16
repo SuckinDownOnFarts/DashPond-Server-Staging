@@ -26,7 +26,7 @@ const ThirdFeatureSection = () => {
                 </Badge>
             </Group>
 
-            <Title order={2} className={classes.title} ta="center" mt="sm">
+            <Title order={2} className={classes.title} ta="center" mt="sm" color={theme.colorScheme === 'dark' ? 'white' : 'black'}>
                 Take the Guesswork out of your Market Research
             </Title>
 

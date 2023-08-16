@@ -116,6 +116,7 @@ export const UseCasesStyles = createStyles((theme) => ({
       padding: theme.spacing.xs,
       marginRight: theme.spacing.md,
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.pink[7]
+    // backgroundColor: 'transparent'
     },
   
     itemTitle: {
@@ -127,7 +128,7 @@ export const UseCasesStyles = createStyles((theme) => ({
       textTransform: 'uppercase',
       fontWeight: 800,
       fontSize: theme.fontSizes.sm,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+      color: theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7],
       letterSpacing: rem(0.5),
     },
   

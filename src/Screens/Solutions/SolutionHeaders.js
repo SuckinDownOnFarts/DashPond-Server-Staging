@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
+import { Image, Container, Title, Text, List, ThemeIcon, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import { SolutionHeaderStyles as useStyles } from './SolutionStyles/SolutionStyles';
 

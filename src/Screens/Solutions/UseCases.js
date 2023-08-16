@@ -33,7 +33,7 @@ const UseCases = () => {
 
     const items = data.map((item) => (
         <div className={classes.item} key={item.image}>
-            <ThemeIcon variant="light" className={classes.itemIcon} size={160} radius="md">
+            <ThemeIcon variant="light" className={classes.itemIcon} size={120} radius="md">
                 <Image src={item.image} />
             </ThemeIcon>
 
@@ -51,7 +51,7 @@ const UseCases = () => {
             <Text className={classes.supTitle}>Use cases</Text>
 
             <Title className={classes.title} order={2} color={theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[9]}>
-                You Don't Need a PhD in Statistics to Use DashPond
+                You Don't Need a PhD in Statistics to Analyze Real Estate
             </Title>
 
             <Container size={660} p={0}>

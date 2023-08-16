@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
-import { Box, Progress, Center, TextInput, PasswordInput, Checkbox, Anchor, Paper, Title, Text, Container, Group, Button, Popover, useMantineTheme } from '@mantine/core';
-import { useInputState } from '@mantine/hooks';
+import { Box, Progress, TextInput, PasswordInput, Anchor, Paper, Title, Text, Button, Popover, useMantineTheme, Image, Container } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import useAuth from '../../hooks/useAuth';
+import { registerStyles as useStyles } from './AuthStyles/AuthStyles';
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -47,8 +47,7 @@ function getStrength(password) {
 }
 
 const Register = () => {
-    const theme = useMantineTheme();
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const { classes, theme } = useStyles();
     const { setAuth } = useAuth();
     const navigate = useNavigate();
     const [popoverOpened, setPopoverOpened] = useState(false);
@@ -74,7 +73,7 @@ const Register = () => {
                     : LASTNAME_REGEX.test(values.lastName)
                         ? null
                         : 'Last name should only contain certain characters',
-            phone: 
+            phone:
                 values.phone.length === 0
                     ? 'Phone number is required'
                     : PHONE_REGEX.test(values.phone)
@@ -138,93 +137,91 @@ const Register = () => {
 
 
     return (
-        <div className='flex flex-row w-full justify-center mt-24 space-x-24 '>
-            <div className='w-96'>
-                <Title
-                    align="center"
-                    sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
-                    color={theme.colorScheme === 'dark' ? 'white' : 'black'}
-                >
-                    Welcome!
-                </Title>
-                <Text color="dimmed" size="sm" align="center" mt={5}>
-                    Already have a Dashpond account?{' '}
-                    <Anchor size="sm" component="button" onClick={() => navigate('/login')}>
-                        Sign in
-                    </Anchor>
-                </Text>
+        <div className='mt-8'>
+            <Container>
+                <div className={classes.inner}>
+                    <div className={classes.content}>
+                        <Title
+                            align="center"
+                            sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
+                            color={theme.colorScheme === 'dark' ? 'white' : 'black'}
+                        >
+                            Welcome!
+                        </Title>
+                        <Text color="dimmed" size="sm" align="center" mt={5}>
+                            Already have a Dashpond account?{' '}
+                            <Anchor size="sm" component="button" onClick={() => navigate('/login')}>
+                                Sign in
+                            </Anchor>
+                        </Text>
 
-                <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                    <form onSubmit={form.onSubmit((values) => submitRegistration(values))}>
-                        <div className='flex flex-row space-x-4'>
-                            <TextInput
-                                withAsterisk
-                                label="First Name"
-                                placeholder="John"
-                                {...form.getInputProps('firstName')}
-                            />
-                            <TextInput
-                                withAsterisk
-                                label="Last Name"
-                                placeholder="Smith"
-                                {...form.getInputProps('lastName')}
-                            />
-                        </div>
-
-                        <TextInput
-                            withAsterisk
-                            label="Phone"
-                            placeholder="123 456 7890"
-                            {...form.getInputProps('phone')}
-                        />
-
-                        <TextInput
-                            withAsterisk
-                            label="Email"
-                            placeholder="you@daspond.com"
-                            {...form.getInputProps('email')}
-                        />
-                        <Popover opened={popoverOpened} position="bottom" width="target" transitionProps={{ transition: 'pop' }}>
-                            <Popover.Target>
-                                <div
-                                    onFocusCapture={() => setPopoverOpened(true)}
-                                    onBlurCapture={() => setPopoverOpened(false)}
-                                >
-                                    <PasswordInput
+                        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                            <form onSubmit={form.onSubmit((values) => submitRegistration(values))}>
+                                <div className='flex flex-row space-x-4'>
+                                    <TextInput
                                         withAsterisk
-                                        // value={value}
-                                        // onChange={setValue}
-                                        label="Your password"
-                                        placeholder="Your password"
-                                        {...form.getInputProps('password')}
+                                        label="First Name"
+                                        placeholder="John"
+                                        {...form.getInputProps('firstName')}
+                                    />
+                                    <TextInput
+                                        withAsterisk
+                                        label="Last Name"
+                                        placeholder="Smith"
+                                        {...form.getInputProps('lastName')}
                                     />
                                 </div>
-                            </Popover.Target>
-                            <Popover.Dropdown>
-                                <Progress color={color} value={strength} size={5} mb="xs" />
-                                <PasswordRequirement label="Includes at least 6 characters" meets={form.values.password.length > 5} />
-                                {checks}
-                            </Popover.Dropdown>
-                        </Popover>
-                        <Button
-                            fullWidth
-                            mt="xl"
-                            type='submit'
-                        >
-                            Register
-                        </Button>
-                    </form>
-                </Paper>
-            </div>
-            <div className='justify-center w-96 space-y-8'>
-                <Title color={theme.colorScheme === 'dark' ? 'white' : 'black'}>
-                    Join DashPond Beta
-                </Title>
-                <Title order={3} color='dimmed'>
-                    Evaluate future risks with our market intelligence and analytics that will help you inform your CRE investment research and deal sourcing strategies.
-                    Gain asset-level and market-level insights with extensive property data for 54M+ commercial properties, including ownership, sales, tax, debt, and now, demographic data.
-                </Title>
-            </div>
+
+                                <TextInput
+                                    withAsterisk
+                                    label="Phone"
+                                    placeholder="123 456 7890"
+                                    {...form.getInputProps('phone')}
+                                />
+
+                                <TextInput
+                                    withAsterisk
+                                    label="Email"
+                                    placeholder="you@daspond.com"
+                                    {...form.getInputProps('email')}
+                                />
+                                <Popover opened={popoverOpened} position="bottom" width="target" transitionProps={{ transition: 'pop' }}>
+                                    <Popover.Target>
+                                        <div
+                                            onFocusCapture={() => setPopoverOpened(true)}
+                                            onBlurCapture={() => setPopoverOpened(false)}
+                                        >
+                                            <PasswordInput
+                                                withAsterisk
+                                                // value={value}
+                                                // onChange={setValue}
+                                                label="Your password"
+                                                placeholder="Your password"
+                                                {...form.getInputProps('password')}
+                                            />
+                                        </div>
+                                    </Popover.Target>
+                                    <Popover.Dropdown>
+                                        <Progress color={color} value={strength} size={5} mb="xs" />
+                                        <PasswordRequirement label="Includes at least 6 characters" meets={form.values.password.length > 5} />
+                                        {checks}
+                                    </Popover.Dropdown>
+                                </Popover>
+                                <Button
+                                    fullWidth
+                                    mt="xl"
+                                    type='submit'
+                                >
+                                    Register
+                                </Button>
+                            </form>
+                        </Paper>
+                    </div>
+
+
+                    <Image src={theme.colorScheme === 'dark' ? '/images/Auth/orange-register.svg' : '/images/Auth/pink-register.svg'} className={classes.image} />
+                </div>
+            </Container>
         </div>
 
     )

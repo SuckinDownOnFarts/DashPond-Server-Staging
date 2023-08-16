@@ -18,7 +18,7 @@ const SolutionHeaders = () => {
                             Analyze, Forecast and <br /> Screen Properties Like a Pro 
                         </Title>
                         <Text color="dimmed" mt="md">
-                            DashPond's web api makes it simple to see professional market analysis for any prospective property
+                            DashPond's web api makes it quick and simple to leverage professional market analysis for real estate investment decisions
                         </Text>
 
                         <List
@@ -32,27 +32,15 @@ const SolutionHeaders = () => {
                             }
                         >
                             <List.Item>
-                                <b>TypeScript based</b> – build type safe applications, all components and hooks
-                                export types
+                                <b>Quick, Simple, and Reliable</b> – Analyze more property, faster and easier with extremely accurate data insights
                             </List.Item>
                             <List.Item>
-                                <b>Free and open source</b> – all packages have MIT license, you can use Mantine in
-                                any project
+                                <b>Over 500 Individual Measurments</b> – Explore beautiful dynamic reports with highly granular levels of data detail
                             </List.Item>
                             <List.Item>
-                                <b>No annoying focus ring</b> – focus ring will appear only when user navigates with
-                                keyboard
+                                <b>Explore Anywhere</b> – Each report can be found at it's own web address, or you can export the data for offline usage
                             </List.Item>
                         </List>
-
-                        {/* <Group mt={30}>
-                            <Button radius="xl" size="md" className={classes.control}>
-                                Get started
-                            </Button>
-                            <Button variant="default" radius="xl" size="md" className={classes.control}>
-                                Source code
-                            </Button>
-                        </Group> */}
                     </div>
                 
                     <Image src='/images/solution-header-image.svg' className={classes.image} />

@@ -1,31 +1,31 @@
 import { Badge, Group, Title, Text, Card, SimpleGrid, Container, rem } from '@mantine/core';
-import { IconGauge, IconUser, IconCookie } from '@tabler/icons-react';
+import { IconFriends, IconCash, IconHome, IconCertificate } from '@tabler/icons-react';
 import { HeroStyles as useStyles } from './SolutionStyles/SolutionStyles';
 
 const mockdata = [
     {
         title: 'Population',
         description:
-            'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
-        icon: IconGauge,
+            'Total population, gender and age breakdowns, current, projected, and past population growth, migration flows, race breakdowns and more.',
+        icon: IconFriends,
     },
     {
         title: 'Income',
         description:
-            'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
-        icon: IconUser,
+            'Per capita Income, median and mean household income, income breakdowns, mortgage and rent costs, poverty figures, and more.',
+        icon: IconCash,
     },
     {
-        title: 'Education',
+        title: 'Housing',
         description:
-            'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
-        icon: IconCookie,
+            'Total housing units, size, age and values, renters vs. owner occupied, units in structure and more.',
+        icon: IconHome,
     },
     {
-        title: 'Employment',
+        title: 'Employment & Education',
         description:
-            'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
-        icon: IconCookie,
+            'School enrollment figures, educational attainment, labor force statistics, employment and industry figures, occupations and classes of workers, and more.',
+        icon: IconCertificate,
     },
 ];
 
@@ -49,7 +49,7 @@ const SolutionsHero = () => {
     return (
         <div className={classes.container}>
             <div className='flex flex-col justify-center items-center py-8'>
-                <Title order={2} className={classes.title} ta="center" mt="sm">
+                <Title order={2} className={classes.title} ta="center" mt="sm" tt='uppercase'>
                     Select Data Insights
                 </Title>
 

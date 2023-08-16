@@ -115,6 +115,7 @@ export const UseCasesStyles = createStyles((theme) => ({
     itemIcon: {
       padding: theme.spacing.xs,
       marginRight: theme.spacing.md,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.pink[7]
     },
   
     itemTitle: {

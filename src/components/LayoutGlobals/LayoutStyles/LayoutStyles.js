@@ -79,7 +79,7 @@ export const navbarStyles = createStyles((theme) => ({
     paddingRight: theme.spacing.md,
     textDecoration: 'none',
     color: theme.colorScheme === 'dark' ? theme.colors.gray[6] : theme.black,
-    fontWeight: 500,
+    fontWeight: 600,
     fontSize: theme.fontSizes.sm,
 
     [theme.fn.smallerThan('md')]: {

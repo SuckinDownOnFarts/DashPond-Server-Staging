@@ -1,8 +1,7 @@
-import { Header, Group, Button, UnstyledButton, Text, ThemeIcon, Divider, Burger, Drawer, Collapse, ScrollArea, rem } from '@mantine/core';
+import { Header, Group, Button, Divider, Burger, Drawer, ScrollArea, rem } from '@mantine/core';
 import Logo from '../../Globals/Logo';
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
-import { navbarFeatureList, BASE_URL } from '../../../data/Data';
 import DesktopUserAvatar from './DesktopUserAvatar';
 import MobileUserAvatar from './MobileUserAvatar';
 import useAuth from '../../../hooks/useAuth';
@@ -11,28 +10,9 @@ import ColorSchemeToggle from './ColorSchemeToggle';
 
 const Navbar = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-    // const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
     const { classes, theme } = navbarStyles();
     const { auth } = useAuth();
     const navigate = useNavigate();
-
-    // const links = navbarFeatureList.map((item) => (
-    //     <UnstyledButton className={classes.subLink} key={item.title}>
-    //         <Group noWrap align="flex-start">
-    //             <ThemeIcon size={34} variant="default" radius="md">
-    //                 <item.icon size={rem(22)} color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} />
-    //             </ThemeIcon>
-    //             <div>
-    //                 <Text size="sm" fw={500}>
-    //                     {item.title}
-    //                 </Text>
-    //                 <Text size="xs" color="dimmed">
-    //                     {item.description}
-    //                 </Text>
-    //             </div>
-    //         </Group>
-    //     </UnstyledButton>
-    // ));
 
     return (
         <div className='sticky top-0 z-50'>
@@ -46,20 +26,15 @@ const Navbar = () => {
                     </Link>
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                        <a href={`${BASE_URL}/solutions`} className={classes.link}>
+                        <a href={'/solutions'} className={classes.link}>
                             Solutions
                         </a>
-
-                        {/* <a href={`${BASE_URL}/pricing`} className={classes.link}>
-                            Pricing
-                        </a> */}
-                        <a href={`${BASE_URL}/property+search/address+input`} className={classes.link}>
+                        <a href={'/property+search/address+input'} className={classes.link}>
                             Property Search
                         </a>
-                        <a href={`${BASE_URL}/contact`} className={classes.link}>
+                        <a href={'/contact'} className={classes.link}>
                             Contact
                         </a>
-
                     </Group>
 
                     <Group>
@@ -93,8 +68,7 @@ const Navbar = () => {
                                 <MobileUserAvatar
                                     user={auth}
                                 />
-                            </div>
-                        }
+                            </div> } 
                         <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
                     </Group>
                 </Group>

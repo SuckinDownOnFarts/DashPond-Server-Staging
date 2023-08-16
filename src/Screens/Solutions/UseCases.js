@@ -9,32 +9,32 @@ const UseCases = () => {
 
     const data = [
         {
-            "image": "auditors",
-            "title": "Pharmacists",
+            "image": "/images/UseCases/investor.svg",
+            "title": "Investors",
             "description": "Azurill can be seen bouncing and playing on its big, rubbery tail"
         },
         {
-            "image": "lawyers",
-            "title": "Lawyers",
+            "image": "/images/UseCases/developer.svg",
+            "title": "Developers",
             "description": "Fans obsess over the particular length and angle of its arms"
         },
         {
-            "image": "accountants",
-            "title": "Bank owners",
+            "image": "/images/UseCases/broker.svg",
+            "title": "Brokers & Agents",
             "description": "They divvy up their prey evenly among the members of their pack"
         },
         {
-            "image": "others",
-            "title": "Others",
+            "image": "/images/UseCases/drone.svg",
+            "title": "Any RE Professional",
             "description": "Phanpy uses its long nose to shower itself"
         }
     ]
-    const { classes } = useStyles();
+    const { classes, theme } = useStyles();
 
     const items = data.map((item) => (
         <div className={classes.item} key={item.image}>
-            <ThemeIcon variant="light" className={classes.itemIcon} size={60} radius="md">
-                {/* <Image src={IMAGES[item.image]} /> */}
+            <ThemeIcon variant="light" className={classes.itemIcon} size={160} radius="md">
+                <Image src={item.image} />
             </ThemeIcon>
 
             <div>
@@ -47,11 +47,11 @@ const UseCases = () => {
     ));
 
     return (
-        <Container size={700} className={classes.wrapper}>
+        <Container size={900} className={classes.wrapper}>
             <Text className={classes.supTitle}>Use cases</Text>
 
-            <Title className={classes.title} order={2}>
-                PharmLand is <span className={classes.highlight}>not</span> just for pharmacists
+            <Title className={classes.title} order={2} color={theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[9]}>
+                You Don't Need a PhD in Statistics to Use DashPond
             </Title>
 
             <Container size={660} p={0}>

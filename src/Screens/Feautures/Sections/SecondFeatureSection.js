@@ -44,12 +44,12 @@ const SecondFeatureSection = ({ description }) => {
                 <div className="overflow-hidden" ref={emblaRef}>      
                     {theme.colorScheme === 'dark' 
                     ? <div className="flex">
-                        <img className={classes.emblaSlide} src={'/images/Dark-Page.png'} alt=''/>        
-                        <img className={classes.emblaSlide} src={'/images/Dark-Table.png'} alt=''/>
+                        <img className={classes.emblaSlide} src={'/images/SampleReports/Dark-Page.png'} alt=''/>        
+                        <img className={classes.emblaSlide} src={'/images/SampleReports/Dark-Table.png'} alt=''/>
                     </div>
                     : <div className="flex">
-                        <img className={classes.emblaSlide} src={'/images/Light-Page.png'} alt=''/>        
-                        <img className={classes.emblaSlide} src={'/images/Light-Table.png'} alt=''/> 
+                        <img className={classes.emblaSlide} src={'/images/SampleReports/Light-Page.png'} alt=''/>        
+                        <img className={classes.emblaSlide} src={'/images/SampleReports/Light-Table.png'} alt=''/> 
                     </div>
                     }       
                 </div>

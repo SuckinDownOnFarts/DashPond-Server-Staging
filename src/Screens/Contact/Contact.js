@@ -95,7 +95,7 @@ const Contact = () => {
                                     <Button 
                                         type="submit" 
                                         className={classes.control}
-                                        variant='outline'
+                                        // variant='outline'
                                         color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}
                                     >
                                         Send message

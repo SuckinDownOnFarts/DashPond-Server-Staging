@@ -121,7 +121,7 @@ function App() {
                             </Route>
 
                             {/*********************** DEMOGRAPHIC PROFILES ******************************/}
-                            <Route path='/dataprofile/:id' element={<DPLayout />}> {/* Dashboards */}
+                            <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
                                 <Route path='overview' index element={<Overview />} />
                             </Route>
 

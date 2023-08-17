@@ -117,7 +117,7 @@ export const useHeroSectionStyles = createStyles((theme) => ({
 
 export const useSecondSectionStyles = createStyles((theme) => ({
   wrapper: {
-    marginTop: '8%',
+    marginTop: '4%',
     // width: '100%',
     // paddingTop: `calc(${theme.spacing.xl} * 4)`,
     paddingBottom: `calc(${theme.spacing.xl} * 4)`,

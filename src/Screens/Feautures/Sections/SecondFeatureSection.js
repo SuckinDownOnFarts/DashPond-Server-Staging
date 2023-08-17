@@ -25,7 +25,7 @@ export function Feature({ icon: Icon, title, description }) {
 
 const SecondFeatureSection = ({ description }) => {
     const { classes, theme } = useSecondSectionStyles();
-    const features = data.map((feature, index) => <Feature {...feature} key={index} />);
+    // const features = data.map((feature, index) => <Feature {...feature} key={index} />);
     const [emblaRef] = useEmblaCarousel()
 
     return (

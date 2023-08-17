@@ -26,9 +26,9 @@ const Navbar = () => {
                     </Link>
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                        <a href={'/solutions'} className={classes.link}>
+                        {/* <a href={'/solutions'} className={classes.link}>
                             Solutions
-                        </a>
+                        </a> */}
                         <a href={'/property+search/address+input'} className={classes.link}>
                             Property Search
                         </a>
@@ -90,9 +90,9 @@ const Navbar = () => {
                     <a href="/" className={classes.link}>
                         Home
                     </a>
-                    <a href="/solutions" className={classes.link}>
+                    {/* <a href="/solutions" className={classes.link}>
                         Solutions
-                    </a>
+                    </a> */}
                     <a href="/property+search/address+input" className={classes.link}>
                         Property Search
                     </a>
@@ -134,56 +134,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-
-{/* <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
-                            <HoverCard.Target>
-                                <a href={`${BASE_URL}/dashpond+features`} className={classes.link}>
-                                    <Center inline>
-                                        <Box component="span" mr={5}>
-                                            Features
-                                        </Box>
-                                        <IconChevronDown size={16} color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} />
-                                    </Center>
-                                </a>
-                            </HoverCard.Target>
-
-                            <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
-                                <Group position="apart" px="md">
-                                    <Text fw={500}>Features</Text>
-                                    <Anchor href={`${BASE_URL}/dashpond+features`} fz="xs" color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink.7'}>
-                                        View all
-                                    </Anchor>
-                                </Group>
-
-                                <Divider
-                                    my="sm"
-                                    mx="-md"
-                                    color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.4'}
-                                />
-
-                                <SimpleGrid cols={2} spacing={0}>
-                                    {links}
-                                </SimpleGrid>
-
-                                {/* <Divider
-                                    my="sm"
-                                    mx="-md"
-                                    color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.4'}
-                                /> 
-
-                                <div className={auth.accessToken ? 'hidden' : classes.dropdownFooter} >
-                                    <Group position="apart">
-                                        <div>
-                                            <Text fw={500} fz="sm">
-                                                Get started
-                                            </Text>
-                                            <Text size="xs" color="dimmed">
-                                                Create an account and access our expanding product assortment
-                                            </Text>
-                                        </div>
-                                        <Button variant="default" onClick={() => navigate('/register')}>Get started</Button>
-                                    </Group>
-                                </div>
-                            </HoverCard.Dropdown>
-                        </HoverCard> */}

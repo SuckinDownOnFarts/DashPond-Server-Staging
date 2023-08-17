@@ -102,7 +102,7 @@ function App() {
                     <Route element={<PersistLogin />}>
 
                         <Route path='/' element={<Layout />}>
-                            <Route index element={<Features />} /> {/* Homepage Route */}
+                            <Route index element={<SolutionsLayout />} /> {/* Homepage Route */}
 
 
                             {/*********************** USER PROFILES ******************************/}

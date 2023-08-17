@@ -19,25 +19,27 @@ const ThirdFeatureSection = () => {
     ));
 
     return (
-        <Container size="lg" py="xl">
-            <Group position="center">
-                <Badge variant="filled" size="lg">
-                    Evaluate Properties with Confidence
-                </Badge>
-            </Group>
+        <div className='mt-16'>
+            <Container size="lg" py="xl">
+                <Group position="center">
+                    <Badge variant="filled" size="lg">
+                        Evaluate Properties with Confidence
+                    </Badge>
+                </Group>
 
-            <Title order={2} className={classes.title} ta="center" mt="sm" color={theme.colorScheme === 'dark' ? 'white' : 'black'}>
-                Take the Guesswork out of your Market Research
-            </Title>
+                <Title order={2} className={classes.title} ta="center" mt="sm" color={theme.colorScheme === 'dark' ? 'white' : 'black'}>
+                    Take the Guesswork out of your Market Research
+                </Title>
 
-            <Text c="dimmed" className={classes.description} ta="center" mt="md">
-                Demographic data pulled directly from the Census and American Community Survey you'll have a serious edge ****come back to this guy*****
-            </Text>
+                <Text c="dimmed" className={classes.description} ta="center" mt="md">
+                    Demographic data pulled directly from the Census and American Community Survey you'll have a serious edge ****come back to this guy*****
+                </Text>
 
-            <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
-                {features}
-            </SimpleGrid>
-        </Container>
+                <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
+                    {features}
+                </SimpleGrid>
+            </Container>
+        </div>
     );
 }
 

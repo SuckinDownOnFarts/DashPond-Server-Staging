@@ -38,6 +38,7 @@ export const SolutionHeaderStyles = createStyles((theme) => ({
 
     image: {
         flex: 1,
+        marginTop: '60px',
 
         [theme.fn.smallerThan('md')]: {
             display: 'none',

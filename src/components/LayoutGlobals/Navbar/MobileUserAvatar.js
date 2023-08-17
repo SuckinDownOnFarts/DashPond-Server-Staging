@@ -57,7 +57,7 @@ const UserAvatar = ({ user }) => {
                         icon={<IconLogout size="0.9rem" stroke={1.5} />}
                         onClick={open}
                     >
-                        Logout
+                        Log out
                     </Menu.Item>
                 </Menu.Dropdown>
             </Menu>

@@ -31,7 +31,7 @@ import AlreadyLoggedIn from './Screens/AuthScreens/AlreadyLoggedIn';
 import RequireProfileAuth from './components/Auth/RequireProfileAuth';
 import ProfileLayout from './Screens/Profile/Layout/ProfileLayout';
 import Info from './Screens/Profile/Info/InfoLayout';
-import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfiles';
+import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout';
 /////////////////////////////////////////////**************DOCUMENTATION SCREENS*************///////////////////////////////////////////////////////////
 import DocsLayout from './Screens/Docs/Documentation_Layout/Documentation_Layout';
 import DocumentationHome from './Screens/Docs/Documentation_Screens/Documentation_Home';

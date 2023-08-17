@@ -51,7 +51,7 @@ const Sidebar = ({ active }) => {
             </Navbar.Section>
             <Navbar.Section>
                 <Stack justify="center" spacing={0}>
-                    <NavbarLink icon={IconLogout} label="Logout" onClick={open} />
+                    <NavbarLink icon={IconLogout} label="Log out" onClick={open} />
                 </Stack>
             </Navbar.Section>
             <LogoutModal

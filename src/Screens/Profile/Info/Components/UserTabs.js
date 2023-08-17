@@ -1,5 +1,5 @@
 import { Tabs } from '@mantine/core';
-import { IconUserCircle, IconLock, IconCreditCard, IconTool } from '@tabler/icons-react';
+import { IconUserCircle } from '@tabler/icons-react';
 
 const UserTabs = ({ activeTab, setActiveTab }) => {
     return (

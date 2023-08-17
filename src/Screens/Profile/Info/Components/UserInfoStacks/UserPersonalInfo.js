@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Table, Text, ScrollArea, TextInput, Group } from '@mantine/core';
+import { Button, Table, Text, ScrollArea, TextInput, Group, useMantineTheme } from '@mantine/core';
 import api from '../../../../../api/axios';
 import useAuth from '../../../../../hooks/useAuth';
 
@@ -7,6 +7,7 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
   const { auth } = useAuth();
   const [edit, setEdit] = useState();
   const [initialValue, setInitialValue] = useState();
+  const theme = useMantineTheme();
 
   const data = [
     {
@@ -91,15 +92,15 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
 
       <td className=''>
         {!edit ?
-          <Button size="xs" variant="subtle" onClick={() => handleEditClick(item.userData)}>Edit</Button>
-          : <Button size="xs" variant="subtle" disabled>Edit</Button>}
+          <Button size="xs" color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} onClick={() => handleEditClick(item.userData)}>Edit</Button>
+          : <Button size="xs" variant="subtle" color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} disabled>Edit</Button>}
       </td>
     </tr>
   ));
 
   return (
     <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="xl">
+      <Table verticalSpacing="xl">
         <tbody>{rows}</tbody>
       </Table>
     </ScrollArea>

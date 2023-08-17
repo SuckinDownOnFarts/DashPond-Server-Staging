@@ -43,11 +43,7 @@ const AddressInput = () => {
     setCounty,
     setFullAddress,
     nextStep,
-    // prevStep,
-    setActive
   } = useOutletContext();
-
-  setActive(0);
 
 
   const handleSubmit = async (value) => {
@@ -82,7 +78,6 @@ const AddressInput = () => {
   useEffect(() => {
     const navigateAfterLoading = () => {
       if (!loading) {
-        nextStep();
         navigate('/property+search/address+input/map+confirmation');
       }
     };
@@ -92,7 +87,7 @@ const AddressInput = () => {
   return (
     <div className='flex flex-col flex-grow place-items-center '>
       <div>
-        <div className='mb-8 mt-16 text-center '>
+        <div className='mb-8 mt-8 text-center'>
           <div className='text-4xl font-semibold tracking-tight'>
             Address Input
           </div>
@@ -105,8 +100,6 @@ const AddressInput = () => {
           <LoadingOverlay visible={visible} overlayBlur={2} />
           <form 
             autoComplete='on'
-            // className="w-full max-w-lg mt-16"
-            // onSubmit={form.onSubmit((values) => console.log(values.address))}
             onSubmit={form.onSubmit((values) => handleSubmit(values))}
           >
 

@@ -8,13 +8,13 @@ export const useStylesNavbar = createStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: theme.white,
+      color: theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7],
       opacity: 0.85,
   
       '&:hover': {
         opacity: 1,
         backgroundColor: theme.fn.lighten(
-          theme.fn.variant({ variant: 'filled', color: 'dark'}).background,
+          theme.fn.variant({ variant: 'filled', color: theme.colorScheme === 'dark' ? 'dark' : 'gray.4'}).background,
           0.1
         ),
       },
@@ -25,7 +25,7 @@ export const useStylesNavbar = createStyles((theme) => ({
       opacity: 1,
       '&, &:hover': {
         backgroundColor: theme.fn.lighten(
-          theme.fn.variant({ variant: 'filled', color: 'dark' }).background,
+          theme.fn.variant({ variant: 'filled', color: theme.colorScheme === 'dark' ? 'dark' : 'gray.3'}).background,
           0.15
         ),
       },

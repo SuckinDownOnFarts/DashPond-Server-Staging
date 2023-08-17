@@ -4,47 +4,44 @@ import api from '../../../api/axios'
 import useAuth from '../../../hooks/useAuth';
 import DPTable from './Components/DPTable';
 
-const rolesData = ['Active', 'Sold', 'Hidden'];
+const DataProfiles = () => {
+    const { setActive } = useOutletContext();
+    const { auth } = useAuth(); 
+    setActive(0);
 
-const DataProfiles = ({}) => {
-  const { setActive } = useOutletContext();
-  const { auth } = useAuth(); 
-  setActive(2);
+    const [profiles, setProfiles] = useState(null);
 
-  const [profiles, setProfiles] = useState(null);
+    const fetchProfilePath = generatePath('/fetchdataprofiles/:id', {
+        id: auth.id
+    });
 
-  const fetchProfilePath = generatePath('/fetchdataprofiles/:id', {
-    id: auth.id
-  });
-
-  useEffect(() => {
-    const fetchProfiles = async () => {
-      try {
-        const response = await api.get(fetchProfilePath);
-        setProfiles(response.data);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers); 
-        } else { 
-          console.log(`Error: ${err.message}`)
+    useEffect(() => {
+        const fetchProfiles = async () => {
+        try {
+            const response = await api.get(fetchProfilePath);
+            setProfiles(response.data);
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+            } else { 
+                console.log(`Error: ${err.message}`)
+            }
         }
-      }
-    }
+        }
 
     fetchProfiles();
   }, []);
 
-  // profiles ? console.log(profiles) : console.log('loading profiles');
 
 
   return (
     <div className='m-8'>
-      {!profiles ? <></> :
+      {/* {!profiles ? <></> :
       <DPTable 
         data={profiles}
-      />}
+      />} */}
     </div>
   )
 }

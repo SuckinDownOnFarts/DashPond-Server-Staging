@@ -45,29 +45,16 @@ const UserAvatar = ({ user }) => {
                     >
                         Reports
                     </Menu.Item>
-                    {/* <Menu.Item
-                        icon={<IconStar size="0.9rem" stroke={1.5} color={theme.colors.yellow[6]} />}
-                        onClick={() => navigate(`/profile/${user.id}/insights`)}
-                    >
-                        Insights
-                    </Menu.Item> */}
-                    <Menu.Label>Settings</Menu.Label>
+
                     <Menu.Item
                         icon={<IconSettings size="0.9rem" stroke={1.5} />}
                         onClick={() => navigate(`/profile/${user.id}/info`)}
                     >
                         Account settings
                     </Menu.Item>
-                    {/* <Menu.Item
-                        icon={<IconSwitchHorizontal size="0.9rem" stroke={1.5} />}
-                        onClick={() => navigate(`/profile/${user.id}/billing+plan`)}
-                    >
-                        Subscription & billing
-                    </Menu.Item> */}
 
                     <Menu.Divider />
 
-                    <Menu.Label>Options</Menu.Label>
 
                     <Menu.Item
                         icon={<IconLogout size="0.9rem" stroke={1.5} />}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, Text, TextInput, Textarea, Button, Group, SimpleGrid } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { ContactIconsList } from './ContactIconsList';
 import { useContactMainStyles as useStyles } from './ContactStyles';
 import api from '../../api/axios'
 
@@ -41,7 +40,6 @@ const Contact = () => {
 
     const handleSubmit = async (values) => {
         try {
-            // console.log(values);
             const response = await api.post('/contactform', (values));
             // console.log(response); 
         } catch (err) {

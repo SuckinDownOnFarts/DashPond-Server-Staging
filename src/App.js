@@ -3,7 +3,6 @@ import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 /////////////////////////////////////////////**************LAYOUT*************///////////////////////////////////////////////////////////
 import Layout from './components/LayoutGlobals/Layout';
 /////////////////////////////////////////////**************SCREENS*************///////////////////////////////////////////////////////////
-import Home from './Screens/Home';
 import DPLayout from './Screens/DataProfile/Layout/DPLayout';
 import Missing from './Screens/404/Missing';
 import Contact from './Screens/Contact/Contact';
@@ -30,10 +29,8 @@ import PricingRequireAuth from './components/Auth/PricingRequireAuth';
 import AlreadyLoggedIn from './Screens/AuthScreens/AlreadyLoggedIn';
 /////////////////////////////////////////////**************USER PROFILE SCREENS*************///////////////////////////////////////////////////////////
 import RequireProfileAuth from './components/Auth/RequireProfileAuth';
-import ProfileLayout from './Screens/Profile/Layout/Layout';
-import Info from './Screens/Profile/Info/Info';
-import Insights from './Screens/Profile/Insights/Insights';
-import ProfilePlan from './Screens/Profile/Plan';
+import ProfileLayout from './Screens/Profile/Layout/ProfileLayout';
+import Info from './Screens/Profile/Info/InfoLayout';
 import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfiles';
 /////////////////////////////////////////////**************DOCUMENTATION SCREENS*************///////////////////////////////////////////////////////////
 import DocsLayout from './Screens/Docs/Documentation_Layout/Documentation_Layout';
@@ -75,7 +72,7 @@ function App() {
         const setColorScheme = () => {
             if (colorScheme === 'dark') {
                 localStorage.setItem("colorScheme", "dark");
-            } 
+            }
             if (colorScheme === 'light') {
                 localStorage.setItem("colorScheme", "light");
             }
@@ -110,8 +107,6 @@ function App() {
                                 <Route element={<RequireProfileAuth />}>
                                     <Route path='profile/:id' element={<ProfileLayout />}>
                                         <Route path='info' element={<Info />} />
-                                        <Route path='insights' element={<Insights />} />
-                                        <Route path='billing+plan' element={<ProfilePlan />} />
                                         <Route path='data+profiles' element={<DataProfiles />} />
                                     </Route>
                                 </Route>
@@ -157,7 +152,7 @@ function App() {
 
                             {/*********************** SOLUTIONS ******************************/}
                             <Route path='solutions' element={<SolutionsLayout />}>
-                                
+
                             </Route>
 
 

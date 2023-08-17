@@ -1,19 +1,14 @@
-import { Avatar, Text, Group } from '@mantine/core';
+import { Text, Group } from '@mantine/core';
 import { IconPhoneCall, IconAt, IconBuildingSkyscraper } from '@tabler/icons-react';
-import { useProfileStyles as useStyles } from '../Styles/InfoStyles';
+import { useProfileStyles as useStyles } from '../InfoStyles/InfoStyles';
 
 
-const Profile = ({ avatar, name, company, phone, email }) => {
+const Profile = ({  name, company, phone, email }) => {
     const { classes } = useStyles();
     return (
         <div>
             <Group noWrap>
-                <Avatar src={avatar} size={104} radius="md" />
                 <div>
-                    {/* <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
-                        {title}
-                    </Text> */}
-
                     <Text fz="lg" fw={700} className={classes.name}>
                         {name}
                     </Text>

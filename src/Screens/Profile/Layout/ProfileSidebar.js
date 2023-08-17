@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Navbar, Tooltip, UnstyledButton, Stack } from '@mantine/core';
-import { IconGauge, IconDeviceDesktopAnalytics, IconUser, IconSettings, IconLogout } from '@tabler/icons-react';
+import { IconGauge, IconUser, IconLogout } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { useStylesNavbar } from './Styles/ProfileLayoutStyles';
 import LogoutModal from '../../../components/LayoutGlobals/LogoutModal';
@@ -8,10 +8,10 @@ import useAuth from '../../../hooks/useAuth';
 
 
 const NavbarLink = ({ icon: Icon, label, active, onClick }) => {
-    const { classes, cx } = useStylesNavbar();
+    const { classes, theme, cx } = useStylesNavbar();
     return (
         <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
-            <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })}>
+            <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })} color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}>
                 <Icon size="1.2rem" stroke={1.5} />
             </UnstyledButton>
         </Tooltip>
@@ -25,10 +25,8 @@ const Sidebar = ({ active }) => {
     const [openLogout, { open, close }] = useDisclosure(false);
 
     const mockdata = [
-        { icon: IconUser, label: 'Account', address: `/profile/${auth?.id}/info` },
-        { icon: IconDeviceDesktopAnalytics, label: 'Insights', address: `/profile/${auth?.id}/insights` },
         { icon: IconGauge, label: 'Data Profiles', address: `/profile/${auth?.id}/data+profiles` },
-        { icon: IconSettings, label: 'Billing and Subscriptions', address: `/profile/${auth?.id}/billing+plan` },
+        { icon: IconUser, label: 'Account Settings', address: `/profile/${auth?.id}/info` },
     ];
 
     const links = mockdata.map((link, index) => (
@@ -44,6 +42,7 @@ const Sidebar = ({ active }) => {
         <Navbar
             width={{ base: 80 }}
             p="md"
+            className='hidden md:flex'
         >
             <Navbar.Section grow mt={20}>
                 <Stack justify="center" spacing={0}>

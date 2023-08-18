@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
-import { useLinksGroupStyles } from '../../Screens/DataProfile/Layout/Styles/DPLayoutStyles';
+import { useLinksGroupStyles } from '../../Screens/MarketReport/Layout/Styles/DPLayoutStyles';
 
 
 

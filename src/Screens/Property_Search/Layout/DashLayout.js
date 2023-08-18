@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, generatePath, useNavigate } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
-import useAuth from '../../../../hooks/useAuth'
-import api from '../../../../api/axios'
+import useAuth from '../../../hooks/useAuth'
+import api from '../../../api/axios'
 import { useMantineTheme } from '@mantine/core';
 
 const DashLayout = () => {

@@ -3,23 +3,21 @@ import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 /////////////////////////////////////////////**************LAYOUT*************///////////////////////////////////////////////////////////
 import Layout from './components/LayoutGlobals/Layout';
 /////////////////////////////////////////////**************SCREENS*************///////////////////////////////////////////////////////////
-import DPLayout from './Screens/DataProfile/Layout/DPLayout';
+import DPLayout from './Screens/MarketReport/Layout/DPLayout';
 import Missing from './Screens/404/Missing';
 import Contact from './Screens/Contact/Contact';
 import Features from './Screens/Feautures/Features';
-/////////////////////////////////////////////**************PRODUCT SCREENS*************///////////////////////////////////////////////////////////
-import ProductLayout from './Screens/Products/ProductsLayout/ProductLayout';
 /////////////////////////////////////////////**************CREATE DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
-import AddressInput from './Screens/Products/Create_DataProfiles/AddressInput';
-import DashLayout from './Screens/Products/Create_DataProfiles/Layout/DashLayout';
-import FileUploader from './Screens/Products/Create_DataProfiles/FileUploader';
-import MapModal from './Screens/Products/Create_DataProfiles/MapModal';
+import AddressInput from './Screens/Property_Search/AddressInput';
+import DashLayout from './Screens/Property_Search/Layout/DashLayout';
+import FileUploader from './Screens/Property_Search/FileUploader';
+import MapModal from './Screens/Property_Search/MapModal';
 /////////////////////////////////////////////**************PRICING SCREENS*************///////////////////////////////////////////////////////////
 import PricingPlan from './Screens/Pricing/PricingPlan';
 import Pricing from './Screens/Pricing/Pricing';
 import Checkout from './Screens/Pricing/Checkout';
 /////////////////////////////////////////////**************DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
-import Overview from './Screens/DataProfile/Layout/Overview';
+import Overview from './Screens/MarketReport/Layout/Overview';
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
 import Register from './Screens/AuthScreens/Register';
 import Login from './Screens/AuthScreens/Login';

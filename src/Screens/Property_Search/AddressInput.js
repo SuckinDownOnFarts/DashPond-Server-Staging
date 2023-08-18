@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { stateNames } from '../../../data/Data';
+import { stateNames } from '../../data/Data';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { TextInput, Select, Button, Group, Box, LoadingOverlay } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';

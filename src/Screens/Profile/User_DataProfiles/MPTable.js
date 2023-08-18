@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Text, Button, ScrollArea, Table, useMantineTheme, Group, Pagination, UnstyledButton } from '@mantine/core';
+import { IconEye } from '@tabler/icons-react'
 
 const MPTable = ({ data }) => {
     const theme = useMantineTheme();
@@ -23,7 +24,9 @@ const MPTable = ({ data }) => {
                 </Text>
             </td>
             <td>
-                <Text>{item.created_at}</Text>
+                <Text>
+                    {`${(new Date(item.created_at).getMonth() + 1)} / ${new Date(item.created_at).getDate()} / ${new Date(item.created_at).getFullYear()}`}
+                </Text>
             </td>
 
             <td className=''>
@@ -47,7 +50,7 @@ const MPTable = ({ data }) => {
                         <tr>
                             <th></th>
                             <th>Address</th>
-                            <th>Date</th>
+                            <th>Date Created</th>
                             <th>Options</th>
                         </tr>
                     </thead>

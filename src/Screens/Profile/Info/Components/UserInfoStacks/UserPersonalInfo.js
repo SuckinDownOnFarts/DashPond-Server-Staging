@@ -9,11 +9,23 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
     const [initialValue, setInitialValue] = useState();
     const theme = useMantineTheme();
 
+    let planType =  null
+    roles === 11 
+        ? planType = 'DashPond Admin'
+        : roles === 10 
+            ? planType = 'Beta Tester'
+            : planType = 'Gold Plan'
+
     const data = [
         {
-            'value': 'Name',
-            'userData': `${firstName} ${lastName}`,
-            'editValue': 'name'
+            'value': 'First Name',
+            'userData': firstName,
+            'editValue': 'first name'
+        },
+        {
+            'value': 'Last Name',
+            'userData': lastName,
+            'editValue': 'first name'
         },
         {
             'value': 'Email',
@@ -27,7 +39,7 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
         },
         {
             'value': 'Plan Type',
-            'userData': 'DashPond Admin',
+            'userData': planType,
             'editValue': 'plan'
         },
         {
@@ -91,7 +103,7 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
                 </td>}
 
             <td className=''>
-                {!edit ?
+                {!edit && item.value !== 'Plan Type' ?
                     <Button size="xs" color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} onClick={() => handleEditClick(item.userData)}>Edit</Button>
                     : <Button size="xs" variant="subtle" color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} disabled>Edit</Button>}
             </td>

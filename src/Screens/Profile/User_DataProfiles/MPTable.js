@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Text, Button, ScrollArea, Table, useMantineTheme, Group, Pagination, UnstyledButton } from '@mantine/core';
-import { IconEye } from '@tabler/icons-react'
+import { Text, Button, ScrollArea, Table, useMantineTheme, Group, Pagination } from '@mantine/core';
 
 const MPTable = ({ data }) => {
     const theme = useMantineTheme();

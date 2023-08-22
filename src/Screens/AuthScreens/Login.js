@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { TextInput, PasswordInput, Checkbox, Anchor, Paper, Title, Text, Container, Group, Button, Center } from '@mantine/core';
+import { TextInput, PasswordInput, Checkbox, Anchor, Paper, Title, Text, Container, Group, Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
 import { BASE_URL } from '../../data/Data';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 const Login = () => {
     const { auth, setAuth, setPersist, persist } = useAuth();
@@ -33,7 +35,7 @@ const Login = () => {
             email:
                 values.email.length === 0
                     ? 'Address is required'
-                    : /^\S+@\S+$/.test(values.email)
+                    : EMAIL_REGEX.test(values.email.trim())
                         ? null
                         : 'Invalid email format',
             password:
@@ -64,7 +66,7 @@ const Login = () => {
             navigate(from, { replace: true });
         } catch (err) {
             if (err?.response?.status === 401) {
-                form.setErrors({ email: 'Incorrect login information' })
+                form.setErrors({ email: 'Incorrect login information', password: 'Incorrect login information' })
                 // setError('root.serverError', { 
                 //     type: err.response.status,
                 // })

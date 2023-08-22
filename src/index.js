@@ -4,7 +4,7 @@ import App from './App';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthProvider';
-import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import './index.css';
 
 

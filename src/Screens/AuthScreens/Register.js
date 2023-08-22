@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
-import { Box, Progress, TextInput, PasswordInput, Anchor, Paper, Title, Text, Button, Popover, useMantineTheme, Image, Container } from '@mantine/core';
+import { Box, Progress, TextInput, PasswordInput, Anchor, Paper, Title, Text, Button, Popover, Image, Container } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import useAuth from '../../hooks/useAuth';

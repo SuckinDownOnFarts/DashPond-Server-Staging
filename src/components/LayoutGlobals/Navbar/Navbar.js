@@ -1,4 +1,4 @@
-import { Header, Group, Button, Divider, Burger, Drawer, ScrollArea, rem } from '@mantine/core';
+import { Header, Group, Button, Divider, Burger, Drawer, ScrollArea, rem, Badge } from '@mantine/core';
 import Logo from '../../Globals/Logo';
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,11 +19,16 @@ const Navbar = () => {
             <Header height={60} px="md">
                 <Group position="apart" sx={{ height: '100%' }}>
 
-                    <Link to='/'>
-                        <div>
-                            <Logo />
-                        </div>
-                    </Link>
+                    <Group>
+                        <Link to='/'>
+                            <div>
+                                <Logo />
+                            </div>
+                        </Link>
+
+                        <Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>Beta</Badge>
+                    </Group>
+
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
                         {/* <a href={'/solutions'} className={classes.link}>
@@ -68,7 +73,7 @@ const Navbar = () => {
                                 <MobileUserAvatar
                                     user={auth}
                                 />
-                            </div> } 
+                            </div>}
                         <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
                     </Group>
                 </Group>

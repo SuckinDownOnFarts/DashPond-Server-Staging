@@ -12,7 +12,7 @@ const UseCases = () => {
         {
             "image": theme.colorScheme === 'dark' ? "/images/UseCases/investor-orange.svg" : "/images/UseCases/investor-pink.svg",
             "title": "Investors",
-            "description": "Analyze any prospective invest property"
+            "description": "Analyze any prospective investment property "
         },
         {
             "image": theme.colorScheme === 'dark' ? "/images/UseCases/developer-orange.svg" : "/images/UseCases/developer-pink.svg",

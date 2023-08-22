@@ -59,7 +59,7 @@ const DashLayout = () => {
             if (!response?.data) {
                 console.log('no response')
             } else {
-                const path = generatePath('/dataprofile/:id/overview', {
+                const path = generatePath('/market+report/:id/overview', {
                     id: response.data.toString()
                 });
                 toggle();

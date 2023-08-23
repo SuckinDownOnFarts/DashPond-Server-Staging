@@ -7,7 +7,7 @@ const ProfileLayout = () => {
 
   return (
     <div className='flex flex-row w-full'>
-        <div className='flex flex-col z-50'>
+        <div className='flex flex-col'>
             <Sidebar 
                 active={active}
                 setActive={setActive}

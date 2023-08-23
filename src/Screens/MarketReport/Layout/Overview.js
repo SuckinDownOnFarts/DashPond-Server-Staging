@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, generatePath } from 'react-router-dom';
-import DPSidebar from './DPSidebar';
 import api from '../../../api/axios';
-
 
 import KeyTrendsHeader from '../Components/Main/KeyTrendsHeaders';
 import IndustryFacts from '../Components/Main/IndustryFacts';
 import EducationFacts from '../Components/Main/EducationEmploymentFacts';
 import HouseholdIncomeFacts from '../Components/Main/HouseholdIncomeFacts';
 import TableExample from '../Components/Main/TableExample';
+import MyResponsiveBar from '../Charts/Bar';
+import MyResponsiveBump from '../Charts/Bump';
 
 const Overview = () => {
-
     const { id } = useParams();
-    const overviewPath = generatePath('/overview/:id', {
-        id: id
-    });
 
     const [data, setData] = useState([]); //Stays
     const [demoDataLoading, setDemoDataLoading] = useState(true); //Stays
-    const [selectedView, setSelectedView] = useState('first');
+    // const [selectedView, setSelectedView] = useState('first');
 
     //Fetch the census data property results 
     useEffect(() => {
         const fetchOverviewData = async () => {
+            const overviewPath = generatePath('/overview/:id', {
+                id: id
+            });
+        
             try {
                 const response = await api.get(overviewPath);
                 setData(response.data);
@@ -38,20 +38,21 @@ const Overview = () => {
                 }
             }
         }
-
         fetchOverviewData();
     }, []);
 
-    console.log(data);
-
-
     return (
-        <main className='flex flex-row ml-[300px]'>
-            <DPSidebar />
+        <main className='flex flex-row w-full'>
 
-            <div className='flex flex-col w-full mb-4'>
+            <div className='flex flex-col mb-4 w-full'>
                 {!demoDataLoading
                     ? <div>
+                        <div className='h-[400px]'>
+                            <MyResponsiveBar />
+                        </div>
+                        <div className='h-[400px]'>
+                            <MyResponsiveBump />
+                        </div>
                         <div>
                             <KeyTrendsHeader
                                 data={data}

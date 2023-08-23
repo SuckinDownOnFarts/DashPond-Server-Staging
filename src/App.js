@@ -6,16 +6,11 @@ import Layout from './components/LayoutGlobals/Layout';
 import DPLayout from './Screens/MarketReport/Layout/DPLayout';
 import Missing from './Screens/404/Missing';
 import Contact from './Screens/Contact/Contact';
-import Features from './Screens/Feautures/Features';
 /////////////////////////////////////////////**************CREATE DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
 import AddressInput from './Screens/Property_Search/AddressInput';
 import DashLayout from './Screens/Property_Search/Layout/DashLayout';
 import FileUploader from './Screens/Property_Search/FileUploader';
 import MapModal from './Screens/Property_Search/MapModal';
-/////////////////////////////////////////////**************PRICING SCREENS*************///////////////////////////////////////////////////////////
-import PricingPlan from './Screens/Pricing/PricingPlan';
-import Pricing from './Screens/Pricing/Pricing';
-import Checkout from './Screens/Pricing/Checkout';
 /////////////////////////////////////////////**************DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
 import Overview from './Screens/MarketReport/Layout/Overview';
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
@@ -23,22 +18,12 @@ import Register from './Screens/AuthScreens/Register';
 import Login from './Screens/AuthScreens/Login';
 import RequireAuth from './components/Auth/RequireAuth';
 import PersistLogin from './components/Auth/PersistLogin';
-import PricingRequireAuth from './components/Auth/PricingRequireAuth';
 import AlreadyLoggedIn from './Screens/AuthScreens/AlreadyLoggedIn';
 /////////////////////////////////////////////**************USER PROFILE SCREENS*************///////////////////////////////////////////////////////////
 import RequireProfileAuth from './components/Auth/RequireProfileAuth';
 import ProfileLayout from './Screens/Profile/Layout/ProfileLayout';
 import Info from './Screens/Profile/Info/InfoLayout';
 import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout';
-/////////////////////////////////////////////**************DOCUMENTATION SCREENS*************///////////////////////////////////////////////////////////
-import DocsLayout from './Screens/Docs/Documentation_Layout/Documentation_Layout';
-import DocumentationHome from './Screens/Docs/Documentation_Screens/Documentation_Home';
-import DocumentationGettingStarted from './Screens/Docs/Documentation_Screens/Documentation_GettingStarted';
-import DocumentationProducts from './Screens/Docs/Documentation_Screens/Documentation_Products';
-import DocumentationPlans from './Screens/Docs/Documentation_Screens/Documentation_Plans';
-import DocumentationIntegrations from './Screens/Docs/Documentation_Screens/Documentation_Integrations';
-import DocumentationReleases from './Screens/Docs/Documentation_Screens/Documentation_Releases';
-import DocumentationSupport from './Screens/Docs/Documentation_Screens/Documentation_Support';
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
 import SolutionsLayout from './Screens/Solutions/SolutionsLayout';
 
@@ -85,9 +70,6 @@ function App() {
             <MantineProvider
                 theme={{
                     colorScheme,
-                    // colors: {
-                    //   'orange': ['#fc6400']
-                    // }
                     primaryColor: colorScheme === 'dark' ? 'orange' : 'pink'
                 }}
                 withGlobalStyles
@@ -99,7 +81,6 @@ function App() {
                         <Route path='/' element={<Layout />}>
                             <Route index element={<SolutionsLayout />} /> {/* Homepage Route */}
 
-
                             {/*********************** USER PROFILES ******************************/}
                             <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />}>
                                 <Route element={<RequireProfileAuth />}>
@@ -110,31 +91,9 @@ function App() {
                                 </Route>
                             </Route>
 
-                            {/*********************** PRICING ******************************/}
-                            <Route path='pricing' element={<Pricing />} />
-
-                            <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
-                                <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
-                                <Route path='getstarted/:plan/checkout' element={<Checkout />} />
-                            </Route>
-
                             {/*********************** DEMOGRAPHIC PROFILES ******************************/}
                             <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
                                 <Route path='overview' index element={<Overview />} />
-                            </Route>
-
-                            {/*********************** FEATURES ******************************/}
-                            <Route path='dashpond+features' element={<Features />} />
-
-                            {/*********************** DOCUMENTATION ******************************/}
-                            <Route path='documentation' element={<DocsLayout />}>
-                                <Route path='home' element={<DocumentationHome />} />
-                                <Route path='getting+started' element={<DocumentationGettingStarted />} />
-                                <Route path='products' element={<DocumentationProducts />} />
-                                <Route path='plans' element={<DocumentationPlans />} />
-                                <Route path='integrations' element={<DocumentationIntegrations />} />
-                                <Route path='releases' element={<DocumentationReleases />} />
-                                <Route path='support' element={<DocumentationSupport />} />
                             </Route>
 
                             {/*********************** PRODUCTS ******************************/}
@@ -146,14 +105,6 @@ function App() {
                                     <Route path='address+input/map+confirmation/image+upload' element={<FileUploader />} />
                                 </Route>
                             </Route>
-                            {/* </Route> */}
-
-                            {/*********************** SOLUTIONS ******************************/}
-                            <Route path='solutions' element={<SolutionsLayout />}>
-
-                            </Route>
-
-
 
                             {/*********************** CONTACT ******************************/}
                             <Route path='contact' element={<Contact />} />
@@ -166,8 +117,6 @@ function App() {
                             <Route path='register' element={<Register />} />
                             <Route path='already+logged+in' element={<AlreadyLoggedIn />} />
                         </Route>
-
-
                     </Route>
                 </Routes>
             </MantineProvider>
@@ -176,3 +125,32 @@ function App() {
 }
 
 export default App;
+
+
+{/*********************** FEATURES ******************************/}
+{/* <Route path='dashpond+features' element={<Features />} /> */}
+
+{/*********************** DOCUMENTATION ******************************/}
+{/* <Route path='documentation' element={<DocsLayout />}>
+    <Route path='home' element={<DocumentationHome />} />
+    <Route path='getting+started' element={<DocumentationGettingStarted />} />
+    <Route path='products' element={<DocumentationProducts />} />
+    <Route path='plans' element={<DocumentationPlans />} />
+    <Route path='integrations' element={<DocumentationIntegrations />} />
+    <Route path='releases' element={<DocumentationReleases />} />
+    <Route path='support' element={<DocumentationSupport />} />
+</Route> */}
+
+{/*********************** SOLUTIONS ******************************/}
+{/* <Route path='solutions' element={<SolutionsLayout />}>
+
+</Route> */}
+
+
+{/*********************** PRICING ******************************/}
+{/* <Route path='pricing' element={<Pricing />} />
+
+<Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
+    <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
+    <Route path='getstarted/:plan/checkout' element={<Checkout />} />
+</Route> */}

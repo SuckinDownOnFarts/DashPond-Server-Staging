@@ -11,8 +11,11 @@ import AddressInput from './Screens/Property_Search/AddressInput';
 import DashLayout from './Screens/Property_Search/Layout/DashLayout';
 import FileUploader from './Screens/Property_Search/FileUploader';
 import MapModal from './Screens/Property_Search/MapModal';
-/////////////////////////////////////////////**************DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
-import Overview from './Screens/MarketReport/Layout/Overview';
+/////////////////////////////////////////////**************MARKET REPORTS SCREENS*************///////////////////////////////////////////////////////////
+import Overview from './Screens/MarketReport/Sections/KeyTrends/KTLayout';
+import TablesLayout from './Screens/MarketReport/Sections/Tables/TablesLayout'
+import MapsLayout from './Screens/MarketReport/Sections/Maps/MapsLayout';
+import PopLayout from './Screens/MarketReport/Sections/Population/PopLayout';
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
 import Register from './Screens/AuthScreens/Register';
 import Login from './Screens/AuthScreens/Login';
@@ -93,7 +96,13 @@ function App() {
 
                             {/*********************** DEMOGRAPHIC PROFILES ******************************/}
                             <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
-                                <Route path='overview' index element={<Overview />} />
+                                <Route path='key+trends' index element={<Overview />} />
+                                <Route path='population' index element={<PopLayout />} />
+                                <Route path='employment' index element={<TablesLayout />} />
+                                <Route path='education' index element={<TablesLayout />} />
+                                <Route path='income+earnings' index element={<TablesLayout />} />
+                                <Route path='map+views' index element={<MapsLayout />} />
+                                <Route path='tables' index element={<TablesLayout />} />
                             </Route>
 
                             {/*********************** PRODUCTS ******************************/}
@@ -127,10 +136,10 @@ function App() {
 export default App;
 
 
-{/*********************** FEATURES ******************************/}
-{/* <Route path='dashpond+features' element={<Features />} /> */}
+{/*********************** FEATURES ******************************/ }
+{/* <Route path='dashpond+features' element={<Features />} /> */ }
 
-{/*********************** DOCUMENTATION ******************************/}
+{/*********************** DOCUMENTATION ******************************/ }
 {/* <Route path='documentation' element={<DocsLayout />}>
     <Route path='home' element={<DocumentationHome />} />
     <Route path='getting+started' element={<DocumentationGettingStarted />} />
@@ -141,13 +150,13 @@ export default App;
     <Route path='support' element={<DocumentationSupport />} />
 </Route> */}
 
-{/*********************** SOLUTIONS ******************************/}
+{/*********************** SOLUTIONS ******************************/ }
 {/* <Route path='solutions' element={<SolutionsLayout />}>
 
 </Route> */}
 
 
-{/*********************** PRICING ******************************/}
+{/*********************** PRICING ******************************/ }
 {/* <Route path='pricing' element={<Pricing />} />
 
 <Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >

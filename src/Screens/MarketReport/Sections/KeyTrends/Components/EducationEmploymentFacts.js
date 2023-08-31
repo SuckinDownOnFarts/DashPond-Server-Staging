@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { UnstyledButton, Text, Paper, Group } from '@mantine/core';
 import { IconCoins, IconCake, IconUserPlus, IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import dayjs from 'dayjs';
-import { bufferData } from '../../../../data/Data';
-import { useEduEmpStyles } from './Styles/DPStyles';
+import { useEduEmpStyles as useStyles } from './Styles/MRStyles';
 
 const EmploymentFacts = ({ data }) => {
-    const { classes } = useEduEmpStyles();
+    const { classes } = useStyles();
     const [date, setDate] = useState(new Date(2021, 9, 24));
     const [index, setIndex] = useState(9);
     const [disableUp, setDisableUp] = useState(false);
     const [disableDown, setDisableDown] = useState(false);
-    const [eduBuffer, setEduBuffer] = useState(0);
-    const [empBuffer, setEmpBuffer] = useState(0);
 
     const cardData = [
-        { icon: IconUserPlus, label: 'Population', popData: data[1] },
+        { icon: IconUserPlus, label: 'Population', popData: data[0] },
         { icon: IconCoins, label: 'Median HouseHold Income' },
         { icon: IconCake, label: 'Median Age' },
     ];
@@ -54,7 +51,7 @@ const EmploymentFacts = ({ data }) => {
           <div>
             <Text className={classes.label}>{stat.label}</Text>
             <Text fz="xs" className={classes.count}>
-              <span className={classes.value}>{data[1][index]}</span>
+              <span className={classes.value}>{data[0][index]}</span>
             </Text>
           </div>
         </Paper>

@@ -1,5 +1,5 @@
 import { ResponsiveBump } from '@nivo/bump';
-import { nivoDarkTheme, nivoLightTheme } from '../../../NivoTheme/theme';
+import { nivoDarkTheme, nivoLightTheme } from '../../../../NivoTheme/theme';
 import { useMantineTheme } from '@mantine/core';
 
 const MyResponsiveBump = () => {

@@ -13,7 +13,7 @@ const MPTable = ({ data }) => {
     const rows = data.map((item) => (
         <tr key={item.value}>
             <td>
-                <Button variant="light" onClick={() => navigate(`/market+report/${item.id}/overview`)}>
+                <Button variant="light" onClick={() => navigate(`/market+report/${item.id}/key+trends`)}>
                     View
                 </Button>
             </td>

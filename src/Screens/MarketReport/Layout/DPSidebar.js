@@ -1,23 +1,24 @@
-import { Navbar, ScrollArea } from '@mantine/core';
-import { useDPSidebarStyles } from './Styles/DPLayoutStyles';
+import { useDPSidebarStyles as useStyles} from '../Styles/MRStyles';
 import LinksGroup from '../../../components/Globals/LinksGroup';
 import { dataProfileSidebarData as data } from '../../../data/Data';
 
 const DPSidebar = () => {
-    const { classes } = useDPSidebarStyles();
+    const { classes } = useStyles();
 
     const links = data.map((item) => (
-        <LinksGroup {...item} key={item.label} />
+        <LinksGroup {...item} key={item.label} link={`${item.link}`}/>
     ));
 
     return (
-        <Navbar width={{ sm: 300 }} className={classes.navbar}>
+        <div className={classes.navbar}>
 
-            <Navbar.Section grow className={classes.links} component={ScrollArea}>
-                <div className={classes.linksInner}>{links}</div>
-            </Navbar.Section>
+            <div className={classes.links}>
+                <div className={classes.linksInner}>
+                    {links}
+                </div>
+            </div>
 
-        </Navbar>
+        </div>
     );
 }
 

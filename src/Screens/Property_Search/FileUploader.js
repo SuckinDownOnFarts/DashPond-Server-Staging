@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { Text, Group, Button, rem, SimpleGrid, LoadingOverlay, Image } from '@mantine/core';
 
-import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+// import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { IconCloudUpload, IconX, IconDownload } from '@tabler/icons-react';
 import { useFileUploadStyles } from './Styles/CreateDashStyles';
 
@@ -54,7 +54,7 @@ const FileUploader = () => {
     <div className='mt-16 w-[100%] h-[75%] '>
       <div className={classes.wrapper}>
         <LoadingOverlay visible={visible} overlayBlur={2} />
-        <Dropzone
+        {/* <Dropzone
           openRef={openRef}
           onDrop={(files) => {
             // console.log(files);
@@ -111,7 +111,7 @@ const FileUploader = () => {
         </Button>
         <Button className='' size="md" radius="xl" onClick={() => submitForm()}>
           Submit
-        </Button>
+        </Button> */}
       </div>
     </div>
   )

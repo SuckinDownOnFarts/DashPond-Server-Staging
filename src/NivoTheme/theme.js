@@ -110,12 +110,12 @@ export const nivoLightTheme = {
 }
 
 export const nivoDarkTheme = {
-    "background": "#1A1B1E",
+    "background": "#1a1b1e",
     "text": {
-        "fontSize": 15,
-        "fill": "#333333",
-        "outlineWidth": 0,
-        "outlineColor": "transparent"
+        "fontSize": 20,
+        "fill": "#ffffff",
+        // "outlineWidth": 0,
+        // "outlineColor": "transparent"
     },
     "axis": {
         "domain": {
@@ -126,8 +126,8 @@ export const nivoDarkTheme = {
         },
         "legend": {
             "text": {
-                "fontSize": 12,
-                "fill": "#333333",
+                "fontSize": 15,
+                "fill": "#ffffff",
                 "outlineWidth": 0,
                 "outlineColor": "transparent"
             }
@@ -139,7 +139,7 @@ export const nivoDarkTheme = {
             },
             "text": {
                 "fontSize": 11,
-                "fill": "#333333",
+                "fill": "#ffffff",
                 "outlineWidth": 0,
                 "outlineColor": "transparent"
             }
@@ -162,7 +162,7 @@ export const nivoDarkTheme = {
         },
         "text": {
             "fontSize": 11,
-            "fill": "#333333",
+            "fill": "#ffffff",
             "outlineWidth": 0,
             "outlineColor": "transparent"
         },
@@ -179,7 +179,7 @@ export const nivoDarkTheme = {
     "annotations": {
         "text": {
             "fontSize": 13,
-            "fill": "#333333",
+            "fill": "#ffffff",
             "outlineWidth": 2,
             "outlineColor": "#ffffff",
             "outlineOpacity": 1

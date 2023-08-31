@@ -1,9 +1,6 @@
 import { ResponsiveBar } from '@nivo/bar';
-import { nivoDarkTheme, nivoLightTheme} from '../../../NivoTheme/theme';
+import { nivoDarkTheme, nivoLightTheme} from '../../../../NivoTheme/theme';
 import { useMantineTheme } from '@mantine/core';
-
-
-
 
 const MyResponsiveBar = () => {
     const data = [
@@ -134,7 +131,7 @@ const MyResponsiveBar = () => {
             padding={0.3}
             valueScale={{ type: 'linear' }}
             indexScale={{ type: 'band', round: true }}
-            colors={{ scheme: 'nivo' }}
+            // colors={{ scheme: 'nivo' }}
             defs={[
                 {
                     id: 'dots',
@@ -198,15 +195,15 @@ const MyResponsiveBar = () => {
             }}
             labelSkipWidth={12}
             labelSkipHeight={12}
-            labelTextColor={{
-                from: 'color',
-                modifiers: [
-                    [
-                        'darker',
-                        1.6
-                    ]
-                ]
-            }}
+            // labelTextColor={{
+            //     from: 'color',
+            //     modifiers: [
+            //         [
+            //             'darker',
+            //             1.6
+            //         ]
+            //     ]
+            // }}
             legends={[
                 {
                     dataFrom: 'keys',

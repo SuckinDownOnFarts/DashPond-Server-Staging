@@ -26,7 +26,7 @@ const Navbar = () => {
                             </div>
                         </Link>
 
-                        <Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>Beta</Badge>
+                        {/* <Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>Beta</Badge> */}
                     </Group>
 
 
@@ -68,9 +68,6 @@ const Navbar = () => {
                             </div>
                             : <div>
                                 <DesktopUserAvatar
-                                    user={auth}
-                                />
-                                <MobileUserAvatar
                                     user={auth}
                                 />
                             </div>}
@@ -131,7 +128,9 @@ const Navbar = () => {
                                 Sign up
                             </Button>
                         </Group>
-                        : null}
+                        : <MobileUserAvatar
+                            user={auth}
+                        />}
                 </ScrollArea>
             </Drawer>
         </div>

@@ -32,10 +32,10 @@ const PersistLogin = () => {
 
     // console.log(auth);
 
-    useEffect(() => {
-        console.log(`isLoading: ${isLoading}`)
-        console.log(`aT: ${JSON.stringify(auth?.accessToken)}`)
-    }, [isLoading])
+    // useEffect(() => {
+    //     console.log(`isLoading: ${isLoading}`)
+    //     console.log(`aT: ${JSON.stringify(auth?.accessToken)}`)
+    // }, [isLoading])
 
     return (
         //chain ternary skips verify refresh function if persist is set to false

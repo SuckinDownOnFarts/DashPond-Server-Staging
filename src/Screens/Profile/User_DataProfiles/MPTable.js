@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Text, Button, ScrollArea, Table, useMantineTheme, Group, Pagination } from '@mantine/core';
 
@@ -6,11 +6,35 @@ const MPTable = ({ data }) => {
     const theme = useMantineTheme();
     const navigate = useNavigate();
 
-    const pageTotal = data / 5
-
+    const [pageTotal, setPageTotal] = useState();
     const [activePage, setPage] = useState(1);
+    const [sliceFirst, setSliceFirst] = useState(0);
+    const [secondSlice, setSecondSlice] = useState(6);
 
-    const rows = data.map((item) => (
+    useEffect(() => {
+        const calcPageTotal = () => {
+            if (data.length % 5 !== 0) {
+                const tempCalc = (data.length / 5) + 1
+                setPageTotal(tempCalc)
+            } else {
+                setPageTotal((data.length / 5))
+            }
+        }
+        calcPageTotal()
+    }, [])
+
+    useEffect(() => {
+        const sliceData = () => {
+            const secondValue = (activePage * 5) + 1
+            const firstValue =  secondValue - 6
+            setSliceFirst(firstValue);
+            setSecondSlice(secondValue);
+        }
+        sliceData()
+    }, [activePage])
+    
+
+    const rows = data.slice(sliceFirst, secondSlice).map((item) => (
         <tr key={item.value}>
             <td>
                 <Button variant="light" onClick={() => navigate(`/market+report/${item.id}/key+trends`)}>

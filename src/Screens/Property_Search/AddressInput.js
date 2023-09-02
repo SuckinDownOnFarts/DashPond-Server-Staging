@@ -42,7 +42,6 @@ const AddressInput = () => {
         setPointData,
         setCounty,
         setFullAddress,
-        nextStep,
     } = useOutletContext();
 
 
@@ -99,14 +98,12 @@ const AddressInput = () => {
                 <Box maw={300} mx="auto" mt='md' >
                     <LoadingOverlay visible={visible} overlayBlur={2} />
                     <form
-                        autoComplete='on'
                         onSubmit={form.onSubmit((values) => handleSubmit(values))}
                     >
 
                         {/* ADDRESS */}
                         <TextInput
                             withAsterisk
-                            autoComplete='on'
                             label="Address"
                             placeholder="123 Paris Avenue"
                             value={streetAddress}
@@ -116,7 +113,6 @@ const AddressInput = () => {
 
                         <TextInput
                             withAsterisk
-                            autoComplete='on'
                             label="City"
                             placeholder="New Iberia"
                             {...form.getInputProps('city')}
@@ -125,7 +121,6 @@ const AddressInput = () => {
                         <Select
                             withAsterisk
                             searchable
-                            autoComplete='on'
                             nothingFound="No states found"
                             label="State"
                             placeholder="New York"
@@ -135,7 +130,6 @@ const AddressInput = () => {
 
                         <TextInput
                             withAsterisk
-                            autoComplete='on'
                             label="Zip"
                             placeholder="90210"
                             {...form.getInputProps('zip')}

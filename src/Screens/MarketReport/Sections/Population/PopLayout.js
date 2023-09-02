@@ -1,23 +1,42 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import TotalPop from './Components/TotalPop';
-import Bar from '../Charts/Bar'
+import AgeSummary from './Components/AgeSummary';
+import Race from './Components/Race';
+import MaritalStatusMales from './Components/MaritalStatusMales';
+import MaritalStatusFemales from './Components/MaritalStatusFemales';
+import Ancestry from './Components/Ancestry';
+import PlaceOfBirth from './Components/PlaceOfBirth';
+// import HHType from './Components/HHType';
+// import HHRela from './Components/HHRela';
+// import HHOccupancy from '../Housing/Components/HHOccupancy';
 
 const PopLayout = () => {
     const [data] = useOutletContext();
-
-    console.log(data);
 
     return (
         <div className='flex flex-col space-y-4'>
             <TotalPop
                 data={data}
             />
-            <div className='h-[400px] '>
-                {/* <Bar 
-                data={[data[0][15], data[1][15], data[2][15]]}
-            /> */}
-            </div>
+            <AgeSummary 
+                data={data}
+            />
+            <Race 
+                data={data}
+            />
+            <MaritalStatusMales 
+                data={data}
+            />
+            <MaritalStatusFemales 
+                data={data}
+            />
+            <Ancestry 
+                data={data}
+            />
+            <PlaceOfBirth 
+                data={data}
+            />
 
         </div>
     )

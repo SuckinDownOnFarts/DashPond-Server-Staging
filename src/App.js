@@ -16,6 +16,9 @@ import Overview from './Screens/MarketReport/Sections/KeyTrends/KTLayout';
 import TablesLayout from './Screens/MarketReport/Sections/Tables/TablesLayout'
 import MapsLayout from './Screens/MarketReport/Sections/Maps/MapsLayout';
 import PopLayout from './Screens/MarketReport/Sections/Population/PopLayout';
+import EmploymentIncomeLayout from './Screens/MarketReport/Sections/Employment/EmploymentLayout';
+import EducationLayout from './Screens/MarketReport/Sections/Education/EducationLayout';
+import HousingLayout from './Screens/MarketReport/Sections/Housing/HousingLayout'
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
 import Register from './Screens/AuthScreens/Register';
 import Login from './Screens/AuthScreens/Login';
@@ -98,9 +101,10 @@ function App() {
                             <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
                                 <Route path='key+trends' index element={<Overview />} />
                                 <Route path='population' index element={<PopLayout />} />
-                                <Route path='employment' index element={<TablesLayout />} />
-                                <Route path='education' index element={<TablesLayout />} />
-                                <Route path='income+earnings' index element={<TablesLayout />} />
+                                <Route path='employment+income' index element={<EmploymentIncomeLayout />} />
+                                <Route path='education' index element={<EducationLayout />} />
+                                <Route path='housing' index element={<HousingLayout />} />
+                                {/* <Route path='income+earnings' index element={<IncomeLayout />} /> */}
                                 <Route path='map+views' index element={<MapsLayout />} />
                                 <Route path='tables' index element={<TablesLayout />} />
                             </Route>
@@ -134,32 +138,3 @@ function App() {
 }
 
 export default App;
-
-
-{/*********************** FEATURES ******************************/ }
-{/* <Route path='dashpond+features' element={<Features />} /> */ }
-
-{/*********************** DOCUMENTATION ******************************/ }
-{/* <Route path='documentation' element={<DocsLayout />}>
-    <Route path='home' element={<DocumentationHome />} />
-    <Route path='getting+started' element={<DocumentationGettingStarted />} />
-    <Route path='products' element={<DocumentationProducts />} />
-    <Route path='plans' element={<DocumentationPlans />} />
-    <Route path='integrations' element={<DocumentationIntegrations />} />
-    <Route path='releases' element={<DocumentationReleases />} />
-    <Route path='support' element={<DocumentationSupport />} />
-</Route> */}
-
-{/*********************** SOLUTIONS ******************************/ }
-{/* <Route path='solutions' element={<SolutionsLayout />}>
-
-</Route> */}
-
-
-{/*********************** PRICING ******************************/ }
-{/* <Route path='pricing' element={<Pricing />} />
-
-<Route element={<PricingRequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />} >
-    <Route path='getstarted/:plan/customize' element={<PricingPlan />} />
-    <Route path='getstarted/:plan/checkout' element={<Checkout />} />
-</Route> */}

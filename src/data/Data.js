@@ -30,7 +30,8 @@ import {
     IconMapPin,
     IconColumns,
     IconChartArrows,
-    IconBinaryTree
+    IconBinaryTree,
+    IconHome
 } from '@tabler/icons-react';
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -477,9 +478,10 @@ export const docsHomeData = [
 export const dataProfileSidebarData = [
     { label: 'Key Trends', icon: IconUrgent, link: 'key+trends'},
     { label: 'Population Trends', icon: IconFriends, link: 'population' },
-    { label: 'Employment and Job Markets', icon: IconBuildingEstate, link: 'employment' },
+    { label: 'Income and Employment', icon: IconCash, link: 'employment+income' },
+    // { label: 'Employment Insights', icon: IconBuildingEstate, link: 'employment+households' },
     { label: 'Education Insights', icon: IconBellSchool, link: 'education' },
-    { label: 'Income and Earnings', icon: IconCash, link: 'income+earnings' },
+    { label: 'Housing Insights', icon: IconHome, link: 'housing' },
     { label: 'Map Views', icon: IconMapPin, link: 'map+views' },
-    { label: 'Table Views', icon: IconColumns, link: 'tables' },
+    // { label: 'Table Views', icon: IconColumns, link: 'tables' },
 ];

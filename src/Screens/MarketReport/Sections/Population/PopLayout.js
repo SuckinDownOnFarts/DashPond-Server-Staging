@@ -1,5 +1,6 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { Title } from '@mantine/core';
 import TotalPop from './Components/TotalPop';
 import AgeSummary from './Components/AgeSummary';
 import AgeBreakdown from './Components/AgeBreakdown';
@@ -15,12 +16,18 @@ import AgeBreakdownChart from './Charts/AgeBreakdownChart';
 import RaceChart from './Charts/RaceChart';
 import MaritalStatusChart from './Charts/MaritalStatusChart';
 import BirthChart from './Charts/BirthChart';
+import AncestryChart from './Charts/AncestryChart';
+
 
 const PopLayout = () => {
     const [data] = useOutletContext();
 
     return (
         <div className='flex flex-col space-y-4'>
+            <div className='flex w-full justify-center py-4 text-white'>
+                <Title>Population Insights</Title>
+            </div>
+
             <div className='flex flex-col gap-4 pb-8'>
                 <TotalPop
                     data={data}
@@ -70,11 +77,16 @@ const PopLayout = () => {
                 />
             </div>
 
-            <Ancestry
-                data={data}
-            />
+            <div className='flex flex-col gap-4 pb-8'>
+                <Ancestry
+                    data={data}
+                />
+                <AncestryChart
+                    data={data}
+                />
+            </div>
 
-            <div className='flex flex-col gap-4 pb-8'> 
+            <div className='flex flex-col gap-4 pb-8'>
                 <PlaceOfBirth
                     data={data}
                 />

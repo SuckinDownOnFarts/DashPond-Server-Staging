@@ -205,8 +205,8 @@ export const nivoDarkTheme = {
     },
     "tooltip": {
         "container": {
-            "background": "#ffffff",
-            "fontSize": 20
+            "background": "#333333",
+            "fontSize": 16
         },
         "basic": {},
         "chip": {},

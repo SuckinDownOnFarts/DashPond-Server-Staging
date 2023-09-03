@@ -1,92 +1,98 @@
-import { useState, useEffect } from 'react';
-import { ResponsiveBar } from '@nivo/bar';
+import { useState } from 'react';
+import { ResponsivePie } from '@nivo/pie'
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
 import { useMantineTheme, SegmentedControl } from '@mantine/core';
 
-
-const TotalPopChart = ({ data }) => {
-
+const AncestryChart = ({ data }) => {
     const [radius, setRadius] = useState(0);
-
+    const theme = useMantineTheme();
 
     const chartData = [
         {
-            "gender": "Males",
-            "Males": data.DP05_0002E[radius],
-            "MalesColor": "hsl(202, 70%, 50%)",
+            'id': 'Males',
+            'label': 'Males',
+            'value': data.DP05_0002E[radius],
         },
         {
-            "gender": "Females",
-            "Females": data.DP05_0003E[radius],
-            "FemalesColor": "hsl(202, 70%, 50%)",
+            'id': 'Females',
+            'label': 'Females',
+            'value': data.DP05_0003E[radius],
         },
     ]
-
-    const theme = useMantineTheme()
 
     return (
         <div className='flex flex-col'>
 
             <div className='h-[400px]'>
-                <ResponsiveBar
+                <ResponsivePie
                     data={chartData}
-                    keys={[
-                        'Males',
-                        'Females',
-                    ]}
-                    indexBy="gender"
+                    margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                     theme={theme.colorScheme === 'dark' ? nivoDarkTheme : nivoLightTheme}
-                    margin={{ top: 50, right: 130, bottom: 50, left: 100 }}
-                    padding={0.3}
-                    valueScale={{ type: 'linear' }}
-                    indexScale={{ type: 'band', round: true }}
-                    axisTop={null}
-                    axisRight={null}
-                    axisBottom={{
-                        tickSize: 5,
-                        tickPadding: 5,
-                        tickRotation: 0,
-                        legend: 'Gender',
-                        legendPosition: 'middle',
-                        legendOffset: 32
-                    }}
-                    axisLeft={{
-                        tickSize: 5,
-                        tickPadding: 5,
-                        tickRotation: 0,
-                        legend: 'Total Population',
-                        legendPosition: 'middle',
-                        legendOffset: -80
-                    }}
-                    labelSkipWidth={12}
-                    labelSkipHeight={12}
-                    legends={[
-                        {
-                            dataFrom: 'keys',
-                            anchor: 'bottom-right',
-                            direction: 'column',
-                            justify: false,
-                            translateX: 120,
-                            translateY: 0,
-                            itemsSpacing: 2,
-                            itemWidth: 100,
-                            itemHeight: 20,
-                            itemDirection: 'left-to-right',
-                            itemOpacity: 0.85,
-                            symbolSize: 20,
-                            effects: [
-                                {
-                                    on: 'hover',
-                                    style: {
-                                        itemOpacity: 1
-                                    }
-                                }
+                    innerRadius={0.5}
+                    valueFormat=">-.4s"
+                    padAngle={0.7}
+                    cornerRadius={3}
+                    colors={{ scheme: 'category10' }}
+                    activeOuterRadiusOffset={8}
+                    borderWidth={1}
+                    borderColor={{
+                        from: 'color',
+                        modifiers: [
+                            [
+                                'darker',
+                                0.2
                             ]
+                        ]
+                    }}
+                    // tooltip={false}
+                    arcLinkLabelsSkipAngle={10}
+                    arcLinkLabelsTextColor={{ from: 'color', modifiers: [] }}
+                    arcLinkLabelsThickness={2}
+                    arcLinkLabelsColor={{ from: 'color' }}
+                    arcLabelsSkipAngle={10}
+                    arcLabelsTextColor={{
+                        from: 'color',
+                        modifiers: [
+                            [
+                                'darker',
+                                2
+                            ]
+                        ]
+                    }}
+                    defs={[
+                        {
+                            id: 'dots',
+                            type: 'patternDots',
+                            background: 'inherit',
+                            color: 'rgba(255, 255, 255, 0.3)',
+                            size: 4,
+                            padding: 1,
+                            stagger: true
+                        },
+                        {
+                            id: 'lines',
+                            type: 'patternLines',
+                            background: 'inherit',
+                            color: 'rgba(255, 255, 255, 0.3)',
+                            rotation: -45,
+                            lineWidth: 6,
+                            spacing: 10
                         }
                     ]}
-                    role="application"
-                    ariaLabel="Nivo bar chart demo"
-                    barAriaLabel={e => e.id + ": " + e.formattedValue + " in country: " + e.indexValue}
+                    fill={[
+                        {
+                            match: {
+                                id: 'Males'
+                            },
+                            id: 'dots'
+                        },
+                        {
+                            match: {
+                                id: 'Females'
+                            },
+                            id: 'lines'
+                        },
+                    ]}
                 />
             </div>
             <SegmentedControl data={[
@@ -100,4 +106,4 @@ const TotalPopChart = ({ data }) => {
     )
 }
 
-export default TotalPopChart
+export default AncestryChart

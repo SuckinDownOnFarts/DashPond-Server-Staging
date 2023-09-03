@@ -476,7 +476,7 @@ export const docsHomeData = [
 ];
 
 export const dataProfileSidebarData = [
-    { label: 'Key Trends', icon: IconUrgent, link: 'key+trends'},
+    { label: 'Key Trends', icon: IconUrgent, link: 'key+trends' },
     { label: 'Population Trends', icon: IconFriends, link: 'population' },
     { label: 'Income and Employment', icon: IconCash, link: 'employment+income' },
     // { label: 'Employment Insights', icon: IconBuildingEstate, link: 'employment+households' },

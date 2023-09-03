@@ -35,7 +35,7 @@ const MapModal = () => {
     );
 
     const back = () => {
-        navigate('/products/create/address+input');
+        navigate('/property+search/address+input');
     };
 
     return (

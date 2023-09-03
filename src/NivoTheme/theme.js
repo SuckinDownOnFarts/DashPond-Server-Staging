@@ -114,8 +114,6 @@ export const nivoDarkTheme = {
     "text": {
         "fontSize": 20,
         "fill": "#ffffff",
-        // "outlineWidth": 0,
-        // "outlineColor": "transparent"
     },
     "axis": {
         "domain": {
@@ -208,7 +206,7 @@ export const nivoDarkTheme = {
     "tooltip": {
         "container": {
             "background": "#ffffff",
-            "fontSize": 12
+            "fontSize": 20
         },
         "basic": {},
         "chip": {},

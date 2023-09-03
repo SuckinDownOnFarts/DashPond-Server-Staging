@@ -14,6 +14,7 @@ import AgeSummaryChart from './Charts/AgeSummaryChart';
 import AgeBreakdownChart from './Charts/AgeBreakdownChart';
 import RaceChart from './Charts/RaceChart';
 import MaritalStatusChart from './Charts/MaritalStatusChart';
+import BirthChart from './Charts/BirthChart';
 
 const PopLayout = () => {
     const [data] = useOutletContext();
@@ -69,14 +70,19 @@ const PopLayout = () => {
                 />
             </div>
 
-
-
             <Ancestry
                 data={data}
             />
-            <PlaceOfBirth
-                data={data}
-            />
+
+            <div className='flex flex-col gap-4 pb-8'> 
+                <PlaceOfBirth
+                    data={data}
+                />
+                <BirthChart
+                    data={data}
+                />
+            </div>
+
 
         </div>
     )

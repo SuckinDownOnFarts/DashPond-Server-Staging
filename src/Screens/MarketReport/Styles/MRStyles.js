@@ -257,24 +257,30 @@ export const useTableExampleStyles = createStyles((theme) => ({
 export const useDPSidebarStyles = createStyles((theme) => ({
     navbar: {
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-        paddingLeft: rem(16),
-        paddingRight: rem(16),
+
         height: '100%',
-        width: '300px',
-        // position: 'fixed',
+        width: '260px',
         zIndex: 50,
-        borderRight: '1px',
-        borderColor: theme.colors.gray[9],
-        borderRightStyle: 'solid',
-        // left: 0,
 
         [theme.fn.smallerThan('md')]: {
             display: 'none',
         },
     },
 
+    topSection: {
+        display: 'flex',
+        flexDirection: 'row',
+        paddingTop: '1rem',
+        width: '100%',
+        gap: '1rem',
+        borderStyle: 'solid',
+        borderBottomWidth: '1px',
+        borderColor: theme.colors.gray[5]
+    },
+
     links: {
-        // position: 'sticky',
+        paddingLeft: rem(16),
+        paddingRight: rem(16),
         paddingTop: 8,
         marginLeft: `calc(${theme.spacing.md} * -1)`,
         marginRight: `calc(${theme.spacing.md} * -1)`,

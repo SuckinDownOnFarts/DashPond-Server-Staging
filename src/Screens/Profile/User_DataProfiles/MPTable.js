@@ -26,13 +26,13 @@ const MPTable = ({ data }) => {
     useEffect(() => {
         const sliceData = () => {
             const secondValue = (activePage * 5) + 1
-            const firstValue =  secondValue - 6
+            const firstValue = secondValue - 6
             setSliceFirst(firstValue);
             setSecondSlice(secondValue);
         }
         sliceData()
     }, [activePage])
-    
+
 
     const rows = data.slice(sliceFirst, secondSlice).map((item) => (
         <tr key={item.value}>
@@ -42,8 +42,13 @@ const MPTable = ({ data }) => {
                 </Button>
             </td>
             <td className='m-4'>
-                <Text fz="md"tt="capitalize" sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 700 })}>
+                <Text fz="md" tt="capitalize" sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 700 })}>
                     {item.address}
+                </Text>
+            </td>
+            <td>
+                <Text fz="md" tt="capitalize" sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 700 })}>
+                    {item.status}
                 </Text>
             </td>
             <td>
@@ -73,6 +78,7 @@ const MPTable = ({ data }) => {
                         <tr>
                             <th></th>
                             <th>Address</th>
+                            <th>Visibility</th>
                             <th>Date Created</th>
                             <th>Options</th>
                         </tr>

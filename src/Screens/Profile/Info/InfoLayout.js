@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { LoadingOverlay, Box } from '@mantine/core';
 import api from '../../../api/axios';
-import EmptyStack from './Components/UserInfoStacks/EmptyStack';
+import EmptyStack from './Components/EmptyStack';
 import Profile from './Components/Profile';
 import UserTabs from './Components/UserTabs';
-import UserPersonalInfo from './Components/UserInfoStacks/UserPersonalInfo';
+import UserPersonalInfo from './Components/UserPersonalInfo';
 
 const UserProfileInfo = () => {
     const { setActive } = useOutletContext();
@@ -36,7 +36,6 @@ const UserProfileInfo = () => {
                 {!userData
                     ? <Profile />
                     : <Profile
-                        // avatar='https://res.cloudinary.com/djlalgsmk/image/upload/v1686638025/UserProfilePictures/Wah_zgr0bp.jpg'
                         name={`${userData[0].first_name} ${userData[0].last_name}`}
                         title=''
                         email={userData[0].email}

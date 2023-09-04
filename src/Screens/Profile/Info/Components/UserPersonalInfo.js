@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Button, Table, Text, ScrollArea, TextInput, Group, useMantineTheme } from '@mantine/core';
-import api from '../../../../../api/axios';
-import useAuth from '../../../../../hooks/useAuth';
+import { useForm } from '@mantine/form';
+import api from '../../../../api/axios';
+import useAuth from '../../../../hooks/useAuth';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, setUserData }) => {
     const { auth } = useAuth();
@@ -49,6 +52,25 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
         },
     ];
 
+    // const form = useForm({
+    //     initialValues: {
+    //         email: '',
+    //         password: ''
+    //     },
+    //     validate: (values) => ({
+    //         email:
+    //             values.email.length === 0
+    //                 ? 'Address is required'
+    //                 : EMAIL_REGEX.test(values.email.trim())
+    //                     ? null
+    //                     : 'Invalid email format',
+    //         password:
+    //             values.password.length === 0
+    //                 ? 'Address is required'
+    //                 : null,
+    //     })
+    // });
+
     const handleEditClick = (data) => {
         setEdit(data);
         setInitialValue(data);
@@ -67,7 +89,7 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
                 value: value
             });
             setUserData(response.data.rows)
-            // console.log(response.data.rows);
+
         } catch (err) {
             console.log(err.message);
         } finally {

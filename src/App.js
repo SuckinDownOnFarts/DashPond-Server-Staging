@@ -12,6 +12,7 @@ import DashLayout from './Screens/Property_Search/Layout/DashLayout';
 import FileUploader from './Screens/Property_Search/FileUploader';
 import MapModal from './Screens/Property_Search/MapModal';
 /////////////////////////////////////////////**************MARKET REPORTS SCREENS*************///////////////////////////////////////////////////////////
+import CheckReportId from './components/Auth/CheckReportId';
 import Overview from './Screens/MarketReport/Sections/KeyTrends/KTLayout';
 import TablesLayout from './Screens/MarketReport/Sections/Tables/TablesLayout'
 import MapsLayout from './Screens/MarketReport/Sections/Maps/MapsLayout';
@@ -98,15 +99,18 @@ function App() {
                             </Route>
 
                             {/*********************** DEMOGRAPHIC PROFILES ******************************/}
-                            <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
-                                <Route path='key+trends' index element={<Overview />} />
-                                <Route path='population' index element={<PopLayout />} />
-                                <Route path='employment+income' index element={<EmploymentIncomeLayout />} />
-                                <Route path='education' index element={<EducationLayout />} />
-                                <Route path='housing' index element={<HousingLayout />} />
-                                {/* <Route path='income+earnings' index element={<IncomeLayout />} /> */}
-                                <Route path='map+views' index element={<MapsLayout />} />
-                                <Route path='tables' index element={<TablesLayout />} />
+
+                            <Route element={<CheckReportId />}>
+                                <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
+                                    <Route path='key+trends' index element={<Overview />} />
+                                    <Route path='population' index element={<PopLayout />} />
+                                    <Route path='employment+income' index element={<EmploymentIncomeLayout />} />
+                                    <Route path='education' index element={<EducationLayout />} />
+                                    <Route path='housing' index element={<HousingLayout />} />
+                                    {/* <Route path='income+earnings' index element={<IncomeLayout />} /> */}
+                                    <Route path='map+views' index element={<MapsLayout />} />
+                                    <Route path='tables' index element={<TablesLayout />} />
+                                </Route>
                             </Route>
 
                             {/*********************** PRODUCTS ******************************/}

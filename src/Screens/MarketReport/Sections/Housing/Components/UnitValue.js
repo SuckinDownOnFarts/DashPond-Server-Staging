@@ -98,15 +98,6 @@ const UnitValue = ({ data }) => {
             '10 Mile': (data.DP04_0088E[2]).toLocaleString("en-US"),
             '% (10 Mile)': ((data.DP04_0088E[2]) / data.DP04_0080E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
         },
-        // {
-        //     'Data': '9 rooms or more',
-        //     '3 Mile': (data.DP04_0036E[0]).toLocaleString("en-US"),
-        //     '% (3 Mile)': ((data.DP04_0036E[0]) / data.DP04_0080E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-        //     '5 Mile': (data.DP04_0036E[1]).toLocaleString("en-US"),
-        //     '% (5 Mile)': ((data.DP04_0036E[1]) / data.DP04_0080E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-        //     '10 Mile': (data.DP04_0036E[2]).toLocaleString("en-US"),
-        //     '% (10 Mile)': ((data.DP04_0036E[2]) / data.DP04_0080E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-        // },
     ]);
 
     const [columnDefs] = useState([

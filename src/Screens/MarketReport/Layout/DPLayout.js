@@ -43,7 +43,7 @@ const DataProfile = () => {
                 <DPSidebar />
             </div>
 
-            <div className='flex min-h-[calc(100vh-60px)] w-full md:ml-[300px] p-4 justify-center mb-8'>
+            <div className='flex min-h-[calc(100vh-60px)] w-full md:ml-[260px] p-4 justify-center mb-8'>
                 {!loading
                     ? <Outlet
                         context={[data]}

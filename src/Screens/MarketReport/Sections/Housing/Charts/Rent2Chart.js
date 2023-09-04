@@ -1,0 +1,124 @@
+import { useState } from 'react';
+import { ResponsiveBar } from '@nivo/bar';
+import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
+import { useMantineTheme, SegmentedControl } from '@mantine/core';
+
+const Rent2Chart = ({ data }) => {
+
+    const [radius, setRadius] = useState(0);
+
+    const chartData = [
+        {
+            "rent": 'Less than 15.0 percent',
+            "Less than 15.0 percent": data.DP04_0137E[radius],
+        },
+        {
+            "rent": '15.0 to 19.9 percent',
+            "15.0 to 19.9 percent": data.DP04_0138E[radius],
+        },
+        {
+            "rent": '20.0 to 24.9 percent',
+            "20.0 to 24.9 percent": data.DP04_0139E[radius],
+        },
+        {
+            "rent": '25.0 to 29.9 percent',
+            "25.0 to 29.9 percent": data.DP04_0140E[radius],
+        },
+        {
+            "rent": '30.0 to 34.9 percent',
+            "30.0 to 34.9 percent": data.DP04_0141E[radius],
+        },
+        {
+            "rent": '35.0 percent or more',
+            "35.0 percent or more": data.DP04_0142E[radius],
+        },
+        {
+            "rent": 'Not computed',
+            "Not computed": data.DP04_0143E[radius],
+        },
+    ]
+
+    const theme = useMantineTheme()
+
+    return (
+        <div className='flex flex-col'>
+
+            <div className='h-[400px]'>
+                <ResponsiveBar
+                    data={chartData}
+                    keys={[
+                        'Less than 15.0 percent',
+                        '15.0 to 19.9 percent',
+                        '20.0 to 24.9 percent',
+                        '25.0 to 29.9 percent',
+                        '30.0 to 34.9 percent',
+                        '35.0 percent or more',
+                        "Not computed",
+                    ]}
+                    indexBy="rent"
+                    theme={theme.colorScheme === 'dark' ? nivoDarkTheme : nivoLightTheme}
+                    margin={{ top: 50, right: 170, bottom: 50, left: 80 }}
+                    padding={0.3}
+                    valueScale={{ type: 'linear' }}
+                    indexScale={{ type: 'band', round: true }}
+                    axisTop={null}
+                    axisRight={null}
+                    axisBottom={{
+                        tickSize: 5,
+                        tickPadding: 5,
+                        tickRotation: 0,
+                        legend: '% Rent Paid of Household Income',
+                        legendPosition: 'middle',
+                        legendOffset: 32
+                    }}
+                    axisLeft={{
+                        tickSize: 5,
+                        tickPadding: 5,
+                        tickRotation: 0,
+                        legend: '# of Renters',
+                        legendPosition: 'middle',
+                        legendOffset: -60
+                    }}
+                    labelSkipWidth={12}
+                    labelSkipHeight={12}
+                    legends={[
+                        {
+                            dataFrom: 'keys',
+                            anchor: 'bottom-right',
+                            direction: 'column',
+                            justify: false,
+                            translateX: 120,
+                            translateY: 0,
+                            itemsSpacing: 2,
+                            itemWidth: 100,
+                            itemHeight: 20,
+                            itemDirection: 'left-to-right',
+                            itemOpacity: 0.85,
+                            symbolSize: 20,
+                            effects: [
+                                {
+                                    on: 'hover',
+                                    style: {
+                                        itemOpacity: 1
+                                    }
+                                }
+                            ]
+                        }
+                    ]}
+                    role="application"
+                    ariaLabel="Nivo bar chart demo"
+                    barAriaLabel={e => e.id + ": " + e.formattedValue + " in country: " + e.indexValue}
+                />
+            </div>
+            <SegmentedControl data={[
+                { value: '0', label: '3 Mile Radius' },
+                { value: '1', label: '5 Mile Radius' },
+                { value: '2', label: '10 Mile Radius' },
+            ]} 
+            onChange={(value) => setRadius(parseInt(value))}
+            />
+        </div>
+    )
+}
+
+export default Rent2Chart

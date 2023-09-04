@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { stateNames } from '../../data/Data';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import { TextInput, Select, Button, Group, Box, LoadingOverlay } from '@mantine/core';
+import { TextInput, Button, Group, Box, LoadingOverlay } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form'
 
@@ -13,27 +12,11 @@ const AddressInput = () => {
     const navigate = useNavigate();
 
     const form = useForm({
-        initialValues: { address: '', city: '', state: '', zip: '' },
+        initialValues: { address: '' },
         validate: (values) => ({
             address:
                 values.address.length === 0
                     ? 'Address is required'
-                    : null,
-            city:
-                values.city.length === 0
-                    ? 'City is required'
-                    : /[a-zA-Z][a-zA-Z ]+/.test(values.city)
-                        ? null
-                        : 'Cities can only contain letters',
-            zip:
-                values.zip.length === 0
-                    ? 'Zip code is required'
-                    : /^[0-9]+$/.test(values.zip)
-                        ? null
-                        : 'Zip code must contain only numbers',
-            state:
-                values.state.length === 0
-                    ? 'State is required'
                     : null,
         }),
     });
@@ -52,8 +35,7 @@ const AddressInput = () => {
             { lng: null }
         ]);
 
-        const searchAddress = `${value.address}, ${value.city}, ${value.state}, ${value.zip}`;
-
+        const searchAddress = `${value.address}`;
 
         const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${searchAddress}`;
 
@@ -105,36 +87,12 @@ const AddressInput = () => {
                         <TextInput
                             withAsterisk
                             label="Address"
-                            placeholder="123 Paris Avenue"
+                            placeholder="371 7th Ave, New York, NY 10001"
                             value={streetAddress}
                             onChange={(event) => setStreetAddress(event.currentTarget.value)}
                             {...form.getInputProps('address')}
                         />
-
-                        <TextInput
-                            withAsterisk
-                            label="City"
-                            placeholder="New Iberia"
-                            {...form.getInputProps('city')}
-                        />
-
-                        <Select
-                            withAsterisk
-                            searchable
-                            nothingFound="No states found"
-                            label="State"
-                            placeholder="New York"
-                            data={stateNames}
-                            {...form.getInputProps('state')}
-                        />
-
-                        <TextInput
-                            withAsterisk
-                            label="Zip"
-                            placeholder="90210"
-                            {...form.getInputProps('zip')}
-                        />
-
+                        
                         {/* BUTTON */}
                         <div className="flex flex-wrap -mx-3 mb-2 mt-2">
                             <div className="w-full px-3 mb-6">

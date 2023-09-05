@@ -1,6 +1,6 @@
 import { createStyles, rem } from "@mantine/core";
 
-export const infoStyles = createStyles((theme) => ({
+export const infoProfileStyles = createStyles((theme) => ({
     icon: {
         color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
     },

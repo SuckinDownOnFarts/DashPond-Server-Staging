@@ -14,7 +14,6 @@ import MapModal from './Screens/Property_Search/MapModal';
 /////////////////////////////////////////////**************MARKET REPORTS SCREENS*************///////////////////////////////////////////////////////////
 import CheckReportId from './components/Auth/CheckReportId';
 import Overview from './Screens/MarketReport/Sections/KeyTrends/KTLayout';
-import TablesLayout from './Screens/MarketReport/Sections/Tables/TablesLayout'
 import MapsLayout from './Screens/MarketReport/Sections/Maps/MapsLayout';
 import PopLayout from './Screens/MarketReport/Sections/Population/PopLayout';
 import EmploymentIncomeLayout from './Screens/MarketReport/Sections/Employment/EmploymentLayout';
@@ -109,7 +108,6 @@ function App() {
                                     <Route path='housing' index element={<HousingLayout />} />
                                     {/* <Route path='income+earnings' index element={<IncomeLayout />} /> */}
                                     <Route path='map+views' index element={<MapsLayout />} />
-                                    <Route path='tables' index element={<TablesLayout />} />
                                 </Route>
                             </Route>
 

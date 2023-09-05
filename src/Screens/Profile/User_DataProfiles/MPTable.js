@@ -59,12 +59,14 @@ const MPTable = ({ data }) => {
 
             <td className=''>
                 <Group className=''>
-                    <Button size="xs" color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]} onClick={() => { }}>
-                        Export to Excel
-                    </Button>
-                    <Button size="xs" variant="outline" color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}>
-                        Export to CSV
-                    </Button>
+                        <Button
+                            size="xs"
+                            variant="outline"
+                            color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}
+                        >
+
+                            Export to CSV
+                        </Button>
                 </Group>
             </td>
         </tr>

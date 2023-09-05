@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { Navbar, Tooltip, UnstyledButton, Stack } from '@mantine/core';
 import { IconGauge, IconUser, IconLogout } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
-import { useStylesNavbar } from './Styles/ProfileLayoutStyles';
+import { profileNavbar as useStyles } from '../ProfileStyles/ProfileStyles';
 import LogoutModal from '../../../components/LayoutGlobals/LogoutModal';
 import useAuth from '../../../hooks/useAuth';
 
 
 const NavbarLink = ({ icon: Icon, label, active, onClick }) => {
-    const { classes, theme, cx } = useStylesNavbar();
+    const { classes, theme, cx } = useStyles();
     return (
         <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
             <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })} color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}>

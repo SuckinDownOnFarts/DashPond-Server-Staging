@@ -20,7 +20,7 @@ import AncestryChart from './Charts/AncestryChart';
 
 
 const PopLayout = () => {
-    const [data] = useOutletContext();
+        const [data] = useOutletContext();
 
     return (
         <div className='flex flex-col space-y-4'>

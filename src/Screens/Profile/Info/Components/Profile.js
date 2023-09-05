@@ -1,6 +1,6 @@
 import { Text, Group } from '@mantine/core';
 import { IconPhoneCall, IconAt, IconBuildingSkyscraper } from '@tabler/icons-react';
-import { useProfileStyles as useStyles } from '../InfoStyles/InfoStyles';
+import { infoProfileStyles as useStyles } from '../../ProfileStyles/ProfileStyles';
 
 
 const Profile = ({  name, company, phone, email }) => {

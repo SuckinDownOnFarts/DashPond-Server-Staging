@@ -33,6 +33,8 @@ import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
 import SolutionsLayout from './Screens/Solutions/SolutionsLayout';
 
+import PDFExport from './Screens/PDFExport/PDFExport';
+
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
@@ -110,6 +112,8 @@ function App() {
                                     <Route path='map+views' index element={<MapsLayout />} />
                                 </Route>
                             </Route>
+
+                            <Route path='/test+report/:id' element={<PDFExport />} />
 
                             {/*********************** PRODUCTS ******************************/}
                             {/* <Route path='products' element={<ProductLayout />}> */}

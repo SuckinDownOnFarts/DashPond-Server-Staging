@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { Group, Box, ThemeIcon, UnstyledButton } from '@mantine/core';
 import { LinksGroupStyles as useStyles } from './GlobalStyles/GlobalStyles';
 
-const LinksGroup = ({ icon: Icon, label, link }) => {
+const LinksGroup = ({ icon: Icon, label, link, handlers }) => {
     const { classes, theme } = useStyles();
     const navigate = useNavigate();
 
     return (
         <>
-            <UnstyledButton onClick={() => navigate(link)} className={classes.control}>
+            <UnstyledButton onClick={() => {navigate(link); handlers.toggle()}} className={classes.control}>
                 <Group position="apart" spacing={0}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <ThemeIcon color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'} size={30}>

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
-import { useMantineTheme, SegmentedControl } from '@mantine/core';
+import { SegmentedControl } from '@mantine/core';
+import { chartStyles as useStyles } from '../../../Styles/MRStyles';
 
 const Rent2Chart = ({ data }) => {
-
+    const { classes, theme } = useStyles();
     const [radius, setRadius] = useState(0);
 
     const chartData = [
@@ -38,11 +39,8 @@ const Rent2Chart = ({ data }) => {
         },
     ]
 
-    const theme = useMantineTheme()
-
     return (
-        <div className='flex flex-col'>
-
+        <div className={theme.colorScheme === 'dark' ? 'flex flex-col border-solid border-[.5px] border-[#68686e] mx-4' : 'flex flex-col border-solid border-[.5px] border-[#babfc7] mx-4'}>
             <div className='h-[400px]'>
                 <ResponsiveBar
                     data={chartData}
@@ -57,7 +55,7 @@ const Rent2Chart = ({ data }) => {
                     ]}
                     indexBy="rent"
                     theme={theme.colorScheme === 'dark' ? nivoDarkTheme : nivoLightTheme}
-                    margin={{ top: 50, right: 170, bottom: 50, left: 80 }}
+                    margin={{ top: 50, right: 170, bottom: 50, left: 65 }}
                     padding={0.3}
                     valueScale={{ type: 'linear' }}
                     indexScale={{ type: 'band', round: true }}
@@ -77,7 +75,7 @@ const Rent2Chart = ({ data }) => {
                         tickRotation: 0,
                         legend: '# of Renters',
                         legendPosition: 'middle',
-                        legendOffset: -60
+                        legendOffset: -40
                     }}
                     labelSkipWidth={12}
                     labelSkipHeight={12}
@@ -115,6 +113,7 @@ const Rent2Chart = ({ data }) => {
                 { value: '1', label: '5 Mile Radius' },
                 { value: '2', label: '10 Mile Radius' },
             ]} 
+            className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}
             />
         </div>

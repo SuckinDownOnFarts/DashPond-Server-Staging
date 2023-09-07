@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
-import { useMantineTheme, SegmentedControl } from '@mantine/core';
-import { ResponsiveFunnel } from '@nivo/funnel'
+import { SegmentedControl } from '@mantine/core';
+import { ResponsiveFunnel } from '@nivo/funnel';
+import { chartStyles as useStyles } from '../../../Styles/MRStyles';
 
 const FamilyIncomeChart = ({ data }) => {
+    const { classes, theme } = useStyles();
     const [radius, setRadius] = useState(0);
-    const theme = useMantineTheme();
 
     const chartData = [
         {
@@ -61,7 +62,7 @@ const FamilyIncomeChart = ({ data }) => {
     ]
 
     return (
-        <div className='flex flex-col'>
+        <div className={theme.colorScheme === 'dark' ? 'flex flex-col border-solid border-[.5px] border-[#68686e] mx-4' : 'flex flex-col border-solid border-[.5px] border-[#babfc7] mx-4'}>
             <div className='h-[400px]'>
                 <ResponsiveFunnel
                     data={chartData}
@@ -93,6 +94,7 @@ const FamilyIncomeChart = ({ data }) => {
                 { value: '1', label: '5 Mile Radius' },
                 { value: '2', label: '10 Mile Radius' },
             ]} 
+            className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}
             />
         </div>

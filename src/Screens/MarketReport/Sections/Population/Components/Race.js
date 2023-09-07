@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { useMantineTheme, Title } from '@mantine/core';
 import { AgGridReact } from 'ag-grid-react';
 
@@ -9,8 +9,6 @@ const Race = ({data}) => {
     const theme = useMantineTheme();
     const gridRef = useRef();
     const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
-    const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
-
     const defaultColDef = useMemo(() => {
         return {
             resizable: true,
@@ -81,17 +79,17 @@ const Race = ({data}) => {
         { field: '% (3 Mile)' },
         { field: '5 Mile', width: 90 },
         { field: '% (5 Mile)' },
-        { field: '10 Mile', width: 90 },
-        { field: '% (10 Mile)' },
+        { field: '10 Mile', width: 100 },
+        { field: '% (10 Mile)', width: 110 },
     ]);
 
     return (
         <div>
-            <Title>
+            <Title className='pl-4'>
                 Race/Ethnicity
             </Title>
             <div style={containerStyle}>
-                <div className='h-[315px] w-[1080px]'>
+                <div className='h-[303px] sm:w-[100vw] reportMd:w-[1025px] sm:px-4'>
                     <div className={theme.colorScheme === 'dark' ? ' ag-theme-alpine-dark' : 'ag-theme-alpine'} style={{ height: '100%', width: '100%' }}>
                         <AgGridReact
                             ref={gridRef}

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { ResponsivePie } from '@nivo/pie'
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
-import { useMantineTheme, SegmentedControl } from '@mantine/core';
+import { SegmentedControl } from '@mantine/core';
+import { chartStyles as useStyles } from '../../../Styles/MRStyles';
 
 const CommutingChart = ({ data }) => {
+    const { classes, theme } = useStyles();
     const [radius, setRadius] = useState(0);
-    const theme = useMantineTheme();
 
     const chartData = [
         {
@@ -42,7 +43,7 @@ const CommutingChart = ({ data }) => {
 
 
     return (
-        <div className='flex flex-col'>
+        <div className={theme.colorScheme === 'dark' ? 'flex flex-col border-solid border-[.5px] border-[#68686e] mx-4' : 'flex flex-col border-solid border-[.5px] border-[#babfc7] mx-4'}>
 
             <div className='h-[400px]'>
                 <ResponsivePie
@@ -155,6 +156,7 @@ const CommutingChart = ({ data }) => {
                 { value: '1', label: '5 Mile Radius' },
                 { value: '2', label: '10 Mile Radius' },
             ]} 
+            className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}
             />
         </div>

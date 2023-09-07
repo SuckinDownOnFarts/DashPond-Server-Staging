@@ -245,15 +245,6 @@ export const useCardProgressStyles = createStyles((theme) => ({
     },
 }));
 
-export const useTableExampleStyles = createStyles((theme) => ({
-    progressBar: {
-        '&:not(:first-of-type)': {
-            borderLeft: `${rem(3)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white
-                }`,
-        },
-    },
-}));
-
 export const useDPSidebarStyles = createStyles((theme) => ({
     navbar: {
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
@@ -261,22 +252,18 @@ export const useDPSidebarStyles = createStyles((theme) => ({
         height: '100%',
         width: '260px',
         zIndex: 50,
-
-        [theme.fn.smallerThan('md')]: {
-            display: 'none',
-        },
     },
 
-    topSection: {
-        display: 'flex',
-        flexDirection: 'row',
-        paddingTop: '1rem',
-        width: '100%',
-        gap: '1rem',
-        borderStyle: 'solid',
-        borderBottomWidth: '1px',
-        borderColor: theme.colors.gray[5]
-    },
+    // topSection: {
+    //     display: 'flex',
+    //     flexDirection: 'row',
+    //     paddingTop: '1rem',
+    //     width: '100%',
+    //     gap: '1rem',
+    //     borderStyle: 'solid',
+    //     borderBottomWidth: '1px',
+    //     borderColor: theme.colors.gray[5]
+    // },
 
     links: {
         paddingLeft: rem(16),
@@ -285,5 +272,11 @@ export const useDPSidebarStyles = createStyles((theme) => ({
         marginLeft: `calc(${theme.spacing.md} * -1)`,
         marginRight: `calc(${theme.spacing.md} * -1)`,
     },
+}));
+
+export const chartStyles = createStyles((theme) => ({
+    root: {
+        borderRadius: '0px'
+    }
 }));
 

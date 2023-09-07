@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
-import { useMantineTheme, SegmentedControl } from '@mantine/core';
-
+import { SegmentedControl } from '@mantine/core';
+import { chartStyles as useStyles } from '../../../Styles/MRStyles';
 
 const BirthChart = ({ data }) => {
-
+    const { classes, theme } = useStyles();
     const [radius, setRadius] = useState(0);
 
     const chartData = [
@@ -18,8 +18,8 @@ const BirthChart = ({ data }) => {
             "Different State": data.DP02_0092E[radius],
         },
         {
-            "place": 'Born in Puerto Rico',
-            "Born in Puerto Rico": data.DP02_0093E[radius],
+            "place": 'Puerto Rico',
+            "Puerto Rico": data.DP02_0093E[radius],
         },
         {
             "place": 'Foreign Born',
@@ -27,23 +27,20 @@ const BirthChart = ({ data }) => {
         },
     ]
 
-    const theme = useMantineTheme()
-
     return (
-        <div className='flex flex-col'>
-
+        <div className={theme.colorScheme === 'dark' ? 'flex flex-col border-solid border-[.5px] border-[#68686e] mx-4' : 'flex flex-col border-solid border-[.5px] border-[#babfc7] mx-4'}>
             <div className='h-[400px]'>
                 <ResponsiveBar
                     data={chartData}
                     keys={[
                         "State of Residence",
                         "Different State",
-                        "Born in Puerto Rico",
+                        "Puerto Rico",
                         "Foreign Born",
                     ]}
                     indexBy="place"
                     theme={theme.colorScheme === 'dark' ? nivoDarkTheme : nivoLightTheme}
-                    margin={{ top: 50, right: 130, bottom: 50, left: 100 }}
+                    margin={{ top: 50, right: 150, bottom: 50, left: 65 }}
                     padding={0.3}
                     valueScale={{ type: 'linear' }}
                     indexScale={{ type: 'band', round: true }}
@@ -53,7 +50,7 @@ const BirthChart = ({ data }) => {
                         tickSize: 5,
                         tickPadding: 5,
                         tickRotation: 0,
-                        legend: 'Age Ranges',
+                        legend: 'Place of Birth',
                         legendPosition: 'middle',
                         legendOffset: 32
                     }}
@@ -63,7 +60,7 @@ const BirthChart = ({ data }) => {
                         tickRotation: 0,
                         legend: '# of People',
                         legendPosition: 'middle',
-                        legendOffset: -80
+                        legendOffset: -40
                     }}
                     labelSkipWidth={12}
                     labelSkipHeight={12}
@@ -101,6 +98,7 @@ const BirthChart = ({ data }) => {
                 { value: '1', label: '5 Mile Radius' },
                 { value: '2', label: '10 Mile Radius' },
             ]} 
+            className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}
             />
         </div>

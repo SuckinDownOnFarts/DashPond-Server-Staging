@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { Title, useMantineTheme } from '@mantine/core';
 import { AgGridReact } from 'ag-grid-react';
 
@@ -33,7 +33,7 @@ const TotalPop = ({ data }) => {
             '5 Mile': data.DP05_0002E[1].toLocaleString("en-US"),
             '% (5 Mile)': (data.DP05_0002E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
             '10 Mile': data.DP05_0002E[2].toLocaleString("en-US"),
-            '% (10 Mile)': (data.DP05_0002E[0] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
+            '% (10 Mile)': (data.DP05_0002E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
         },
         {
             'Data': 'Females',
@@ -52,17 +52,17 @@ const TotalPop = ({ data }) => {
         { field: '% (3 Mile)' },
         { field: '5 Mile', width: 90 },
         { field: '% (5 Mile)' },
-        { field: '10 Mile', width: 90 },
-        { field: '% (10 Mile)' },
+        { field: '10 Mile', width: 100 },
+        { field: '% (10 Mile)', width: 110 },
     ]);
 
     return (
         <div>
-            <Title>
-                Total Poulation
+            <Title className='pl-4'>
+                Total Population
             </Title>
             <div style={containerStyle}>
-                <div className='h-[185px] w-[1080px]'>
+                <div className='h-[177px] sm:w-[100vw] reportMd:w-[1025px] sm:px-4'>
                     <div className={theme.colorScheme === 'dark' ? ' ag-theme-alpine-dark' : 'ag-theme-alpine'} style={{ height: '100%', width: '100%' }}>
                         <AgGridReact
                             ref={gridRef}

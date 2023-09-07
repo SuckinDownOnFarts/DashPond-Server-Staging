@@ -80,17 +80,17 @@ const MaritalStatusFemales = ({data}) => {
         { field: '% (3 Mile)' },
         { field: '5 Mile', width: 90 },
         { field: '% (5 Mile)' },
-        { field: '10 Mile', width: 90 },
-        { field: '% (10 Mile)' },
+        { field: '10 Mile', width: 100 },
+        { field: '% (10 Mile)', width: 110 },
     ]);
 
     return (
         <div>
-            <Title>
+            <Title className='pl-4'>
                 Marital Status (Females)
             </Title>
             <div style={containerStyle}>
-                <div className='h-[315px] w-[1080px]'>
+                <div className='h-[303px] sm:w-[100vw] reportMd:w-[1025px] sm:px-4'>
                     <div className={theme.colorScheme === 'dark' ? ' ag-theme-alpine-dark' : 'ag-theme-alpine'} style={{ height: '100%', width: '100%' }}>
                         <AgGridReact
                             ref={gridRef}

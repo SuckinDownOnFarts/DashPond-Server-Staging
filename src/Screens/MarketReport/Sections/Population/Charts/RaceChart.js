@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
 import { useMantineTheme, SegmentedControl } from '@mantine/core';
-
+import { chartStyles as useStyles } from '../../../Styles/MRStyles';
 
 const RaceChart = ({ data }) => {
 
+    const { classes, theme } = useStyles();
     const [radius, setRadius] = useState(0);
-
-    console.log(data.DP05_0005E[0]);
-
 
     const chartData = [
         {
@@ -22,7 +20,7 @@ const RaceChart = ({ data }) => {
         },
         {
             "race": 'American Indian',
-            "American Indian and Alaska Native": data.DP05_0039E[radius],
+            "American Indian/Alaska Native": data.DP05_0039E[radius],
         },
         {
             "race": 'Asian',
@@ -30,7 +28,7 @@ const RaceChart = ({ data }) => {
         },
         {
             "race": 'Pacific Islander',
-            "Native Hawaiian and Other Pacific Islander": data.DP05_0052E[radius],
+            "Native Hawaiian/Pacific Islander": data.DP05_0052E[radius],
         },
         {
             "race": 'Some other race',
@@ -38,10 +36,8 @@ const RaceChart = ({ data }) => {
         },
     ]
 
-    const theme = useMantineTheme()
-
     return (
-        <div className='flex flex-col'>
+        <div className={theme.colorScheme === 'dark' ? 'flex flex-col border-solid border-[.5px] border-[#68686e] mx-4' : 'flex flex-col border-solid border-[.5px] border-[#babfc7] mx-4'}>
 
             <div className='h-[400px]'>
                 <ResponsiveBar
@@ -49,14 +45,14 @@ const RaceChart = ({ data }) => {
                     keys={[
                         'White',
                         'Black or African American',
-                        'American Indian and Alaska Native',
+                        'American Indian/Alaska Native',
                         'Asian',
-                        'Native Hawaiian and Other Pacific Islander',
+                        'Native Hawaiian/Pacific Islander',
                         'Some other race',
                     ]}
                     indexBy="race"
                     theme={theme.colorScheme === 'dark' ? nivoDarkTheme : nivoLightTheme}
-                    margin={{ top: 50, right: 130, bottom: 50, left: 100 }}
+                    margin={{ top: 50, right: 200, bottom: 50, left: 65 }}
                     padding={0.3}
                     valueScale={{ type: 'linear' }}
                     indexScale={{ type: 'band', round: true }}
@@ -66,7 +62,7 @@ const RaceChart = ({ data }) => {
                         tickSize: 5,
                         tickPadding: 5,
                         tickRotation: 0,
-                        legend: 'Age Ranges',
+                        legend: 'Ethnicity',
                         legendPosition: 'middle',
                         legendOffset: 32
                     }}
@@ -76,7 +72,7 @@ const RaceChart = ({ data }) => {
                         tickRotation: 0,
                         legend: '# of People',
                         legendPosition: 'middle',
-                        legendOffset: -80
+                        legendOffset: -40
                     }}
                     labelSkipWidth={12}
                     labelSkipHeight={12}
@@ -114,6 +110,7 @@ const RaceChart = ({ data }) => {
                 { value: '1', label: '5 Mile Radius' },
                 { value: '2', label: '10 Mile Radius' },
             ]} 
+            className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}
             />
         </div>

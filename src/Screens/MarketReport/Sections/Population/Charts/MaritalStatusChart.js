@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { nivoDarkTheme, nivoLightTheme } from '../../../../../NivoTheme/theme';
-import { useMantineTheme, SegmentedControl } from '@mantine/core';
+import { SegmentedControl } from '@mantine/core';
+import { chartStyles as useStyles } from '../../../Styles/MRStyles';
 
 
 const MaritalStatusChart = ({ data }) => {
-
+    const { classes, theme } = useStyles();
     const [radius, setRadius] = useState(0);
-
-    console.log(data.DP05_0005E[0]);
 
 
     const chartData = [
@@ -30,10 +29,8 @@ const MaritalStatusChart = ({ data }) => {
         },
     ]
 
-    const theme = useMantineTheme()
-
     return (
-        <div className='flex flex-col'>
+        <div className={theme.colorScheme === 'dark' ? 'flex flex-col border-solid border-[.5px] border-[#68686e] mx-4' : 'flex flex-col border-solid border-[.5px] border-[#babfc7] mx-4'}>
 
             <div className='h-[400px]'>
                 <ResponsiveBar
@@ -47,7 +44,7 @@ const MaritalStatusChart = ({ data }) => {
                     ]}
                     indexBy="gender"
                     theme={theme.colorScheme === 'dark' ? nivoDarkTheme : nivoLightTheme}
-                    margin={{ top: 50, right: 130, bottom: 50, left: 100 }}
+                    margin={{ top: 50, right: 130, bottom: 50, left: 65 }}
                     padding={0.3}
                     valueScale={{ type: 'linear' }}
                     indexScale={{ type: 'band', round: true }}
@@ -57,7 +54,7 @@ const MaritalStatusChart = ({ data }) => {
                         tickSize: 5,
                         tickPadding: 5,
                         tickRotation: 0,
-                        legend: 'Age Ranges',
+                        legend: 'Population 15+',
                         legendPosition: 'middle',
                         legendOffset: 32
                     }}
@@ -67,7 +64,7 @@ const MaritalStatusChart = ({ data }) => {
                         tickRotation: 0,
                         legend: '# of People',
                         legendPosition: 'middle',
-                        legendOffset: -80
+                        legendOffset: -40
                     }}
                     labelSkipWidth={12}
                     labelSkipHeight={12}
@@ -105,6 +102,7 @@ const MaritalStatusChart = ({ data }) => {
                 { value: '1', label: '5 Mile Radius' },
                 { value: '2', label: '10 Mile Radius' },
             ]} 
+            className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}
             />
         </div>

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { generatePath, useOutletContext } from 'react-router-dom';
 import MPTable from './MPTable';
 import api from '../../../api/axios'
 import useAuth from '../../../hooks/useAuth';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 const DataProfiles = () => {
     const { setActive } = useOutletContext();
     const { auth } = useAuth();
+    const printRef = useRef();
     setActive(0);
 
     const [profiles, setProfiles] = useState(null);
@@ -35,6 +38,21 @@ const DataProfiles = () => {
         fetchProfiles();
     }, []);
 
+    const handleDownloadPdf = async () => {
+        const element = printRef.current;
+        const canvas = await html2canvas(element);
+        const data = canvas.toDataURL('image/png');
+    
+        const pdf = new jsPDF();
+        const imgProperties = pdf.getImageProperties(data);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight =
+          (imgProperties.height * pdfWidth) / imgProperties.width;
+    
+        pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('print.pdf');
+      };
+
 
 
     return (
@@ -42,6 +60,8 @@ const DataProfiles = () => {
             {!profiles ? <></> :
       <MPTable 
         data={profiles}
+        printRef={printRef}
+        handleDownloadPdf={handleDownloadPdf}
       />}
         </div>
     )

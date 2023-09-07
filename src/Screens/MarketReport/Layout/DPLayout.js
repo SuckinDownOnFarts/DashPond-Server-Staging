@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { generatePath, useParams } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { useMantineTheme } from '@mantine/core';
-import { IconArrowBarBoth } from '@tabler/icons-react'
+import { IconArrowBarToRight } from '@tabler/icons-react';
 import api from '../../../api/axios'
 import DPSidebar from './DPSidebar';
 import { Outlet } from 'react-router-dom';
@@ -50,7 +50,7 @@ const DataProfile = () => {
                     onClick={() => handlers.toggle()}
                     className={theme.colorScheme === 'dark' ? 'flex p-2 rounded-full bg-[#1a1b1e] cursor-pointer' : 'flex p-2 rounded-full bg-[#fcfcfc] cursor-pointer'}
                 >
-                    <IconArrowBarBoth 
+                    <IconArrowBarToRight 
                         className={theme.colorScheme === 'dark' ? 'text-slate-100' : 'text-slate-500'}
                     />
                 </button>

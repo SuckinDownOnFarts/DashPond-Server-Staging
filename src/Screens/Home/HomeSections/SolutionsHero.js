@@ -1,6 +1,6 @@
-import { Badge, Group, Title, Text, Card, SimpleGrid, Container, rem } from '@mantine/core';
+import { Title, Text, Card, SimpleGrid, rem } from '@mantine/core';
 import { IconFriends, IconCash, IconHome, IconCertificate } from '@tabler/icons-react';
-import { HeroStyles as useStyles } from './SolutionStyles/SolutionStyles';
+import { HeroStyles as useStyles } from '../HomeStyles/HomeStyles';
 
 const mockdata = [
     {
@@ -29,8 +29,6 @@ const mockdata = [
     },
 ];
 
-
-
 const SolutionsHero = () => {
     const { classes, theme } = useStyles();
 
@@ -53,17 +51,12 @@ const SolutionsHero = () => {
                     Select Data Insights
                 </Title>
 
-                <div className='flex flex-row w-[75%] '>
-                    <SimpleGrid cols={4} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
+                <div className='flex flex-row lg:w-[90%] zero:px-8'>
+                    <SimpleGrid cols={4} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'xl', cols: 2 }, {maxWidth: 'sm', cols: 1}]}>
                         {features}
                     </SimpleGrid>
                 </div>
             </div>
-
-
-
-
-
         </div>
     );
 }

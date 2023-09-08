@@ -1,6 +1,5 @@
 import { Title, Text, Button, Container } from '@mantine/core';
-import Dots from './Dots';
-import { useHeroSectionStyles as useStyles } from '../FeatureStyles/FeatureStyles';
+import { useHeroSectionStyles as useStyles } from '../HomeStyles/HomeStyles';
 
 const HeroSection = () => {
     const { classes, theme } = useStyles();

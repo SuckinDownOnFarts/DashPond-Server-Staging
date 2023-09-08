@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Tabs, Container, Button, Group, Text, Menu, rem } from '@mantine/core';
+import { Avatar, Tabs, Container, Button, Menu, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconLogout, IconHeart, IconStar, IconSettings, IconSwitchHorizontal, IconChevronDown } from '@tabler/icons-react';
+import { IconLogout, IconHeart, IconSettings, IconChevronDown } from '@tabler/icons-react';
 import LogoutModal from '../LogoutModal';
 import { UserAvatarStyles as useStyles } from '../LayoutStyles/LayoutStyles';
 
@@ -12,6 +12,8 @@ const UserAvatar = ({ user }) => {
     const [openLogout, { open, close }] = useDisclosure(false);
     const [userMenuOpened, setUserMenuOpened] = useState(false);
     const navigate = useNavigate();
+
+    const userInitial = (user.email.substring(0, 1)).toUpperCase();
 
     return (
         <div className={classes.hiddenMobile}>
@@ -24,19 +26,16 @@ const UserAvatar = ({ user }) => {
                 withinPortal
             >
                 <Menu.Target>
-                    <Button
-                        className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
-                        variant='outline'
-                        color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink'}
-                    >
-                        <Group spacing={7}>
-                            <Avatar src={!user.image ? '/images/office1.jpg' : user.image} alt={user.email} radius="xl" size={20} />
-                            <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
-                                {user.email}
-                            </Text>
-                            <IconChevronDown size={rem(12)} stroke={1.5} color={theme.colorScheme === 'dark' ? theme.colors.orange[5] : theme.colors.pink[3]} />
-                        </Group>
-                    </Button>
+                    <div className='cursor-pointer'>
+                        <div className='flex flex-row items-center gap-2'>
+                            <div
+                                radius="xl"
+                                size='md'
+                                className={theme.colorScheme === 'dark' ? 'hover:bg-[#c2410c] bg-[#e8590c] py-2 px-4 rounded-full' : 'hover:bg-[#be185d] bg-[#e64980] py-2 px-4 rounded-full text-white'}
+                            >{userInitial}</div>
+                            <IconChevronDown size={rem(16)} stroke={1.5} color={theme.colorScheme === 'dark' ? theme.colors.orange[1] : theme.colors.pink[9]} className='flex items-center'/>
+                        </div>
+                    </div>
                 </Menu.Target>
                 <Menu.Dropdown>
                     <Menu.Item

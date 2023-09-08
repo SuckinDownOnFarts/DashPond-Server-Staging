@@ -41,7 +41,7 @@ const Contact = () => {
     const handleSubmit = async (values) => {
         try {
             const response = await api.post('/contactform', (values));
-            // console.log(response); 
+            console.log(response.status);
         } catch (err) {
             console.log(err.message);
         }

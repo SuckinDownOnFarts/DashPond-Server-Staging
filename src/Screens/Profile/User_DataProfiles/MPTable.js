@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Text, Button, ScrollArea, Table, useMantineTheme, Group, Pagination } from '@mantine/core';
+import { Text, Button, ScrollArea, Table, Pagination } from '@mantine/core';
 
 const MPTable = ({ data }) => {
-    const theme = useMantineTheme();
     const navigate = useNavigate();
 
     const [pageTotal, setPageTotal] = useState();
@@ -57,7 +56,7 @@ const MPTable = ({ data }) => {
                 </Text>
             </td>
 
-            <td className=''>
+            {/* <td className=''>
                 <Group className=''>
                         <Button
                             size="xs"
@@ -68,7 +67,7 @@ const MPTable = ({ data }) => {
                             Export to CSV
                         </Button>
                 </Group>
-            </td>
+            </td> */}
         </tr>
     ));
 
@@ -82,7 +81,7 @@ const MPTable = ({ data }) => {
                             <th>Address</th>
                             <th>Visibility</th>
                             <th>Date Created</th>
-                            <th>Options</th>
+                            {/* <th>Options</th> */}
                         </tr>
                     </thead>
                     <tbody>{rows}</tbody>

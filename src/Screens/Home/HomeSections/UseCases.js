@@ -1,9 +1,5 @@
 import { Image, Text, Container, ThemeIcon, Title, SimpleGrid } from '@mantine/core';
-// import IMAGES from './images';
-import { UseCasesStyles as useStyles } from './SolutionStyles/SolutionStyles';
-
-
-
+import { UseCasesStyles as useStyles } from '../HomeStyles/HomeStyles';
 
 const UseCases = () => {
     const { classes, theme } = useStyles();

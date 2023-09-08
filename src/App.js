@@ -31,7 +31,7 @@ import ProfileLayout from './Screens/Profile/Layout/ProfileLayout';
 import Info from './Screens/Profile/Info/InfoLayout';
 import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout';
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
-import SolutionsLayout from './Screens/Solutions/SolutionsLayout';
+import HomeLayout from './Screens/Home/HomeLayout';
 
 import PDFExport from './Screens/PDFExport/PDFExport';
 
@@ -87,7 +87,7 @@ function App() {
                     <Route element={<PersistLogin />}>
 
                         <Route path='/' element={<Layout />}>
-                            <Route index element={<SolutionsLayout />} /> {/* Homepage Route */}
+                            <Route index element={<HomeLayout />} /> {/* Homepage Route */}
 
                             {/*********************** USER PROFILES ******************************/}
                             <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin, ROLES.User]} />}>

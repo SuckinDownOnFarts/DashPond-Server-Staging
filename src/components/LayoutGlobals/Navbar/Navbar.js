@@ -25,10 +25,7 @@ const Navbar = () => {
                                 <Logo />
                             </div>
                         </Link>
-
-                        {/* <Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>Beta</Badge> */}
                     </Group>
-
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
                         {/* <a href={'/solutions'} className={classes.link}>
@@ -63,11 +60,12 @@ const Navbar = () => {
                                         Sign up
                                     </Button>
                                 </Group>
-
-
                             </div>
                             : <div>
                                 <DesktopUserAvatar
+                                    user={auth}
+                                />
+                                <MobileUserAvatar
                                     user={auth}
                                 />
                             </div>}
@@ -106,7 +104,7 @@ const Navbar = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.5'} />
 
                     {!auth?.accessToken
-                        ? <Group position="center" grow pb="xl" px="md">
+                        && <Group position="center" grow pb="xl" px="md">
                             <Button
                                 onClick={() => {
                                     toggleDrawer();
@@ -128,9 +126,7 @@ const Navbar = () => {
                                 Sign up
                             </Button>
                         </Group>
-                        : <MobileUserAvatar
-                            user={auth}
-                        />}
+                    }
                 </ScrollArea>
             </Drawer>
         </div>

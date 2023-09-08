@@ -39,7 +39,7 @@ const Maps = () => {
 
     return (
         // <Grid numColsSm={1} numColsMd={1} numColsLg={1} className="mt-8 gap-x-6 gap-y-6">
-            <Card className='h-[800px] '>
+            <div className='h-[800px] w-[800px]'>
                 {!loading ?
                     <MapContainer center={center} zoom={13} scrollWheelZoom={false} maxZoom={16} className='h-[750px]'>
                         <TileLayer
@@ -53,7 +53,7 @@ const Maps = () => {
                         </Marker>
                     </MapContainer>
                     : <></>}
-            </Card>
+            </div>
         // </Grid>
     )
 }

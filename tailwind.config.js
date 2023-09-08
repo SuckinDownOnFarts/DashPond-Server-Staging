@@ -8,12 +8,18 @@ module.exports = {
     // darkMode: 'class',
     theme: {
         screens: {
+            zero: '0px',
+            xs: '360px',
             sm: '576px',
             md: '992px',
             lg: '1200px',
             xl: '1408px',
 
-            reportMd: '1082px'
+            //ONE-OFFS
+            reportMd: '1082px',
+
+            frontPageCarousel: '960px',
+            
         },
         // fontFamily: {
         //     'body': [

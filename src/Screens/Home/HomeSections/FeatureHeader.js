@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFeatureHeaderStyles } from '../FeatureStyles/FeatureStyles';
+import { useFeatureHeaderStyles as useStyles } from '../HomeStyles/HomeStyles';
 import { Title, SimpleGrid, Text, Button, ThemeIcon, Grid, Col, rem } from '@mantine/core';
 import { features } from '../../../data/Data';
 
 
 const Header = () => {
-    const { classes, theme } = useFeatureHeaderStyles();
+    const { classes, theme } = useStyles();
     const navigate = useNavigate();
 
     const items = features.map((feature) => (

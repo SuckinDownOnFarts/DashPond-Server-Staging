@@ -21,32 +21,38 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
 
     const data = [
         {
-            'value': 'First Name',
+            'value': 'first_name',
+            'text': 'First Name',
             'userData': firstName,
             'editValue': 'first name'
         },
         {
-            'value': 'Last Name',
+            'value': 'last_name',
+            'text': 'Last Name',
             'userData': lastName,
             'editValue': 'first name'
         },
         {
-            'value': 'Email',
+            'value': 'email',
+            'text': 'Email',
             'userData': email,
             'editValue': 'email'
         },
         {
-            'value': 'Phone',
+            'value': 'phone',
+            'text': 'Phone',
             'userData': phone,
             'editValue': 'phone'
         },
         {
             'value': 'Plan Type',
+            'text': 'Plan Type',
             'userData': planType,
             'editValue': 'plan'
         },
         {
-            'value': 'Company',
+            'value': 'company',
+            'text': 'Company',
             'userData': company,
             'editValue': 'company'
         },
@@ -102,7 +108,7 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
         <tr key={item.value}>
             <td className='m-4'>
                 <Text fz="md" sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 700 })}>
-                    {item.value}
+                    {item.text}
                 </Text>
             </td>
             {edit === item.userData
@@ -116,7 +122,7 @@ const UserPersonalInfo = ({ firstName, lastName, email, phone, roles, company, s
                     <div className='flex mt-4 '>
                         <Group position="apart">
                             <Button color="red" variant="outline" onClick={() => handleEditCancel()}>Cancel</Button>
-                            <Button variant="outline" onClick={() => handleEditSubmit(auth.id, initialValue, item.editValue)}>Submit</Button>
+                            <Button variant="outline" onClick={() => handleEditSubmit(auth.id, initialValue, item.value)}>Submit</Button>
                         </Group>
                     </div>
                 </td>

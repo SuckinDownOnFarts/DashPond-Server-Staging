@@ -1,6 +1,6 @@
 import { Badge, Group, Title, Text, Card, SimpleGrid, Container, rem } from '@mantine/core';
 // import { IconGauge, IconUser, IconCookie } from '@tabler/icons-react';
-import { useThirdSectionStyles as useStyles } from '../FeatureStyles/FeatureStyles';
+import { useThirdSectionStyles as useStyles } from '../HomeStyles/HomeStyles';
 import { thirdFeatureSectionData as data } from '../../../data/Data';
 
 
@@ -32,7 +32,7 @@ const ThirdFeatureSection = () => {
                 </Title>
 
                 <Text c="dimmed" className={classes.description} ta="center" mt="md">
-                    Demographic data pulled directly from the Census and American Community Survey you'll have a serious edge ****come back to this guy*****
+                    We build our market summaries with demographic data pulled directly from the Census and American Community Survey
                 </Text>
 
                 <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>

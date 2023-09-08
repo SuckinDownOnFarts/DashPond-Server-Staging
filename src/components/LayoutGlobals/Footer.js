@@ -37,14 +37,14 @@ const FeatureFooter = () => {
                         Helping You Make Better Real Estate Investment Decisions
                     </Text>
                 </div>
-                <div className={classes.groups}>{groups}</div>
+                {/* <div className={classes.groups}>{groups}</div> */}
             </Container>
             <Container className={classes.afterFooter}>
                 <Text color="dimmed" size="sm">
                     © 2023 DashPond. All rights reserved.
                 </Text>
 
-                <Group spacing={0} className={classes.social} position="right" noWrap>
+                {/* <Group spacing={0} className={classes.social} position="right" noWrap>
                     <ActionIcon size="lg">
                         <IconBrandTwitter size="1.05rem" stroke={1.5} />
                     </ActionIcon>
@@ -54,7 +54,7 @@ const FeatureFooter = () => {
                     <ActionIcon size="lg">
                         <IconBrandInstagram size="1.05rem" stroke={1.5} />
                     </ActionIcon>
-                </Group>
+                </Group> */}
             </Container>
         </footer>
     );

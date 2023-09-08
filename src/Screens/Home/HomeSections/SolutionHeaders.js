@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Image, Container, Title, Text, List, ThemeIcon, Group, Button, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import { SolutionHeaderStyles as useStyles } from './SolutionStyles/SolutionStyles';
+import { SolutionHeaderStyles as useStyles } from '../HomeStyles/HomeStyles';
 
 
 const SolutionHeaders = () => {
@@ -23,7 +23,7 @@ const SolutionHeaders = () => {
                         <Text color="dimmed" mt="md">
                             DashPond makes it easy to leverage professional market analysis for real estate investment decisions
                         </Text>
-
+                        {/* DashPond makes it easy to leverage professional market analysis for real estate investment decisions */}
                         <List
                             mt={30}
                             spacing="sm"
@@ -35,13 +35,13 @@ const SolutionHeaders = () => {
                             }
                         >
                             <List.Item>
-                                <b>Quick, Simple, and Reliable</b> – Analyze more property, faster and easier with extremely accurate data insights
+                                <b>Sign up for Beta</b> – Click on the sign up button in the navbar to gain access to our limited beta release
                             </List.Item>
                             <List.Item>
-                                <b>Over 500 Individual Measurments</b> – Explore beautiful dynamic reports with highly granular levels of data detail including by radius and drive times
+                                <b>Enter an Address and Verify its Location</b> – Once you've signed up, head to the property search page to enter any U.S. address and verify its location on the map
                             </List.Item>
                             <List.Item>
-                                <b>Explore Anywhere</b> – Each report can be found at it's own web address, or you can export the data for offline usage
+                                <b>Explore Your Market Report</b> – Finally, you'll be redirected to a dynamically generated market summary for that property
                             </List.Item>
                         </List>
                         <Group mt={30}>

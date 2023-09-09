@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SolutionHeaders from './HomeSections/SolutionHeaders';
 import SolutionsHero from './HomeSections/SolutionsHero';
 import UseCases from './HomeSections/UseCases';
@@ -9,7 +9,7 @@ import Footer from '../../components/LayoutGlobals/Footer';
 
 const HomeLayout = () => {
 
-    console.log(JSON.parse(localStorage.getItem('persist')));
+
     return (
         <div className='flex flex-col'>
             <SolutionHeaders />

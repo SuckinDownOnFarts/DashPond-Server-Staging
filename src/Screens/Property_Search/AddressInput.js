@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { TextInput, Button, Group, Box, LoadingOverlay, Autocomplete } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -10,6 +10,12 @@ const AddressInput = () => {
     const [visible, { toggle }] = useDisclosure(false);
     const [autoCompleteData, setAutoCompleteData] = useState([]);
     const [streetAddress, setStreetAddress] = useState();
+
+    const [prevAddress, setPrevAddress] = useState(streetAddress);
+
+    useEffect(() => {
+        setPrevAddress(streetAddress);
+    }, [streetAddress]);
 
     const navigate = useNavigate();
 
@@ -71,14 +77,14 @@ const AddressInput = () => {
         const autoComplete = async () => {
             const url = `https://api.geocodify.com/v2/autocomplete?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${streetAddress}`
             try {
-                if (streetAddress.length > 4) {
-                    const autoAddress = await fetch(url).then((response) => response.json())
+                if (streetAddress.length > 4 && prevAddress.length < streetAddress.length && streetAddress.length < 13) {
+                    await fetch(url).then((response) => response.json())
                         .then((data) => {
                             let arr = []
                             for (let i = 0; i < data.response.features.length; i++) {
                                 arr.push(data.response.features[i].properties.label)
                             }
-                            // console.log(data.response.features);
+                            console.log('ran');
                             setAutoCompleteData(arr);
                         });
                 }
@@ -113,9 +119,7 @@ const AddressInput = () => {
                             data={autoCompleteData}
                             label="Address"
                             placeholder="371 7th Ave, New York, NY 10001"
-                            // value={streetAddress}
-                            // onChange={setStreetAddress}
-                        {...form.getInputProps('address')}
+                            {...form.getInputProps('address')}
                         />
 
                         {/* BUTTON */}

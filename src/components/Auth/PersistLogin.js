@@ -8,8 +8,6 @@ const PersistLogin = () => {
     const refresh = useRefreshToken();
     const { auth, persist } = useAuth();
 
-    
-
     useEffect(() => {
         let isMounted = true;
 
@@ -24,7 +22,8 @@ const PersistLogin = () => {
         }
         
         // Avoids unwanted call to verifyRefreshToken
-        !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
+        // !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
+        persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
         // console.log(auth.roles);
         return () => isMounted = false;
     }, [])
@@ -32,7 +31,7 @@ const PersistLogin = () => {
     return (
         //chain ternary skips verify refresh function if persist is set to false
         <> 
-            {!persist
+            {!persist 
                 ? <Outlet />
                 : isLoading
                     ? <p>Loading...</p>

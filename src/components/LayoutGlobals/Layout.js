@@ -1,26 +1,30 @@
 import { useEffect } from 'react';
 import api from '../../api/axios';
 import Navbar from './Navbar/Navbar';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useLayoutStyles as useStyles } from './LayoutStyles/LayoutStyles';
+import useAuth from '../../hooks/useAuth';
 
 const Layout = () => {
-    const location = useLocation();
-    const { classes, theme } = useStyles();
+    const { classes } = useStyles();
+    const { auth } = useAuth();
 
+    const persist = JSON.parse(localStorage.getItem('persist'))
+    
     useEffect(() => {
         const sendLog = async () => {
-            const persist = JSON.parse(localStorage.getItem('persist'))
+            
             try {
                 const response = await api.post('/receive', {
-                    logs: persist
+                    logs: persist,
+                    auth: auth.accessToken
                 })
             } catch (err) {
                 console.log(err.message);
             }
         }
-        sendLog()
-    }, [])
+        sendLog();
+    }, [auth, persist])
 
     console.log();
 

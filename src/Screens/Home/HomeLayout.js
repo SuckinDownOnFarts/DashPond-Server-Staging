@@ -8,6 +8,8 @@ import HeroSection from './HomeSections/HeroSection';
 import Footer from '../../components/LayoutGlobals/Footer';
 
 const HomeLayout = () => {
+
+    console.log(JSON.parse(localStorage.getItem('persist')));
     return (
         <div className='flex flex-col'>
             <SolutionHeaders />

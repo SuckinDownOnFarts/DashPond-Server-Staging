@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useMantineTheme } from '@mantine/core';
 import { GoogleMap, useJsApiLoader, StreetViewPanorama } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -6,9 +7,9 @@ const containerStyle = {
     height: '800px'
 };
 
-console.log(process.env.REACT_APP_MAPS_KEY);
-
 const StreetView = ({ center }) => {
+    const theme = useMantineTheme();
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
@@ -29,19 +30,21 @@ const StreetView = ({ center }) => {
     }, [])
 
     return isLoaded ? (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
-        >
-            <StreetViewPanorama 
+        <div className={theme.colorScheme === 'dark' ? 'p-4 bg-[#1a1b1e] rounded-md' : 'p-4 bg-[#ffffff] rounded-md'}>
+            <GoogleMap
                 mapContainerStyle={containerStyle}
-                position={center}
-                visible={true}
-            />
-        </GoogleMap>
+                center={center}
+                zoom={10}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+            >
+                <StreetViewPanorama
+                    mapContainerStyle={containerStyle}
+                    position={center}
+                    visible={true}
+                />
+            </GoogleMap>
+        </div>
     ) : <></>
 }
 

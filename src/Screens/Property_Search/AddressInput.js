@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import { TextInput, Button, Group, Box, LoadingOverlay } from '@mantine/core';
+import { TextInput, Button, Group, Box, LoadingOverlay, Autocomplete } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form'
 
 const AddressInput = () => {
-    const [streetAddress, setStreetAddress] = useState('');
+    const { setPointData, setCounty, setFullAddress } = useOutletContext();
     const [loading, setLoading] = useState(true);
     const [visible, { toggle }] = useDisclosure(false);
+    const [autoCompleteData, setAutoCompleteData] = useState([]);
+    const [streetAddress, setStreetAddress] = useState();
 
     const navigate = useNavigate();
 
@@ -21,12 +23,12 @@ const AddressInput = () => {
         }),
     });
 
-    const {
-        setPointData,
-        setCounty,
-        setFullAddress,
-    } = useOutletContext();
-
+    useEffect(() => {
+        const addAddressToState = () => {
+            setStreetAddress(form.values.address)
+        }
+        addAddressToState()
+    }, [form.values.address])
 
     const handleSubmit = async (value) => {
         toggle();
@@ -65,6 +67,29 @@ const AddressInput = () => {
         navigateAfterLoading();
     }, [loading]);
 
+    useEffect(() => {
+        const autoComplete = async () => {
+            const url = `https://api.geocodify.com/v2/autocomplete?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${streetAddress}`
+            try {
+                if (streetAddress.length > 4) {
+                    const autoAddress = await fetch(url).then((response) => response.json())
+                        .then((data) => {
+                            let arr = []
+                            for (let i = 0; i < data.response.features.length; i++) {
+                                arr.push(data.response.features[i].properties.label)
+                            }
+                            // console.log(data.response.features);
+                            setAutoCompleteData(arr);
+                        });
+                }
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+        autoComplete();
+    }, [streetAddress]);
+
+
     return (
         <div className='flex flex-col flex-grow place-items-center '>
             <div>
@@ -82,17 +107,17 @@ const AddressInput = () => {
                     <form
                         onSubmit={form.onSubmit((values) => handleSubmit(values))}
                     >
-
                         {/* ADDRESS */}
-                        <TextInput
+                        <Autocomplete
                             withAsterisk
+                            data={autoCompleteData}
                             label="Address"
                             placeholder="371 7th Ave, New York, NY 10001"
-                            value={streetAddress}
-                            onChange={(event) => setStreetAddress(event.currentTarget.value)}
-                            {...form.getInputProps('address')}
+                            // value={streetAddress}
+                            // onChange={setStreetAddress}
+                        {...form.getInputProps('address')}
                         />
-                        
+
                         {/* BUTTON */}
                         <div className="flex flex-wrap -mx-3 mb-2 mt-2">
                             <div className="w-full px-3 mb-6">
@@ -109,78 +134,3 @@ const AddressInput = () => {
 }
 
 export default AddressInput
-
-
-/* <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full px-3 mb-6 md:mb-0">
-                <input 
-                  className={errors.streetAddress ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"}
-                  {...register('streetAddress', { required: true })}
-                  aria-invalid={errors.streetAddress ? "true" : "false"}
-                  id="streetAddress" 
-                  type="text" 
-                  placeholder="Address"
-                  value={streetAddress}
-                  onChange={(e) => setStreetAddress(e.target.value)}
-                />
-                {errors.streetAddress?.type === 'required' && <p className='text-red-500' role="alert">Address is required</p>}
-              </div>
-            </div> 
-
-            
-            {/* <div className="flex flex-wrap -mx-3">
-              {/* CITY 
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <input 
-                  className={errors.city ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
-                  id="city" 
-                  {...register('city', { required: true })}
-                  type="text" 
-                  placeholder="City"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  
-                />
-                {errors.city?.type === 'required' && <p className='text-red-500' role="alert">City is required</p>}
-              </div>
-
-              {/* STATE 
-              <div className="w-full md:w-1/3 px-3 mb-6">
-                <div className="relative">
-                  <select 
-                    className="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" 
-                    id="state"
-                    {...register('state', { required: true })}
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                    
-                  >
-                    {stateNames.map((state) => (
-                      <option key={state.name}>{state.name}</option>
-                    ))}
-                    
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* ZIP 
-              <div className="w-full md:w-1/3 px-3 mb-6">
-                <input 
-                  className={errors.zip ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"} 
-                  id="grid-zip" 
-                  {...register('zip', { required: true, minLength: 5 })}
-                  type="text" 
-                  placeholder="Zip"
-                  value={zip}
-                  onChange={(e) => setZip(e.target.value)}
-                  
-                />
-                {errors.zip?.type === 'required' && <p className='text-red-500' role="alert">Zip code is required</p>}
-              </div>
-            </div> */

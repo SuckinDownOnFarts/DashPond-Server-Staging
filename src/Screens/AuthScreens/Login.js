@@ -14,8 +14,6 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-
-
     useEffect(() => {
         const checkIfUserIsLoggedIn = () => {
             if (auth?.accessToken) {
@@ -24,7 +22,6 @@ const Login = () => {
         }
         checkIfUserIsLoggedIn()
     }, [])
-
 
     const form = useForm({
         initialValues: {
@@ -102,13 +99,11 @@ const Login = () => {
                     <TextInput
                         label="Email"
                         placeholder="you@dashpond.com"
-                        // required
                         {...form.getInputProps('email')}
                     />
                     <PasswordInput
                         label="Password"
                         placeholder="Your password"
-                        // required 
                         mt="md"
                         {...form.getInputProps('password')}
                     />

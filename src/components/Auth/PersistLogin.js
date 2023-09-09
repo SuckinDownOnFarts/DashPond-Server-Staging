@@ -22,20 +22,12 @@ const PersistLogin = () => {
                 isMounted && setIsLoading(false);
             }
         }
-
-        // persist added here AFTER tutorial video
+        
         // Avoids unwanted call to verifyRefreshToken
         !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
         // console.log(auth.roles);
         return () => isMounted = false;
     }, [])
-
-    // console.log(auth);
-
-    // useEffect(() => {
-    //     console.log(`isLoading: ${isLoading}`)
-    //     console.log(`aT: ${JSON.stringify(auth?.accessToken)}`)
-    // }, [isLoading])
 
     return (
         //chain ternary skips verify refresh function if persist is set to false

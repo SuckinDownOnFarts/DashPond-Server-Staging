@@ -15,16 +15,16 @@ const PersistLogin = () => {
             try {
                 await refresh();
             } catch (err) {
-                console.error(err);
+                console.error(err.message);
             } finally { 
                 isMounted && setIsLoading(false);
             }
         }
+
+        console.log('running refreshtoken controller')
         
         // Avoids unwanted call to verifyRefreshToken
-        // !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
-        persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
-        // console.log(auth.roles);
+        !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false); //make sure auth state is empty
         return () => isMounted = false;
     }, [])
 

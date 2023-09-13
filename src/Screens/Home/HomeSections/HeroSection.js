@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { Title, Text, Button, Container } from '@mantine/core';
 import { useHeroSectionStyles as useStyles } from '../HomeStyles/HomeStyles';
 
 const HeroSection = () => {
     const { classes, theme } = useStyles();
+    const navigate = useNavigate();
 
     return (
         <div className={classes.wrapper} >
@@ -22,10 +24,10 @@ const HeroSection = () => {
                 </Container>
 
                 <div className={classes.controls}>
-                    <Button className={classes.control} size="lg" variant="default" color="dark">
+                    <Button className={classes.control} size="lg" variant="default" color="dark" onClick={() => navigate('/register')}>
                         Get Started
                     </Button>
-                    <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.5' : 'pink'}>
+                    <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.5' : 'pink'} onClick={() => navigate('/contact')}>
                         Get in touch
                     </Button>
                 </div>

@@ -56,7 +56,7 @@ const SecondFeatureSection = () => {
             </Container>
 
             <div className='flex w-full justify-center mt-8'>
-                <Button component="a" href='/market+report/1006/population' target='_blank' leftIcon={<IconExternalLink size="0.9rem" />}>
+                <Button component="a" href='/market+report/1022/population' target='_blank' leftIcon={<IconExternalLink size="0.9rem" />}>
                     Explore a Sample Report
                 </Button>
 

@@ -113,7 +113,7 @@ function App() {
                                 </Route>
                             </Route>
 
-                            <Route path='/test+report/:id' element={<PDFExport />} />
+                            {/* <Route path='/test+report/:id' element={<PDFExport />} /> */}
 
                             {/*********************** PRODUCTS ******************************/}
                             {/* <Route path='products' element={<ProductLayout />}> */}

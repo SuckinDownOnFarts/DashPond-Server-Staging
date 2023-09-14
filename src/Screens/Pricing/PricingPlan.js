@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { SegmentedControl, Title, Paper, Divider, Button } from '@mantine/core';
 import { base, pricingSegmentedControlData } from '../../data/Data';
 import api from '../../api/axios';
@@ -8,7 +8,6 @@ import Logo from '../../components/Globals/Logo';
 
 const PricingPlan = () => {
     const { plan } = useParams();
-    const navigate = useNavigate();
 
     const planBase = base.find(obj => obj.Plan === plan);
 
@@ -16,7 +15,6 @@ const PricingPlan = () => {
     const [paymentFreq, setPayementFreq] = useState('monthly');
     const [basePrice, setBasePrice] = useState(planBase.Price);
     const [monthlyIncrement, setMonthlyIncrement] = useState(0)
-    const [visible, setVisible] = useState(false);
 
     //Calculates the Total Price
     useEffect(() => {

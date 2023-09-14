@@ -84,7 +84,6 @@ const AddressInput = () => {
                             for (let i = 0; i < data.response.features.length; i++) {
                                 arr.push(data.response.features[i].properties.label)
                             }
-                            console.log('ran');
                             setAutoCompleteData(arr);
                         });
                 }
@@ -94,7 +93,6 @@ const AddressInput = () => {
         }
         autoComplete();
     }, [streetAddress]);
-
 
     return (
         <div className='flex flex-col flex-grow place-items-center '>

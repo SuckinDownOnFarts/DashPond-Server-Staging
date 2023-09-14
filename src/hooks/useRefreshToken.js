@@ -9,7 +9,6 @@ const useRefreshToken = () => {
             withCredentials: true
         });
         setAuth(prev => {
-            // console.log(response.data.user);
             return { 
                 ...prev, 
                 firstName: response.data.firstName,
@@ -22,10 +21,8 @@ const useRefreshToken = () => {
                 profile_image_public_id: response.data.profileImagePublicId
             }
         });
-        // console.log(response.data.accessToken);
         return response.data.accessToken;
     };
-
     return refresh
 }
 

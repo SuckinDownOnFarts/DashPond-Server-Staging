@@ -73,10 +73,8 @@ const DashLayout = () => {
             const revGeocodeRes = await fetch(url).then((response) => response.json())
                 .then((data) => {
                     if (data.response.features[0].properties.country !== 'United States') {
-                        console.log(data.response.features[0].properties.country);
                         return 0
                     } else {
-                        console.log('is in us');
                         return 1
                     }
                 })
@@ -85,14 +83,12 @@ const DashLayout = () => {
                     .then((response) => {
                         if (!response) {
                             toggle();
-                            console.log('no res');
                         }
                     }).catch(err => {
                         console.log(err)
                     })
             } else {
                 open();
-                console.log('not in us');
             }
         } catch (err) {
             console.log(err);

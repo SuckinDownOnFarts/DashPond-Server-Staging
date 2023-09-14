@@ -39,7 +39,6 @@ const MapsLayout = () => {
         lng: parseFloat(coordinates[0]['st_x'])
     } : center = {};
 
-    console.log(center);
     return (
         <div>
             {!loading

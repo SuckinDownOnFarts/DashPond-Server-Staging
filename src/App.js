@@ -9,7 +9,6 @@ import Contact from './Screens/Contact/Contact';
 /////////////////////////////////////////////**************CREATE DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
 import AddressInput from './Screens/Property_Search/AddressInput';
 import DashLayout from './Screens/Property_Search/Layout/DashLayout';
-import FileUploader from './Screens/Property_Search/FileUploader';
 import MapModal from './Screens/Property_Search/MapModal';
 /////////////////////////////////////////////**************MARKET REPORTS SCREENS*************///////////////////////////////////////////////////////////
 import CheckReportId from './components/Auth/CheckReportId';
@@ -32,8 +31,6 @@ import Info from './Screens/Profile/Info/InfoLayout';
 import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout';
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
 import HomeLayout from './Screens/Home/HomeLayout';
-
-import PDFExport from './Screens/PDFExport/PDFExport';
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -113,15 +110,11 @@ function App() {
                                 </Route>
                             </Route>
 
-                            {/* <Route path='/test+report/:id' element={<PDFExport />} /> */}
-
                             {/*********************** PRODUCTS ******************************/}
-                            {/* <Route path='products' element={<ProductLayout />}> */}
                             <Route element={<RequireAuth allowedRoles={[ROLES.Customer, ROLES.Admin]} />}>
                                 <Route path='property+search' element={<DashLayout />}> {/*Input for paying cutomers */}
                                     <Route path='address+input' element={<AddressInput />} />
                                     <Route path='address+input/map+confirmation' element={<MapModal />} />
-                                    <Route path='address+input/map+confirmation/image+upload' element={<FileUploader />} />
                                 </Route>
                             </Route>
 

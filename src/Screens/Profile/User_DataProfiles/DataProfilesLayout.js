@@ -23,7 +23,6 @@ const DataProfiles = () => {
             try {
                 const response = await api.get(fetchProfilePath);
                 setProfiles(response.data);
-                console.log(response.data);
             } catch (err) {
                 if (err.response) {
                     console.log(err.response.data);

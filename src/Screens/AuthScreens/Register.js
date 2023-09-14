@@ -113,7 +113,6 @@ const Register = () => {
     const submitRegistration = async (data) => {
         try {
             const response = await api.post('/register', (data));
-            console.log(response?.data);
             const firstName = response?.data?.firstName
             const lastName = response?.data?.lastName
             const accessToken = response?.data?.accessToken;

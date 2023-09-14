@@ -9,7 +9,7 @@ const LogoutModal = ({ openLogout, close }) => {
 
     const signout = async () => {
         await logout();
-        navigate('/');
+        // navigate(-1);
     }
 
     return (

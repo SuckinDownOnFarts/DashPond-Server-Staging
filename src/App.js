@@ -33,7 +33,7 @@ import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout
 import HomeLayout from './Screens/Home/HomeLayout';
 
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
+
 
 const ROLES = {
     'User': 10,
@@ -82,7 +82,6 @@ function App() {
             >
                 <Routes>
                     <Route element={<PersistLogin />}>
-
                         <Route path='/' element={<Layout />}>
                             <Route index element={<HomeLayout />} /> {/* Homepage Route */}
 
@@ -97,7 +96,6 @@ function App() {
                             </Route>
 
                             {/*********************** DEMOGRAPHIC PROFILES ******************************/}
-
                             <Route element={<CheckReportId />}>
                                 <Route path='/market+report/:id' element={<DPLayout />}> {/* Dashboards */}
                                     <Route path='key+trends' index element={<Overview />} />

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import { TextInput, Button, Group, Box, LoadingOverlay, Autocomplete } from '@mantine/core';
+import { Button, Group, Box, LoadingOverlay, Autocomplete } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form'
 
@@ -77,7 +77,7 @@ const AddressInput = () => {
         const autoComplete = async () => {
             const url = `https://api.geocodify.com/v2/autocomplete?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${streetAddress}`
             try {
-                if (streetAddress.length > 4 && prevAddress.length < streetAddress.length && streetAddress.length < 13) {
+                if (streetAddress.length > 4 && prevAddress.length < streetAddress.length && streetAddress.length < 20) {
                     await fetch(url).then((response) => response.json())
                         .then((data) => {
                             let arr = []

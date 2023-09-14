@@ -1,17 +1,22 @@
 import React from 'react';
-import { Paper, Text, TextInput, Textarea, Button, Group, SimpleGrid } from '@mantine/core';
+import { Paper, Text, TextInput, Textarea, Button, Group, SimpleGrid, LoadingOverlay, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import { useContactMainStyles as useStyles } from './ContactStyles';
 import api from '../../api/axios'
+import useAuth from '../../hooks/useAuth'
 
 
 const Contact = () => {
     const { classes, theme } = useStyles();
+    const [modalOpened, { open, close }] = useDisclosure(false);
+
+    const { auth } = useAuth();
 
     const form = useForm({
         initialValues: {
-            name: '',
-            email: '',
+            name: !auth?.firstName ? '' : `${auth?.firstName} ${auth?.lastName}`,
+            email: '' || auth?.email,
             subject: '',
             message: '',
         },
@@ -41,9 +46,15 @@ const Contact = () => {
     const handleSubmit = async (values) => {
         try {
             const response = await api.post('/contactform', (values));
-            console.log(response.status);
+            if (response.status === 200) {
+                open();
+                form.reset();
+            }
+
         } catch (err) {
             console.log(err.message);
+        } finally {
+            
         }
     }
 
@@ -52,6 +63,19 @@ const Contact = () => {
             <div className='flex pb-4'>
                 <Paper shadow="md" radius="lg">
                     <div className={classes.wrapper}>
+
+                        {/* <LoadingOverlay visible={visible} overlayBlur={2} /> */}
+
+                        <Modal opened={modalOpened} onClose={close} title="Message Received!" centered>
+                            <div>
+                                Thanks for reaching out! We will get back with you shortly.
+                            </div>
+                            {/* <Group>
+                                <Button>
+                                    Home
+                                </Button>
+                            </Group> */}
+                        </Modal>
 
                         <form className={classes.form} onSubmit={form.onSubmit((values) => handleSubmit(values))}>
                             <Text fz="lg" fw={700} className={classes.title}>
@@ -92,8 +116,8 @@ const Contact = () => {
                                 />
 
                                 <Group position="right" mt="md">
-                                    <Button 
-                                        type="submit" 
+                                    <Button
+                                        type="submit"
                                         className={classes.control}
                                         // variant='outline'
                                         color={theme.colorScheme === 'dark' ? theme.colors.orange[7] : theme.colors.pink[7]}

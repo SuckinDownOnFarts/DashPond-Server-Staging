@@ -11,19 +11,10 @@ export const notFoundStyles = createStyles((theme) => ({
     },
 
     image: {
-        // textAlign: 'center',
-        // fontWeight: 900,
-        // fontSize: rem(220),
-        // lineHeight: 1,
         display: 'flex',
         justifyContent: 'center',
         marginBottom: `calc(${theme.spacing.xl} * 1.5)`,
-        // color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
         maxWidth: '400px',
-
-        // [theme.fn.smallerThan('sm')]: {
-        //     fontSize: rem(120),
-        // },
     },
 
     title: {

@@ -23,7 +23,6 @@ const SolutionHeaders = () => {
                         <Text color="dimmed" mt="md">
                             DashPond makes it easy to leverage professional market analysis for real estate investment decisions
                         </Text>
-                        {/* DashPond makes it easy to leverage professional market analysis for real estate investment decisions */}
                         <List
                             mt={30}
                             spacing="sm"

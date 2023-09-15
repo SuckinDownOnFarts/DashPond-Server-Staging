@@ -1,5 +1,4 @@
 import { Badge, Group, Title, Text, Card, SimpleGrid, Container, rem } from '@mantine/core';
-// import { IconGauge, IconUser, IconCookie } from '@tabler/icons-react';
 import { useThirdSectionStyles as useStyles } from '../HomeStyles/HomeStyles';
 import { thirdFeatureSectionData as data } from '../../../data/Data';
 

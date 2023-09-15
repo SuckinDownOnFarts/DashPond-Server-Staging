@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Text, TextInput, Textarea, Button, Group, SimpleGrid, LoadingOverlay, Modal } from '@mantine/core';
+import { Paper, Text, TextInput, Textarea, Button, Group, SimpleGrid, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import { useContactMainStyles as useStyles } from './ContactStyles';

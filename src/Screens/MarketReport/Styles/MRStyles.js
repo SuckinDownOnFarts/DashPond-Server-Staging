@@ -3,11 +3,6 @@ import { createStyles, rem } from "@mantine/core";
 const CARD_PROGRESS_ICON_SIZE = rem(60);
 
 export const useKeyFactsStyles = createStyles((theme) => ({
-    root: {
-        // marginRight: '0.875rem',
-        // marginLeft: '0.875rem',
-    },
-
     label: {
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     },
@@ -137,8 +132,6 @@ export const useHHIncomeStyles = createStyles((theme) => ({
             } 100%)`,
         marginTop: '0.875rem',
         marginBottom: '0.875rem',
-        // marginRight: '0.875rem',
-        // marginLeft: '0.875rem',
         padding: `calc(${theme.spacing.xl} * 1.5)`,
         borderRadius: theme.radius.md,
 

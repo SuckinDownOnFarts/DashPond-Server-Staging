@@ -41,27 +41,27 @@ const DataProfiles = () => {
         const element = printRef.current;
         const canvas = await html2canvas(element);
         const data = canvas.toDataURL('image/png');
-    
+
         const pdf = new jsPDF();
         const imgProperties = pdf.getImageProperties(data);
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight =
-          (imgProperties.height * pdfWidth) / imgProperties.width;
-    
+            (imgProperties.height * pdfWidth) / imgProperties.width;
+
         pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save('print.pdf');
-      };
+    };
 
 
 
     return (
         <div className='m-8'>
             {!profiles ? <></> :
-      <MPTable 
-        data={profiles}
-        printRef={printRef}
-        handleDownloadPdf={handleDownloadPdf}
-      />}
+                <MPTable
+                    data={profiles}
+                    printRef={printRef}
+                    handleDownloadPdf={handleDownloadPdf}
+                />}
         </div>
     )
 }

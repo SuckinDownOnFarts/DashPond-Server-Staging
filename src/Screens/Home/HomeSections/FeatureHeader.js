@@ -38,8 +38,6 @@ const Header = () => {
                     <Text c="dimmed">
                         Analyze real estate opportunities by comparing over 500 demographic insights all bundled together in a dynamically 
                         generated report - as easily as typing in an address 
-                        {/* Build dynamic web powered data reports easier and faster than ever – DashPond includes
-                    more than 500 data insights and over 100 unique components to boost transaction volume  */}
                     </Text>
 
                     <Button

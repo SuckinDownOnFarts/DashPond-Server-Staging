@@ -7,11 +7,8 @@ import api from '../../../api/axios'
 import DPSidebar from './DPSidebar';
 import { Outlet } from 'react-router-dom';
 
-
-
 const DataProfile = () => {
     const { id } = useParams();
-
     const theme = useMantineTheme();
 
     const [data, setData] = useState([]); //Stays
@@ -42,7 +39,6 @@ const DataProfile = () => {
     }, []);
 
 
-
     return (
         <div className='flex flex-row max-w-[100vw]'>
             <div className='fixed pt-4 pl-4 z-50'>
@@ -63,7 +59,6 @@ const DataProfile = () => {
             </div>
 
             <div className='flex min-h-[calc(100vh-60px)] w-full p-4 justify-center mb-8'>
-                {/* {opened && <Overlay color="#000" opacity={0.55} className='ml-[260px] h-full'/>} */}
                 {!loading
                     ? <Outlet
                         context={[data, opened]}

@@ -81,7 +81,6 @@ const MPTable = ({ data }) => {
                             <th>Address</th>
                             <th>Visibility</th>
                             <th>Date Created</th>
-                            {/* <th>Options</th> */}
                         </tr>
                     </thead>
                     <tbody>{rows}</tbody>

@@ -1,32 +1,11 @@
-import { ThemeIcon, Text, Title, Container, Button } from '@mantine/core';
+import { Text, Title, Container, Button } from '@mantine/core';
 import { useSecondSectionStyles as useStyles } from '../HomeStyles/HomeStyles';
 import useEmblaCarousel from 'embla-carousel-react'
-import { useNavigate } from 'react-router-dom';
 import { IconExternalLink } from '@tabler/icons-react'
-
-export function Feature({ icon: Icon, title, description }) {
-    const { theme } = useStyles();
-
-    return (
-        <div>
-            <ThemeIcon variant="filled" color={theme.colorScheme === 'dark' ? 'orange' : 'pink'} size={40} radius={40}>
-                <Icon size="1.1rem" stroke={1.5} />
-            </ThemeIcon>
-            <Text mt="sm" mb={7}>
-                {title}
-            </Text>
-            <Text size="sm" color="dimmed" sx={{ lineHeight: 1.6 }}>
-                {description}
-            </Text>
-        </div>
-    );
-}
 
 const SecondFeatureSection = () => {
     const { classes, theme } = useStyles();
     const [emblaRef] = useEmblaCarousel();
-
-    const navigate = useNavigate();
 
     return (
         <Container className={classes.wrapper}>

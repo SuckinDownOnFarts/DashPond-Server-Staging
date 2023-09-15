@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Paper, createStyles, TextInput, PasswordInput, Checkbox, Button, Title, Text, Anchor, rem } from '@mantine/core';
-import { IconBrandTwitter, IconArrowBigRightLines } from '@tabler/icons-react';
+import { Paper, createStyles, Title, Text, Anchor, rem } from '@mantine/core';
 import { BASE_URL } from '../../data/Data';
 import useAuth from '../../hooks/useAuth';
 
@@ -68,8 +67,6 @@ const AlreadyLoggedIn = () => {
                     Sign out and re-login
                     </Anchor>
                 </Text>
-
-
             </Paper>
         </div>
     )

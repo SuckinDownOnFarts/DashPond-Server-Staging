@@ -55,9 +55,6 @@ const UseCases = () => {
                 <Text color="dimmed" className={classes.description}>
                     DashPond's custom built web api handles all the intensive tasks when it comes to cleaning, compiling, and transforming demographic data
                     into an easy to handle format. Thus, making it a pleasure for any real estate professional to make more informed investment decisions.  
-                    {/* Its lungs contain an organ that creates electricity.
-                    The crackling sound of electricity can be heard when it exhales.
-                    Azurill’s tail is large and bouncy. It is packed full of the nutrients this Pokémon needs to grow. */}
                 </Text>
             </Container>
 

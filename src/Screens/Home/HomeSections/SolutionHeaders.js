@@ -50,7 +50,7 @@ const SolutionHeaders = () => {
                         </Group>
                     </div>
 
-                    <Image src='/images/solution-header-image.svg' className={classes.image} />
+                    <Image src='/images/solution-header-image.svg' className={classes.image} alt='Picture of woman at desk on her laptop'/>
                 </div>
             </Container>
         </div>

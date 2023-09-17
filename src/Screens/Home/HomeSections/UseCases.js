@@ -8,22 +8,26 @@ const UseCases = () => {
         {
             "image": theme.colorScheme === 'dark' ? "/images/UseCases/investor-orange.svg" : "/images/UseCases/investor-pink.svg",
             "title": "Investors",
-            "description": "Analyze any prospective investment property "
+            "description": "Analyze any prospective investment property ",
+            "alt": 'person with charts and graphs'
         },
         {
             "image": theme.colorScheme === 'dark' ? "/images/UseCases/developer-orange.svg" : "/images/UseCases/developer-pink.svg",
             "title": "Developers",
-            "description": "Make certain your development opportunities will be profitable"
+            "description": "Make certain your development opportunities will be profitable",
+            "alt": 'A nice neighborhood'
         },
         {
             "image": theme.colorScheme === 'dark' ? "/images/UseCases/broker-orange.svg" : "/images/UseCases/broker-pink.svg",
             "title": "Brokers & Agents",
-            "description": "Provide your clients with unparalleled property insights to match your listings to their needs "
+            "description": "Provide your clients with unparalleled property insights to match your listings to their needs ",
+            "alt": 'group of people communicating'
         },
         {
             "image": theme.colorScheme === 'dark' ? "/images/UseCases/drone-orange.svg" : "/images/UseCases/drone-pink.svg",
             "title": "Any RE Professional",
-            "description": "Every RE professional relies heavily on demographic insights - why not use a simple solution"
+            "description": "Every RE professional relies heavily on demographic insights - why not use a simple solution",
+            "alt": 'person flying a drone'
         }
     ]
     
@@ -31,7 +35,7 @@ const UseCases = () => {
     const items = data.map((item) => (
         <div className={classes.item} key={item.image}>
             <ThemeIcon variant="light" className={classes.itemIcon} size={120} radius="md">
-                <Image src={item.image} />
+                <Image src={item.image} alt={item.alt}/>
             </ThemeIcon>
 
             <div>

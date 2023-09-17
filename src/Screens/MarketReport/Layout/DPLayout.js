@@ -6,6 +6,8 @@ import { IconArrowBarToRight } from '@tabler/icons-react';
 import api from '../../../api/axios'
 import DPSidebar from './DPSidebar';
 import { Outlet } from 'react-router-dom';
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 
 import "@ag-grid-community/styles/ag-grid.css";
 import "@ag-grid-community/styles/ag-theme-alpine.css";
@@ -40,6 +42,8 @@ const DataProfile = () => {
         }
         fetchOverviewData();
     }, []);
+
+    ModuleRegistry.register(ClientSideRowModelModule);
 
 
     return (

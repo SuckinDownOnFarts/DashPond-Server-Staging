@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { useMantineTheme, Title } from '@mantine/core';
-import { AgGridReact } from 'ag-grid-react';
+import { AgGridReact } from '@ag-grid-community/react';
 
 const SchoolEnrollment = ({data}) => {
     const theme = useMantineTheme();

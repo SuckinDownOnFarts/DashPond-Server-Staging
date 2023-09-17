@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ag-grid-community/client-side-row-model": "^30.1.0",
     "@ag-grid-community/core": "^30.1.0",
+    "@ag-grid-community/react": "^30.1.0",
     "@ag-grid-community/styles": "^30.1.0",
     "@emotion/react": "^11.11.0",
     "@fvilers/disable-react-devtools": "^1.3.0",
@@ -17,7 +19,6 @@
     "@nivo/pie": "^0.83.0",
     "@react-google-maps/api": "^2.19.2",
     "@tabler/icons-react": "^2.20.0",
-    "ag-grid-react": "^30.1.0",
     "axios": "^1.1.3",
     "embla-carousel-react": "^8.0.0-rc11",
     "leaflet": "^1.9.3",

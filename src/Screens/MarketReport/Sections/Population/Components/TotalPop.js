@@ -1,8 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Title, useMantineTheme } from '@mantine/core';
-import { AgGridReact } from 'ag-grid-react';
-
-
+import { AgGridReact } from '@ag-grid-community/react';
 
 
 const TotalPop = ({ data }) => {

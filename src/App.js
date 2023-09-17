@@ -1,39 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
+import { Route, Routes } from 'react-router-dom';
 /////////////////////////////////////////////**************LAYOUT*************///////////////////////////////////////////////////////////
 import Layout from './components/LayoutGlobals/Layout';
 /////////////////////////////////////////////**************SCREENS*************///////////////////////////////////////////////////////////
-import DPLayout from './Screens/MarketReport/Layout/DPLayout';
-import Missing from './Screens/404/Missing';
-import Contact from './Screens/Contact/Contact';
+const DPLayout = lazy(() => import ('./Screens/MarketReport/Layout/DPLayout'));
+const Missing = lazy(() => import ('./Screens/404/Missing'));
+const Contact = lazy(() => import ('./Screens/Contact/Contact'));
 /////////////////////////////////////////////**************CREATE DATA PROFILE SCREENS*************///////////////////////////////////////////////////////////
-import AddressInput from './Screens/Property_Search/AddressInput';
-import DashLayout from './Screens/Property_Search/Layout/DashLayout';
-import MapModal from './Screens/Property_Search/MapModal';
+const AddressInput = lazy(() => import ('./Screens/Property_Search/AddressInput'));
+const DashLayout = lazy(() => import ('./Screens/Property_Search/Layout/DashLayout'));
+const MapModal = lazy(() => import ('./Screens/Property_Search/MapModal'));
 /////////////////////////////////////////////**************MARKET REPORTS SCREENS*************///////////////////////////////////////////////////////////
-import CheckReportId from './components/Auth/CheckReportId';
-import Overview from './Screens/MarketReport/Sections/KeyTrends/KTLayout';
-import MapsLayout from './Screens/MarketReport/Sections/Maps/MapsLayout';
-import PopLayout from './Screens/MarketReport/Sections/Population/PopLayout';
-import EmploymentIncomeLayout from './Screens/MarketReport/Sections/Employment/EmploymentLayout';
-import EducationLayout from './Screens/MarketReport/Sections/Education/EducationLayout';
-import HousingLayout from './Screens/MarketReport/Sections/Housing/HousingLayout'
+const CheckReportId = lazy(() => import ('./components/Auth/CheckReportId'));
+const Overview = lazy(() => import ('./Screens/MarketReport/Sections/KeyTrends/KTLayout'));
+const MapsLayout = lazy(() => import ('./Screens/MarketReport/Sections/Maps/MapsLayout'));
+const PopLayout = lazy(() => import ('./Screens/MarketReport/Sections/Population/PopLayout'));
+const EmploymentIncomeLayout = lazy(() => import ('./Screens/MarketReport/Sections/Employment/EmploymentLayout'));
+const EducationLayout = lazy(() => import ('./Screens/MarketReport/Sections/Education/EducationLayout'));
+const HousingLayout = lazy(() => import ('./Screens/MarketReport/Sections/Housing/HousingLayout'));
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
-import Register from './Screens/AuthScreens/Register';
-import Login from './Screens/AuthScreens/Login';
-import RequireAuth from './components/Auth/RequireAuth';
-import PersistLogin from './components/Auth/PersistLogin';
-import AlreadyLoggedIn from './Screens/AuthScreens/AlreadyLoggedIn';
+const Register = lazy(() => import ('./Screens/AuthScreens/Register'));
+const Login = lazy(() => import ('./Screens/AuthScreens/Login'));
+const RequireAuth = lazy(() => import ('./components/Auth/RequireAuth'));
+const PersistLogin = lazy(() => import ('./components/Auth/PersistLogin'));
+const AlreadyLoggedIn = lazy(() => import ('./Screens/AuthScreens/AlreadyLoggedIn'));
 /////////////////////////////////////////////**************USER PROFILE SCREENS*************///////////////////////////////////////////////////////////
-import RequireProfileAuth from './components/Auth/RequireProfileAuth';
-import ProfileLayout from './Screens/Profile/Layout/ProfileLayout';
-import Info from './Screens/Profile/Info/InfoLayout';
-import DataProfiles from './Screens/Profile/User_DataProfiles/DataProfilesLayout';
+const RequireProfileAuth = lazy(() => import ('./components/Auth/RequireProfileAuth'));
+const ProfileLayout = lazy(() => import ('./Screens/Profile/Layout/ProfileLayout'));
+const Info = lazy(() => import ('./Screens/Profile/Info/InfoLayout'));
+const DataProfiles = lazy(() => import ('./Screens/Profile/User_DataProfiles/DataProfilesLayout'));
 /////////////////////////////////////////////**************AUTH SCREENS*************///////////////////////////////////////////////////////////
-import HomeLayout from './Screens/Home/HomeLayout';
-
-import { Route, Routes } from 'react-router-dom';
-
+const HomeLayout = lazy(() => import ('./Screens/Home/HomeLayout'));
 
 const ROLES = {
     'User': 10,

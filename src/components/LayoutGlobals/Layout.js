@@ -1,4 +1,5 @@
 import Navbar from './Navbar/Navbar';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useLayoutStyles as useStyles } from './LayoutStyles/LayoutStyles';
 
@@ -10,7 +11,9 @@ const Layout = () => {
             <Navbar />
 
             <div className='min-h-[calc(100vh-60px)]'>
-                <Outlet />
+                <Suspense>
+                    <Outlet />
+                </Suspense>
             </div>
         </div>
     )

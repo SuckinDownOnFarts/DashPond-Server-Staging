@@ -73,6 +73,9 @@ function App() {
             <MantineProvider
                 theme={{
                     colorScheme,
+                    colors: {
+                        pink: ['#A6ADC9', '#99A2C2', '#8C96BA', '#808BB3', '#6673A3', '#5C6999', '#54618C', '#54618C', '#454f73', '#3D4666'],
+                      },
                     primaryColor: colorScheme === 'dark' ? 'orange' : 'pink'
                 }}
                 withGlobalStyles

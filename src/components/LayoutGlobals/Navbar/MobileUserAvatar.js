@@ -32,7 +32,7 @@ const UserAvatar = ({ user }) => {
                             <div
                                 radius="xl"
                                 size='md'
-                                className={theme.colorScheme === 'dark' ? 'hover:bg-[#c2410c] bg-[#e8590c] py-2 px-4 rounded-full' : 'hover:bg-[#be185d] bg-[#e64980] py-2 px-4 rounded-full text-white'}
+                                className={theme.colorScheme === 'dark' ? 'hover:bg-[#c2410c] bg-[#e8590c] py-2 px-4 rounded-full' : 'hover:bg-[#4E577E] bg-[#5D6998] py-2 px-4 rounded-full text-white'}
                             >{userInitial}</div>
                             <IconChevronDown size={rem(16)} stroke={1.5} color={theme.colorScheme === 'dark' ? theme.colors.orange[1] : theme.colors.pink[9]} className='flex items-center' />
                         </div>

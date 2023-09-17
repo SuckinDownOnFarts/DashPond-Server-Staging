@@ -1,7 +1,18 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import L from 'leaflet'
 import { Button, Group } from '@mantine/core';
+
+import './Styles/LeafletStyles/Leaflet.css';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 const MapModal = () => {
     const { pointData, position, setPosition, center, submitForm, opened } = useOutletContext();

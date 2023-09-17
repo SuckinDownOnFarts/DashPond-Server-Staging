@@ -2,8 +2,8 @@ import React, { useState, useMemo, useRef } from 'react';
 import { useMantineTheme, Title } from '@mantine/core';
 import { AgGridReact } from 'ag-grid-react';
 
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+
 
 const Ancestry = ({data}) => {
     const theme = useMantineTheme();

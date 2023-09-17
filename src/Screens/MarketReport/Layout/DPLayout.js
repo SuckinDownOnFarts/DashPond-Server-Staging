@@ -7,6 +7,9 @@ import api from '../../../api/axios'
 import DPSidebar from './DPSidebar';
 import { Outlet } from 'react-router-dom';
 
+import "@ag-grid-community/styles/ag-grid.css";
+import "@ag-grid-community/styles/ag-theme-alpine.css";
+
 const DataProfile = () => {
     const { id } = useParams();
     const theme = useMantineTheme();

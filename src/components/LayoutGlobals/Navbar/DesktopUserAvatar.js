@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Tabs, Container, Button, Menu, rem } from '@mantine/core';
+import { Menu, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconLogout, IconHeart, IconSettings, IconChevronDown } from '@tabler/icons-react';
 import LogoutModal from '../LogoutModal';
 import { UserAvatarStyles as useStyles } from '../LayoutStyles/LayoutStyles';
 
-
 const UserAvatar = ({ user }) => {
-    const { classes, theme, cx } = useStyles();
+    const { theme } = useStyles();
     const [openLogout, { open, close }] = useDisclosure(false);
-    const [userMenuOpened, setUserMenuOpened] = useState(false);
     const navigate = useNavigate();
 
     const userInitial = (user.email.substring(0, 1)).toUpperCase();
 
     return (
-        <div className={classes.hiddenMobile}>
+        <div>
             <Menu
                 width={260}
                 position="bottom-end"
                 transitionProps={{ transition: 'pop-top-right' }}
-                onClose={() => setUserMenuOpened(false)}
-                onOpen={() => setUserMenuOpened(true)}
                 withinPortal
             >
                 <Menu.Target>
@@ -32,8 +28,10 @@ const UserAvatar = ({ user }) => {
                                 radius="xl"
                                 size='md'
                                 className={theme.colorScheme === 'dark' ? 'hover:bg-[#c2410c] bg-[#e8590c] py-2 px-4 rounded-full' : 'hover:bg-[#4E577E] bg-[#5D6998] py-2 px-4 rounded-full text-white'}
-                            >{userInitial}</div>
-                            <IconChevronDown size={rem(16)} stroke={1.5} color={theme.colorScheme === 'dark' ? theme.colors.orange[1] : theme.colors.pink[9]} className='flex items-center'/>
+                            >
+                                {userInitial}
+                            </div>
+                            <IconChevronDown size={rem(16)} stroke={1.5} color={theme.colorScheme === 'dark' ? theme.colors.orange[1] : theme.colors.pink[9]} className='flex items-center' />
                         </div>
                     </div>
                 </Menu.Target>
@@ -54,7 +52,6 @@ const UserAvatar = ({ user }) => {
 
                     <Menu.Divider />
 
-
                     <Menu.Item
                         icon={<IconLogout size="0.9rem" stroke={1.5} />}
                         onClick={open}
@@ -67,19 +64,6 @@ const UserAvatar = ({ user }) => {
                 openLogout={openLogout}
                 close={close}
             />
-            <Container>
-                <Tabs
-                    defaultValue="Home"
-                    variant="outline"
-                    classNames={{
-                        root: classes.tabs,
-                        tabsList: classes.tabsList,
-                        tab: classes.tab,
-                    }}
-                >
-                    {/* <Tabs.List>{items}</Tabs.List> */}
-                </Tabs>
-            </Container>
         </div>
     )
 }

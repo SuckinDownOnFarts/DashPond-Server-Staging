@@ -9,6 +9,7 @@ const SecondFeatureSection = () => {
 
     return (
         <Container className={classes.wrapper}>
+
             <Title className={classes.title}>
                 Easily Gain Market Insight
             </Title>
@@ -34,11 +35,10 @@ const SecondFeatureSection = () => {
                 </div>
             </Container>
 
-            <div className='flex w-full justify-center mt-8'>
-                <Button component="a" href='/market+report/1022/population' target='_blank' leftIcon={<IconExternalLink size="0.9rem" />}>
+            <div className='flex w-full justify-center mt-8 '>
+                <Button component="a" href='/market+report/1022/population' color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink.7'} target='_blank' leftIcon={<IconExternalLink size="0.9rem" />}>
                     Explore a Sample Report
                 </Button>
-
             </div>
 
         </Container>

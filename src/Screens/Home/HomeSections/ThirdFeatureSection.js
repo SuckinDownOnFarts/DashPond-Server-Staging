@@ -30,7 +30,7 @@ const ThirdFeatureSection = () => {
                     Take the Guesswork out of your Market Research
                 </Title>
 
-                <Text c="dimmed" className={classes.description} ta="center" mt="md">
+                <Text color={theme.colorScheme === 'dark' ? "dimmed": null} className={classes.description} ta="center" mt="md">
                     We build our market summaries with demographic data pulled directly from the Census and American Community Survey
                 </Text>
 

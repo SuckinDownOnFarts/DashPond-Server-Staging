@@ -1,9 +1,8 @@
-import { Header, Group, Button, Divider, Burger, Drawer, ScrollArea, rem, Badge } from '@mantine/core';
+import { Header, Group, Button, Divider, Burger, Drawer, ScrollArea, rem } from '@mantine/core';
 import Logo from '../../Globals/Logo';
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import DesktopUserAvatar from './DesktopUserAvatar';
-import MobileUserAvatar from './MobileUserAvatar';
 import useAuth from '../../../hooks/useAuth';
 import { navbarStyles } from '../LayoutStyles/LayoutStyles';
 import ColorSchemeToggle from './ColorSchemeToggle';
@@ -28,9 +27,6 @@ const Navbar = () => {
                     </Group>
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                        {/* <a href={'/solutions'} className={classes.link}>
-                            Solutions
-                        </a> */}
                         <a href={'/property+search/address+input'} className={classes.link}>
                             Property Search
                         </a>
@@ -65,9 +61,9 @@ const Navbar = () => {
                                 <DesktopUserAvatar
                                     user={auth}
                                 />
-                                <MobileUserAvatar
+                                {/* <MobileUserAvatar
                                     user={auth}
-                                />
+                                /> */}
                             </div>}
                         <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
                     </Group>
@@ -90,9 +86,6 @@ const Navbar = () => {
                     <a href="/" className={classes.link}>
                         Home
                     </a>
-                    {/* <a href="/solutions" className={classes.link}>
-                        Solutions
-                    </a> */}
                     <a href="/property+search/address+input" className={classes.link}>
                         Property Search
                     </a>

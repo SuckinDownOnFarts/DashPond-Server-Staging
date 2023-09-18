@@ -27,7 +27,7 @@ const HeroSection = () => {
                     <Button className={classes.control} size="lg" variant="default" color="dark" onClick={() => navigate('/register')}>
                         Get Started
                     </Button>
-                    <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.5' : 'pink'} onClick={() => navigate('/contact')}>
+                    <Button className={classes.control} size="lg" variant='filled' color={theme.colorScheme === 'dark' ? 'orange.5' : 'pink.9'} onClick={() => navigate('/contact')}>
                         Get in touch
                     </Button>
                 </div>

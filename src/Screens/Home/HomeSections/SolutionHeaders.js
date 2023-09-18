@@ -20,7 +20,7 @@ const SolutionHeaders = () => {
                         <Title className={classes.title}>
                             Analyze, Forecast and <br /> Screen Properties Like a Pro
                         </Title>
-                        <Text color="dimmed" mt="md">
+                        <Text color={theme.colorScheme === 'dark' ? "dimmed": null} mt="md">
                             DashPond makes it easy to leverage professional market analysis for real estate investment decisions
                         </Text>
                         <List
@@ -44,7 +44,7 @@ const SolutionHeaders = () => {
                             </List.Item>
                         </List>
                         <Group mt={30}>
-                            <Button radius="xl" size="md" className={classes.control} onClick={() => navigate('/property+search/address+input')}>
+                            <Button radius="xl" size="md" className={classes.control} color={theme.colorScheme === 'dark' ? 'orange.7' : 'pink.7'} onClick={() => navigate('/property+search/address+input')}>
                                 Start Searching
                             </Button>
                         </Group>

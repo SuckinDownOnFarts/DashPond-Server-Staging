@@ -42,7 +42,7 @@ const UseCases = () => {
                 <Text fw={700} fz="lg" className={classes.itemTitle}>
                     {item.title}
                 </Text>
-                <Text c="dimmed">{item.description}</Text>
+                <Text color={theme.colorScheme === 'dark' ? "dimmed": null}>{item.description}</Text>
             </div>
         </div>
     ));
@@ -56,7 +56,7 @@ const UseCases = () => {
             </Title>
 
             <Container size={660} p={0}>
-                <Text color="dimmed" className={classes.description}>
+                <Text color={theme.colorScheme === 'dark' ? "dimmed": null} className={classes.description}>
                     DashPond's custom built web api handles all the intensive tasks when it comes to cleaning, compiling, and transforming demographic data
                     into an easy to handle format. Thus, making it a pleasure for any real estate professional to make more informed investment decisions.  
                 </Text>

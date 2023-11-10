@@ -36,7 +36,7 @@ const MPTable = ({ data }) => {
     const rows = data.slice(sliceFirst, secondSlice).map((item) => (
         <tr key={item.value}>
             <td>
-                <Button variant="light" onClick={() => navigate(`/market+report/${item.id}/population`)}>
+                <Button variant="light" onClick={() => navigate(`/market+report/${item.id}/key+trends`)}>
                     View
                 </Button>
             </td>

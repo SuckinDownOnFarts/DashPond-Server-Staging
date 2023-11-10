@@ -28,7 +28,8 @@ import {
     IconMapPin,
     IconChartArrows,
     IconBinaryTree,
-    IconHome
+    IconHome,
+    IconUrgent
 } from '@tabler/icons-react';
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -113,7 +114,7 @@ export const thirdFeatureSectionData = [
 ];
 
 export const dataProfileSidebarData = [
-    // { label: 'Key Trends', icon: IconUrgent, link: 'key+trends' },
+    { label: 'Key Trends', icon: IconUrgent, link: 'key+trends' },
     { label: 'Population Trends', icon: IconFriends, link: 'population' },
     { label: 'Income and Employment', icon: IconCash, link: 'employment+income' },
     // { label: 'Employment Insights', icon: IconBuildingEstate, link: 'employment+households' },

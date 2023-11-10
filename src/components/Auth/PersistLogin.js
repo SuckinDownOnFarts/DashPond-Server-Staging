@@ -29,6 +29,8 @@ const PersistLogin = () => {
         return () => isMounted = false;
     }, [])
 
+    // console.log();
+
     return (
         //chain ternary skips verify refresh function if persist is set to false
         <>

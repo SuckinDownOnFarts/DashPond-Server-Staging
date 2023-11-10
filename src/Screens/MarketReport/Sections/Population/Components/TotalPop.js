@@ -17,41 +17,41 @@ const TotalPop = ({ data }) => {
     const [rowData] = useState([
         {
             'Data': 'Total Population',
-            '3 Mile': data.DP05_0001E[0].toLocaleString("en-US"),
-            '% (3 Mile)': (data.DP05_0001E[0] / data.DP05_0001E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-            '5 Mile': data.DP05_0001E[1].toLocaleString("en-US"),
-            '% (5 Mile)': (data.DP05_0001E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-            '10 Mile': data.DP05_0001E[2].toLocaleString("en-US"),
-            '% (10 Mile)': (data.DP05_0001E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
+            '5 Min': data.DP05_0001E[0].toLocaleString("en-US"),
+            '% (5 Min)': (data.DP05_0001E[0] / data.DP05_0001E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '10 Min': data.DP05_0001E[1].toLocaleString("en-US"),
+            '% (10 Min)': (data.DP05_0001E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '15 Min': data.DP05_0001E[2].toLocaleString("en-US"),
+            '% (15 Min)': (data.DP05_0001E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
         },
         {
             'Data': 'Males',
-            '3 Mile': data.DP05_0002E[0].toLocaleString("en-US"),
-            '% (3 Mile)': (data.DP05_0002E[0] / data.DP05_0001E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-            '5 Mile': data.DP05_0002E[1].toLocaleString("en-US"),
-            '% (5 Mile)': (data.DP05_0002E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-            '10 Mile': data.DP05_0002E[2].toLocaleString("en-US"),
-            '% (10 Mile)': (data.DP05_0002E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
+            '5 Min': data.DP05_0002E[0].toLocaleString("en-US"),
+            '% (5 Min)': (data.DP05_0002E[0] / data.DP05_0001E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '10 Min': data.DP05_0002E[1].toLocaleString("en-US"),
+            '% (10 Min)': (data.DP05_0002E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '15 Min': data.DP05_0002E[2].toLocaleString("en-US"),
+            '% (15 Min)': (data.DP05_0002E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 })
         },
         {
             'Data': 'Females',
-            '3 Mile': data.DP05_0003E[0].toLocaleString("en-US"),
-            '% (3 Mile)': (data.DP05_0003E[0] / data.DP05_0001E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-            '5 Mile': data.DP05_0003E[1].toLocaleString("en-US"),
-            '% (5 Mile)': (data.DP05_0003E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
-            '10 Mile': data.DP05_0003E[2].toLocaleString("en-US"),
-            '% (10 Mile)': (data.DP05_0003E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '5 Min': data.DP05_0003E[0].toLocaleString("en-US"),
+            '% (5 Min)': (data.DP05_0003E[0] / data.DP05_0001E[0]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '10 Min': data.DP05_0003E[1].toLocaleString("en-US"),
+            '% (10 Min)': (data.DP05_0003E[1] / data.DP05_0001E[1]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
+            '15 Min': data.DP05_0003E[2].toLocaleString("en-US"),
+            '% (15 Min)': (data.DP05_0003E[2] / data.DP05_0001E[2]).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2 }),
         }
     ]);
 
     const [columnDefs] = useState([
         { field: 'Data' },
-        { field: '3 Mile', width: 90 },
-        { field: '% (3 Mile)' },
-        { field: '5 Mile', width: 90 },
-        { field: '% (5 Mile)' },
-        { field: '10 Mile', width: 100 },
-        { field: '% (10 Mile)', width: 110 },
+        { field: '5 Min', width: 90 },
+        { field: '% (5 Min)' },
+        { field: '10 Min', width: 90 },
+        { field: '% (10 Min)' },
+        { field: '15 Min', width: 100 },
+        { field: '% (15 Min)', width: 110 },
     ]);
 
     return (

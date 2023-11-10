@@ -11,6 +11,8 @@ const AddressInput = () => {
     const [autoCompleteData, setAutoCompleteData] = useState([]);
     const [streetAddress, setStreetAddress] = useState();
 
+    const geoKey = process.env.REACT_APP_GEO_KEY
+
     const [prevAddress, setPrevAddress] = useState(streetAddress);
 
     useEffect(() => {
@@ -45,7 +47,7 @@ const AddressInput = () => {
 
         const searchAddress = `${value.address}`;
 
-        const url = `https://api.geocodify.com/v2/geocode?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${searchAddress}`;
+        const url = `https://api.geocodify.com/v2/geocode?api_key=${process.env.REACT_APP_GEO_KEY}&q=${searchAddress}`;
 
         try {
             await fetch(url).then((response) => response.json()) //handle logic for incorrect address or address not found
@@ -75,7 +77,7 @@ const AddressInput = () => {
 
     useEffect(() => {
         const autoComplete = async () => {
-            const url = `https://api.geocodify.com/v2/autocomplete?api_key=bfba24555d3582a0c359f1e4c0a731edc13eb066&q=${streetAddress}`
+            const url = `https://api.geocodify.com/v2/autocomplete?api_key=${process.env.REACT_APP_GEO_KEY}&q=${streetAddress}`
             try {
                 if (streetAddress.length > 4 && prevAddress.length < streetAddress.length && streetAddress.length < 20) {
                     await fetch(url).then((response) => response.json())
@@ -95,7 +97,7 @@ const AddressInput = () => {
     }, [streetAddress]);
 
     return (
-        <div className='flex flex-col flex-grow place-items-center '>
+        <div className='flex flex-col flex-grow items-center'>
             <div>
                 <div className='mb-8 mt-8 text-center'>
                     <div className='text-4xl font-semibold tracking-tight'>

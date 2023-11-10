@@ -55,7 +55,7 @@ const DashLayout = () => {
             if (!response?.data) {
                 console.log('no response') //eventually handle this error
             } else {
-                const path = generatePath('/market+report/:id/population', {
+                const path = generatePath('/market+report/:id/key+trends', {
                     id: response.data.toString()
                 });
                 toggle();
@@ -99,7 +99,7 @@ const DashLayout = () => {
 
 
     return (
-        <main className='h-[calc(100vh-68px)] flex flex-col place-items-center mx-8'>
+        <div className='h-[calc(100vh-68px)] flex flex-col place-items-center mx-8'>
             <Modal opened={opened} onClose={close} className='flex justify-center' centered title="Hmm... Something's Wrong"> 
                 <div className='flex flex-col justify-center w-full'>
                     <Title className='flex flex-col justify-center w-full'>
@@ -112,7 +112,7 @@ const DashLayout = () => {
                 </div>
             </Modal>
             {/************************** Header *********************************/}
-            <div className={theme.colorScheme === 'dark' ? 'mt-8 mb-8 bg-[#1A1B1E] rounded shadow-sm flex flex-row' : 'mt-8 mb-8 bg-[#f8f9fa] rounded shadow-sm flex flex-row'}>
+            <div className={theme.colorScheme === 'dark' ? 'mt-8 mb-8 bg-[#1A1B1E] rounded shadow-sm flex flex-row items-center' : 'mt-8 mb-8 bg-[#f8f9fa] rounded shadow-sm flex flex-row'}>
                 <div className='w-[100%] mx-8 my-4'>
                     <Outlet context={{
                         pointData, setPointData,
@@ -127,7 +127,7 @@ const DashLayout = () => {
                 </div>
 
             </div>
-        </main>
+        </div>
     )
 }
 

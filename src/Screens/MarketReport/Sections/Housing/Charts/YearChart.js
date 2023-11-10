@@ -166,9 +166,9 @@ const YearChart = ({ data }) => {
                 />
             </div>
             <SegmentedControl data={[
-                { value: '0', label: '3 Mile Radius' },
-                { value: '1', label: '5 Mile Radius' },
-                { value: '2', label: '10 Mile Radius' },
+                { value: '0', label: '5 Minute Drive Time' },
+                { value: '1', label: '10 Minute Drive Time' },
+                { value: '2', label: '15 Minute Drive Time' },
             ]} 
             className={classes.root}
             onChange={(value) => setRadius(parseInt(value))}

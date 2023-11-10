@@ -25,9 +25,7 @@ const PopLayout = () => {
 
     return (
         <div>
-            
             <div className='flex flex-col space-y-4 h-full'>
-            
                 <div className='flex w-full justify-center py-4 text-white'>
                     <Title className={theme.colorScheme === 'dark' ? 'text-white' : 'text-black'}>
                         Population Insights</Title>

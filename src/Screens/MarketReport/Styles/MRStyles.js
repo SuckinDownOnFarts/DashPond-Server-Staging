@@ -6,6 +6,10 @@ export const useKeyFactsStyles = createStyles((theme) => ({
     label: {
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     },
+
+    root: {
+        padding: 'calc(var(--mantine-spacing-xl) * 1.5)',
+    }
 }));
 
 export const useEduEmpStyles = createStyles((theme) => ({
@@ -15,8 +19,6 @@ export const useEduEmpStyles = createStyles((theme) => ({
         padding: theme.spacing.xl,
         borderRadius: theme.radius.md,
         display: 'flex',
-        marginRight: '0.875rem',
-        marginLeft: '0.875rem',
 
         [theme.fn.smallerThan('xs')]: {
             flexDirection: 'column',
@@ -130,8 +132,6 @@ export const useHHIncomeStyles = createStyles((theme) => ({
         display: 'flex',
         backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${theme.colors[theme.primaryColor][7]
             } 100%)`,
-        marginTop: '0.875rem',
-        marginBottom: '0.875rem',
         padding: `calc(${theme.spacing.xl} * 1.5)`,
         borderRadius: theme.radius.md,
 
@@ -241,29 +241,50 @@ export const useCardProgressStyles = createStyles((theme) => ({
 export const useDPSidebarStyles = createStyles((theme) => ({
     navbar: {
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-
-        height: '100%',
-        width: '260px',
-        zIndex: 50,
-    },
-
-    // topSection: {
-    //     display: 'flex',
-    //     flexDirection: 'row',
-    //     paddingTop: '1rem',
-    //     width: '100%',
-    //     gap: '1rem',
-    //     borderStyle: 'solid',
-    //     borderBottomWidth: '1px',
-    //     borderColor: theme.colors.gray[5]
-    // },
-
-    links: {
         paddingLeft: rem(16),
         paddingRight: rem(16),
+        height: 'calc(100% - 60px)',
+        position: 'fixed',
+        top: '60px',
+    },
+
+    header: {
+        padding: theme.spacing.md,
+        marginLeft: `calc(${theme.spacing.md} * -1)`,
+        marginRight: `calc(${theme.spacing.md} * -1)`,
+        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+        borderBottom: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+            }`,
+    },
+
+    links: {
         paddingTop: 8,
         marginLeft: `calc(${theme.spacing.md} * -1)`,
         marginRight: `calc(${theme.spacing.md} * -1)`,
+    },
+
+    linksInner: {
+        // paddingTop: theme.spacing.xl,
+        // paddingBottom: theme.spacing.xl,
+    },
+
+    footer: {
+        marginLeft: `calc(${theme.spacing.md} * -1)`,
+        marginRight: `calc(${theme.spacing.md} * -1)`,
+        borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+            }`,
+    },
+
+    hiddenDesktop: {
+        [theme.fn.largerThan('sm')]: {
+            display: 'none',
+        },
+    },
+
+    hiddenMobile: {
+        [theme.fn.smallerThan('sm')]: {
+            display: 'none',
+        },
     },
 }));
 
@@ -273,3 +294,29 @@ export const chartStyles = createStyles((theme) => ({
     }
 }));
 
+export const comparisonsStyles = createStyles((theme) => ({
+    root: {
+        padding: 'calc(var(--mantine-spacing-xl) * 1.5)'
+    },
+
+    value: {
+        fontSize: 'rem(24px)',
+        fontWeight: '700',
+        lineHeight: '1',
+    },
+
+    diff: {
+        lineHeight: '1',
+        display: 'flex',
+        alignItems: 'center',
+    },
+
+    icon: {
+        color: 'light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3))',
+    },
+
+    title: {
+        fontWeight: '700',
+        textTransform: 'uppercase',
+    }
+}))

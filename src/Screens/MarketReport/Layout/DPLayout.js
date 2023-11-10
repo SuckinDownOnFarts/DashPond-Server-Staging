@@ -45,10 +45,9 @@ const DataProfile = () => {
 
     ModuleRegistry.register(ClientSideRowModelModule);
 
-
     return (
         <div className='flex flex-row max-w-[100vw]'>
-            <div className='fixed pt-4 pl-4 z-50'>
+            <div className={['fixed pt-4 pl-4 z-50', ]}>
                 <button
                     onClick={() => handlers.toggle()}
                     className={theme.colorScheme === 'dark' ? 'flex p-2 rounded-full bg-[#1a1b1e] cursor-pointer' : 'flex p-2 rounded-full bg-[#fcfcfc] cursor-pointer'}
@@ -58,7 +57,7 @@ const DataProfile = () => {
                     />
                 </button>
             </div>
-            <div className='flex flex-col fixed z-50 h-full'>
+            <div className='flex flex-col z-50 h-full mantineSm:ml-[250px]'>
                 <DPSidebar 
                     opened={opened}
                     handlers={handlers}
@@ -66,7 +65,7 @@ const DataProfile = () => {
             </div>
 
             <div className='flex min-h-[calc(100vh-60px)] w-full p-4 justify-center mb-8'>
-                {!loading
+                {!loading 
                     ? <Outlet
                         context={[data, opened]}
                     />

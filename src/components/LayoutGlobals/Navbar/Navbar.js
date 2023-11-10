@@ -28,7 +28,7 @@ const Navbar = () => {
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
                         <a href={'/property+search/address+input'} className={classes.link}>
-                            Property Search
+                            Property Lookup
                         </a>
                         <a href={'/contact'} className={classes.link}>
                             Contact
@@ -61,9 +61,6 @@ const Navbar = () => {
                                 <DesktopUserAvatar
                                     user={auth}
                                 />
-                                {/* <MobileUserAvatar
-                                    user={auth}
-                                /> */}
                             </div>}
                         <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
                     </Group>
@@ -87,7 +84,7 @@ const Navbar = () => {
                         Home
                     </a>
                     <a href="/property+search/address+input" className={classes.link}>
-                        Property Search
+                        Property Lookup
                     </a>
                     <a href="/contact" className={classes.link}>
                         Contact

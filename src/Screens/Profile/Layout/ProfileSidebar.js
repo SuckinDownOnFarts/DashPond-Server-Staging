@@ -25,7 +25,7 @@ const Sidebar = ({ active }) => {
     const [openLogout, { open, close }] = useDisclosure(false);
 
     const mockdata = [
-        { icon: IconGauge, label: 'Data Profiles', address: `/profile/${auth?.id}/data+profiles` },
+        { icon: IconGauge, label: 'Your Market Reports', address: `/profile/${auth?.id}/data+profiles` },
         { icon: IconUser, label: 'Account Settings', address: `/profile/${auth?.id}/info` },
     ];
 

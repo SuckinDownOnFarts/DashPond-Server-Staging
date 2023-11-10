@@ -19,6 +19,8 @@ module.exports = {
             reportMd: '1082px',
 
             frontPageCarousel: '960px',
+
+            mantineSm: '767px',
             
         },
         // fontFamily: {
